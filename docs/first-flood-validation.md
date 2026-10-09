@@ -1,7 +1,141 @@
-# First complete flood: corrected rebuild 002
+# Full first-flood validation: corrected rebuild 002
 
-This read-only audit covers the independent `coarse500` sensitivity case from
-`tmp/full-rebuild-002`, observed on 2026-10-09 at 19:44:59 UTC. It uses run 11
+The corrected 250 m and 500 m sensitivity cases have completed one full flood.
+All 31 production cases also completed their first flood and remained active
+in flood 2 at the captured observation on 2026-10-09 at 21:39:16 UTC. These
+results extend the earlier coarse-grid audit preserved below. They establish
+first-flood consistency and substantial resolution sensitivity; they do not
+establish grid convergence or reproduce any requested manuscript panel.
+
+## Completed 250 m and 500 m comparison
+
+Both sensitivity cases use run 11, the full 72 km by 48 km domain, and the
+same corrected executable. Their recorded numerical parameters differ only
+in floodplain spacing. Channel width remains 500 m and initial channel-node
+spacing remains 250 m. The 250 m case completed at 20:53:50 UTC; the 500 m
+case completed at 19:41:34 UTC, both with exit code 0. Every artifact hash in
+both completed process records was verified. The retained
+[comparison](../validation/first-flood-audit-002/two-resolution.json) has SHA-256
+`6932613746a746f28abae0963e7cf01587cfb3d491f90a2fe5b5c3059951260d`.
+Its [analysis script](../validation/first-flood-audit-002/two-resolution.py)
+reads the saved data and prints JSON without running the model:
+
+```sh
+python3 -B validation/first-flood-audit-002/two-resolution.py .
+```
+
+The percentage column uses `100*(coarse500/baseline250 - 1)`. Alpha is sampled
+on day 12; the remaining quantities below precede the first remap at day 20.
+Deposited mass is the accumulated source ledger retained in the checkpoint.
+
+| Quantity | 250 m | 500 m | Coarse change (%) |
+|---|---:|---:|---:|
+| Alpha (m) | 0.884485917 | 0.770580353 | -12.8782 |
+| Ridge height (m) | 0.0131874394 | 0.0335724137 | +154.5787 |
+| Beta | 0.00164371587 | 0.00417847871 | +154.2093 |
+| Mean channel bankfull depth (m) | 8.02294344 | 8.03460208 | +0.1453 |
+| Total water storage (m³) | 5.55864786e8 | 2.07257542e8 | -62.7144 |
+| Deposited mineral mass (kg) | 2.24278687e9 | 4.45430159e9 | +98.6057 |
+
+At day 12, wet floodplain area above 1 mm is 3397.75 km² at 250 m and
+3392.75 km² at 500 m. Both have an inundated bank fraction of one, so their
+alpha difference is their mean floodplain-depth difference. Similar wet areas
+therefore do not imply similar water storage or sediment deposition.
+
+The field comparison averages each 2 by 2 group of fine cells onto a coarse
+cell and excludes every block containing a channel cell in either grid. Over
+the resulting 3384 km² common floodplain, end-flood depth has mean absolute
+difference 0.100738 m and maximum difference 0.386764 m. Event-deposit thickness
+has mean absolute difference 0.000297931 m and maximum difference 0.128899 m.
+These spatial means include dry and weakly depositional areas and omit the
+excluded channel-containing blocks; they must be interpreted alongside the
+integrated mass and near-channel differences.
+
+The sampled bank interface is 144 km long at 250 m and 215 km at 500 m.
+After the first migration, the 250 m case captures and abandons no raster
+cells and has zero bank reservoir. The 500 m case captures 49 cells and
+abandons 50, giving the 1.5680e11 kg reservoir documented below. The minimum
+post-remap channel depth is 4.35976 m at 250 m and 6.70414e-8 m at 500 m.
+Thus resolution affects the channel footprint and subsequent recycling as
+well as the hydraulic and sediment discretization. Both remaps remain
+conservative: post-remap water residuals are -1.91927e-5 and -9.29907e-5 m³,
+and full-solid residuals are -0.360248 and -0.259179 kg, respectively.
+Both water and mass correction ledgers are zero.
+
+Two resolutions do not determine a convergence order. The CFL-controlled
+time steps change with floodplain spacing, while channel spacing is held
+fixed; the 125 m and time-step cases require separate assessment. Neither
+first-flood case tests recycling through a subsequent complete hydrograph.
+Run 11 at flood 1 also supplies none of the Figure 2 configurations and
+sampling times. Its ridge height is a longitudinal-mean estimator used for
+beta, whereas Figure 2 shows individual central cross-sections at floods
+50, 225, 400, and 580. The profile area, spread, width, and flank definitions
+in [comparison.md](comparison.md) cannot turn these early diagnostics into a
+late-time profile comparison.
+
+## First production flood in all 31 cases
+
+The [captured production observation](../validation/first-flood-audit-002/production-observation-20261009T213916.json)
+records all 31 first-flood summaries, snapshots, and post-remap checkpoints,
+with 289 input hashes. Its [script](../validation/first-flood-audit-002/production-observation.py)
+verified live process identities, executable hashes, checkpoint signatures,
+finite fields, and nonnegative water and suspended-class inventories. At
+21:39:16 UTC, every case had completed exactly one flood and was advancing
+through flood 2, with saved progress between days 5.86135 and 11.32774.
+These are time-specific observations; the script rejects later checkpoints
+or exited processes rather than reproducing this earlier state.
+
+All 31 first remaps have zero captured cells, abandoned cells, cutoffs, bank
+reservoir, recycled mass, and numerical water/mass corrections. Post-remap
+channel depths across all nodes and cases span 4.35888--4.99890 m. This bounds
+the initial remap behavior on the production grid, but does not test later
+bank erosion, cutoff transfer, or recycling. Aggradation and migration follow
+the saved first-flood diagnostics, so those diagnostics cannot establish the
+long-term effects of A or E.
+
+Across the 31 cases, first-flood alpha spans 0.884224--0.884829 m, beta spans
+1.52612e-5--0.00563365, and the ridge-height estimator spans
+0.000122093--0.0455068 m. Maximum local event deposition spans
+0.00363068--0.945409 m, and bulk event-deposit volume spans
+1.15954e4--4.63861e6 m³. These are independently computed early-flood ranges,
+not comparisons with the manuscript's later maps or profiles.
+
+| Post-remap inventory | Largest absolute residual | Largest absolute residual / prescribed input |
+|---|---:|---:|
+| Water | 1.31249e-4 m³ | 8.68052e-15 |
+| Suspension plus deposition | 2.51689 kg | 1.47412e-11 |
+| Full solid inventory | 0.396595 kg | 7.24578e-10 |
+
+Each normalized value uses its own run's first-flood prescribed input;
+the absolute and normalized maxima need not occur in the same run.
+Maximum absolute local remap defects are 8.34465e-7 m³ for water,
+3.81470e-6 kg for an individual suspended class, and 5.56290e-4 kg for the
+full solid inventory after prescribed bed forcing. Independent checkpoint
+storage sums agree with the post-remap ledgers within 4.29153e-6 m³ for
+water and 6.37816e-6 kg for suspension plus deposition. These small residuals
+verify the stated budgets; they do not resolve the physical closures or the
+resolution sensitivity above. All 580-flood production histories and all
+13 requested panel assessments remain incomplete.
+
+The first remap's signed prescribed bed forcing spans -7.75454e5 to
++2.06082e9 kg across the production cases. Its largest ratio to prescribed
+upstream sediment input is 37.6511%, in run 10. This ledger includes imposed
+channel-bed aggradation and adjustments associated with the prescribed bed
+geometry. It is explicitly external forcing in the solid budget. Small
+closure residuals therefore do not establish that all modeled solid changes
+arise from conservative transport of upstream sediment.
+
+All 289 hashed production inputs are preserved in the
+[capture archive](../validation/first-flood-audit-002/README.md), including
+the first-flood checkpoints that subsequent floods replace in the live suite.
+The capture manifest binds the observation, retained audit scripts, and input
+archive. Its verification command reads the saved archive without changing
+any simulation output.
+
+## Historical coarse audit: 19:44:59 UTC
+
+The initial read-only audit covered the independent `coarse500` sensitivity
+case from `tmp/full-rebuild-002`, observed on 2026-10-09 at 19:44:59 UTC. It uses run 11
 (A=0, C=0.003, E=1, default grain fractions), the full 72 km by 48 km domain,
 and a complete 20-day flood. Floodplain spacing is 500 m; channel width is
 500 m and the initial channel-node spacing remains 250 m. This coarsened
@@ -30,7 +164,7 @@ production or sensitivity output. Its initial observation is also retained.
 These are captured historical records: process IDs, observation times and local
 input paths describe that observation, rather than a portable rerun invocation.
 
-## Timing, states, and inventories
+### Timing, states, and inventories
 
 The diagnostic snapshot clock is exactly 1,036,800 s (day 12); the end-flood
 snapshot and post-remap checkpoint clocks are exactly 1,728,000 s (day 20).
@@ -77,7 +211,7 @@ suspension plus deposition, and 4.76e-12 for the full solid inventory.
 These results establish ledger closure at this scope, not physical accuracy
 of the boundary, deposition, migration, or recycling assumptions.
 
-## Small line motion and whole-cell erosion
+### Small line motion and whole-cell erosion
 
 The first migration produces no cutoff. The saved pre-remap line has 289
 nodes; the post-remap checkpoint has 290 after resampling. Both lines are
@@ -107,7 +241,7 @@ establish convergence of long-term recycling, planform, or ridge development.
 No corresponding 250 m behavior is inferred from this coarsened case. This
 is a measured resolution-dependent limitation, not a conservation defect.
 
-## Version and completion limits
+### Version and completion limits at the earlier observation
 
 The corrected end-flood raster and channel CSV are byte-identical to the
 legacy `validation/runs/coarse500` pre-remap files at their saved precision.

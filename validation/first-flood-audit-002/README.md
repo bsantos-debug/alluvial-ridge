@@ -1,0 +1,69 @@
+# First-flood validation evidence
+
+These records describe the corrected executable in clean rebuild 002. They
+retain first-flood validation observations while the 580-flood simulations
+continue. The scientific interpretation is in
+[first-flood-validation.md](../../docs/first-flood-validation.md).
+
+- `audit.json` and `initial-observation.json` preserve the earlier 500 m audit.
+- `two-resolution.json` compares the completed 250 m and 500 m cases. Its
+  percentage differences use `100*(coarse500/baseline250 - 1)`.
+- `production-observation-20261009T213916.json` records all 31 production
+  cases at 2026-10-09 21:39:16 UTC, after one completed flood. Its 289 input
+  hashes cover the frozen inputs, recorded process identities, parameters,
+  first-flood fields, summaries, remap ledgers, and checkpoints.
+- `production-inputs-20261009T213916.tar.xz` preserves those exact 289 files.
+  Member names are relative to `tmp/full-rebuild-002/workspace`. Metadata
+  timestamps and ownership are normalized; file contents are unchanged.
+- `resolution-inputs.tar.xz` preserves the 24 files from the completed
+  250 m and 500 m cases, including their checkpoints and process records.
+- `capture-provenance.json` binds the retained scripts, observations, and
+  input archive to their SHA-256 digests. The report checks this manifest
+  before displaying the archived observations.
+
+The original production observation checked live PIDs, start times and
+executables. Those process identities describe that observation time. Later
+checkpoints replace earlier checkpoints in the running suite; the archive
+retains the bytes used for these first-flood checks. Historical command paths
+are preserved even after a project relocation.
+
+From the project root, check every retained file and archived input without
+extracting or changing any simulation output:
+
+```sh
+python3 -B - <<'PY'
+import hashlib, json, tarfile
+from pathlib import Path
+p = Path('validation/first-flood-audit-002')
+m = json.loads((p / 'capture-provenance.json').read_text())
+for name, expected in m['files_sha256'].items():
+    assert hashlib.sha256((p / name).read_bytes()).hexdigest() == expected, name
+production = m['production_input_archive']
+sensitivity = m['sensitivity_input_archive']
+sources = [(production, json.loads((p / production['observation']).read_text())['input_sha256']),
+           (sensitivity, sensitivity['files_sha256'])]
+for record, expected in sources:
+    observed = {}
+    with tarfile.open(str(p / record['file']), 'r:*') as archive:
+        for member in archive:
+            assert member.isfile() and member.name not in observed, member.name
+            observed[member.name] = hashlib.sha256(archive.extractfile(member).read()).hexdigest()
+    assert observed == expected
+    assert len(observed) == record['members']
+    print('Verified', len(observed), 'input files in', record['file'])
+PY
+```
+
+Recompute the two-resolution comparison while its completed source cases
+remain available:
+
+```sh
+python3 -B validation/first-flood-audit-002/two-resolution.py .
+```
+
+`production-observation.py` is the retained live-observation procedure. It
+requires the first-flood checkpoints and matching live processes, and refuses
+later states. Full numerical regeneration follows the documented clean
+[rebuild procedure](../../docs/rebuild.md). Neither an archive integrity check
+nor these first-flood observations establish grid convergence, long-term
+behavior, or manuscript-panel agreement.

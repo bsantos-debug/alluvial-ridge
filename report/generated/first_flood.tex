@@ -1,0 +1,80 @@
+\subsection{Archived first-flood validation}
+\label{sec:first-flood-validation}
+The corrected rebuild 002 provides provisional evidence over the first
+20-day hydrograph. These archived observations establish a limited
+numerical check; they do not supply any requested manuscript panel.
+The 250 m and 500 m floodplain cases use configuration 11 and the full
+72 km by 48 km domain. Their recorded parameters differ only in
+floodplain spacing; channel-node spacing remains 250 m. The capture
+verified both completed process records and their output hashes.
+
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+Quantity & 250 m grid & 500 m grid \\
+\midrule
+Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $7.7058\times10^{-1}$ \\
+End-flood ridge height (m) & $1.31874\times10^{-2}$ & $3.35724\times10^{-2}$ \\
+End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $4.17848\times10^{-3}$ \\
+Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $4.4543\times10^{9}$ \\
+New channel cells after remap & 0 & 49 \\
+Bank reservoir after remap (kg) & $0$ & $1.568\times10^{11}$ \\
+\bottomrule\end{tabular}\end{center}
+Deposited mass is the accumulated deposition source ledger retained
+in the checkpoint, not a post-remap integral of the remaining deposit.
+The coarse-grid deposited mass exceeds the fine-grid value by
+98.61\%. Both day-12 inundated interface fractions equal one.
+The end-flood comparison averages each two-by-two block of fine cells
+onto the coarse grid and excludes blocks containing any channel cell.
+Over the resulting 3384 km$^2$ common floodplain, water-depth differences
+have mean absolute value 0.100738 m and maximum 0.386764 m.
+These averages include dry areas and omit the excluded channel blocks.
+
+The coarser grid captures 49 bank cells after the first hydrograph,
+whereas the finer grid captures none. This difference changes the
+reservoir available for later recycling. Capture occurs after the
+hydrograph and therefore cannot explain the first-flood deposit-mass
+difference. The adaptive time steps also change with floodplain
+spacing. Two first-flood cases with fixed channel spacing do not
+establish spatial or temporal convergence, nor do they test recycling
+through a subsequent complete hydrograph.
+
+The historical production observation at 2026-10-09T21:39:16.936345Z records all 31 cases
+after their first remap, while their live progress records indicated
+flood 2. The recorded process identities, finite-value checks,
+positivity checks, and checkpoint signatures passed. Every case had
+zero captured or abandoned raster cells, bank reservoir, recycled
+mass, cutoff count, and water or mass correction ledger.
+The largest absolute post-remap residuals across those cases were:
+
+\begin{center}\small
+\begin{tabular}{lrrrr}
+\toprule
+Inventory & Absolute residual & Run & Relative to input & Run \\
+\midrule
+Water & $1.31249\times10^{-4}$ m$^3$ & 23 & $8.68052\times10^{-15}$ & 23 \\
+Suspension + deposited sediment & $2.51689\times10^{0}$ kg & 18 & $1.47412\times10^{-11}$ & 27 \\
+Full solid inventory & $3.96595\times10^{-1}$ kg & 02 & $7.24578\times10^{-10}$ & 02 \\
+\bottomrule\end{tabular}\end{center}
+Absolute and normalized maxima are selected separately and can occur
+in different runs. Normalization uses the prescribed cumulative
+upstream water or sediment input through the first hydrograph.
+It excludes recycled bank material and independent signed bed forcing
+from the denominator; it is neither current storage nor net input.
+The full-solid residual includes bank and bed accounting with the
+prescribed signed bed forcing subtracted. These small first-flood
+residuals constrain conservation over the captured interval only.
+The separately recorded signed bed forcing ranges from $-7.75454\times10^{5}$ kg
+(run 28) to $2.06082\times10^{9}$ kg (run 22).
+This prescribed geometry and aggradation forcing contributes to
+solid-inventory change independently of suspended transport.
+
+The earlier coarse-grid observations remain in the same archive.
+This section verifies the capture manifest, archived analysis scripts
+and JSON records, together with all 289 retained production-input
+and 24 completed sensitivity-input file hashes.
+It reads no live process or checkpoint. Artifact and generator
+identities are recorded in \path{report/generated/first_flood_evidence.json};
+the retained sources are in \path{validation/first-flood-audit-002}.
+Later conservation drift, bank recycling, finer-grid and time-step
+sensitivity, and long-term morphology require further assessment.

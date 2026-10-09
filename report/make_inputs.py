@@ -410,6 +410,7 @@ if kernel.exists():
     wrapped = "\n".join(textwrap.fill(line, width=96, subsequent_indent="  ",
                                     replace_whitespace=False, drop_whitespace=False,
                                     break_on_hyphens=False) for line in content.splitlines())
+    wrapped = "\n".join(line.rstrip() for line in wrapped.split("\n"))
     (OUT / "kernel.tex").write_text(
         "Existing kernel verification log (scope limited to the named checks). "
         r"Display lines are wrapped; the original bytes remain in \texttt{validation/kernel.txt}." + "\n"

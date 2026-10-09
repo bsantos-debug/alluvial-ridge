@@ -26,6 +26,9 @@ the unpublished original model has been recovered exactly.
 All project files, outputs, and caches are kept on a `/data/data0` through
 `/data/data7` volume. Current checkout:
 `/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`.
+The requested destination is `/data/data0/brooke/alluvial-ridge`; its parent
+directory still requires administrator creation with write access for
+`brnisant`. Work remains in the current checkout until that move is possible.
 
 ```bash
 source scripts/environment.sh
@@ -43,6 +46,8 @@ Python requires NumPy/Matplotlib. The report uses pdfLaTeX.
 - [Scientific specifications and requirement gates](docs/specification.md)
 - [Implemented equations, assumptions and boundary conditions](docs/implementation.md)
 - [Hydraulic/sediment evidence](docs/sediment-methods.md)
+- [Completed first-flood validation](docs/first-flood-validation.md) and
+  [preserved numerical inputs](validation/first-flood-audit-002/README.md)
 - [Migration evidence and equations](docs/migration.md)
 - [Complete panel ledger](docs/panels.csv)
 - [Plot input/output conventions](docs/plotting.md)

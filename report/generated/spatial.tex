@@ -1,0 +1,36 @@
+\subsection{Spatial measurements from saved snapshots}
+The following measurements describe independent output; they do not assign scientific agreement. A dash denotes a missing, noncanonical, inconsistent or unverified requested sample. Diagnostic provenance and all omitted records are retained in the accompanying JSON files.\par
+figures/inundation\_metrics.json: diagnostic has not been generated.\par
+figures/planform\_metrics.json: diagnostic has not been generated.\par
+Water is sampled at day 12; deposition is sampled at flood end, before migration. Wet area excludes channel ghosts and uses $h>1$ mm. Mean depth includes dry floodplain cells. The wet-bank fraction uses immediate channel--floodplain faces and both depth and stage tests. Wet patches connect faces sharing a raster vertex; their count is sensitive to threshold rounding. Patch length does not measure discharge.\par
+\begin{center}\small\begin{tabular}{lrrrrrr}\toprule
+Panel & Wet area & Mean $h$ & Wet banks & Patches & Largest patch & Deposit \\
+ & (km$^2$) & (m) & (fraction) & (count) & (km) & ($10^6$ m$^3$) \\ \midrule
+1A & --- & --- & --- & --- & --- & --- \\
+1B & --- & --- & --- & --- & --- & --- \\
+1C & --- & --- & --- & --- & --- & --- \\
+1D & --- & --- & --- & --- & --- & --- \\
+1E & --- & --- & --- & --- & --- & --- \\
+1F & --- & --- & --- & --- & --- & --- \\
+\bottomrule\end{tabular}\end{center}
+Deposit volumes include pore space. The next table reports fractions of each event's total bulk deposit volume on its day-12 wet footprint and in previously sampled channel cells that are now floodplain. The latter masks omit unsaved channel positions and do not establish complete abandoned-channel infilling.\par
+\begin{center}\small\begin{tabular}{lrrl}\toprule
+Panel & On wet footprint & In earlier channels & Earlier saved floods \\ \midrule
+1A & --- & --- & --- \\
+1B & --- & --- & --- \\
+1C & --- & --- & --- \\
+1D & --- & --- & --- \\
+1E & --- & --- & --- \\
+1F & --- & --- & --- \\
+\bottomrule\end{tabular}\end{center}
+Planform sinuosity is centerline arc length divided by the 72 km valley length. Extent and the arc-length-weighted lateral RMS describe the active centerline, not historical channel-belt width. Inverse RMS curvature uses unsmoothed three-point curvatures and is a curvature scale, not a bend wavelength. Zero curvature has no finite inverse scale.\par
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+Panel & Sinuosity & Lateral extent (km) & Lateral RMS (km) & Curvature scale (km) \\ \midrule
+1A & --- & --- & --- & --- \\
+1B & --- & --- & --- & --- \\
+1C & --- & --- & --- & --- \\
+1D & --- & --- & --- & --- \\
+1E & --- & --- & --- & --- \\
+1F & --- & --- & --- & --- \\
+\bottomrule\end{tabular}\end{center}
+Saved cutoff times and sinuosity series are in \texttt{figures/\allowbreak{}planform\_\allowbreak{}metrics.json}. A count increase between summaries $n$ and $n+1$ dates the remap after flood $n$. Missing summary intervals remain censored; the last summary cannot date its following remap. The spatial tables supply no unreported numerical target from the publication.

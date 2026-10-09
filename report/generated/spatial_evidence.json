@@ -1,0 +1,14 @@
+{
+  "inundation": {
+    "file": "figures/inundation_metrics.json",
+    "problems": [],
+    "sha256": null,
+    "state": "absent"
+  },
+  "planforms": {
+    "file": "figures/planform_metrics.json",
+    "problems": [],
+    "sha256": null,
+    "state": "absent"
+  }
+}

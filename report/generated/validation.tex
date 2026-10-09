@@ -1,4 +1,5 @@
-Component and coupled tests pass in the current development build. The
+The retained development validation record reports passing component and
+coupled tests. The
 lake-at-rest kernel error is $6.76\times10^{-15}$ after 1000 steps.
 Analytical settling conserves suspended plus deposited mass, and periodic
 sediment diffusion errors decrease from $1.04\times10^{-5}$ to
@@ -25,9 +26,12 @@ Changed checkpoint parameters are rejected, and diagnostic rows written
 after the last valid checkpoint are regenerated. These checks establish
 restart behavior for the tested case.
 
-The first full-domain, 20-day flood and representative floodplain-grid and
-time-step refinement calculations are still running. Their results are
-not yet available, and the component tests do not establish grid independence
-or long-term quantitative agreement for the 31 production configurations.
+This development summary predates completion of the full-domain first-flood
+cases and is not a live record of their status. The separately archived
+findings from corrected rebuild 002 appear in
+Section~\ref{sec:first-flood-validation}, including completed 250 m and 500 m
+sensitivity cases and the captured first flood of all 31 production cases.
+The component tests summarized here do not establish grid independence or
+long-term quantitative agreement for those production configurations.
 Exact commands and logs are in \texttt{validation/} and
 \texttt{docs/numerical-validation.md}.

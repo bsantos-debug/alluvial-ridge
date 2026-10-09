@@ -1,9 +1,14 @@
 # Current authoritative state
 
-2026-10-09: All project files, caches, and temporary files belong under
-`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`. The former home
-project and task-created TeX cache are absent. Available space was about 1.9 TB.
-The original request is copied into `docs/user-request.txt`.
+2026-10-09: The working project, caches, and temporary files remain under
+`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge` while relocation to
+the requested `/data/data0/brooke` awaits directory creation and suitable
+ownership by an administrator. The current checkout is maintained temporarily
+for the resumed scientific task; its subsequent changes belong in the eventual
+move. No project files are written under home directories. Earlier cleanup
+removed the former home project and task-created TeX cache. Available space
+was about 1.9 TB when this location was selected. The original request is
+copied into `docs/user-request.txt`.
 
 ## Active corrected clean rebuild
 
@@ -17,24 +22,39 @@ Artifacts: `tmp/full-rebuild-002/`; staged workspace:
 `tmp/full-rebuild-002/workspace/`; root exec session **72007**.
 Launch log: `tmp/full-rebuild-002.launch.log`. Frozen compilation and all
 exact-binary component, coupling, remap and restart checks passed. Sensitivity
-driver PID **3805339** and simulation driver PID **3805340** are running.
-All **31** production case processes were verified live. Each requests the
-full 580-flood calculation; eight full first-flood sensitivity cases use two
+driver PID **3805339** and simulation driver PID **3805340** were launched.
+All **31** production case processes were verified live at the observation
+described below. Each requests the full 580-flood calculation; eight full
+first-flood sensitivity cases use two
 workers. Do not edit the staged sources or restart live cases. Completion and
 scientific agreement remain pending.
 
-At 19:47:19 UTC, all 31 production PIDs were live in `/proc`, at flood 1,
-days 7.665--8.686, with 32,000--42,000 macrosteps. Frozen source hashes still
-matched the outer manifest. The corrected 500 m sensitivity completed its
-20-day flood at 19:41:34 UTC with exit 0; baseline250 and fine125 (PID 3831031)
-were running. The coarse output has finite/nonnegative fields and checkpoint,
-zero water/mass correction ledgers, and small pre/post-remap residuals.
-It also exposes substantial whole-cell footprint sensitivity: mean lateral
-line motion of 3.22 m captured 49 raster cells, producing a bank reservoir
-2.8647 times the first-flood sediment input. This does not establish a
-conservation defect or 250 m behavior. The next-hydrograph recycling effect
-and grid/time convergence remain untested. See `docs/first-flood-validation.md`
-for the measured scope, residuals, original files and limitations.
+At 21:39:16 UTC, all 31 production PIDs were verified live with the corrected
+executable. Every case had completed one full flood and was advancing through
+flood 2, between days 5.86135 and 11.32774 in its saved progress. Frozen source
+hashes, checkpoint signatures, finite fields, and nonnegative water and
+suspended-class inventories passed the recorded checks. All first remaps have zero captured
+or abandoned cells, cutoffs, bank reservoir, recycled mass, and numerical
+water/mass corrections. The largest absolute post-remap residuals are
+1.31249e-4 m³ water, 2.51689 kg suspension plus deposition, and 0.396595 kg
+full solids. The [captured observation](../validation/first-flood-audit-002/production-observation-20261009T213916.json)
+retains all 31 records and 289 input hashes; its process observations are
+historical, not a guarantee that the same processes remain live later.
+
+Both corrected first-flood sensitivity cases `coarse500` and `baseline250`
+completed with exit 0, at 19:41:34 and 20:53:50 UTC respectively. Their saved
+artifact hashes match their completed process records. Relative to 250 m,
+the 500 m case has 12.8782% lower alpha, 98.6057% more deposited mass, and
+62.7144% less end-flood water storage. Its first remap captures 49 cells and
+abandons 50, producing a bank reservoir 2.8647 times the first-flood input;
+the 250 m case has none of these cell conversions and zero reservoir. The
+bank interface is 215 km at 500 m and 144 km at 250 m. Small conservative
+budget residuals therefore coexist with substantial sensitivity to raster
+geometry and resolution. The [two-resolution record](../validation/first-flood-audit-002/two-resolution.json)
+and [validation account](first-flood-validation.md) retain the method,
+denominators, field differences, and limits. This is first-flood sensitivity,
+not grid convergence or a manuscript-panel reproduction. The finer-grid and
+time-step results and later recycling require further assessment.
 
 This version saves day-12 fields and post-remap budgets. Its automatic report
 also includes numeric refinement/assumption differences and production budget
@@ -77,9 +97,9 @@ currently refuses 002 because the suite is still live. It neither starts
 models nor treats compiled PDFs as scientific acceptance. A later render-only
 mode permits authored ledger assessments while preserving figure bytes.
 
-`docs/runtime-observation.md` records live process and timestep measurements.
-All 31 production cases continued advancing through flood 1 during this audit;
-there is no evidence supporting a complete-run ETA or a stalled calculation.
+`docs/runtime-observation.md` records earlier process and timestep measurements.
+The later production observation above confirms all 31 cases in flood 2.
+These observations do not establish a complete-run ETA.
 
 ## Interrupted clean rebuild and correction
 
@@ -129,8 +149,9 @@ normalized by prescribed input are approximately 6.18e-15 for water,
 6.17e-12 for suspended sediment plus deposition, and 4.76e-12 for the total
 solid/bank/suspension ledger. This is validation, not a manuscript panel.
 
-The older 250 m baseline (root session 40462, PID 3756153), 125 m case
-(PID 3757990), and half-CFL case (PID 3770900) remain live as of 19:07 UTC.
+At the earlier 19:07 UTC observation, the older 250 m baseline (root session
+40462, PID 3756153), 125 m case (PID 3757990), and half-CFL case
+(PID 3770900) were live.
 Their runner PID 3757950 writes `validation/runs/`. Its original agent
 session 38913 cannot be polled from root; inspect logs and process records.
 All use the frozen v4 binary with corrected characteristic boundaries,
@@ -163,8 +184,16 @@ math, grid coarsening, flood shortening, or skipped floods is used in production
 Plotter and comparison scripts handle all 13 requested panels, record hashes,
 and leave missing/nonfinite samples absent. The report renderer merges actual
 coverage with the maintained scientific assessment and does not infer agreement
-from plot existence. Root `report/report.pdf` is a 20-page work-in-progress
-report; clean outputs will be generated in the next staged workspace.
+from plot existence. Root `report/report.pdf` is a 24-page work-in-progress
+report. Its first-flood section verifies 313 retained input files from the
+production observation and completed 250 m and 500 m sensitivity cases,
+including checkpoints, before rendering their measurements. Those files are
+preserved in two compressed archives under `validation/first-flood-audit-002`;
+the section does not read changing live outputs. All 13 main-manuscript panels
+remain unreproduced. Clean outputs will be generated in the staged workspace.
+The root `figures/comparison.json` and `.csv` are retained inputs to this
+provisional report: they contain zero computed comparisons, and the report
+flags their outdated processor identity and missing numerical panel sources.
 The supplement has prose and a table, with no supplementary figures.
 
 ## Publication and remaining work

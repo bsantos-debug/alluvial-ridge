@@ -1,0 +1,458 @@
+{
+  "1A": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure1.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "1A",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {
+        "inundation": {
+          "file": "figures/inundation_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        },
+        "planforms": {
+          "file": "figures/planform_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        }
+      }
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure1.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "1B": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure1.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "1B",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {
+        "inundation": {
+          "file": "figures/inundation_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        },
+        "planforms": {
+          "file": "figures/planform_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        }
+      }
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure1.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "1C": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure1.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "1C",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {
+        "inundation": {
+          "file": "figures/inundation_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        },
+        "planforms": {
+          "file": "figures/planform_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        }
+      }
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure1.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "1D": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure1.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "1D",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {
+        "inundation": {
+          "file": "figures/inundation_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        },
+        "planforms": {
+          "file": "figures/planform_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        }
+      }
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure1.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "1E": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure1.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "1E",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {
+        "inundation": {
+          "file": "figures/inundation_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        },
+        "planforms": {
+          "file": "figures/planform_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        }
+      }
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure1.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "1F": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure1.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "1F",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {
+        "inundation": {
+          "file": "figures/inundation_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        },
+        "planforms": {
+          "file": "figures/planform_metrics.json",
+          "sha256": null,
+          "state": "absent"
+        }
+      }
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure1.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "2A": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure2.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "2A",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure2.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "2B": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure2.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "2B",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure2.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "2C": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure2.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "2C",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure2.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "2D": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure2.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "2D",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure2.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "3A": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure3.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "3A",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure3.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "3B": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure3.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "3B",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure3.pdf"
+    ],
+    "recorded_fingerprint": ""
+  },
+  "3C": {
+    "assessment_fingerprint_matches": false,
+    "current_fingerprint": null,
+    "evidence": {
+      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "figure": "figures/figure3.pdf",
+      "figure_sha256": null,
+      "format": "panel-assessment-v2",
+      "numerical_source_sha256": {},
+      "panel": "3C",
+      "panel_status": {},
+      "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "plot_manifest_sha256": null,
+      "processor_sha256": {
+        "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
+        "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
+      },
+      "spatial_diagnostics": {}
+    },
+    "problems": [
+      "plot input hashes unavailable",
+      "no numerical source files recorded",
+      "plot processor/configuration hash missing or changed: scripts/plot.py",
+      "plot processor/configuration hash missing or changed: config/runs.csv",
+      "comparison processor hash missing or changed",
+      "comparison input missing or changed: scripts/compare.py",
+      "generated figure missing: figures/figure3.pdf"
+    ],
+    "recorded_fingerprint": ""
+  }
+}
