@@ -298,6 +298,20 @@ retain the uncertainty of the published visual range. Channel minima,
 ridge width, and the sign and scale of relief growth provide additional
 comparisons.
 
+For each independent profile we exclude currently active-channel cells
+and define positive-relief weights $w_i=\max(z_i-z_0,0)$ elsewhere.
+The section area above the initial plane is $B=\Delta y\sum_i w_i$;
+its equivalent width is $B/H$, where $H=\max_i(z_i-z_0)$ over non-active
+cells. The transverse standard deviation uses these weights and includes
+the within-cell variance $\Delta y^2/12$. Half-crest occupied width counts
+cells with relief at least $H/2$, whereas their full span includes gaps.
+Each flank's mean departure from its distal-to-crest endpoint chord
+describes broad shape; a positive departure lies above that chord.
+Active-channel gaps remain excluded and abandoned depressions remain in
+the flank calculation. These diagnostics do not define a published ridge
+width or a numerical test of the paper's concavity description. Measures
+with unresolved positive relief are not interpreted.
+
 \resultfigure{figures/figure2.pdf}{Independent model output for manuscript
 panels 2A--D: floodplain elevation versus transverse distance at the
 central grid column, 36.125 km downstream, at the end of floods 50, 225,
@@ -354,10 +368,12 @@ and provenance.}{fig:diagnostics}
 
 \clearpage
 \optionalinput{report/generated/results.tex}{Quantitative comparison from completed coupled simulations is pending. The comparison targets above describe the publication and do not constitute independently reproduced results.}
+\optionalinput{report/generated/spatial.tex}{Spatial measurements from the saved day-12 and end-flood snapshots have not been rendered.}
 
 \section{Limits of the reconstruction}
-Assessment of the generated morphology remains pending. The automatic
-comparisons report scalar spatial scales, trend signs, and variability,
+Assessment of the generated morphology requires the independent maps and
+profiles alongside their numerical summaries. The automatic
+comparisons report spatial scales, shape descriptors, trend signs, and variability,
 but do not establish splay formation, abandoned-channel infilling, ridge
 concavity, or breach localization. Those claims require direct assessment
 of the independent maps and profiles and an authored record for each

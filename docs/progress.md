@@ -23,6 +23,19 @@ full 580-flood calculation; eight full first-flood sensitivity cases use two
 workers. Do not edit the staged sources or restart live cases. Completion and
 scientific agreement remain pending.
 
+At 19:47:19 UTC, all 31 production PIDs were live in `/proc`, at flood 1,
+days 7.665--8.686, with 32,000--42,000 macrosteps. Frozen source hashes still
+matched the outer manifest. The corrected 500 m sensitivity completed its
+20-day flood at 19:41:34 UTC with exit 0; baseline250 and fine125 (PID 3831031)
+were running. The coarse output has finite/nonnegative fields and checkpoint,
+zero water/mass correction ledgers, and small pre/post-remap residuals.
+It also exposes substantial whole-cell footprint sensitivity: mean lateral
+line motion of 3.22 m captured 49 raster cells, producing a bank reservoir
+2.8647 times the first-flood sediment input. This does not establish a
+conservation defect or 250 m behavior. The next-hydrograph recycling effect
+and grid/time convergence remain untested. See `docs/first-flood-validation.md`
+for the measured scope, residuals, original files and limitations.
+
 This version saves day-12 fields and post-remap budgets. Its automatic report
 also includes numeric refinement/assumption differences and production budget
 extrema with input hashes. `validation/remap-full-check.txt` is the root check
@@ -49,6 +62,20 @@ are included in future rebuilds; immutable rebuild 002 still uses its original
 postprocessors. Its data and execution manifest must remain unchanged when
 preparing the later assessed report. `docs/finalization-checklist.md` gives
 the 13-panel assessment, separate provenance and publication requirements.
+
+The later report now renders verified spatial tables and ties their source
+paths to the exact plotted run, in addition to checking hashes. Figure 2
+comparisons measure profile area, spread, widths and signed flank departures
+with explicit definitions; all derived section cells are checked against
+the saved raster. Analytical/actual diagnostic checks retain noncanonical
+status. An isolated PDF including the actual 002 kernel log compiled without
+layout/reference warnings; root and staged 002 PDFs were not overwritten.
+
+`scripts/finalize_report.py` stages and processes verified terminal saved
+data, preserving the original rebuild separately. Its check-only mode
+currently refuses 002 because the suite is still live. It neither starts
+models nor treats compiled PDFs as scientific acceptance. A later render-only
+mode permits authored ledger assessments while preserving figure bytes.
 
 `docs/runtime-observation.md` records live process and timestep measurements.
 All 31 production cases continued advancing through flood 1 during this audit;

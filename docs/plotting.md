@@ -169,3 +169,43 @@ the 580-row test agreed with direct arithmetic averaging and the sorted-value
 linear-percentile formula. Removing flood 580 from that test's in-memory
 records prevented both final-window statistics. Generated raster and section
 pages were visually inspected; partial/missing times are visibly identified.
+
+## Saved spatial measurements in the PDF
+
+After generating the inundation and planform JSON files, `bash report/build.sh`
+renders their exact requested Figure 1 samples into `report/generated/spatial.tex`.
+The three tables report day-12 water extent and wet-bank patches, deposition
+fractions, and active-centerline geometry. Definitions and limits are in
+`docs/inundation-comparison.md` and `docs/planform-comparison.md`. The tables
+do not promote diagnostic or altered-configuration runs into manuscript data.
+Missing, inconsistent and noncanonical samples remain dashes.
+
+The renderer verifies each helper's processor/configuration hashes and every
+recorded numerical input inside the packaged project before displaying its
+values. Each eligible Figure 1 record must also identify the exact requested
+run and flood, and its end-flood raster, parameters and summary must match the
+paths and hashes recorded for that panel in the current plot manifest and
+panel-status table. Planform records additionally bind the channel CSV;
+inundation records require the day-12 raster in that same plotted run folder.
+Hash-valid diagnostics from another retained run directory are withheld even
+when their numerical files have identical bytes. Any eligible-record mismatch
+withholds that helper's entire table contribution.
+`report/generated/spatial_evidence.json` records these checks and the plot
+manifest/panel-status hashes used for binding. Figure 1
+assessment fingerprints also bind the optional helper JSON bytes and their
+verified/absent state; changed or unverifiable spatial evidence invalidates
+the corresponding previous assessment. Numerical availability never assigns
+scientific agreement automatically.
+
+An isolated check used actual shortened two-flood restart data: both helpers
+remained noncanonical, all requested rows were withheld, and a change to the
+consumed parameter file caused both diagnostic records to be rejected. A
+separate in-memory renderer fixture exercised numeric formatting with those
+diagnostic values without publishing them as canonical results. Checks and
+their generated files are under `tmp/spatial-report-check`; root and rebuild
+002 generated outputs were not overwritten.
+A focused metadata-only check (`python3 tmp/spatial-report-check/binding-check.py`)
+accepted matching source paths/hashes for both helpers, rejected an alternate
+directory whose input hashes were all valid and whose bytes were identical,
+and rejected a wrong requested flood. Its readiness flags test only the binding
+branch; the fixture contains no numerical arrays or scientific results.

@@ -8,7 +8,9 @@ import csv
 from collections import Counter
 import hashlib
 import json
+import math
 from pathlib import Path
+import textwrap
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "report" / "generated"
@@ -31,6 +33,164 @@ def rows(path):
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def spatial_source(name, processor):
+    """Verify optional saved diagnostics before rendering or retaining a review."""
+    path = ROOT / "figures" / name
+    record = dict(file=str(path.relative_to(ROOT)), sha256=None, state="absent", problems=[], data={})
+    if not path.exists():
+        return record
+    record["sha256"] = digest(path)
+    try:
+        data = json.loads(path.read_text())
+        inputs = data["input_sha256"]
+        if not isinstance(inputs, dict) or not inputs:
+            raise ValueError("input_sha256 must be a nonempty hash mapping")
+        for required in (processor, "config/runs.csv", "config/physics.txt"):
+            if required not in inputs:
+                record["problems"].append("required input hash missing: " + required)
+        for name, expected in inputs.items():
+            source = (ROOT / name).resolve()
+            if ROOT not in source.parents or not source.is_file() or digest(source) != expected:
+                record["problems"].append("input missing, changed or outside packaged project: " + name)
+        # Hash-valid diagnostics from another retained run history must not be
+        # displayed beside the current figure, even if its parameters match.
+        ready = [(r.get("panel"), r) for r in data.get("samples", [])
+                 if r.get("panel") and r.get("state") == "computed canonical snapshot"]
+        ready += [(panel, r) for r in data.get("snapshots", []) if r.get("requested_data_ready")
+                  for panel in r.get("panels", [])]
+        if ready:
+            plot_path = ROOT / "figures/plot_manifest.json"
+            panel_path = ROOT / "figures/panel_status.csv"
+            plot = json.loads(plot_path.read_text())
+            plot_root = (ROOT / plot["data_root"]).resolve()
+            plotted = {r["panel"]: {(ROOT / p).resolve() for p in r["source_files"].split(";") if p}
+                       for r in rows(panel_path)}
+            plot_hashes = {(ROOT / p).resolve(): h for p, h in plot["files"].items()}
+            helper_hashes = {(ROOT / p).resolve(): h for p, h in inputs.items()}
+            required = dict(zip(("1" + x for x in "ABCDEF"),
+                                ((11, 61), (11, 251), (11, 501), (11, 562), (17, 562), (3, 562))))
+            if len({p for p, r in ready}) != len(ready):
+                raise ValueError("duplicate requested spatial panel")
+            for panel, sample in ready:
+                if (sample["run"], sample["flood"]) != required[panel]:
+                    raise ValueError("wrong run/flood for spatial panel " + panel)
+                folder = plot_root / ("run%02d" % sample["run"])
+                names = ["fields_%04d.bin" % sample["flood"], "parameters.txt", "summary.csv"]
+                if "geometry" in sample:
+                    names.append("channel_%04d.csv" % sample["flood"])
+                    if any((ROOT / sample[key]).resolve() != folder / filename for key, filename in
+                           (("fields_file", names[0]), ("channel_file", names[-1]))):
+                        raise ValueError("planform paths differ from plotted panel " + panel)
+                else:
+                    peak = folder / ("peak_fields_%04d.bin" % sample["flood"])
+                    if peak not in helper_hashes:
+                        raise ValueError("day-12 input is outside plotted run for " + panel)
+                for name in names:
+                    source = folder / name
+                    if (source not in plotted.get(panel, set()) or source not in helper_hashes
+                            or helper_hashes[source] != plot_hashes.get(source)):
+                        raise ValueError("spatial input differs from plotted panel " + panel + ": " + name)
+            record["plot_manifest_sha256"] = digest(plot_path)
+            record["panel_status_sha256"] = digest(panel_path)
+        if not record["problems"]:
+            record["data"] = data
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        record["problems"].append("invalid diagnostic provenance: " + str(error))
+    record["state"] = "invalid" if record["problems"] else "verified"
+    return record
+
+
+def render_spatial(sources):
+    """Report only exact requested snapshots with unchanged diagnostic inputs."""
+    lines = [r"\subsection{Spatial measurements from saved snapshots}" + "\n",
+             "The following measurements describe independent output; they do not assign scientific agreement. "
+             "A dash denotes a missing, noncanonical, inconsistent or unverified requested sample. "
+             "Diagnostic provenance and all omitted records are retained in the accompanying JSON files.\\par\n"]
+
+    def number(value, scale=1.):
+        if value is None:
+            return "---"
+        value = float(value) / scale
+        return "{:.4g}".format(value) if math.isfinite(value) else "---"
+
+    for source in sources.values():
+        if source["state"] != "verified":
+            reason = "; ".join(source["problems"][:2]) or "diagnostic has not been generated"
+            lines.append(tex(source["file"] + ": " + reason) + ".\\par\n")
+    water = sources["inundation"]["data"]
+    samples = {row["panel"]: row for row in water.get("samples", [])
+               if row.get("panel") and row.get("state") == "computed canonical snapshot"}
+    lines.extend([
+        "Water is sampled at day 12; deposition is sampled at flood end, before migration. "
+        "Wet area excludes channel ghosts and uses $h>1$ mm. Mean depth includes dry floodplain cells. "
+        "The wet-bank fraction uses immediate channel--floodplain faces and both depth and stage tests. "
+        "Wet patches connect faces sharing a raster vertex; their count is sensitive to threshold rounding. "
+        "Patch length does not measure discharge.\\par\n",
+        r"\begin{center}\small\begin{tabular}{lrrrrrr}\toprule" + "\n",
+        r"Panel & Wet area & Mean $h$ & Wet banks & Patches & Largest patch & Deposit \\" + "\n",
+        r" & (km$^2$) & (m) & (fraction) & (count) & (km) & ($10^6$ m$^3$) \\ \midrule" + "\n"])
+    for panel in ("1" + x for x in "ABCDEF"):
+        row = samples.get(panel, {})
+        bank = row.get("interface", {})
+        values = [panel, number(row.get("inundated_area_m2"), 1e6), number(row.get("mean_water_depth_m")),
+                  number(bank.get("fraction")), number(bank.get("connected_wet_patches")),
+                  number(bank.get("largest_wet_patch_length_m"), 1e3),
+                  number(row.get("event_deposition_bulk_volume_m3"), 1e6)]
+        lines.append(" & ".join(values) + r" \\" + "\n")
+    lines.append(r"\bottomrule\end{tabular}\end{center}" + "\n")
+    ambiguous = [panel for panel, row in samples.items() if row.get("ambiguous_wet_area_cells", 0)
+                 or row["interface"]["definitely_wet_faces"] != row["interface"]["possibly_wet_faces"]]
+    if ambiguous:
+        lines.append("Float32 rounding makes threshold membership ambiguous for panels " + tex(", ".join(sorted(ambiguous)))
+                     + "; the JSON retains definite and possible areas/faces and alpha bounds.\\par\n")
+    lines.extend([
+        "Deposit volumes include pore space. The next table reports fractions of each event's total "
+        "bulk deposit volume on its day-12 wet footprint and in previously sampled channel cells that are now floodplain. "
+        "The latter masks omit unsaved channel positions and do not establish complete abandoned-channel infilling.\\par\n",
+        r"\begin{center}\small\begin{tabular}{lrrl}\toprule" + "\n",
+        r"Panel & On wet footprint & In earlier channels & Earlier saved floods \\ \midrule" + "\n"])
+    for panel in ("1" + x for x in "ABCDEF"):
+        row = samples.get(panel, {})
+        total = row.get("event_deposition_bulk_volume_m3")
+        values = [panel]
+        for key in ("deposition_on_day12_wet_cells_bulk_volume_m3", "deposition_in_previously_saved_channels_bulk_volume_m3"):
+            values.append(number(row[key] / total) if total and total > 0 else "---")
+        values.append(tex(", ".join(map(str, row.get("earlier_saved_channel_floods", []))) or "none") if row else "---")
+        lines.append(" & ".join(values) + r" \\" + "\n")
+    lines.append(r"\bottomrule\end{tabular}\end{center}" + "\n")
+
+    planforms = sources["planforms"]["data"]
+    snapshots = {panel: row for row in planforms.get("snapshots", []) if row.get("requested_data_ready")
+                 for panel in row.get("panels", [])}
+    lines.extend([
+        "Planform sinuosity is centerline arc length divided by the 72 km valley length. "
+        "Extent and the arc-length-weighted lateral RMS describe the active centerline, not historical channel-belt width. "
+        "Inverse RMS curvature uses unsmoothed three-point curvatures and is a curvature scale, not a bend wavelength. "
+        "Zero curvature has no finite inverse scale.\\par\n",
+        r"\begin{center}\small\begin{tabular}{lrrrr}\toprule" + "\n",
+        r"Panel & Sinuosity & Lateral extent (km) & Lateral RMS (km) & Curvature scale (km) \\ \midrule" + "\n"])
+    for panel in ("1" + x for x in "ABCDEF"):
+        geo = snapshots.get(panel, {}).get("geometry", {})
+        values = [panel, number(geo.get("valley_sinuosity")), number(geo.get("lateral_extent_m"), 1e3),
+                  number(geo.get("lateral_rms_m"), 1e3), number(geo.get("inverse_rms_curvature_m"), 1e3)]
+        lines.append(" & ".join(values) + r" \\" + "\n")
+    lines.append(r"\bottomrule\end{tabular}\end{center}" + "\n")
+    lines.append("Saved cutoff times and sinuosity series are in "
+                 r"\texttt{figures/\allowbreak{}planform\_\allowbreak{}metrics.json}. "
+                 "A count increase between summaries $n$ and $n+1$ dates the remap after flood $n$. "
+                 "Missing summary intervals remain censored; the last summary cannot date its following remap. "
+                 "The spatial tables supply no unreported numerical target from the publication.\n")
+    (OUT / "spatial.tex").write_text("".join(lines))
+    (OUT / "spatial_evidence.json").write_text(json.dumps({
+        key: {k: v for k, v in value.items() if k != "data"} for key, value in sources.items()
+    }, indent=2, sort_keys=True) + "\n")
+
+
+spatial = dict(inundation=spatial_source("inundation_metrics.json", "scripts/inundation_metrics.py"),
+               planforms=spatial_source("planform_metrics.json", "scripts/planform_metrics.py"))
+render_spatial(spatial)
 
 
 def merge_evidence(panels):
@@ -122,15 +282,21 @@ def merge_evidence(panels):
         verified = bool(files) and not problems
         figure_name = "figures/figure{}.pdf".format(row["panel"][0])
         fingerprint_problems = problems + review_problems
+        spatial_identity = {}
+        if row["panel"].startswith("1"):
+            for key, value in spatial.items():
+                spatial_identity[key] = dict(file=value["file"], sha256=value["sha256"], state=value["state"])
+                fingerprint_problems.extend(value["problems"])
         if current_hash(figure_name) is None:
             fingerprint_problems.append("generated figure missing: " + figure_name)
-        payload = dict(format="panel-assessment-v1", panel=row["panel"], panel_status=evidence,
+        payload = dict(format="panel-assessment-v2", panel=row["panel"], panel_status=evidence,
                        numerical_source_sha256={name: current_hash(name) for name in sorted(files)},
                        plot_manifest_sha256=current_hash("figures/plot_manifest.json"),
                        figure=figure_name, figure_sha256=current_hash(figure_name),
                        processor_sha256=processor_hashes,
                        physics_reference_sha256=current_hash("config/physics.txt"),
-                       comparison_json_sha256=current_hash("figures/comparison.json"))
+                       comparison_json_sha256=current_hash("figures/comparison.json"),
+                       spatial_diagnostics=spatial_identity)
         fingerprint = None if fingerprint_problems else hashlib.sha256(
             json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         recorded_fingerprint = source.get("assessment_fingerprint", "").strip()
@@ -241,9 +407,13 @@ if kernel.exists():
     content = kernel.read_text()
     if r"\end{verbatim}" in content:
         raise ValueError("Unexpected TeX control in validation log")
+    wrapped = "\n".join(textwrap.fill(line, width=96, subsequent_indent="  ",
+                                    replace_whitespace=False, drop_whitespace=False,
+                                    break_on_hyphens=False) for line in content.splitlines())
     (OUT / "kernel.tex").write_text(
-        "Existing kernel verification log (scope limited to the named checks):\n"
-        + r"\begingroup\scriptsize\begin{verbatim}" + "\n" + content + "\n"
+        "Existing kernel verification log (scope limited to the named checks). "
+        r"Display lines are wrapped; the original bytes remain in \texttt{validation/kernel.txt}." + "\n"
+        + r"\begingroup\scriptsize\begin{verbatim}" + "\n" + wrapped + "\n"
         + r"\end{verbatim}\endgroup" + "\n")
 else:
     previous = OUT / "kernel.tex"

@@ -1,0 +1,745 @@
+{
+  "utc_observed": "2026-10-09T19:44:58.953211Z",
+  "scope": "Read-only audit of independent full-first-flood diagnostics; coarse500 is sensitivity only, not a manuscript panel.",
+  "corrected_binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+  "frozen_sources_verified": true,
+  "production_validation_binary_match": true,
+  "live_model_processes": [
+    {
+      "pid": 3756153,
+      "state": "R",
+      "cpu_seconds": 3675.31,
+      "start_ticks": 51302799,
+      "nice": 0,
+      "binary_sha256": "c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b",
+      "command": "./build/ridge --config config/physics.txt --run 11 --out tmp/full_flood_v4 --floods 1"
+    },
+    {
+      "pid": 3757990,
+      "state": "R",
+      "cpu_seconds": 3472.93,
+      "start_ticks": 51324385,
+      "nice": 0,
+      "binary_sha256": "c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/.bin/ridge-c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/runs.csv --run 11 --floods 1 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/fine125 --dx 125"
+    },
+    {
+      "pid": 3770900,
+      "state": "R",
+      "cpu_seconds": 2754.74,
+      "start_ticks": 51396837,
+      "nice": 0,
+      "binary_sha256": "c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/.bin/ridge-c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/runs.csv --run 11 --floods 1 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/time250_cfl02 --cfl 0.2"
+    },
+    {
+      "pid": 3805343,
+      "state": "R",
+      "cpu_seconds": 1006.59,
+      "start_ticks": 51544440,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv --run 11 --floods 1 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250"
+    },
+    {
+      "pid": 3805532,
+      "state": "R",
+      "cpu_seconds": 858.94,
+      "start_ticks": 51544686,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 1 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run01"
+    },
+    {
+      "pid": 3805533,
+      "state": "R",
+      "cpu_seconds": 872.87,
+      "start_ticks": 51544687,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 2 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run02"
+    },
+    {
+      "pid": 3805534,
+      "state": "R",
+      "cpu_seconds": 855.22,
+      "start_ticks": 51544688,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 3 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run03"
+    },
+    {
+      "pid": 3805535,
+      "state": "R",
+      "cpu_seconds": 977.47,
+      "start_ticks": 51544698,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 4 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run04"
+    },
+    {
+      "pid": 3805537,
+      "state": "R",
+      "cpu_seconds": 844.47,
+      "start_ticks": 51544708,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 5 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run05"
+    },
+    {
+      "pid": 3805539,
+      "state": "R",
+      "cpu_seconds": 998.03,
+      "start_ticks": 51544719,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 6 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run06"
+    },
+    {
+      "pid": 3805541,
+      "state": "R",
+      "cpu_seconds": 879.63,
+      "start_ticks": 51544729,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 7 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run07"
+    },
+    {
+      "pid": 3805543,
+      "state": "R",
+      "cpu_seconds": 835.46,
+      "start_ticks": 51544740,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 8 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run08"
+    },
+    {
+      "pid": 3805546,
+      "state": "R",
+      "cpu_seconds": 1100.68,
+      "start_ticks": 51544750,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 9 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run09"
+    },
+    {
+      "pid": 3805547,
+      "state": "R",
+      "cpu_seconds": 1068.0,
+      "start_ticks": 51544759,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 10 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run10"
+    },
+    {
+      "pid": 3805550,
+      "state": "R",
+      "cpu_seconds": 913.64,
+      "start_ticks": 51544770,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 11 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run11"
+    },
+    {
+      "pid": 3805552,
+      "state": "R",
+      "cpu_seconds": 1015.14,
+      "start_ticks": 51544782,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 12 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run12"
+    },
+    {
+      "pid": 3805554,
+      "state": "R",
+      "cpu_seconds": 880.55,
+      "start_ticks": 51544792,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 13 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run13"
+    },
+    {
+      "pid": 3805556,
+      "state": "R",
+      "cpu_seconds": 850.31,
+      "start_ticks": 51544801,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 15 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run15"
+    },
+    {
+      "pid": 3805558,
+      "state": "R",
+      "cpu_seconds": 976.4,
+      "start_ticks": 51544805,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 14 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run14"
+    },
+    {
+      "pid": 3805562,
+      "state": "R",
+      "cpu_seconds": 1032.29,
+      "start_ticks": 51544812,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 16 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run16"
+    },
+    {
+      "pid": 3805565,
+      "state": "R",
+      "cpu_seconds": 888.03,
+      "start_ticks": 51544820,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 17 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run17"
+    },
+    {
+      "pid": 3805568,
+      "state": "R",
+      "cpu_seconds": 859.37,
+      "start_ticks": 51544834,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 18 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run18"
+    },
+    {
+      "pid": 3805571,
+      "state": "R",
+      "cpu_seconds": 1005.52,
+      "start_ticks": 51544844,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 19 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run19"
+    },
+    {
+      "pid": 3805572,
+      "state": "R",
+      "cpu_seconds": 1015.21,
+      "start_ticks": 51544851,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 20 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run20"
+    },
+    {
+      "pid": 3805575,
+      "state": "R",
+      "cpu_seconds": 1006.76,
+      "start_ticks": 51544873,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 21 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run21"
+    },
+    {
+      "pid": 3805576,
+      "state": "R",
+      "cpu_seconds": 837.19,
+      "start_ticks": 51544882,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 22 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run22"
+    },
+    {
+      "pid": 3805578,
+      "state": "R",
+      "cpu_seconds": 1013.48,
+      "start_ticks": 51544891,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 23 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run23"
+    },
+    {
+      "pid": 3805581,
+      "state": "R",
+      "cpu_seconds": 907.19,
+      "start_ticks": 51544905,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 24 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run24"
+    },
+    {
+      "pid": 3805583,
+      "state": "R",
+      "cpu_seconds": 845.84,
+      "start_ticks": 51544914,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 25 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run25"
+    },
+    {
+      "pid": 3805586,
+      "state": "R",
+      "cpu_seconds": 1003.95,
+      "start_ticks": 51544923,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 26 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+    },
+    {
+      "pid": 3805588,
+      "state": "R",
+      "cpu_seconds": 844.38,
+      "start_ticks": 51544935,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 27 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run27"
+    },
+    {
+      "pid": 3805590,
+      "state": "R",
+      "cpu_seconds": 834.86,
+      "start_ticks": 51544950,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 28 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run28"
+    },
+    {
+      "pid": 3805592,
+      "state": "R",
+      "cpu_seconds": 824.43,
+      "start_ticks": 51544957,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 29 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run29"
+    },
+    {
+      "pid": 3805593,
+      "state": "R",
+      "cpu_seconds": 987.18,
+      "start_ticks": 51544961,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 30 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run30"
+    },
+    {
+      "pid": 3805595,
+      "state": "R",
+      "cpu_seconds": 841.26,
+      "start_ticks": 51544969,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv --run 31 --floods 580 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run31"
+    },
+    {
+      "pid": 3831031,
+      "state": "R",
+      "cpu_seconds": 140.31,
+      "start_ticks": 51654556,
+      "nice": 10,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "command": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c --config /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt --runs /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv --run 11 --floods 1 --out /data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/fine125 --dx 125"
+    }
+  ],
+  "corrected_live_process_count": 33,
+  "legacy_live_process_count": 3,
+  "corrected_coarse500_process_status": {
+    "name": "coarse500",
+    "command": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+      "--run",
+      "11",
+      "--floods",
+      "1",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/coarse500",
+      "--dx",
+      "500"
+    ],
+    "utc_started": "2026-10-09T19:23:13.257920Z",
+    "state": "complete",
+    "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "pid": 3805344,
+    "exit_code": 0,
+    "utc_finished": "2026-10-09T19:41:34.371636Z",
+    "wall_seconds": 1101.113713502884,
+    "artifact_sha256": {
+      "run.log": "578cda336778afe3f16f619ee36f740311f167b092d345bdab6149bc5efb816a",
+      "parameters.txt": "fec8cf263f4f7eb4ba450f734aca5cb05e9fd93c4d0dea77115cbd506fc9fb89",
+      "summary.csv": "589ef72685348b25f0f007028292df218398df914e46beab8acfbecdbec02ff1",
+      "remap_budget.csv": "99dbd7f2f9e686dce55f7aa4b49bc02800d251ce1f3d9d0fab6922781b940f9c",
+      "progress.json": "38abde0d7272dd9d4feb92e51172b2662b58b2e653fb3c0a237d3357c3bd1069",
+      "peak_fields_0001.bin": "c4b1f73cd40dac1be85e1ff066bde34e41e7cc3a4bef43e2063b69646632de59",
+      "peak_channel_0001.csv": "a9f152a1924c0ed539f429bf2c388e08ed4ed8a43a2b73b1c4d282488c87b6c5",
+      "fields_0001.bin": "20b46ac352eb373c4f5e3cb6b4961ff22d16c80f89af0a2e696001c2256883f4",
+      "channel_0001.csv": "6063a21fe8d183cf139c71a4c87de73a378cf21d613616f2b101ae0829d7a6cf",
+      "checkpoint.bin": "3d87307d8ebf5bc3968bfb70f1048de5f640aad0a2e219daf5e99024dcb6836a",
+      "status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+    }
+  },
+  "corrected_coarse500_progress": {
+    "flood": 1,
+    "time_in_flood_seconds": 1695182.035085441,
+    "duration_seconds": 1728000,
+    "steps": 59000,
+    "channel_steps": 398864,
+    "wall_seconds": 1071.573517984
+  },
+  "corrected_coarse500_peak": {
+    "nx": 144,
+    "ny": 96,
+    "nchan": 289,
+    "flood": 1,
+    "dx_m": 500.0,
+    "clock_seconds": 1036800.0,
+    "expected_clock_seconds": 1036800.0,
+    "exact_expected_clock": true,
+    "all_finite": true,
+    "min_h_m": 1.1040492132308568e-15,
+    "max_h_m": 9.800516128540039,
+    "min_deposit_m": 0.0,
+    "max_deposit_m": 0.36287713050842285,
+    "channel_min_h_m": 8.7251718942,
+    "channel_min_area_m2": 62518.859383,
+    "channel_cells": 145,
+    "floodplain_cells": 13679,
+    "floodplain_water_m3": 2635192162.279788,
+    "water_storage_from_saved_fields_m3": 2959967839.9658504,
+    "water_storage_rounding_bound_m3": 103.95261664501258,
+    "floodplain_bulk_deposit_m3": 1806007.93150956,
+    "mean_water_from_saved_fields_m": 0.7705803530315924,
+    "interface_faces": 430,
+    "wet_interface_faces": 430,
+    "interface_fraction_from_saved_fields": 1.0,
+    "alpha_from_saved_fields_m": 0.7705803530315924
+  },
+  "corrected_coarse500_end": {
+    "nx": 144,
+    "ny": 96,
+    "nchan": 289,
+    "flood": 1,
+    "dx_m": 500.0,
+    "clock_seconds": 1728000.0,
+    "expected_clock_seconds": 1728000,
+    "exact_expected_clock": true,
+    "all_finite": true,
+    "min_h_m": 5.220675092232341e-08,
+    "max_h_m": 4.508135795593262,
+    "min_deposit_m": 0.0,
+    "max_deposit_m": 0.44835618138313293,
+    "channel_min_h_m": 4.34091049968,
+    "channel_min_area_m2": 62518.859383,
+    "channel_cells": 145,
+    "floodplain_cells": 13679,
+    "floodplain_water_m3": 48172485.45655986,
+    "water_storage_from_saved_fields_m3": 207257542.2011265,
+    "water_storage_rounding_bound_m3": 2.015460410791334,
+    "floodplain_bulk_deposit_m3": 2801447.533660585,
+    "mean_water_from_saved_fields_m": 0.014086551782019114,
+    "interface_faces": 430,
+    "wet_interface_faces": 0,
+    "interface_fraction_from_saved_fields": 0.0,
+    "alpha_from_saved_fields_m": null
+  },
+  "corrected_coarse500_status": "complete 1 floods",
+  "corrected_coarse500_summary": [
+    {
+      "flood": "1",
+      "alpha": "0.770580353109",
+      "interface_fraction": "1",
+      "mean_water": "0.770580353109",
+      "beta": "0.00417847870655",
+      "ridge_height": "0.0335724137122",
+      "channel_depth": "8.03460208127",
+      "sinuosity": "1.00039418699",
+      "cutoffs": "0",
+      "water_storage": "207257542.199",
+      "water_residual": "-9.32887196541e-05",
+      "sediment_residual": "-0.337443113327",
+      "bank_mass": "0",
+      "steps": "59535",
+      "channel_steps": "404334",
+      "wall_seconds": "1101.08374862",
+      "solid_sediment_residual": "-0.260296583176",
+      "recycled_mass": "0",
+      "bed_forcing_mass": "0"
+    }
+  ],
+  "corrected_coarse500_remaps": [
+    {
+      "flood": "1",
+      "water_transfer_residual": "2.980232238769531e-07",
+      "sand_transfer_residual": "4.656612873077393e-10",
+      "silt_transfer_residual": "-4.470348358154297e-08",
+      "clay_transfer_residual": "9.313225746154785e-09",
+      "solid_transfer_residual": "0.001117883482947946",
+      "post_water_residual": "-9.29906964302063e-05",
+      "post_sediment_residual": "-0.3374431482516229",
+      "post_solid_sediment_residual": "-0.2591786996927112",
+      "post_water_storage": "207257542.1993682"
+    }
+  ],
+  "corrected_coarse500_checkpoint": {
+    "signature": "ridge-checkpoint-v2 72000 48000 500 500 0.0001 8 1728000 2500 15000 55 10 0 0.0030000000000000001 1 400 5 0.40000000000000002 120 0.40000000000000002 2650 0.10000000000000001 0.00020000000000000001 0.00020000000000000001 1.9999999999999999e-06 1 0.001 2018 11 0 1 1",
+    "flood": 1,
+    "clock_seconds": 1728000.0,
+    "steps": 59535,
+    "channel_steps": 404334,
+    "cutoffs": 0,
+    "all_finite": true,
+    "minimum_water_and_sediment_components": {
+      "0": 5.2206751223470435e-08,
+      "3": 0.0,
+      "4": 0.0,
+      "5": 0.0
+    },
+    "bank_mass_by_class_kg": [
+      7839981383.193526,
+      117599720747.90283,
+      31359925532.774105
+    ],
+    "channel_min_h_m": 6.704139722978729e-08,
+    "channel_max_h_m": 4.515069822850753,
+    "dry_channel_nodes": 0,
+    "inlet_h_m": 4.342570373850212,
+    "external_water_and_classes": [
+      50365015.700809605,
+      2560627497.710028,
+      1738135422.3444078,
+      221598434.73277712
+    ],
+    "deposited_mass_kg": 4454301587.730657,
+    "bed_forcing_mass_kg": -1049412.481769739,
+    "bank_injected_kg": 0.0,
+    "water_correction_m3": 0.0,
+    "mass_correction_kg": 0.0,
+    "water_and_suspended_storage": [
+      207257542.1993678,
+      3080531.67491912,
+      46208088.11230376,
+      16771146.931890516
+    ],
+    "channel_nodes": 290,
+    "mapped_cells": 144
+  },
+  "corrected_coarse500_crosschecks": {
+    "alpha": -7.740752483442748e-11,
+    "mean_water": -7.740752483442748e-11,
+    "interface_fraction": 0.0,
+    "saved_water_minus_summary_m3": 0.0021264851093292236,
+    "saved_water_rounding_bound_m3": 2.015460410791334,
+    "checkpoint_water_minus_postremap_storage_m3": -4.172325134277344e-07,
+    "post_water_ledger_identity_m3": 1.6750923564901044e-17,
+    "post_suspended_ledger_identity_kg": -2.6367796834847468e-14,
+    "post_solid_ledger_identity_kg": 3.408939797111543e-13,
+    "abandoned_raster_cells": 50,
+    "new_channel_raster_cells": 49,
+    "lateral_change_at_fixed_x": {
+      "method": "Piecewise-linear old and new y(x), common union of all x knots; exact valley-length integrals. Shape change, not material-node trajectories.",
+      "both_x_monotone": true,
+      "mean_absolute_m": 3.2207100729380467,
+      "rms_m": 4.535362325917632,
+      "max_absolute_m": 32.583080526386766,
+      "old_lateral_extent_m": 17.188219600000593,
+      "new_lateral_extent_m": 28.658905926189618,
+      "area_between_centerlines_m2": 231891.12525153937,
+      "new_raster_channel_area_m2": 12250000
+    },
+    "prescribed_upstream_water_m3": 15120000000.0,
+    "prescribed_upstream_sediment_kg": 54734590389.18809,
+    "water_residual_relative_to_prescribed_input": -6.169888866011905e-15,
+    "sediment_residual_relative_to_prescribed_input": -6.1650797224867204e-12,
+    "solid_sediment_residual_relative_to_prescribed_input": -4.755613978750397e-12
+  },
+  "legacy_pre_remap_byte_comparison": {
+    "fields_0001.bin": true,
+    "channel_0001.csv": true
+  },
+  "other_case_states": {
+    "corrected_baseline250": {
+      "process_status.json": {
+        "name": "baseline250",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250"
+        ],
+        "utc_started": "2026-10-09T19:23:13.257099Z",
+        "state": "running",
+        "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "pid": 3805343
+      },
+      "progress.json": {
+        "flood": 1,
+        "time_in_flood_seconds": 708447.1473300487,
+        "duration_seconds": 1728000,
+        "steps": 37000,
+        "channel_steps": 168351,
+        "wall_seconds": 1283.830450913
+      },
+      "summary_rows": 0
+    },
+    "corrected_fine125": {
+      "process_status.json": {
+        "name": "fine125",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/fine125",
+          "--dx",
+          "125"
+        ],
+        "utc_started": "2026-10-09T19:41:34.416347Z",
+        "state": "running",
+        "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "pid": 3831031
+      },
+      "progress.json": {
+        "flood": 1,
+        "time_in_flood_seconds": 384187.1566074951,
+        "duration_seconds": 1728000,
+        "steps": 14000,
+        "channel_steps": 75707,
+        "wall_seconds": 201.400942758
+      },
+      "summary_rows": 0
+    },
+    "legacy_baseline": {
+      "summary_rows": 0
+    },
+    "legacy_coarse500": {
+      "process_status.json": {
+        "name": "coarse500",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/.bin/ridge-c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/coarse500",
+          "--dx",
+          "500"
+        ],
+        "utc_started": "2026-10-09T18:46:32.706011Z",
+        "state": "complete",
+        "pid": 3757989,
+        "exit_code": 0,
+        "utc_finished": "2026-10-09T18:58:37.195683Z",
+        "wall_seconds": 724.4896898269653,
+        "artifact_sha256": {
+          "run.log": "22416d8221b4a26f69309fbb5109ef8e1b9e4b3dede70d33a315228d427d7ce3",
+          "parameters.txt": "0831f27ce15f6b2821fe8470612de3ecf17894990d43d681e151b1654aa9117b",
+          "summary.csv": "69bfa0958c71087dd06b0495c6c0c44c688a11e1e65f2a1db35ced06992de461",
+          "fields_0001.bin": "20b46ac352eb373c4f5e3cb6b4961ff22d16c80f89af0a2e696001c2256883f4",
+          "channel_0001.csv": "6063a21fe8d183cf139c71a4c87de73a378cf21d613616f2b101ae0829d7a6cf",
+          "checkpoint.bin": "0f9dda91a093f604d8d4573f1d394b289250fbb7fc1eafa1cb043f0c21e435b7",
+          "status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+        }
+      },
+      "summary_rows": 1,
+      "status": "complete 1 floods"
+    },
+    "legacy_fine125": {
+      "process_status.json": {
+        "name": "fine125",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/.bin/ridge-c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/fine125",
+          "--dx",
+          "125"
+        ],
+        "utc_started": "2026-10-09T18:46:32.706614Z",
+        "state": "running",
+        "pid": 3757990
+      },
+      "summary_rows": 0
+    },
+    "legacy_time250_cfl02": {
+      "process_status.json": {
+        "name": "time250_cfl02",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/.bin/ridge-c723c3cf8656e7b8935a35d718fe469f4a90c5d0de65de62d2b24d546010632b",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/validation/runs/time250_cfl02",
+          "--cfl",
+          "0.2"
+        ],
+        "utc_started": "2026-10-09T18:58:37.233958Z",
+        "state": "running",
+        "pid": 3770900
+      },
+      "summary_rows": 0
+    }
+  },
+  "input_sha256": {
+    "tmp/full-rebuild-002/workspace/data/_inputs/provenance.json": "be12cea8677558313e6327eef3c8f2770103631e3c7ca4ec4bd010a679f4a1d6",
+    "tmp/full-rebuild-002/workspace/validation/runs/_inputs/provenance.json": "66d040d7d9a77b6725efc3d1beaa1089ae6b82df072463ed6b80210401715a94",
+    "tmp/full-rebuild-002/workspace/data/_inputs/ridge": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "tmp/full-rebuild-002/workspace/data/_inputs/src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "tmp/full-rebuild-002/workspace/data/_inputs/src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+    "tmp/full-rebuild-002/workspace/data/_inputs/src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+    "tmp/full-rebuild-002/workspace/data/_inputs/src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "tmp/full-rebuild-002/workspace/data/_inputs/src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2",
+    "tmp/full-rebuild-002/workspace/data/_inputs/physics.txt": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+    "tmp/full-rebuild-002/workspace/data/_inputs/runs.csv": "3e94421b556e08e8f8b4843974787f1f370393ac1f454c565a2bd03db6952a32",
+    "tmp/full-rebuild-002/workspace/data/_inputs/run_suite.py": "b63fe4699820c7b589003ff386c71b6f8d9014143ab2cc34f1fccf427a821367",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/process_status.json": "67ffbfe0ee4ebeb3d7e513fe8c01fe0238267c49026dae4b14d0459cf32483ad",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/progress.json": "38abde0d7272dd9d4feb92e51172b2662b58b2e653fb3c0a237d3357c3bd1069",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/peak_fields_0001.bin": "c4b1f73cd40dac1be85e1ff066bde34e41e7cc3a4bef43e2063b69646632de59",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/peak_channel_0001.csv": "a9f152a1924c0ed539f429bf2c388e08ed4ed8a43a2b73b1c4d282488c87b6c5",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/fields_0001.bin": "20b46ac352eb373c4f5e3cb6b4961ff22d16c80f89af0a2e696001c2256883f4",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/channel_0001.csv": "6063a21fe8d183cf139c71a4c87de73a378cf21d613616f2b101ae0829d7a6cf",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/summary.csv": "589ef72685348b25f0f007028292df218398df914e46beab8acfbecdbec02ff1",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/remap_budget.csv": "99dbd7f2f9e686dce55f7aa4b49bc02800d251ce1f3d9d0fab6922781b940f9c",
+    "tmp/full-rebuild-002/workspace/validation/runs/coarse500/checkpoint.bin": "3d87307d8ebf5bc3968bfb70f1048de5f640aad0a2e219daf5e99024dcb6836a",
+    "validation/runs/coarse500/fields_0001.bin": "20b46ac352eb373c4f5e3cb6b4961ff22d16c80f89af0a2e696001c2256883f4",
+    "validation/runs/coarse500/channel_0001.csv": "6063a21fe8d183cf139c71a4c87de73a378cf21d613616f2b101ae0829d7a6cf",
+    "tmp/full-rebuild-002/workspace/validation/runs/baseline250/process_status.json": "b9c126f1a1b38ad1fd7551704640e34d18c3e00752013766d50156b8f2d03d0e",
+    "tmp/full-rebuild-002/workspace/validation/runs/baseline250/progress.json": "4e54d9470c4d626909eb6d1e871b5584761db58678e0d9bbd5f763c43ed45478",
+    "tmp/full-rebuild-002/workspace/validation/runs/baseline250/summary.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/full-rebuild-002/workspace/validation/runs/fine125/process_status.json": "a658ceb0508ad858295aa5f55cfe33c03fef7d24cbbbc794d9d56f17414c3e97",
+    "tmp/full-rebuild-002/workspace/validation/runs/fine125/progress.json": "ceb0dc21422edc4993da48f737f352246a7e2539b8d1dab7c82db6615bb4dae8",
+    "tmp/full-rebuild-002/workspace/validation/runs/fine125/summary.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/full_flood_v4/summary.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/runs/coarse500/process_status.json": "89a8ce859edde61b78fcada7ef26c2cf0bdc619671797c8aa182f0c1b302363c",
+    "validation/runs/coarse500/summary.csv": "69bfa0958c71087dd06b0495c6c0c44c688a11e1e65f2a1db35ced06992de461",
+    "validation/runs/coarse500/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+    "validation/runs/fine125/process_status.json": "b15cc4f09e4732901f84d6381254074ada0598ff8167551d5e5015c2539b4c58",
+    "validation/runs/fine125/summary.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/runs/time250_cfl02/process_status.json": "d44b633a1d4322353acd017e4f2facc70c507199abaff0d5f8f1860d82c721f3",
+    "validation/runs/time250_cfl02/summary.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/first-flood-audit-002/audit.py": "9a3c634862c76eac606a9b2a27171a131bd548ce1e77707a7da64de44a2ce6f6"
+  }
+}

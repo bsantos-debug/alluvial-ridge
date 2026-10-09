@@ -42,7 +42,11 @@ The script verifies the plot manifest's data directory and all input hashes.
 If model output changed after plotting, numerical comparisons remain pending
 until plots and their derived tables are regenerated. The generated comparison
 record adds hashes for the exact CSV tables and raw run metadata/summaries it
-consumes. Mean beta and alpha95 are independently recomputed from raw summary
+consumes. Every Figure 2 profile is also checked cell by cell against its
+hashed raster: exact central column, transverse cell centers, elevation,
+active-channel mask, run/flood identity, completed-flood clock and geometry.
+Changed derived profiles cannot pass merely because the original raster is
+unchanged. Mean beta and alpha95 are independently recomputed from raw summary
 rows and checked against `metrics.csv` before they enter a comparison.
 
 Figure 3 comparisons require the full recorded history, floods 1–580.
@@ -96,8 +100,70 @@ workflow deliberately leaves short, altered-domain smoke runs pending.
    from visible ridge elevations: 31–36 m (2A), 16–21 m (2B), 6–8 m (2C),
    and 21–24 m (2D). A value may fall below, within or above that approximate
    interval. These are neither digitized measurements nor statistical error
-   bars or calibrated acceptance ranges. Width, concavity and channel geometry
-   still need a direct visual comparison of the generated sections.
+   bars or calibrated acceptance ranges. The same four-profile records now
+   include positive-relief area, transverse spread, equivalent width,
+   half-crest occupied width and span, and two signed flank departures from
+   straight endpoint chords. These describe the independent shape; the paper
+   supplies no numerical width or mathematical concavity target. Definitions
+   and limitations follow below. Direct visual assessment remains necessary.
+
+## Cross-section morphology definitions
+
+The Results paragraph beginning “All simulations” describes concave ridge
+sections; Figure 2 and its caption give the four runs and sampling times.
+They do not define a curvature estimator or ridge width. The added measures
+therefore quantify independent sections without translating that wording
+into a numerical acceptance test. All 16 requested profiles are retained in
+the existing four `section_relief_2*` comparison records, with each source
+raster's SHA-256 and the processor/configuration/table hashes. The canonical
+physics and exact four-snapshot gates apply to every measure, including an
+explicit completed summary row for each requested flood.
+
+At the saved column let `r_i = z_i − slope*(length−x)`, with transverse cell
+centers `y_i` and width `d=250 m`. Exclude every currently active-channel cell
+using its saved mask. Set `w_i=max(r_i,0)` in the remaining cells and zero in
+active cells. This clipping defines an analysis weight; it does not alter
+model elevations, fill channel gaps, or discard abandoned-channel depressions
+from the separately reported shape. Define `H=max(r_i)` over non-active cells.
+
+- **Positive-relief section area:** `B=d*sum(w_i)`, in m². It measures area
+  above the initial plane per unit downstream length, not total deposited
+  sediment or grain volume. Excavation and prescribed bed forcing also affect
+  the profile; it is not a mass budget.
+- **Transverse spread:** `mu=sum(w_i*y_i)/sum(w_i)` and
+  `sigma²=sum(w_i*((y_i−mu)²+d²/12))/sum(w_i)`. The final term integrates each
+  piecewise constant cell over its width, so a uniform raised rectangle has
+  `sigma=width/sqrt(12)`. Active-cell gaps carry zero weight.
+- **Equivalent width:** `B/H`. **Half-crest occupied width:** `d` times the
+  number of non-active cells with `r_i≥H/2`. **Half-crest span:** distance from
+  the first selected cell's lower edge to the last selected cell's upper
+  edge. Span includes gaps; occupied width does not. The record also counts
+  contiguous selected cell groups and flags a selected domain-edge cell.
+  These are definitions of spatial scale, not published widths or targets.
+  Widths are undefined for `H≤0`; centroid/spread are undefined for `B=0`.
+- **Broad flank shape:** the lower-y flank extends from the first non-active
+  cell to the first cell attaining `H`; the upper-y flank extends from the
+  last cell attaining `H` to the last non-active cell. Thus tied crests have
+  an explicit extent rather than an arbitrarily selected center. On each
+  flank construct the straight chord through its endpoint elevations and
+  average `r_i−chord(y_i)` over all observed non-active cells, including the
+  endpoints. Report this departure in meters and divided by `H`. Positive
+  means above the chord and negative below it. At least three non-active
+  cells and positive `H` are required. No surface is interpolated across
+  excluded channel cells. This statistic can be affected by multiple ridges
+  and abandoned depressions; it is not the local second derivative and does
+  not automatically classify the publication's concavity claim.
+
+All diagnostics retain the saved 250 m grid. Elevations are float32; the
+positive-relief area includes conservative bounds from the largest adjacent
+half-ULP of each elevation. `positive_relief_resolved` requires at least one
+non-active cell whose positive relief exceeds its rounding bound. Nominal
+widths and shape remain in the numeric record when nonzero relief is
+unresolved, but are not interpreted in report prose. Half-height selection,
+tied crest locations and flank descriptors have no statistical error bars;
+small changes near their thresholds can change them. Active-channel width
+and minimum active-bed elevation are saved separately, while the existing
+crest and percentile relief measures continue to exclude the active bed.
 
 Signs use a numerical tie tolerance of 1e-12 times the larger of one or the
 largest absolute value in the compared sequence. This prevents machine-scale
@@ -134,3 +200,16 @@ altered benchmark was not promoted to a production comparison. Trend-sign
 counting and linear-percentile arithmetic were checked separately, including
 the benchmark's actual final-200 alpha values. Full scientific comparisons
 remain to be exercised on the completed canonical run ensemble.
+
+The cross-section extension was checked with
+`python3 tmp/section-morphology-check/check.py`. Analytic profiles test exact
+cell-integrated rectangular spread, split occupied width versus span, zero
+departure for straight flanks, opposite chord-departure signs for two quadratic
+flanks, datum/amplitude invariance, active-bed exclusion, and zero/unresolved
+relief. The same helper reads the actual two-flood outputs in
+`tmp/restart-validation/continuous`, retaining their noncanonical status and
+source hashes in `tmp/section-morphology-check/actual-short-morphology.json`.
+Missing cells, duplicate coordinates, altered elevations/masks, wrong identity
+or column, absent source hashes, and missing completed-summary rows are rejected.
+The end-to-end existing short-domain comparison still has 29 pending records;
+no canonical Figure 2 morphology has yet been assessed.

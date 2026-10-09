@@ -99,6 +99,12 @@ jobs run, the suite's case list can still say `prepared`; per-case
 
 ## Final report procedure using verified saved data
 
+The later procedure is implemented by `scripts/finalize_report.py`; commands,
+terminal-evidence requirements and render-only operation are documented in
+`docs/rebuild.md`. It rejects the active 002 case set until the wrapper,
+production suite and eight sensitivity cases have terminal records. Its
+separate saved-data manifest does not alter the original execution history.
+
 1. Preserve the terminal 002 outer manifest and original PDF, even if a stage
    fails. Verify frozen source/input hashes and each terminal run's artifact
    hashes. Record actual completion, finite diagnostic coverage, failed cases,
@@ -146,7 +152,11 @@ record; the renderer never writes or automatically rebinds the source ledger.
 The versioned fingerprint hashes a canonical JSON record of the panel's
 coverage metadata and numerical-source hashes, the complete plot manifest,
 the actual corresponding `figureN.pdf`, current `plot.py` and `compare.py`,
-the physics reference, and `comparison.json` when present. The renderer
+the physics reference, and `comparison.json` when present. For Figure 1,
+`panel-assessment-v2` also binds available inundation and planform helper
+output bytes and their verified provenance states. Invalid helper provenance
+blocks that panel's fingerprint; absent helpers remain explicitly absent.
+Other figures have no helper dependency. The renderer
 verifies recorded numerical sources, the plotter/configuration identity, and
 all recorded comparison inputs before issuing a usable fingerprint. It
 preserves a prior complete assessment only with complete requested data, a
@@ -161,18 +171,40 @@ the visual appearance seems unchanged. Replotting may change PDF metadata
 and therefore require another review. A figure-wide change invalidates each
 assessed panel in that figure; a plot-manifest/comparison change can invalidate
 all panels. This conservative rule prevents silent reuse of an old assessment.
-Optional inundation/planform diagnostics have separate provenance; record
-their input/output/processor hashes and their use in the authored assessment
-in the final postprocess manifest. They are not automatically inserted into
-the frozen report or into this minimal panel fingerprint.
+The later renderer also includes verified helper summaries through
+`spatial.tex` and `spatial_evidence.json`; missing or noncanonical rows remain
+pending. Preserve their hashes and their use in the authored assessment in
+the final postprocess manifest. These later report additions do not change
+the frozen 002 report source or its recorded execution.
 
 ## Files to publish and final checks
+
+Before staging the final package, retain the three captured corrected-case
+audit files (`audit.py`, `audit.json`, `initial-observation.json`) under
+versioned `validation/first-flood-audit-002/`. The finalizer selects that
+tracked directory alongside `validation/stress/`. The first-flood audit is
+historical observational evidence: preserve its original timestamps, PIDs,
+input hashes and invocation paths. Do not rewrite its captured JSON or imply
+that the original audit invocation becomes portable unchanged.
+
+Update the local raw-data links in `docs/first-flood-validation.md` before
+the final package is staged: change
+`../tmp/full-rebuild-002/workspace/data/` to `../data/`, and
+`../tmp/full-rebuild-002/workspace/validation/runs/` to `../validation/runs/`.
+Its audit links should target `../validation/first-flood-audit-002/`. Check
+these links in the copied workspace after staging. Keep the corrected audit,
+the independent remap regression under `validation/stress/`, and rejected 001
+evidence as three distinct records. The 001 archive belongs in a separately
+labeled rejected-attempt directory; never copy its numerical files into
+canonical `data/` or `validation/runs/`. Historical path strings inside
+unchanged execution records remain provenance, not executable package paths.
 
 | Publication content | Local source |
 |---|---|
 | Final code/configuration/tests/docs and LaTeX | Versioned final workspace; preserve 002 frozen model inputs alongside later postprocessors. |
 | Numerical data and provenance | 002 `data/`, including `_inputs/`, parameters, summaries, remap ledgers, all requested end/peak fields and channel coordinates, logs and process/suite records. |
 | Validation evidence | 002 `validation/runs/`, exact check log, generated validation summary, and the remap regression evidence under root `validation/stress/`. |
+| Corrected first-flood audit | Versioned `validation/first-flood-audit-002/`, its methods/provenance record, and unchanged 002 coarse500 inputs already included under `validation/runs/`. |
 | Figures and derived comparisons | Final workspace `figures/`, manifests, metric/section tables and optional helper records. |
 | Final report and execution records | Final workspace `report/main.tex`, required `report/generated/` inputs, `report/report.pdf`, original 002 manifest/PDF, and separate postprocess manifest. |
 | Rejected-attempt record | Clearly separated 001 reason, manifest, frozen sources and logs; never mixed into canonical data folders. |

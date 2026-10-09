@@ -12,6 +12,7 @@ import math
 import os
 from pathlib import Path
 import statistics
+import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,6 +68,108 @@ def directions(values, desired_sign):
     opposite = sum(desired_sign * d < -tolerance for d in differences)
     return dict(adjacent_differences=differences, requested_direction=correct,
                 opposite_direction=opposite, ties=len(differences) - correct - opposite)
+
+
+def section_morphology(y, elevation, active, dx, plane):
+    """Cellwise section diagnostics; no inferred surface across channel gaps."""
+    if not (len(y) == len(elevation) == len(active)) or not y or dx <= 0:
+        raise ValueError("invalid section arrays or spacing")
+    if not all(math.isfinite(v) for v in list(y) + list(elevation) + [dx, plane]):
+        raise ValueError("nonfinite section")
+    if any(a not in (0, 1) for a in active) or any(
+            not math.isclose(b - a, dx, rel_tol=1e-12, abs_tol=1e-9) for a, b in zip(y[:-1], y[1:])):
+        raise ValueError("section must have uniform increasing cells and a binary channel mask")
+    fp = [i for i, channel in enumerate(active) if not channel]
+    if not fp:
+        raise ValueError("section has no floodplain cells")
+    relief = [z - plane for z in elevation]
+    height = max(relief[i] for i in fp)
+    weight = [max(relief[i], 0.) if not active[i] else 0. for i in range(len(y))]
+    total = math.fsum(weight)
+    centre = math.fsum(w * x for w, x in zip(weight, y)) / total if total > 0 else None
+    spread = (math.sqrt(math.fsum(w * ((x - centre) ** 2 + dx ** 2 / 12.)
+                                 for w, x in zip(weight, y)) / total) if total > 0 else None)
+    half = [i for i in fp if height > 0 and relief[i] >= .5 * height]
+    # Maximum adjacent half-ULP of the float32 elevation snapshots, including subnormals.
+    error = [max(2. ** (math.frexp(abs(z))[1] - 25), 2. ** -150) if z else 2. ** -150
+             for z in elevation]
+    peaks = [i for i in fp if relief[i] == height]
+    flanks = {}
+    for side, first, last in (("lower_y", fp[0], peaks[0]), ("upper_y", peaks[-1], fp[-1])):
+        ids = [i for i in fp if first <= i <= last]
+        flank = dict(endpoint_transverse_m=[y[first], y[last]], endpoint_relief_m=[relief[first], relief[last]],
+                     sampled_floodplain_cells=len(ids),
+                     excluded_active_channel_cells=sum(active[first:last + 1]),
+                     mean_chord_departure_m=None, mean_chord_departure_over_crest=None)
+        if height > 0 and len(ids) >= 3 and last > first:
+            slope = (relief[last] - relief[first]) / (y[last] - y[first])
+            departure = math.fsum(relief[i] - relief[first] - slope * (y[i] - y[first])
+                                   for i in ids) / len(ids)
+            flank.update(mean_chord_departure_m=departure,
+                         mean_chord_departure_over_crest=departure / height)
+        flanks[side] = flank
+    return dict(crest_elevation_m=max(elevation[i] for i in fp), crest_relief_m=height,
+                profile_p90_relief_m=percentile([relief[i] for i in fp], .9),
+                minimum_elevation_m=min(elevation),
+                active_channel_width_m=sum(active) * dx,
+                minimum_active_channel_elevation_m=min((z for z, a in zip(elevation, active) if a), default=None),
+                positive_relief_area_m2=dx * total,
+                positive_relief_area_rounding_bounds_m2=[
+                    dx * math.fsum(max(relief[i] - error[i], 0.) for i in fp),
+                    dx * math.fsum(max(relief[i] + error[i], 0.) for i in fp)],
+                positive_relief_resolved=any(relief[i] > error[i] for i in fp),
+                positive_relief_centroid_m=centre, positive_relief_std_m=spread,
+                equivalent_positive_relief_width_m=dx * total / height if height > 0 else None,
+                half_crest_occupied_width_m=len(half) * dx if half else None,
+                half_crest_span_width_m=y[half[-1]] - y[half[0]] + dx if half else None,
+                half_crest_components=sum(j == 0 or i != half[j - 1] + 1 for j, i in enumerate(half)),
+                half_crest_touches_section_edge=bool(half and (half[0] == 0 or half[-1] == len(y) - 1)),
+                crest_transverse_extent_m=[y[peaks[0]], y[peaks[-1]]], flanks=flanks)
+
+
+def saved_section(selected, run, panel, number, flood, inputs):
+    """Verify every plotted section cell against its original saved raster."""
+    p = run["parameters"]
+    source = run["directory"] / ("fields_%04d.bin" % flood)
+    if flood not in run["records"]:
+        raise ValueError("requested section flood is absent from completed summary")
+    if not source.exists() or run["plot_input_hashes"].get(label(source)) != digest(source):
+        raise ValueError("section raster is absent from verified plotting inputs")
+    inputs.add(source)
+    blob = source.read_bytes()
+    if len(blob) < 40:
+        raise ValueError("truncated section raster")
+    nx, ny, nodes, saved_flood, dx, clock, slope = struct.unpack_from("=4i3d", blob)
+    if min(nx, ny) < 1 or nodes < 2 or len(blob) != 40 + 16 * nx * ny or saved_flood != flood:
+        raise ValueError("invalid section raster dimensions, byte count or flood")
+    if not all(math.isfinite(v) for v in (dx, clock, slope)) or dx <= 0 or (
+            dx != float(p["dx"]) or nx * dx != float(p["length"]) or ny * dx != float(p["width"])
+            or slope != float(p["slope"]) or abs(clock - flood * float(p["duration"])) > 1e-5):
+        raise ValueError("section raster does not match parameter geometry or end-flood time")
+    selected = sorted(selected, key=lambda row: float(row["transverse_m"]))
+    if len(selected) != ny:
+        raise ValueError("section must contain every transverse cell exactly once")
+    column = nx // 2
+    x = (column + .5) * dx
+    y, elevation, active = [], [], []
+    for j, row in enumerate(selected):
+        z, h, deposition, mask = struct.unpack_from("=4f", blob, 40 + 16 * (j * nx + column))
+        named_source = Path(row["source"])
+        if not named_source.is_absolute():
+            named_source = ROOT / named_source
+        if (row["panel"] != panel or int(row["run"]) != number or int(row["flood"]) != flood
+                or row["completed_flood"] != "1" or float(row["downstream_m"]) != x
+                or float(row["transverse_m"]) != (j + .5) * dx or float(row["elevation_m"]) != z
+                or float(row["active_channel"]) != mask or mask not in (0., 1.)
+                or named_source.resolve() != source.resolve()):
+            raise ValueError("section table differs from exact saved column, mask or source")
+        if not all(math.isfinite(v) for v in (z, h, deposition)) or min(h, deposition) < 0:
+            raise ValueError("invalid saved section state")
+        y.append((j + .5) * dx); elevation.append(z); active.append(int(mask))
+    plane = slope * (nx * dx - x)
+    return dict(flood=flood, downstream_m=x, initial_plane_m=plane, source=label(source),
+                source_sha256=hashlib.sha256(blob).hexdigest(),
+                **section_morphology(y, elevation, active, dx, plane))
 
 
 def run_readiness_notes(run, require_full_history=True):
@@ -166,7 +269,8 @@ def comparison_inputs(data_root, figure_root):
         if metric.get("complete_1_to_580") != "1":
             history_notes.append("plotter has not verified the full 580-flood history")
         runs[number] = dict(config=config, parameters=parameters, records=records,
-                            metric=metric, notes=notes, history_notes=history_notes, directory=directory)
+                            metric=metric, notes=notes, history_notes=history_notes, directory=directory,
+                            plot_input_hashes=manifest_files)
     return configs, runs, derived, errors, inputs
 
 
@@ -359,23 +463,13 @@ def evaluate(data_root, figure_root):
         if r["status"] != "computed":
             continue
         profiles, reasons = [], []
-        p = runs[number]["parameters"]
         for flood in [50, 225, 400, 580]:
-            selected = [row for row in section_rows if row["panel"] == panel and int(row["flood"]) == flood]
-            if len(selected) != 192 or len({row["transverse_m"] for row in selected}) != 192:
-                reasons.append("section must contain 192 distinct documented-resolution cells")
+            try:
+                selected = [row for row in section_rows if row["panel"] == panel and int(row["flood"]) == flood]
+                profiles.append(saved_section(selected, runs[number], panel, number, flood, inputs))
+            except (ValueError, KeyError, OSError, struct.error) as error:
+                reasons.append("flood {}: {}".format(flood, error))
                 break
-            floodplain = [row for row in selected if row["active_channel"] == "0"]
-            elevations = [finite(row["elevation_m"]) for row in floodplain]
-            if not elevations or any(z is None for z in elevations):
-                reasons.append("finite floodplain profile unavailable")
-                break
-            x = float(selected[0]["downstream_m"])
-            plane = float(p["slope"]) * (float(p["length"]) - x)
-            profiles.append(dict(flood=flood, downstream_m=x, initial_plane_m=plane,
-                                 crest_elevation_m=max(elevations), crest_relief_m=max(elevations) - plane,
-                                 profile_p90_relief_m=percentile(elevations, .9) - plane,
-                                 minimum_elevation_m=min(float(row["elevation_m"]) for row in selected)))
         if reasons:
             r.update(status="pending", pending_reasons=reasons)
             continue
@@ -387,12 +481,30 @@ def evaluate(data_root, figure_root):
                                  difference_from_interval_midpoint_m=relief - .5 * (target_low + target_high))
         r["assessment"] = "{}: final crest relief above the initial model plane is {:.4g} m, {} the approximate published {}–{} m relief interval. Relief at floods 50, 225, 400 and 580 is {} m.".format(
             panel, relief, relation, target_low, target_high, ", ".join("{:.4g}".format(q["crest_relief_m"]) for q in profiles))
-        r["caveat"] = "The reference interval is a coarse visual estimate minus an approximate 9 m initial datum. It is not a digitized measurement, error bar, or calibrated acceptance interval. The computed crest is the maximum non-active-channel cell at the central saved column; ridge width, concavity and channel pattern require separate visual assessment."
+        final = profiles[-1]
+        if final["positive_relief_resolved"]:
+            r["assessment"] += " Final positive-relief equivalent width is {:.4g} km and transverse standard deviation is {:.4g} km; half-crest occupied width/span are {:.4g}/{:.4g} km.".format(
+                final["equivalent_positive_relief_width_m"] / 1000, final["positive_relief_std_m"] / 1000,
+                final["half_crest_occupied_width_m"] / 1000, final["half_crest_span_width_m"] / 1000)
+            departure = [final["flanks"][side]["mean_chord_departure_m"] for side in ("lower_y", "upper_y")]
+            r["assessment"] += " Lower-/upper-y mean flank departures from crest-to-distal chords are {} m (positive means above the chord).".format(
+                "/".join("undefined" if value is None else "{:.4g}".format(value) for value in departure))
+        else:
+            r["assessment"] += " Positive relief is absent or unresolved at float32 snapshot precision; nominal width/shape descriptors are not interpreted."
+        r["caveat"] = "The reference interval is a coarse visual estimate minus an approximate 9 m initial datum, not a digitized measurement or acceptance bound. Widths and flank chord departures are defined diagnostics of the saved section; the paper gives no numerical targets or mathematical concavity criterion. Active-channel cells are excluded without filling their gaps, while abandoned depressions remain. Nominal float32/grid measurements, including low-relief rounding limits, require visual assessment before any morphology agreement claim."
 
     report = dict(reference_scope="main-paper prose and coarse visual ranges only; no DR2 result columns or digitized data",
                   data_root=label(data_root), figure_root=label(figure_root), comparisons=results,
                   computed_count=sum(r["status"] == "computed" for r in results), total_count=len(results),
                   provenance_errors=provenance_errors,
+                  section_morphology_definitions=dict(
+                      datum="r_i=z_i-slope*(length-x); active channel cells excluded throughout; w_i=max(r_i,0) elsewhere",
+                      area="B=dx*sum(w_i), cross-sectional positive-relief area in m2, not accumulated sediment mass",
+                      spread="mu=sum(w_i*y_i)/sum(w_i); sigma2=sum(w_i*((y_i-mu)^2+dx^2/12))/sum(w_i); piecewise constant cells",
+                      widths="Equivalent width B/max(r_i); half-crest occupied width counts non-active cells r_i>=max(r_i)/2, span includes intervening gaps; undefined when max(r_i)<=0",
+                      flanks="Lower/upper flank runs from first non-active cell to first crest cell / last crest cell to last non-active cell; each signed mean is r_i minus that flank's endpoint chord over observed non-active cells, including endpoints; no interpolation across channels",
+                      shape_scope="At least three non-active cells and positive crest required per flank. Positive departure means above the chord, negative below; this is not a local-curvature or published-concavity test.",
+                      precision="Areas include conservative half-ULP float32 elevation-rounding bounds; widths, crest locations and flank descriptors are nominal, with grid resolution and channel gaps retained."),
                   untested_claims=["Splay versus abandoned-channel morphology needs direct comparison of generated maps.",
                                    "Deposit footprint is not flood inundation extent.",
                                    "Axis limits alone supply no agreement evidence.",

@@ -117,6 +117,90 @@ report commands may be rerun there after completion. This manual recovery does
 not rewrite the outer rebuild manifest or establish that the original complete
 wrapper execution passed; preserve that distinction in the execution record.
 
+# Later reports from terminal saved data
+
+`scripts/finalize_report.py` generates a later report from the numerical files
+already produced by rebuild 002. It never invokes a model executable. It
+requires a new destination and refuses running drivers/cases, a held suite
+writer lock, surviving writers, missing terminal artifact records or changed
+hashes. The current active rebuild is therefore not eligible yet.
+
+First verify eligibility without copying or generating files:
+
+```bash
+python3 scripts/finalize_report.py --rebuild tmp/full-rebuild-002 --check-only
+```
+
+After the complete wrapper has ended and all case records are terminal:
+
+```bash
+python3 scripts/finalize_report.py --rebuild tmp/full-rebuild-002 --output deliverables/final
+```
+
+The procedure checks original staged sources and logs, suite/compiler/input
+identities, the exact checked executable, all 31 latest terminal production
+attempts, and all eight terminal sensitivity records. Sensitivities must use
+the production source and binary. Recorded artifact hashes must match; a
+successful process state alone is insufficient. It allows terminal failed
+cases with verified evidence, preserving that failure in the later report.
+It refuses interrupted cases lacking terminal records rather than inventing
+proof. Production `checkpoint.tmp` and `progress.tmp` are excluded exactly as
+in the runner and are not copied; `.suite.lock` is also omitted. Other
+unrecorded case files cause refusal. Earlier attempt records are preserved as
+history; overwritten artifacts from those attempts are not claimed reverified.
+
+The current checkout's numerical source and configuration must still match
+002. Reporting code and prose may differ. Before staging, follow the
+finalization checklist to retain the versioned first-flood audit and update
+its document links from local temporary paths to packaged data paths.
+The package contains:
+
+- `original/`: the unchanged outer rebuild manifest, stage logs, frozen source,
+  available original PDF, and original figures/generated report inputs.
+- `workspace/`: copied numerical and sensitivity evidence, frozen executable,
+  current postprocessors/report source, later figures and `report/report.pdf`.
+- `postprocess_manifest.json` and `logs/`: original/copy hashes, actual source
+  revision and working-tree status, package versions, each command/exit/log,
+  case states and generated-output hashes.
+
+Files are copied as real files, rehashed, and checked against unchanged source
+evidence. A read-only descriptor holds the existing suite lock during the
+copy. Original rebuild files are never rewritten. Postprocessing runs plots,
+comparison, inundation, planform diagnostics, validation reporting and PDF
+compilation in the copied workspace. Pending stages remain nonzero even if
+the PDF compiles: exit 0 means all reporting stages returned zero, exit 2
+means one or more stages were incomplete, and exit 1 means refusal or error.
+None of these codes establishes scientific acceptance. The report states the
+actual original rebuild outcome and identifies the later execution separately.
+
+Review all panels and comparisons, then edit only the package's
+`workspace/docs/panels.csv`, including the bounded assessment and matching
+fingerprint described in `docs/finalization-checklist.md`. Re-render from the
+packaged procedure, preserving figure PDF bytes:
+
+```bash
+python3 deliverables/final/workspace/scripts/finalize_report.py --render-only --output ..
+```
+
+Paths are resolved against the script's workspace, so this command also works
+after moving the package to another project-local `/data/data[n]` directory.
+The rendering mode verifies copied numerical evidence, original archives,
+source files other than the editable ledger, and existing generated outputs.
+It runs only `report/build.sh`; it does not regenerate plots, comparisons or
+helpers. Each render preserves the preceding manifest/PDF, the submitted
+ledger, procedure and resulting PDF under `renders/assessment-render-NNN/`.
+The manifest's `source_sha256` remains the **initial staged source** identity,
+including its original ledger. The latest assessment-render command's
+`assessment_ledger_sha256` and archived `panels.csv` identify the current
+review; they do not silently replace that initial source record.
+
+If data, processors or figures change, create a new package and reassess the
+affected panels. For publication retain the manifests, logs, sources, numerical
+evidence, figures, generated LaTeX inputs and final PDF; omit `workspace/tmp/`
+and `workspace/report/build/` caches. Historical absolute command paths remain
+in untouched provenance records, but new processors consume package-relative
+files and re-rendering needs no access to the original temporary workspace.
+
 # Verification status
 
 The full clean wrapper has not yet been executed to completion. Shell and Python
@@ -132,3 +216,17 @@ corruption, shortened histories, unknown cases, a concurrent runner, a surviving
 writer, and a home-directory output path. A forced early stop returned model
 exit code 3 and suite failure; retry preserved its partial output. These are
 runner checks, not manuscript simulations or evidence of scientific agreement.
+
+Saved-data finalization checks are isolated under
+`tmp/finalization-procedure-check/`. Active 002 was refused without copying;
+its actual completed `coarse500` terminal artifact hashes were verified
+read-only. Synthetic terminal driver/case records with no model values
+exercised staging: plots/comparisons/helpers/validation remained incomplete,
+the PDF compiled, and the package returned 2. Changed artifacts, a nonterminal
+case, a surviving dummy writer, and an existing destination were refused.
+Known production atomic-write remnants were omitted. Original manifest/PDF
+bytes were preserved. Editing only the fixture ledger re-rendered the report
+while preserving every figure and derived-data byte, recording the new ledger
+hash and archiving the previous manifest/PDF. A relocated package without
+application/TeX caches also re-rendered and remained incomplete. These checks
+ran no model, changed no staged 002 source, and replaced no canonical output.
