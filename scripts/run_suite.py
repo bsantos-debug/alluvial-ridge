@@ -26,8 +26,9 @@ def utc():
 
 
 def inside(path):
-    path = (ROOT / path).resolve()
-    if ROOT not in path.parents or not re.match(r'^/data/data[0-7]/', str(ROOT) + '/'):
+    root = ROOT.resolve()
+    path = (root / path).resolve()
+    if root not in path.parents or not re.match(r'^/data/data[0-7]/', str(root) + '/'):
         raise ValueError('all project paths must remain inside this /data project: ' + str(path))
     return path
 
@@ -67,13 +68,21 @@ def process_identity(pid):
 
 def live_case(folder):
     """Also find children left alive if a runner died before recording its PID."""
+    folder = pathlib.Path(folder).resolve()
     for path in pathlib.Path('/proc').glob('[0-9]*/cmdline'):
         try:
+            pid = int(path.parent.name)
+            identity = process_identity(pid)
+            if identity is None:
+                continue
             arguments = path.read_bytes().decode().strip('\0').split('\0')
             if arguments and '--out' in arguments:
-                if arguments[arguments.index('--out') + 1] == str(folder) and process_identity(int(path.parent.name)):
-                    return int(path.parent.name)
-        except (OSError, UnicodeError, ValueError, IndexError):
+                output = pathlib.Path(arguments[arguments.index('--out') + 1])
+                if not output.is_absolute():
+                    output = path.parent / 'cwd' / output
+                if output.resolve() == folder and process_identity(pid) == identity:
+                    return pid
+        except (OSError, UnicodeError, ValueError, IndexError, RuntimeError):
             continue
     return None
 

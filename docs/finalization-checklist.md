@@ -105,6 +105,16 @@ terminal-evidence requirements and render-only operation are documented in
 production suite and eight sensitivity cases have terminal records. Its
 separate saved-data manifest does not alter the original execution history.
 
+If the project moved while frozen 002 was running, its final containment check
+may leave an incomplete suite record beside a complete process record. Do not
+rewrite either record or restart completed calculations to hide that mismatch.
+Use the narrowly scoped `--reconcile-relocation` procedure in
+[rebuild.md](rebuild.md#relocating-a-project-with-running-calculations) after
+all writers have ended. It rechecks saved completion evidence, preserves the
+original failed/incomplete rebuild outcome, and records the discrepancy in the
+separate package manifest and report. Keep the old path alias until that audit
+and packaging finish. Unrelated failures remain refusals.
+
 1. Preserve the terminal 002 outer manifest and original PDF, even if a stage
    fails. Verify frozen source/input hashes and each terminal run's artifact
    hashes. Record actual completion, finite diagnostic coverage, failed cases,
@@ -179,10 +189,12 @@ the frozen 002 report source or its recorded execution.
 
 ## Files to publish and final checks
 
-Before staging the final package, retain the three captured corrected-case
-audit files (`audit.py`, `audit.json`, `initial-observation.json`) under
-versioned `validation/first-flood-audit-002/`. The finalizer selects that
-tracked directory alongside `validation/stress/`. The first-flood audit is
+Before staging the final package, retain the complete versioned
+`validation/first-flood-audit-002/` directory: the original three coarse-case
+audit files, the later two-resolution and 31-case observations and scripts,
+both compressed input archives, and their capture manifest. Those archives
+preserve the 313 input files checked by the provisional report. The finalizer
+selects that tracked directory alongside `validation/stress/`. The audit is
 historical observational evidence: preserve its original timestamps, PIDs,
 input hashes and invocation paths. Do not rewrite its captured JSON or imply
 that the original audit invocation becomes portable unchanged.

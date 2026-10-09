@@ -8,15 +8,18 @@ import json
 import os
 from pathlib import Path
 import shutil
+import struct
 import subprocess
 import sys
 import time
+
+sys.dont_write_bytecode = True
+from run_suite import completion
 
 ROOT = Path(__file__).resolve().parents[1]
 TERMINAL = {"complete", "incomplete", "failed", "interrupted"}
 SENSITIVITY = {"baseline250", "coarse500", "fine125", "time250_cfl02",
                "tau005", "tau020", "concentration_half", "concentration_double"}
-sys.dont_write_bytecode = True
 
 
 def utc():
@@ -109,7 +112,46 @@ def case_artifacts(folder, record, sensitivity=False):
         raise ValueError("unrecorded or missing case artifacts: " + str(folder))
 
 
-def inspect_rebuild(rebuild):
+def verify_case_record(folder, record, floods, historical_workspace, allow_relocation=False):
+    """Keep original terminal records; optionally audit the specific cached-root failure."""
+    process_path = folder / "process_status.json"
+    process = read(process_path)
+    number = record["run"]
+    if process.get("run") != number or process.get("attempts") != record.get("attempts"):
+        raise ValueError("case and suite terminal records disagree: " + str(number))
+    terminal(record, "suite case " + str(number))
+    case_artifacts(folder, process)
+    if process.get("state") == record.get("state"):
+        return None
+
+    error = "all project paths must remain inside this /data project: " + str(folder.resolve())
+    expected = dict(process, state="incomplete", error=error)
+    if not allow_relocation or process.get("state") != "complete" or record != expected:
+        raise ValueError("case and suite terminal records disagree: " + str(number))
+    attempt = process["attempts"][-1]
+    if (attempt.get("state") != "complete" or attempt.get("exit_code") != 0
+            or process.get("exit_code") != 0 or attempt.get("requested_floods") != floods):
+        raise ValueError("relocation audit requires a completed attempt at the requested flood count")
+    command = attempt.get("command", [])
+    if command != process.get("command") or command.count("--out") != 1:
+        raise ValueError("relocation audit requires identical recorded output commands")
+    position = command.index("--out") + 1
+    if position == len(command) or not historical_workspace:
+        raise ValueError("relocation audit lacks the historical workspace or output path")
+    historical = Path(historical_workspace) / "data" / ("run%02d" % number)
+    if (not historical.is_absolute() or command[position] != str(historical)
+            or historical == folder.resolve() or historical.resolve(strict=True) != folder.resolve()):
+        raise ValueError("historical output alias does not resolve to the relocated case")
+    checked = completion(folder, floods)
+    return dict(run=number, historical_output=str(historical), verified_source_output=str(folder.resolve()),
+                packaged_case="data/run%02d" % number, original_suite_state=record["state"],
+                original_process_state=process["state"], original_suite_error=record["error"],
+                process_record_sha256=digest(process_path), completion=checked,
+                scope="separate saved-data recheck of histories and final/peak snapshot metadata; "
+                      "checkpoint checked nonempty, not decoded; no scientific acceptance")
+
+
+def inspect_rebuild(rebuild, allow_relocation=False):
     """Verify the actual clean-wrapper, suite and sensitivity manifest shapes."""
     outer = read(rebuild / "rebuild_manifest.json")
     terminal(outer, "outer rebuild")
@@ -154,12 +196,13 @@ def inspect_rebuild(rebuild):
     cases = {row["run"]: row for row in suite["cases"]}
     if len(suite["cases"]) != 31 or set(cases) != set(range(1, 32)):
         raise ValueError("suite does not contain each requested case exactly once")
+    reconciliations = []
     for number, record in cases.items():
         folder = workspace / "data" / ("run%02d" % number)
-        process = read(folder / "process_status.json")
-        if process.get("run") != number or process.get("state") != record.get("state") or process.get("attempts") != record.get("attempts"):
-            raise ValueError("case and suite terminal records disagree: " + str(number))
-        case_artifacts(folder, process)
+        evidence = verify_case_record(folder, record, suite["requested_floods"],
+                                      outer.get("workspace"), allow_relocation)
+        if evidence:
+            reconciliations.append(evidence)
     sensitivity = workspace / "validation/runs"
     validation = read(sensitivity / "validation_manifest.json")
     if not validation.get("utc_finished"):
@@ -181,7 +224,7 @@ def inspect_rebuild(rebuild):
         case_artifacts(folder, record, True)
     if "pdf" in outer:
         verify(rebuild, {outer["pdf"]: outer["pdf_sha256"]})
-    return outer, suite, validation
+    return outer, suite, validation, reconciliations
 
 
 def files(folder):
@@ -260,16 +303,28 @@ def execution_tex(output, record):
     text += ("\\end{tabular}\\par\nThe external manifest records subsequent report compilation. "
              "A compiled PDF or complete numerical coverage does not establish scientific agreement; "
              "the maintained panel ledger records that assessment.\n")
+    reconciliations = record.get("relocation_reconciliations", [])
+    if reconciliations:
+        text += ("\\par A separate relocation audit rechecked " + str(len(reconciliations)) +
+                 " production cases whose original suite records say incomplete while their "
+                 "process records say complete. Only the exact failure of the cached project-path "
+                 "check was accepted. The historical output aliases resolved to the current cases; "
+                 "recorded artifact hashes, complete histories, finite conservation diagnostics, "
+                 "and final and day-12 snapshot metadata passed independent checks. "
+                 "The checkpoint check establishes only a nonempty file, not a decoded valid state. "
+                 "The separate manifest retains both states, paths and errors; all original records "
+                 "and the original rebuild outcome remain unchanged. This audit establishes "
+                 "neither grid convergence nor manuscript agreement.\n")
     (output / "workspace/report/generated/rebuild.tex").write_text(text)
 
 
-def finalize(rebuild, output):
+def finalize(rebuild, output, allow_relocation=False):
     if output.exists():
         raise ValueError("choose a new output directory; existing packages are preserved")
     # Hold the existing suite lock read-only; do not alter frozen files or start jobs.
     with (rebuild / "workspace/data/.suite.lock").open("rb") as lock:
         lock_suite(lock)
-        outer, suite, validation = inspect_rebuild(rebuild)
+        outer, suite, validation, reconciliations = inspect_rebuild(rebuild, allow_relocation)
         original_workspace = rebuild / "workspace"
         inputs = files(original_workspace / "data") + files(original_workspace / "validation/runs")
         inputs = [p for p in inputs if p.name != ".suite.lock" and not (
@@ -291,6 +346,7 @@ def finalize(rebuild, output):
                       original_binary_sha256=suite["provenance"]["binary_sha256"],
                       original_case_states={str(c["run"]): c["state"] for c in suite["cases"]},
                       original_sensitivity_states={c["name"]: c["state"] for c in validation["cases"]},
+                      relocation_reconciliations=reconciliations,
                       original_files_sha256=original_hashes, input_sha256=input_hashes,
                       source_sha256=source_hashes, source_revision=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(ROOT)).decode().strip(),
                       source_worktree_status=subprocess.check_output(["git", "status", "--porcelain"], cwd=str(ROOT)).decode(),
@@ -309,7 +365,8 @@ def finalize(rebuild, output):
                 if digest(target) != expected:
                     raise ValueError("copy changed: " + name)
             verify(base, names)
-        inspect_rebuild(rebuild)
+        if inspect_rebuild(rebuild, allow_relocation)[3] != reconciliations:
+            raise ValueError("relocation evidence changed during copying")
     workspace = output / "workspace"
     (workspace / "report/generated").mkdir(parents=True, exist_ok=True)
     record["state"] = "postprocessing"
@@ -372,10 +429,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--rebuild", default="tmp/full-rebuild-002")
     parser.add_argument("--output", default="deliverables/final")
+    parser.add_argument("--reconcile-relocation", action="store_true",
+                        help="audit only exact cached-root terminal failures; preserve original states")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check-only", action="store_true", help="verify terminal saved evidence without copying or generating output")
     mode.add_argument("--render-only", action="store_true", help="rebuild a staged report after editing only its panel ledger; preserve figure bytes")
     args = parser.parse_args()
+    if args.render_only and args.reconcile_relocation:
+        parser.error("render-only uses the already archived relocation audit")
     rebuild, output = (ROOT / args.rebuild).resolve(), (ROOT / args.output).resolve()
     if not str(ROOT).startswith(tuple("/data/data%d/" % n for n in range(8))):
         parser.error("this procedure requires a /data/data[n] project")
@@ -391,11 +452,13 @@ def main():
         if args.check_only:
             with (rebuild / "workspace/data/.suite.lock").open("rb") as lock:
                 lock_suite(lock)
-                inspect_rebuild(rebuild)
+                evidence = inspect_rebuild(rebuild, args.reconcile_relocation)
             print("Terminal saved evidence verified; scientific assessment remains separate.")
+            if evidence[3]:
+                print("Relocation discrepancies independently rechecked: " + str(len(evidence[3])))
             return 0
-        return finalize(rebuild, output)
-    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
+        return finalize(rebuild, output, args.reconcile_relocation)
+    except (OSError, ValueError, KeyError, TypeError, struct.error, subprocess.SubprocessError) as error:
         # Leave any partial package available for inspection, never label it complete.
         manifest_path = output / "postprocess_manifest.json"
         if not args.check_only and not args.render_only and not existed and manifest_path.exists():

@@ -117,6 +117,49 @@ report commands may be rerun there after completion. This manual recovery does
 not rewrite the outer rebuild manifest or establish that the original complete
 wrapper execution passed; preserve that distinction in the execution record.
 
+# Relocating a project with running calculations
+
+The requested project destination is `/data/data0/brooke/alluvial-ridge`.
+Its parent must first be writable by the project account. A same-filesystem
+move must preserve the directory inodes and provide the old project path as
+an alias throughout the lifetime of existing writers. Their recorded commands,
+working directories and cache paths still reference that location. Do not
+launch a second suite to perform the move or to replace a merely unobserved
+process. The maintained runner resolves output aliases and relative process
+arguments when checking for live cases, and resolves its project root again
+when enforcing containment. `tests/runner_relocation.py` exercises these checks
+with harmless child processes and temporary directories inside the project.
+
+Frozen rebuild 002 retains its original loaded runner. After a live move, its
+last containment check can mark a suite case `incomplete` even though that
+case's saved process record and numerical attempt are `complete`. Preserve
+these original records. Once the entire rebuild is terminal, the later
+finalizer can audit this specific discrepancy separately:
+
+```bash
+python3 scripts/finalize_report.py --rebuild tmp/full-rebuild-002 --check-only --reconcile-relocation
+python3 scripts/finalize_report.py --rebuild tmp/full-rebuild-002 --output deliverables/final --reconcile-relocation
+```
+
+This option accepts only the exact cached-root containment error. The suite
+and process records must otherwise agree, the latest attempt must have exited
+zero at the requested flood count, and its recorded output must match the
+original wrapper workspace and still resolve through the old alias to the
+current case. All terminal artifacts must retain their recorded hashes.
+An independent check then reads the complete summary and remap histories,
+finite conservation diagnostics, final and day-12 snapshot headers, sizes,
+clocks and channel counts. It requires a nonempty checkpoint but does not
+decode that state or scan all raster values. Other record disagreements and
+failed checks remain refusals; live-writer and suite-lock checks still apply.
+
+The separate `postprocess_manifest.json` records both original states,
+historical and current paths, the original error, and the later check result.
+The report retains the original rebuild outcome and states the audit's limited
+scope. Keep the old alias until this first audit and packaging finish; the
+option refuses an absent or unrelated alias. A completed package's render-only
+operation uses its retained evidence and does not require the old alias. This
+administrative reconciliation does not establish scientific agreement.
+
 # Later reports from terminal saved data
 
 `scripts/finalize_report.py` generates a later report from the numerical files

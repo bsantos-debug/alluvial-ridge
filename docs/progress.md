@@ -97,6 +97,24 @@ currently refuses 002 because the suite is still live. It neither starts
 models nor treats compiled PDFs as scientific acceptance. A later render-only
 mode permits authored ledger assessments while preserving figure bytes.
 
+The maintained runner now resolves output aliases when detecting existing
+writers and resolves its project root again for containment checks. Frozen 002
+retains its original runner, whose final path check can disagree with complete
+process records after a live project move. The later finalizer's explicit
+`--reconcile-relocation` option checks only that specific discrepancy against
+the recorded historical output path, unchanged artifact hashes and saved
+completion metadata. It records the later check separately and preserves all
+original states. Relocation and this terminal audit have not occurred; the
+destination still awaits administrator creation. The procedure and its limits
+are in [rebuild.md](rebuild.md#relocating-a-project-with-running-calculations).
+`python3 -B tests/runner_relocation.py` passed with real harmless children.
+`python3 -B tests/finalizer_relocation.py` passed the explicit relocation case
+and rejected 34 invalid or unsafe cases using archived one-flood sensitivity
+bytes and synthetic terminal metadata. It ran no model and establishes no
+580-flood completion. The actual 002 check-only command, even with relocation
+reconciliation enabled, still refuses its held suite writer lock. Frozen
+runner, model and executable hashes remain unchanged.
+
 `docs/runtime-observation.md` records earlier process and timestep measurements.
 The later production observation above confirms all 31 cases in flood 2.
 These observations do not establish a complete-run ETA.
