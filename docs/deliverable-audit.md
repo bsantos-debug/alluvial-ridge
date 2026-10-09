@@ -69,6 +69,12 @@ The line denotes the full interface, not its day-12 inundated subset.
    row n+1. Exact published event timing is not determined by the written
    initial conditions. State these limits rather than manufacture a peak
    map or claim a precise temporal match.
+   Following this finding, the root driver was extended for a fresh run to
+   save `peak_fields_NNNN.bin` and `peak_channel_NNNN.csv` at day 12 for
+   requested snapshot floods. It also writes `remap_budget.csv` before/after
+   transfer and post-remap residuals. The interrupted 001 outputs cannot
+   gain that missing evidence retroactively; interpretation of the new
+   products remains pending.
 
 3. **The PDF omits the available numerical sensitivity differences.**
    `scripts/validate_runs.py:184–190` calculates relative diagnostic changes

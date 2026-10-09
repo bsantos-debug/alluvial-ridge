@@ -203,3 +203,48 @@ is `8ddefd3e990c4616516868b5d222b51e44ddd5ecd877ca96f2146f14a36728d8`.
 This is a report build, not completion of the full numerical rebuild.
 The coordinator interrupted numerical rebuild 001 at 19:14:19 UTC; its reason
 is recorded separately in that attempt's `interruption_reason.json`.
+
+## Numerical validation report generator
+
+`report/make_validation.py` now reads saved histories and the sensitivity
+comparison record, then writes `report/generated/validation.tex` and
+`validation/report_summary.json`. The clean rebuild calls it in strict mode
+before compiling the PDF. Pending histories or unverified sensitivity cases
+produce an explicit report and exit code 2. Exit zero without strict mode means
+only that the reporting operation completed.
+
+The generated text includes numerical diagnostic changes and mean/maximum field
+differences for verified baseline/case pairs, separating grid/time resolution
+from physical-assumption changes. Case artifact hashes and recorded values are
+checked; evidence from a different production executable is withheld. Missing
+baseline evidence leaves contrast calculations pending.
+
+For all 31 production cases, the JSON retains coverage, parameter checks,
+normalization, and maximum absolute/terminal signed budget residuals. The PDF
+prints available pre-remap and optional post-remap residuals in native units
+and normalized by prescribed cumulative upstream input through each flood.
+External sediment supply uses the recorded concentration conversion and
+20,000-interval Simpson quadrature of the prescribed hydrograph. This scale
+excludes recycled banks and imposed bed forcing; it is not net boundary flux.
+Residual rows are not summed. Resumed runs are flagged because their residual
+baselines reset, so full-history drift cannot be recovered from these rows.
+The optional local remap table includes water, three suspended fractions, and
+combined solids; missing or nonfinite entries remain pending.
+
+Checks used existing independently generated files, without new simulations:
+the interrupted 001 suite remains 0/31 complete; its binary mismatch rejects
+the older full-domain coarse500 sensitivity case; the same historical case
+retains its actual budget when no production comparison is claimed; and the
+real two-flood small-domain restart output exercises pre/post/local remap
+tables while remaining noncanonical. Isolated artifacts are under
+`tmp/validation-report-check/`; none replaced root validation inputs. Actual
+terminal CSV values were checked against the rendered JSON. A verified full
+baseline/refinement pair is not yet available, so scientific convergence
+interpretation remains pending. Shell and embedded-Python syntax and
+`git diff --check` pass; the isolated validation document compiles twice with
+no warnings.
+
+The root report also now describes the new `peak_` snapshot and
+`remap_budget.csv` outputs. With the coordinator's updated remap methods prose,
+it compiles to 20 pages (327635 bytes), without warnings. Its SHA256 is
+`81228cc8c66aec0752d93044200a9fb2b039aac99b8b49c642eb68b22327d81b`.

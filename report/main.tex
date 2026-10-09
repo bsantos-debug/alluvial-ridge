@@ -200,12 +200,16 @@ uses linear interpolation and requires all 200 values to be finite;
 missing or undefined values are neither replaced by zero nor discarded.
 
 At day 12 the output retains $\alpha$, mean floodplain depth, and
-inundated interface fraction, but no raster fields. The saved rasters are
-from flood end, so day-12 inundated area
-and the locations of active breaches cannot be reconstructed from these
-outputs. The channel geometry is unchanged within each hydrograph; its
-end-flood outline therefore identifies the full day-12 interface, without
-identifying the inundated subset.
+inundated interface fraction for every flood. For the requested map and
+profile floods it also saves rasters and channel coordinates with a
+\texttt{peak\_} prefix, at cumulative time $(n-0.4)T_f$. These files
+support assessment of inundated area and breach location at the sampling
+time, which deposit footprint alone cannot supply. The earlier interrupted
+rebuild did not save these fields. Their availability and spatial
+interpretation remain to be assessed from the new calculations. Channel
+geometry is unchanged within each hydrograph, so the end-flood outline
+identifies the full day-12 interface, without identifying its inundated
+subset.
 
 Verification must distinguish discrete conservation from agreement with
 the paper. Required checks include a lake at rest, positive wetting and
@@ -224,9 +228,13 @@ Finite residuals alone do not establish negligible budget drift. The final
 assessment requires maximum and terminal residuals with stated
 normalization, together with the numerical field differences and diagnostic
 changes from grid, time-step, and physical-assumption cases. Per-flood
-budget summaries precede migration and aggradation; the final summary row
-therefore excludes the last remap retained in the checkpoint. The planned
-sensitivity cases cover the first flood and retain 250 m channel spacing,
+budget summaries precede migration and aggradation. A separate
+\texttt{remap\_budget.csv} records local water and suspended-class
+transfer defects, the combined solid defect after signed bed forcing,
+and cumulative residuals after each remap. Both cumulative ledgers reset
+their reference inventory at process restart; they do not recover
+accumulated full-history drift across restarts. The sensitivity cases
+cover the first flood and retain 250 m channel spacing,
 so they cannot establish 580-flood migration or grid independence.
 
 \section{Independent figures and comparison targets}
@@ -354,8 +362,9 @@ but do not establish splay formation, abandoned-channel infilling, ridge
 concavity, or breach localization. Those claims require direct assessment
 of the independent maps and profiles and an authored record for each
 panel. Deposit footprint is not inundation extent. Per-flood alpha
-components and cutoff counts support temporal comparisons, subject to the
-missing day-12 rasters and undocumented initial migration perturbations.
+components and cutoff counts support temporal comparisons. Day-12 spatial
+evidence is limited to the requested snapshot floods, and the original
+initial migration perturbations are undocumented.
 Completion of all numerical windows therefore does not, by itself,
 establish scientific reproduction.
 
