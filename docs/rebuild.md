@@ -218,6 +218,10 @@ The package contains:
   revision and working-tree status, package versions, each command/exit/log,
   case states and generated-output hashes.
 
+The tracked `validation/rejected-rebuild-001/` archive is retained under the
+copied workspace's same relative path. Its unchanged interrupted records stay
+inside that labeled archive, separate from canonical production data.
+
 Files are copied as real files, rehashed, and checked against unchanged source
 evidence. A read-only descriptor holds the existing suite lock during the
 copy. Original rebuild files are never rewritten. Postprocessing runs plots,

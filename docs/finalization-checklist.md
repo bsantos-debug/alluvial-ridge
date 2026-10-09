@@ -207,9 +207,13 @@ in the copied workspace after staging. Exact archive member names identify
 the captured files; historical workspace paths remain provenance text.
 Keep the corrected audit, the independent remap regression under
 `validation/stress/`, and rejected 001
-evidence as three distinct records. The 001 archive belongs in a separately
-labeled rejected-attempt directory; never copy its numerical files into
-canonical `data/` or `validation/runs/`. Historical path strings inside
+evidence as three distinct records. The selected 001 execution evidence is
+retained in [a labeled archive](../validation/rejected-rebuild-001/README.md)
+and included by the saved-data finalizer. Its archive preserves the original
+interrupted production records and stale sensitivity records unchanged; the
+separate capture records the later process observation and member hashes.
+Never copy its numerical files into canonical `data/` or `validation/runs/`.
+Historical path strings inside
 unchanged execution records remain provenance, not executable package paths.
 
 | Publication content | Local source |

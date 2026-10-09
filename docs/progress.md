@@ -39,6 +39,18 @@ and 10.2734; both commands and actual executable hashes matched their records.
 The frozen model and binary remained unchanged. Destination creation still
 requires write access; no files moved and no simulation process was signaled.
 
+At 22:21:59 UTC, run 20 had completed flood 2 and entered flood 3, day 0.3421.
+Its actual PID/start identity, command and executable hash still matched.
+Stable summary/remap reads contained floods 1 and 2; the matching v2 checkpoint
+recorded 3,456,000 s, 241,759 steps and 290 channel nodes. Its parameter
+signature and finite/nonnegative water and sediment payload passed inspection.
+The second cumulative post-remap residuals were −8.85725e−5 m³ water,
+−14.433803 kg suspension plus deposition, and −0.611532 kg total solids.
+Relative to two-flood prescribed inputs, these are 2.93e−15, 3.96e−11 and
+1.68e−12 in magnitude. Bank mass, recycling, cutoffs and correction terms
+remained zero; signed bed forcing is a separate ledger. This read-only
+observation establishes one second-flood state, not a manuscript result.
+
 At 21:39:16 UTC, all 31 production PIDs were verified live with the corrected
 executable. Every case had completed one full flood and was advancing through
 flood 2, between days 5.86135 and 11.32774 in its saved progress. Frozen source
@@ -153,6 +165,15 @@ All its numerical child processes stopped, and the manifest records
 production flood had completed. Frozen source remains unchanged at revision
 dc96644; all partial output and provenance are preserved. This is a rejected
 numerical attempt, not a completed clean rebuild.
+
+The selected original evidence is also preserved for publication in
+[`validation/rejected-rebuild-001/`](../validation/rejected-rebuild-001/README.md):
+229 original files, including the 39 frozen sources, exact executable,
+manifests, logs and case records. Their recorded hashes passed verification.
+The separate capture preserves original interrupted/stale states and records
+the later absence of all 38 recorded processes. The saved-data finalizer
+includes this archive, and the report explains the separate cutoff test that
+prompted interruption. No rejected data enter the canonical numerical inputs.
 
 The correction normalizes each old channel section's inventory over its whole
 raster support, transfers the abandoned fraction, and remaps the remainder

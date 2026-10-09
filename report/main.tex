@@ -223,6 +223,18 @@ the full coupled model.
 \optionalinput{report/generated/validation.tex}{Full coupled verification and grid/time sensitivity are pending. The kernel check output, if present, is transcribed below without extending its scope.}
 \optionalinput{report/generated/kernel.tex}{No kernel verification log was available at report build time.}
 
+The first clean rebuild was interrupted on 9 October 2026 before any
+production flood completed. A separate 250 m neck-cutoff test, using its
+frozen headers, showed that the remap could overdraw a channel section's
+suspended inventory by 35.48\%. This verification failure prompted the
+interruption; it was not a remap failure observed in a production flood.
+The original passing checks had not exercised this counterexample.
+The subsequent conservative transfer correction is described above, and
+rebuild 002 uses the corrected implementation. The rejected attempt's
+unchanged sources, executable, logs, and interrupted case records are
+retained separately in \path{validation/rejected-rebuild-001/}.
+Its empty production summaries supply no manuscript values.
+
 Production conservation and sensitivity require assessment over their
 recorded intervals; archived first-flood findings are reported below.
 Finite residuals alone do not establish negligible budget drift. The final
