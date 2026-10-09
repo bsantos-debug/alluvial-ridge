@@ -112,7 +112,12 @@ inline State channel_outlet_flux(const State& interior,double chezy,double slope
     for(int k=3;k<6;++k)boundary[k]=boundary[0]*(interior[k]/interior[0]);
     return physical_flux(boundary,0);
 }
-inline double norm_u(const State& a) {return a[0]>1e-12?std::hypot(a[1],a[2])/a[0]:0.;}
+inline double norm_u(const State& a) {
+    if(a[0]<=1e-12)return 0.;
+    double u=a[1]/a[0],v=a[2]/a[0],square=u*u+v*v;
+    if(!std::isfinite(square))throw std::runtime_error("nonfinite squared velocity");
+    return std::sqrt(square);
+}
 inline void resistance(State& a,double chezy,double dt) {
     if(a[0]<=1e-10){a[1]=a[2]=0;return;}
     double r=1+dt*g*norm_u(a)/(chezy*chezy*a[0]);a[1]/=r;a[2]/=r;
@@ -249,7 +254,9 @@ inline double floodplain_rates(Model& m) {
         if(e.boundary==1)b[1+e.axis]*=-1;
         if(e.boundary==-1)a[1+e.axis]*=-1;
         if(e.boundary==2){zb-=m.p.slope*dx;b[1]=std::max(0.,b[1]);}
-        auto f=face_flux(a,b,za,zb,e.axis);
+        // Tracer fluxes below use upwind concentration plus diffusion; avoid
+        // calculating passive HLL tracer fluxes that would be overwritten.
+        auto f=face_flux<3>(a,b,za,zb,e.axis);
         double ca=m.mapping[e.a].a>=0?m.p.channel_chezy:m.p.floodplain_chezy;
         double cb=e.b>=0&&m.mapping[e.b].a>=0?m.p.channel_chezy:m.p.floodplain_chezy;
         double hf=std::min(std::max(0.,a[0]+za-std::max(za,zb)),std::max(0.,b[0]+zb-std::max(za,zb)));
@@ -298,7 +305,7 @@ inline void channel_advance(Model& m,double floodtime,double dt,const std::array
             m.cr[i]=m.exchange[i];
         }
         for(size_t i=0;i+1<n;++i) {
-            auto f=face_flux(m.channel[i],m.channel[i+1],m.zc[i],m.zc[i+1],0);
+            auto f=face_flux<3>(m.channel[i],m.channel[i+1],m.zc[i],m.zc[i+1],0);
             double hf=std::min(m.channel[i][0],m.channel[i+1][0]);
             double da=sediment_diffusivity(m.channel[i][0],std::sqrt(g)*norm_u(m.channel[i])/m.p.channel_chezy);
             double db=sediment_diffusivity(m.channel[i+1][0],std::sqrt(g)*norm_u(m.channel[i+1])/m.p.channel_chezy);

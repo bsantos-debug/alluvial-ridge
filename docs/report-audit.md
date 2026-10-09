@@ -149,3 +149,27 @@ of meters and are not probabilities.
 contains the physical specification, diagnostic definitions, prose/visual
 comparison targets and honest limitations. This is report scaffolding only;
 it is not evidence of a reproduced numerical panel or a complete model.
+
+## Report status during a clean rebuild
+
+`report/make_inputs.py` merges the maintained `docs/panels.csv` with the freshly
+generated `figures/panel_status.csv` without modifying either source. A panel
+with no requested data is not reproduced; partial data give partially reproduced.
+Complete requested data also give partially reproduced until a scientific
+assessment is documented. Thus a successful new calculation cannot inherit
+stale "outputs pending" as its current status, and figure-file existence alone
+cannot promote a panel to reproduced.
+
+An authored reproduced/partial assessment is retained only when the required
+current coverage is appropriate and the recorded numerical source files exist
+with hashes matching `figures/plot_manifest.json`. A prior complete assessment
+is withheld if current data are partial, missing or changed. Assessment prose
+may be supplied in `scientific_assessment` or `assessment`; substantive `notes`
+on an assessed source-ledger row are also accepted. Empty or explicitly pending
+assessment text does not establish scientific reproduction.
+
+The generated appendix includes current coverage notes, source paths and hash
+verification, together with explicitly labeled prior source-ledger status and
+notes. Existing data/plot commands, documentation and command formatting are
+preserved. The report counts reflect the merged statuses, while source-ledger
+notes remain visibly prior documentation rather than overriding current data.

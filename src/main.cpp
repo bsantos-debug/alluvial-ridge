@@ -72,6 +72,9 @@ int main(int argc,char** argv) {
                 }
                 if(wall>stop_seconds) {synchronize(m);snapshot(m,output,flood);std::ofstream status(output+"/status.txt");status<<"partial flood "<<flood<<" time_seconds "<<std::setprecision(15)<<t<<" of "<<p.duration<<"; observation-limited benchmark, no restart checkpoint\n";std::cout<<"benchmark_stop flood="<<flood<<" t="<<t<<" steps="<<m.steps<<" wall="<<wall<<std::endl;return 3;}
             }
+            // The local loop ends exactly at the prescribed event boundary.
+            // Avoid accumulation error in this output-only global clock.
+            m.clock=flood*p.duration;
             synchronize(m);auto final=metrics(m);auto store=storage(m);
             double wr=store.water-initial.water-(m.external.water-ext_start.water)-(m.water_correction-water_correction_start);
             double sr=std::accumulate(store.sediment.begin(),store.sediment.end(),0.)-sediment_initial+m.deposited_mass-dep_start;
