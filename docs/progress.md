@@ -51,6 +51,17 @@ Relative to two-flood prescribed inputs, these are 2.93e−15, 3.96e−11 and
 remained zero; signed bed forcing is a separate ledger. This read-only
 observation establishes one second-flood state, not a manuscript result.
 
+At 22:35:15 UTC, all 31 production processes still matched their recorded
+PID/start identities and exact commands. Runs 19, 20, 21, and 23 had completed
+two floods; the other 27 had completed one. Run 23's summary, remap history,
+and checkpoint header agreed, and its progress had entered flood 3.
+The wrapper and two drivers retained their identities. The live fine125
+and time250_cfl02 sensitivity jobs were on first-flood days 8.6557 and
+11.1833, with matching commands and executable hashes. No terminal failure
+or process identity mismatch was observed. No process was signaled or
+restarted. The destination remained unavailable: an actual `mkdir` attempt
+for `/data/data0/brooke` returned permission denied.
+
 At 21:39:16 UTC, all 31 production PIDs were verified live with the corrected
 executable. Every case had completed one full flood and was advancing through
 flood 2, between days 5.86135 and 11.32774 in its saved progress. Frozen source
@@ -271,6 +282,29 @@ The root `figures/comparison.json` and `.csv` are retained inputs to this
 provisional report: they contain zero computed comparisons, and the report
 flags their outdated processor identity and missing numerical panel sources.
 The supplement has prose and a table, with no supplementary figures.
+
+## Later migration Fourier verification
+
+`tests/migration_linear.cpp` now checks growing and decaying Fourier modes
+against independently derived continuum and discrete responses. Its 72 cases
+pass under the default compiler flags. Native one-flood complex-rate errors
+decrease about fourfold as node spacing is halved, combining spatial and
+temporal refinement. Controlled 0.1-flood evolution matches the discrete
+Euler response within 6.08e-9 per flood; amplitude, fitting-window,
+finite-inlet, and stable-count interpolation controls are separately checked.
+Literal-spacing interpolation adds one node and measurably attenuates the
+modes, so its zero-duration results have separate bounds and no growth rate.
+Equations, numerical values, and limits are in [migration.md](migration.md).
+
+The [retained record](../validation/migration-linear/README.md) contains
+commands, logs, all 72 CSV rows, and source/output hashes. This later test is
+included in maintained `make check` and final report packaging; it was not
+part of the frozen 002 launch checks. No numerical source or production
+configuration changed, and the migration header still matches frozen 002.
+The 26-page provisional report includes the bounded result on pages 6--7
+and compiles without TeX warnings. All 13 manuscript panels remain
+unreproduced; this check supplies no coupled grid-convergence or late-planform
+claim and does not explain the entire production sinuosity change.
 
 ## Publication and remaining work
 

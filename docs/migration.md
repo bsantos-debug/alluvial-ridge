@@ -91,6 +91,7 @@ Fourier perturbation with wavenumber `k` has real growth rate
 ```
 sigma(k) = E k_l W k^2 [ -1 + 2.5 alpha^2/(alpha^2+k^2) ].
 sigma_max = E k_l W alpha^2 (sqrt(2.5)-1)^2.
+Omega(k) = 2.5 E k_l W alpha k^3/(alpha^2+k^2).
 ```
 
 This follows by Fourier transforming the stated exponential convolution;
@@ -100,6 +101,15 @@ and the default friction, `k_l=40 m/flood` gives an e-folding time of about
 distinguishes the coefficient from observed migration and motivates
 testing its uncertainty. Finite-domain evolution also depends on the
 upstream boundary and cutoff history.
+
+The full perturbation is proportional to `exp(sigma t) cos(k x - Omega t)`.
+The positive frequency `Omega` therefore moves crests downstream at speed
+`Omega/k`; it is distinct from amplitude growth. With the default parameters,
+the neutral wavelength is 6327.77 m and the fastest-growing wavelength is
+10166.14 m. Shorter waves decay in this linear limit, so the rapid loss of
+short-wavelength initial coordinate noise can coexist with slower growth of
+long bends. This calculation does not establish the later nonlinear planform
+or its agreement with the manuscript.
 
 ## Numerical implementation
 
@@ -180,3 +190,94 @@ model calculations, not published reference results or calibration targets.
 These tests establish geometric consistency;
 they do not establish agreement with the 2018 planforms or validate
 coupled water/sediment remapping.
+
+## Linear growth, phase, and node-spacing check
+
+`tests/migration_linear.cpp` checks the small-slope Fourier response of the
+same migration header used by rebuild 002. This later component check was
+not part of that rebuild's frozen launch checks. It uses a 72 km domain,
+`W=500 m`, `D=8 m`, `E=1`, `k_l=400 m/flood`, `p=0`, and the default friction.
+The 12 km mode grows and the 4 km mode decays; both propagate downstream.
+Their continuum complex rates `lambda=sigma-i Omega` are respectively
+`0.04190077-0.06247190i` and `-0.23396204-0.50281014i` per flood.
+
+The independently derived spatial reference includes central curvature and
+the piecewise-linear exponential integral. With actual initial node spacing
+`d`, `S=E k_l W`, `q=exp(-alpha d)`, and `w=1-q`, it is
+
+```
+b = (w-alpha d q)/(alpha d)
+H = [(w-b)+b exp(-i k d)]/[1-q exp(-i k d)]
+lambda_d = S [2 sin(k d/2)/d]^2 [-1+2.5 H].
+```
+
+For one explicit Euler substep per call, the predicted measured logarithmic
+rate is `log(1+dt lambda_d)/dt`. The test compares this prediction with
+0.1-flood evolutions at `dt=0.001` and `0.0005` floods, sinusoid amplitudes
+0.1 and 0.05 m, and maximum node spacings 500, 250, and 125 m. A least-squares
+cosine/sine fit at actual node coordinates measures amplitude and phase over
+24--48 km. A second window, 36--60 km, checks boundary sensitivity. The exact
+initial finite-inlet convolution is also projected and compared with the
+infinite-domain reference. These controls bound fixture effects empirically;
+the small omitted kernel tail alone is not a bound on the evolving solution.
+
+The controlled measured rate differs from the independent discrete Euler
+reference by at most `6.08e-9` per flood. Halving the amplitude changes the
+rate by at most `4.61e-9` per flood. Halving the call interval halves the
+remaining temporal error relative to the spatial reference. The assertion
+tolerances are fixture accuracy criteria: `1e-7` per flood for the controlled
+rate, `5e-8` for the amplitude contrast, and `1e-8` for stable-count gain
+controls. They are not manuscript-agreement tolerances.
+
+A separate native one-flood call uses the migration routine's own time-step
+selection. The measured logarithmic complex-rate errors are:
+
+| Maximum node spacing (m) | 12 km mode error (per flood) | 4 km mode error (per flood) |
+|---|---:|---:|
+| 500 | 1.12575e-3 | 4.25733e-2 |
+| 250 | 2.84940e-4 | 1.08143e-2 |
+| 125 | 7.15915e-5 | 2.71815e-3 |
+
+Errors fall by factors 3.94--3.98 on refinement. This is combined spatial
+and temporal convergence because the native time-step limit scales as
+`d^2`; the calls contain 15, 57, and 225 internal substeps. Their CSV rows
+therefore omit the single-Euler-step reference. The independent spatial
+symbol also approaches the continuum rate at approximately second order.
+
+Resampling requires a distinct control. The prepared migration modes use
+`ceil(72000/h)+1` intervals, with actual initial spacings 496.552, 249.135,
+and 124.783 m. Their node counts remain unchanged; 200 resampling-only
+calls change complex gain by at most `6.81e-10`. In contrast, a sinusoid
+initialized at literal spacing `h` has arc length slightly greater than
+72 km, so `ceil(arc_length/h)` adds one interval during resampling. A single
+such interpolation, with no elapsed migration time, has the following
+measured amplitude loss in the primary fitting window:
+
+| Literal node spacing (m) | 12 km mode loss (%) | 4 km mode loss (%) |
+|---|---:|---:|
+| 500 | 0.823124 | 7.304149 |
+| 250 | 0.206250 | 1.847948 |
+| 125 | 0.051605 | 0.463479 |
+
+These losses depend on the interpolation and fitting window; they are not
+physical damping rates. Zero-duration CSV rows leave rate fields empty.
+Tiny single-step comparisons use gains because dividing the initial
+resampling change by a short duration exaggerates its apparent rate.
+All fixtures retain fixed endpoints, remain finite, and have no cutoffs.
+They establish the implemented linear growth and phase response and expose
+resampling attenuation. They do not establish coupled grid convergence,
+explain the entire production sinuosity change, or assess late manuscript
+planforms.
+
+The test is included in `make check`. To repeat only this check without
+overwriting the retained observation:
+
+```sh
+source scripts/environment.sh
+make build/migration_linear_test
+build/migration_linear_test --csv tmp/migration-linear-results.csv
+```
+
+The [retained record](../validation/migration-linear/README.md) contains all
+72 CSV rows, build/test logs, command and compiler details, and source/output
+hashes. No coupled calculation was launched by this check.

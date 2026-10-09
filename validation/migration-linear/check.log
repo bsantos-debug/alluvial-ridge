@@ -1,0 +1,8 @@
+migration_linear_native_complex_errors_12000 0.0011257500348 0.000284939657595 7.15914717864e-05
+migration_linear_spatial_symbol_complex_errors_12000 0.00104646392464 0.000264338403816 6.63712784976e-05
+migration_linear_literal_resample_loss_percent_12000 0.823123988563 0.20624953942 0.0516054194621
+migration_linear_native_complex_errors_4000 0.0425732658756 0.010814287398 0.00271814572469
+migration_linear_spatial_symbol_complex_errors_4000 0.0496456271901 0.0127517904198 0.00321522545301
+migration_linear_literal_resample_loss_percent_4000 7.30414891667 1.84794844305 0.463479147415
+migration_linear_controls max_Euler_rate_error 6.07315713073e-09 max_amplitude_rate_difference 4.60750417828e-09 max_crop_gain_difference 8.44562025835e-10 max_200_resample_gain_change 6.80345224605e-10
+PASS migration Fourier growth/phase, spatial/time refinement, amplitude/boundary controls, and separate resampling response (72 cases)

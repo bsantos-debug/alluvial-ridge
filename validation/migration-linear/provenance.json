@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "recorded_utc": "2026-10-09T22:35:32.859660+00:00",
+  "scope": "Later independent migration-component Fourier check; not part of frozen rebuild 002 launch checks; no coupled run or manuscript-panel assessment.",
+  "commands": [
+    "make build/migration_linear_test > validation/migration-linear/build.log 2>&1",
+    "build/migration_linear_test --csv validation/migration-linear/results.csv > validation/migration-linear/check.log 2>&1"
+  ],
+  "compiler_command": "g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Isrc tests/migration_linear.cpp -o build/migration_linear_test -lstdc++fs",
+  "compiler_version": "g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28)",
+  "source_sha256": {
+    "Makefile": "85a7355a03c9e1cb4d0b8ae7d08d1a2624b253e024525087d35735b816f2e298",
+    "tests/migration_linear.cpp": "5f440b3af61bc6b9ae9ff8b76fcb1ee2398a6dd372bc2fa9cecd8c8ab390e471",
+    "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196"
+  },
+  "tested_binary": {
+    "path": "build/migration_linear_test",
+    "sha256": "6516a834913ec720d3717cb0a319d57d77cf54d5281e36d5f3ae377d6a75cd04",
+    "retained": false
+  },
+  "artifacts_sha256": {
+    "build.log": "bdebd793317a9edb697a17b659c9bf5eb6581aa37f4424a6efe7722d23a5175d",
+    "check.log": "22c406005ec72262daab457f689cf263a88bd214a81356c1a4dd7210df465bd6",
+    "results.csv": "6db6de812ad3d31f35da0e82828d8addf3800d5ca2a31cc93e24880134b57b74"
+  },
+  "outcome": {
+    "test": "PASS",
+    "cases": 72,
+    "columns": 40,
+    "applicable_single_Euler_reference_rows": 48,
+    "zero_time_rows_with_undefined_rate": 18,
+    "compiler_warnings": false
+  },
+  "frozen_rebuild_002_migration_header_matches": true,
+  "parameters": {
+    "length_m": 72000,
+    "width_m": 500,
+    "depth_m": 8,
+    "erodibility": 1,
+    "migration_scale_m_per_flood": 400,
+    "friction": 0.0032429752066115702,
+    "sinuosity_exponent": 0,
+    "wavelengths_m": [
+      12000,
+      4000
+    ],
+    "maximum_spacings_m": [
+      500,
+      250,
+      125
+    ],
+    "controlled_amplitudes_m": [
+      0.1,
+      0.05
+    ],
+    "controlled_call_intervals_floods": [
+      0.001,
+      0.0005
+    ],
+    "controlled_evolution_floods": 0.1,
+    "native_evolution_floods": 1,
+    "primary_fit_interval_m": [
+      24000,
+      48000
+    ],
+    "alternate_fit_interval_m": [
+      36000,
+      60000
+    ]
+  },
+  "interpretation": "Native refinement combines spatial and temporal errors. Stable-count modes and literal-spacing node-addition controls use separate assertions. Complex rate uses log(C_final/C_initial)/duration with y=Re[C exp(i k x)]; rate fields are blank at zero duration. Native multi-substep calls omit the single-Euler reference."
+}

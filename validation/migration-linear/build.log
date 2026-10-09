@@ -1,0 +1,2 @@
+mkdir -p build
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Isrc tests/migration_linear.cpp -o build/migration_linear_test -lstdc++fs

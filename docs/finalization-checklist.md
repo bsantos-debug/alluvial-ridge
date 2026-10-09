@@ -216,12 +216,18 @@ Never copy its numerical files into canonical `data/` or `validation/runs/`.
 Historical path strings inside
 unchanged execution records remain provenance, not executable package paths.
 
+Also retain `validation/migration-linear/` and its maintained component test.
+This later Fourier growth/phase and interpolation check uses the unchanged
+migration header but was not run in the frozen 002 launch checks. Keep that
+timing and its component-only scope explicit when reporting validation.
+
 | Publication content | Local source |
 |---|---|
 | Final code/configuration/tests/docs and LaTeX | Versioned final workspace; preserve 002 frozen model inputs alongside later postprocessors. |
 | Numerical data and provenance | 002 `data/`, including `_inputs/`, parameters, summaries, remap ledgers, all requested end/peak fields and channel coordinates, logs and process/suite records. |
 | Validation evidence | 002 `validation/runs/`, exact check log, generated validation summary, and the remap regression evidence under root `validation/stress/`. |
 | Corrected first-flood audit | Complete versioned `validation/first-flood-audit-002/`, including methods, observations, capture manifest, and both archives of the original first-flood input bytes. |
+| Later migration component check | `validation/migration-linear/`, `tests/migration_linear.cpp`, and `docs/migration.md`; separate from frozen launch checks and coupled sensitivity. |
 | Figures and derived comparisons | Final workspace `figures/`, manifests, metric/section tables and optional helper records. |
 | Final report and execution records | Final workspace `report/main.tex`, required `report/generated/` inputs, `report/report.pdf`, original 002 manifest/PDF, and separate postprocess manifest. |
 | Rejected-attempt record | Clearly separated 001 reason, manifest, frozen sources and logs; never mixed into canonical data folders. |
