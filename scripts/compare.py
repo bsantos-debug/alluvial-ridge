@@ -69,11 +69,35 @@ def directions(values, desired_sign):
                 opposite_direction=opposite, ties=len(differences) - correct - opposite)
 
 
+def run_readiness_notes(run, require_full_history=True):
+    """Keep canonical-input checks separate from comparison-specific coverage."""
+    return run["notes"] + (run["history_notes"] if require_full_history else [])
+
+
+def configuration_notes(config, parameters, physics):
+    expected = dict(physics, run=int(config["run"]), A=float(config["A_m_per_flood"]),
+                    C=float(config["C"]), E=float(config["E"]), fine=int(config["load"] == "fine"),
+                    dx=250, length=72000, width=48000, duration=1728000, channel_width=500,
+                    slope=.0001, rho_s=2650, initial_depth=8, qmin=2500, qmax=15000, migration=1)
+    # A stopping count does not change the physics of a completed early flood.
+    expected.pop("floods", None)
+    return ["{}={} (required {})".format(key, parameters.get(key, "unrecorded"), value)
+            for key, value in expected.items()
+            if finite(parameters.get(key)) is None or not math.isclose(
+                float(parameters[key]), value, rel_tol=1e-10, abs_tol=1e-12)]
+
+
 def comparison_inputs(data_root, figure_root):
     configs = rows(ROOT / "config" / "runs.csv")
     if len(configs) != 31 or {int(c["run"]) for c in configs} != set(range(1, 32)):
         raise ValueError("Expected all 31 documented configurations")
-    inputs = {ROOT / "config" / "runs.csv", Path(__file__).resolve()}
+    physics_path = ROOT / "config" / "physics.txt"
+    physics = {}
+    for line in physics_path.read_text().splitlines():
+        if line.strip():
+            key, value = line.split()
+            physics[key.replace("-", "_")] = float(value)
+    inputs = {ROOT / "config" / "runs.csv", physics_path, Path(__file__).resolve()}
     manifest_path = figure_root / "plot_manifest.json"
     errors, manifest_files = [], {}
     if manifest_path.exists():
@@ -109,7 +133,7 @@ def comparison_inputs(data_root, figure_root):
     for config in configs:
         number = int(config["run"])
         directory = data_root / ("run%02d" % number)
-        parameters, records, notes = {}, {}, []
+        parameters, records, notes, history_notes = {}, {}, [], []
         path = directory / "parameters.txt"
         if path.exists():
             inputs.add(path)
@@ -117,14 +141,7 @@ def comparison_inputs(data_root, figure_root):
                 pair = line.split(None, 1)
                 if len(pair) == 2:
                     parameters[pair[0]] = pair[1]
-        expected = dict(run=number, A=float(config["A_m_per_flood"]), C=float(config["C"]),
-                        E=float(config["E"]), fine=int(config["load"] == "fine"), dx=250,
-                        length=72000, width=48000, duration=1728000, channel_width=500,
-                        slope=.0001, initial_depth=8, qmin=2500, qmax=15000, migration=1)
-        for key, value in expected.items():
-            actual = finite(parameters.get(key))
-            if actual is None or not math.isclose(actual, value, rel_tol=1e-10, abs_tol=1e-12):
-                notes.append("{}={} (required {})".format(key, parameters.get(key, "unrecorded"), value))
+        notes.extend(configuration_notes(config, parameters, physics))
         path = directory / "summary.csv"
         if path.exists():
             inputs.add(path)
@@ -142,12 +159,14 @@ def comparison_inputs(data_root, figure_root):
             notes.append("summary.csv missing")
         absent = [f for f in range(1, 581) if f not in records]
         if absent:
-            notes.append("{} of 580 required flood rows missing".format(len(absent)))
+            history_notes.append("{} of 580 required flood rows missing".format(len(absent)))
         metric = metric_rows.get(number, {})
-        if metric.get("configuration_verified") != "1" or metric.get("complete_1_to_580") != "1":
-            notes.append("plotter has not verified canonical configuration and full history")
+        if metric.get("configuration_verified") != "1":
+            notes.append("plotter has not verified canonical configuration")
+        if metric.get("complete_1_to_580") != "1":
+            history_notes.append("plotter has not verified the full 580-flood history")
         runs[number] = dict(config=config, parameters=parameters, records=records,
-                            metric=metric, notes=notes, directory=directory)
+                            metric=metric, notes=notes, history_notes=history_notes, directory=directory)
     return configs, runs, derived, errors, inputs
 
 
@@ -156,11 +175,12 @@ def evaluate(data_root, figure_root):
     results = []
     panel_state = {row["panel"]: row for row in derived["panel_status.csv"]}
 
-    def ready(numbers, metric=None, panels=()):
+    def ready(numbers, metric=None, panels=(), require_full_history=True):
         reasons = list(provenance_errors)
         for number in sorted(set(numbers)):
             run = runs[number]
-            reasons.extend("run {:02d}: {}".format(number, note) for note in run["notes"])
+            reasons.extend("run {:02d}: {}".format(number, note)
+                           for note in run_readiness_notes(run, require_full_history))
             if metric:
                 column, first, count, field = (("beta", 561, 20, "beta_mean_561_580") if metric == "beta"
                                                else ("alpha", 381, 200, "alpha95_381_580"))
@@ -177,8 +197,8 @@ def evaluate(data_root, figure_root):
                 reasons.append(panel + " does not have complete requested plotted data")
         return list(dict.fromkeys(reasons))
 
-    def add(name, panel, numbers, target, required_metric=None, required_panels=()):
-        reasons = ready(numbers, required_metric, required_panels)
+    def add(name, panel, numbers, target, required_metric=None, required_panels=(), require_full_history=True):
+        reasons = ready(numbers, required_metric, required_panels, require_full_history)
         record = dict(comparison=name, panel=panel, runs=list(numbers), target=target,
                       status="pending" if reasons else "computed", calculation={}, assessment="",
                       caveat="", pending_reasons=reasons, reference=REFERENCE)
@@ -278,7 +298,8 @@ def evaluate(data_root, figure_root):
             r["assessment"] = "C={:g}: alpha95 decreases across {}/{} adjacent A contrasts; {} contrasts increase.".format(C, contrasts["requested_direction"], len(numbers) - 1, contrasts["opposite_direction"])
 
     r = add("alpha_variability_with_C", "3B", [7, 15, 20],
-            "At A=0.018 m/flood, greater suspended load produces stronger alpha variability and higher peaks.", "alpha")
+            "At A=0.018 m/flood, greater suspended load produces stronger alpha variability and higher peaks.",
+            "alpha", required_panels=["3B"])
     if r["status"] == "computed":
         summaries = []
         for n in [7, 15, 20]:
@@ -304,7 +325,8 @@ def evaluate(data_root, figure_root):
     deposits = {row["panel"]: row for row in derived["deposit_metrics.csv"]}
     for panel, number in [("1A", 11), ("1B", 11), ("1C", 11), ("1D", 11), ("1E", 17), ("1F", 3)]:
         r = add("deposit_" + panel, panel, [number],
-                "Published maps show individual-flood deposition, initially in splays and later along abandoned channels.", required_panels=[panel])
+                "Published maps show individual-flood deposition, initially in splays and later along abandoned channels.",
+                required_panels=[panel], require_full_history=False)
         if r["status"] == "computed":
             row = deposits.get(panel, {})
             keys = ["deposited_area_km2", "deposited_volume_m3", "deposit_max_m", "deposit_p95_m", "deposit_transverse_std_m", "sinuosity"]
@@ -316,7 +338,8 @@ def evaluate(data_root, figure_root):
             r["assessment"] = "{}: deposited area above 1e-6 m is {:.4g} km2, deposited volume is {:.4g} m3, and maximum event thickness is {:.4g} m.".format(panel, values["deposited_area_km2"], values["deposited_volume_m3"], values["deposit_max_m"])
             r["caveat"] = "The publication supplies no exact area/volume targets. These quantities support comparison of computed spatial scales; they cannot establish splay or abandoned-channel morphology by themselves. The 0.5 m color-axis limit is not an observed maximum."
     r = add("deposit_time_contrasts", "1A–D", [11],
-            "Conveyance and deposition become localized over time, but substantial late-flood variability persists.", required_panels=["1A", "1B", "1C", "1D"])
+            "Conveyance and deposition become localized over time, but substantial late-flood variability persists.",
+            required_panels=["1A", "1B", "1C", "1D"], require_full_history=False)
     if r["status"] == "computed":
         areas = [finite(deposits.get(p, {}).get("deposited_area_km2")) for p in ["1A", "1B", "1C", "1D"]]
         if any(a is None for a in areas):
@@ -332,7 +355,7 @@ def evaluate(data_root, figure_root):
     for panel, number in [("2A", 22), ("2B", 10), ("2C", 3), ("2D", 15)]:
         r = add("section_relief_" + panel, panel, [number],
                 "Late ridge elevation is approximately {}–{} m in the published image; its initial section is near 9 m (coarse visual ranges, not digitized data).".format(*VISUAL_RANGES[panel]),
-                required_panels=[panel])
+                required_panels=[panel], require_full_history=False)
         if r["status"] != "computed":
             continue
         profiles, reasons = [], []

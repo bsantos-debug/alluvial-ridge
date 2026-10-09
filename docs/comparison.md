@@ -25,11 +25,15 @@ infer agreement from the 0–0.5 m deposit scale or other published axis limits.
 
 ## Evidence gates
 
-A reported comparison requires every participating run to have all flood
-rows 1–580 and documented run/A/C/E/load, 250 m grid spacing, 72 km by 48 km
+A reported comparison requires documented run/A/C/E/load, 250 m grid spacing, 72 km by 48 km
 domain, 20-day duration, 500 m channel width, 8 m initial depth, 1e-4 slope,
-2500/15000 m3/s discharge bounds and enabled migration. The plotter must also
-have verified the configuration and complete history. Unrecorded values
+2500/15000 m3/s discharge bounds, 2650 kg/m3 sediment density and enabled migration.
+All numeric assumptions in `config/physics.txt` must also match, including
+erosion threshold, viscosity, sediment concentration scale and migration scale.
+Only the requested stopping flood count is excluded: stopping later does not
+change the physics of an already completed early flood. The physics reference
+is hashed in the comparison record. The plotter must also have verified its
+documented configuration subset. Unrecorded values
 remain unverified rather than being filled from defaults. Constitutive
 assumptions and scientific implementation fidelity are separately documented
 in the implementation report; these input checks cannot establish them.
@@ -41,11 +45,16 @@ record adds hashes for the exact CSV tables and raw run metadata/summaries it
 consumes. Mean beta and alpha95 are independently recomputed from raw summary
 rows and checked against `metrics.csv` before they enter a comparison.
 
-Beta requires 20 finite ratios from floods 561–580. Alpha95 and variability
-require 200 finite alpha values from floods 381–580. Undefined values are not
+Figure 3 comparisons require the full recorded history, floods 1–580.
+Beta additionally requires 20 finite ratios from floods 561–580. Alpha95 and variability
+require 200 finite alpha values from floods 381–580; Figure 3B also requires
+all three plotted series to have 580 finite alpha values. Undefined values are not
 silently dropped, zero-filled or replaced by another time window. Map/section
-comparisons additionally require the corresponding plotter panel status to
-show all requested snapshots, validated metadata and complete floods. This
+comparisons require the corresponding plotter panel status to show all exact
+requested snapshots, validated metadata and completed requested floods, but
+not unrelated intervening or later history. Thus a verified flood-61 map can
+be compared after a later simulation failure. The Figure 2 relief comparison
+still requires all four profiles, including flood 580. This
 workflow deliberately leaves short, altered-domain smoke runs pending.
 
 ## Comparisons performed
