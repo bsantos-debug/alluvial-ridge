@@ -12,7 +12,13 @@
     "two-resolution.py": "293dc1f91d6787ecc057946f7b56b0834c37b71aee63b58c2855bbb9b76c8ba7"
   },
   "capture_manifest_sha256": "ccc3c1c087100a2534b6d7c3b84ea9dcdac9dbd84c2b8c7332a8126d5a87f1c1",
-  "generator_sha256": "2f7fff38f5397facedab3730b22aa99764dca757ce86aaaea15a498e910a111a",
+  "diagnostic_definitions": {
+    "file": "figures/first_flood_diagnostic_sensitivity.json",
+    "processor_sha256": "c37263083cc795d16b98496046d6b60727f5feb4b6bd34fbe613001b7a1aa98c",
+    "sha256": "bbbc54487e8abf98ff0d6d6791a88edaf957b9e183cee0b8eb2c924e03687e29",
+    "status": "verified"
+  },
+  "generator_sha256": "5b1eebeb6e01ed4e6d6fd7060c9fd7216f18e3328c8b5b35a5bcab154e389e6e",
   "measurements": {
     "all_zero_quantities": [
       "captured_cells",
@@ -354,7 +360,7 @@
     "data/run31/summary.csv": "04731ccd2abdd3228292bed595be9d1bdb0429be502af095aeed307773350966",
     "data/suite_manifest.json": "cb0bf8119e522b65fea7cd5c71bd7ec5f9ec6d793d6f0074c5a8b906e3920da5"
   },
-  "rendered_tex_sha256": "9377d7e0474c7d71f07aaec9802ef7c8246b5165368fe75a3b15406e447b66b0",
+  "rendered_tex_sha256": "ecbee6ecce1a8f8b3a5c734b8e7ec775a98f6a77d9f5b18f86f3caba0928d14f",
   "scope": "first flood only; no manuscript-panel assessment",
   "sensitivity_input_sha256": {
     "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",

@@ -204,6 +204,10 @@ that historical archive and records its output hashes separately. Report
 compilation verifies the saved figure without rerunning its plotter, so
 `--render-only` preserves all figure bytes. This diagnostic is not one of the
 13 manuscript panels and supplies no convergence claim.
+The separate `diagnostic-sensitivity` stage measures how the same first-flood
+states depend on ridge/distal/channel-depth averages and wetness thresholds.
+Its JSON records source identities and float32 representation bounds. The
+report verifies this saved analysis; render-only does not regenerate it.
 The package contains:
 
 - `original/`: the unchanged outer rebuild manifest, stage logs, frozen source,

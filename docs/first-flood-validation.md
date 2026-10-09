@@ -36,6 +36,7 @@ workspace or a model run:
 
 ```sh
 python3 -B scripts/plot_first_flood.py
+python3 -B scripts/diagnostic_sensitivity.py
 bash report/build.sh
 ```
 
@@ -98,6 +99,70 @@ beta, whereas Figure 2 shows individual central cross-sections at floods
 50, 225, 400, and 580. The profile area, spread, width, and flank definitions
 in [comparison.md](comparison.md) cannot turn these early diagnostics into a
 late-time profile comparison.
+
+## Diagnostic-definition sensitivity
+
+The publication leaves the ridge, distal-floodplain and channel-depth averages
+underdetermined. The [saved-data analysis](../scripts/diagnostic_sensitivity.py)
+varies those definitions using the same two archived first-flood states. Its
+[results](../figures/first_flood_diagnostic_sensitivity.json) retain the complete
+scenario matrix, effective grid windows, source identities and rounding bounds.
+This calculation changes diagnostics only; it does not alter the model state.
+
+For the ridge numerator, subtract the initial plane from each end-flood bed
+elevation, exclude active-channel cells, and form a longitudinal mean for each
+retained cross-valley row. Ridge relief is the largest row mean minus the
+equal-weight mean of the valid distal row means. Changing the central reach
+while holding the nominal distal bands at 10% and the full-interface mean
+channel depth fixed gives:
+
+| Nominal central reach | Beta change at 250 m (%) | Beta change at 500 m (%) |
+|---|---:|---:|
+| 60% | −21.73 | −18.02 |
+| 80%, default | 0 | 0 |
+| 100% | +73.52 | +34.07 |
+
+Changes are relative to each grid's default raster reconstruction. Integer
+trimming gives central lengths of 43.5 and 44 km at nominal 60%, 58 km on both
+grids at nominal 80%, and 72 km at 100%. The default distal bands are 4.75 km
+and 4.5 km wide on each side. Thus the modeled first-flood relief varies
+substantially with the reach included in the average. This comparison does
+not isolate a cause for the spatial variation or select a preferred estimator.
+
+At the default reach, changing each distal band to nominal 5%, 10%, or 20%
+changes beta by at most 0.24%. A separate denominator calculation holds the
+default ridge fixed and averages bankfull depth only over interface faces
+adjacent to floodplain cells in the selected central reach. The nominal
+60%, 80%, and full-reach choices change beta by at most 0.20%. Every internal
+channel–floodplain face contributes, including dry faces; repeated bank cells
+retain their face multiplicity. These two effects are isolated from the reach
+changes in the table. The result file also retains all nine numerator
+combinations of reach and distal band.
+
+For alpha at day 12, thresholds of 0.1, 1, and 10 mm keep all 576 interface
+faces wet at 250 m and all 430 wet at 500 m. The full-domain mean floodplain
+depth includes dry cells and is unchanged, so alpha is unchanged. The wet
+floodplain area nevertheless ranges from 3389.625 to 3404.875 km² and from
+3371.25 to 3406.75 km², respectively. No tested face or cell classification
+is ambiguous under float32 rounding. This result does not imply that alpha
+will be insensitive when later wet interface fractions are smaller.
+
+Each stored elevation and depth is enclosed by its conservative half-ULP
+float32 interval. Row means use summed interval widths; crest bounds allow
+the maximizing row to change. Bankfull-depth bounds retain both elevations
+at every face. Beta bounds use all four endpoint quotients when the depth
+interval is positive. Shared cells are correlated, so these are deterministic
+representation bounds, not statistical error bars. Default ridge height,
+channel depth, beta and alpha agree with the double-precision summary after
+allowing for float64 arithmetic and its 12-significant-digit CSV formatting.
+The beta reconstruction differences are 3.04e-10 and 2.91e-9, inside intervals
+with half-widths about 3.9e-8 and 3.8e-8. These bounds do not estimate numerical
+discretization or physical uncertainty.
+
+The analysis establishes first-flood definition sensitivity only. Later
+diagnostic robustness requires later states; sparse saved rasters cannot
+reconstruct alternative means over all final 20 floods or percentiles over
+all final 200 floods. No manuscript panel is supplied by this analysis.
 
 ## First production flood in all 31 cases
 

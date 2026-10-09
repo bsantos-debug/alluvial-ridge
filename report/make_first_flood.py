@@ -229,6 +229,170 @@ def verify_figure(folder, comparison, evidence, manifest_path):
                 plotting_conventions=conventions)
 
 
+def verify_definitions(folder, comparison, evidence):
+    path = ROOT / 'figures/first_flood_diagnostic_sensitivity.json'
+    analysis = json.loads(path.read_text())
+    require(analysis['format'] == 1 and analysis['status'] == 'verified' and analysis['scope'] ==
+            'archived first-flood diagnostic sensitivity only; no manuscript-panel assessment',
+            'unexpected diagnostic sensitivity format or scope')
+    require(analysis['processor_sha256'] == sha(ROOT / 'scripts/diagnostic_sensitivity.py'),
+            'diagnostic sensitivity processor changed')
+    dependencies = analysis['dependency_sha256']
+    require(set(dependencies) == {'scripts/plot_first_flood.py', 'scripts/inundation_metrics.py',
+                                  'src/model.hpp'}, 'unexpected diagnostic sensitivity dependencies')
+    require(all(sha(ROOT / name) == expected for name, expected in dependencies.items()),
+            'diagnostic sensitivity dependency changed')
+    expected = {label(folder / name): evidence['archive_sha256'][name]
+                for name in ('two-resolution.json', 'two-resolution.py', 'resolution-inputs.tar.xz')}
+    expected[label(folder / 'capture-provenance.json')] = evidence['capture_manifest_sha256']
+    require(analysis['input_sha256'] == expected and
+            analysis['member_sha256'] == evidence['sensitivity_input_sha256'],
+            'diagnostic sensitivity input identities differ from the verified archive')
+    require(set(analysis['cases']) == {'baseline250', 'coarse500'},
+            'unexpected diagnostic sensitivity cases')
+    for name, case in analysis['cases'].items():
+        require(case['dx_m'] == comparison['cases'][name]['parameters']['dx']
+                and case['binary_sha256'] == comparison['cases'][name]['process']['binary_sha256']
+                and case['flood'] == 1 and case['beta_elapsed_seconds'] == 1728000
+                and case['alpha_elapsed_seconds'] == 1036800,
+                'diagnostic sensitivity case or sampling metadata differs: ' + name)
+        for quantity in ('alpha', 'beta', 'ridge_height', 'channel_depth'):
+            row = case['summary_reconstruction'][quantity]
+            original = comparison['cases'][name]['metrics'][quantity]
+            lo, hi = row['rounding_bounds']
+            tolerance = row['summary_rounding_half_width'] + row['float64_arithmetic_allowance']
+            require(all(math.isfinite(v) for v in (lo, hi, tolerance, row['reconstructed']))
+                    and tolerance >= 0 and lo <= row['reconstructed'] <= hi
+                    and row['recorded_summary'] == original and lo - tolerance <= original <= hi + tolerance
+                    and row['summary_within_rounding_bounds'] is True,
+                    'diagnostic reconstruction disagrees with the recorded summary: ' + name + '/' + quantity)
+        variants = case['beta_definition_variants']
+        require(len(variants) == 9 and
+                {(v['central_percent'], v['distal_percent_each_side']) for v in variants} ==
+                {(reach, distal) for reach in (60, 80, 100) for distal in (5, 10, 20)},
+                'unexpected ridge-definition sensitivity design')
+        require(len(case['denominator_only_variants']) == 3 and
+                {v['central_percent'] for v in case['denominator_only_variants']} == {60, 80, 100},
+                'unexpected channel-depth sensitivity design')
+        require(len(case['alpha_threshold_variants']) == 3 and
+                {v['threshold_m'] for v in case['alpha_threshold_variants']} == {.0001, .001, .01},
+                'unexpected wetness-threshold sensitivity design')
+        reference = case['summary_reconstruction']['beta']['reconstructed']
+        depth = case['summary_reconstruction']['channel_depth']['reconstructed']
+        ridge = case['summary_reconstruction']['ridge_height']['reconstructed']
+        require(reference != 0 and depth > 0 and case['full_interface_channel_depth_m'] == depth,
+                'invalid default diagnostic denominator')
+        close = lambda a, b: math.isfinite(a) and math.isfinite(b) and math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-14)
+        require(close(reference, ridge / depth), 'default beta differs from ridge/depth')
+        snapshot = comparison['cases'][name]['snapshot']
+        for row in variants:
+            change = 100 * (row['beta'] / reference - 1)
+            require(close(row['beta'], row['ridge_height_m'] / depth) and
+                    close(row['beta_change_percent_of_reconstructed_default'], change),
+                    'inconsistent ridge-definition values')
+            trim = snapshot['nx'] * (100 - row['central_percent']) // 200
+            band = snapshot['ny'] * row['distal_percent_each_side'] // 100
+            require(row['trim_columns_each_end'] == trim and row['distal_rows_each_side'] == band and
+                    row['actual_central_length_m'] == (snapshot['nx'] - 2 * trim) * case['dx_m'] and
+                    row['actual_distal_band_width_m'] == band * case['dx_m'],
+                    'diagnostic averaging window differs from the recorded grid')
+            if row['central_percent'] == 80 and row['distal_percent_each_side'] == 10:
+                require(close(row['beta'], reference), 'default variant differs from reconstruction')
+        for row in case['denominator_only_variants']:
+            require(row['bankfull_depth_m'] > 0 and
+                    close(row['beta_with_default_ridge'], ridge / row['bankfull_depth_m']) and
+                    close(row['beta_change_percent_of_full_interface_depth'],
+                          100 * (depth / row['bankfull_depth_m'] - 1)),
+                    'inconsistent channel-depth sensitivity values')
+        alpha_reference = case['summary_reconstruction']['alpha']['reconstructed']
+        mean_reference = next(row['mean_water_m'] for row in case['alpha_threshold_variants']
+                              if row['threshold_m'] == .001)
+        require(case['full_interface_faces'] == comparison['cases'][name]['peak']['bank_length_m'] / case['dx_m'],
+                'diagnostic bank-face count differs from the archived comparison')
+        for row in case['alpha_threshold_variants']:
+            interface = row['interface']
+            require(interface['interface_faces'] == case['full_interface_faces'] and
+                    interface['wet_faces'] > 0 and
+                    close(interface['fraction'], interface['wet_faces'] / interface['interface_faces']) and
+                    close(row['mean_water_m'], mean_reference) and
+                    close(row['alpha_m'], row['mean_water_m'] / interface['fraction']),
+                    'inconsistent wetness-threshold values')
+            if row['threshold_m'] == .001:
+                require(close(row['alpha_m'], alpha_reference), 'default alpha differs from reconstruction')
+    return dict(status='verified', file=label(path), sha256=sha(path),
+                processor_sha256=analysis['processor_sha256'], cases=analysis['cases'])
+
+
+def render_definitions(analysis):
+    lines = ['', r'\paragraph{Sensitivity to diagnostic definitions.}']
+    if analysis['status'] != 'verified':
+        return '\n'.join(lines + [r'\pending{The saved diagnostic-definition analysis is unavailable: ' +
+                                  tex(analysis['reason']) + '.}\n'])
+    cases = analysis['cases']
+    lines += ['The published description does not fix all spatial averages in',
+              r'$\beta$. Reprocessing the same archived day-20 fields gives:',
+              '', r'\begin{center}\small', r'\begin{tabular}{lrrrr}', r'\toprule',
+              r'Nominal central reach & $\beta$, 250 m & Change (\%) & $\beta$, 500 m & Change (\%) \\',
+              r'\midrule']
+    for reach in (60, 80, 100):
+        values = []
+        for name in ('baseline250', 'coarse500'):
+            case = cases[name]
+            row = next(v for v in case['beta_definition_variants']
+                       if v['central_percent'] == reach and v['distal_percent_each_side'] == 10)
+            reference = case['summary_reconstruction']['beta']['reconstructed']
+            values.extend(['$' + number(row['beta'], 4) + '$', '%.2f' % (100 * (row['beta'] / reference - 1))])
+        lines.append(str(reach) + r'\% & ' + ' & '.join(values) + r' \\')
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'Only the reach used for the transverse relief profile changes in this',
+              r'table. The distal bands remain at nominal 10\% of the domain width at each side,',
+              'and the denominator remains the full-interface mean bankfull depth.',
+              'Changes are relative to the raster reconstruction of the default',
+              r'central-80\% estimator. Integer trimming gives central lengths of',
+              r'43.5 and 44 km at nominal 60\%, respectively; both grids use 58 km',
+              r'at nominal 80\% and 72 km at 100\%. Their default distal bands are',
+              '4.75 and 4.5 km wide on each side.',
+              'Thus including the end regions materially changes first-flood ridge',
+              'relief. This comparison identifies sensitivity to the averaging',
+              'definition; it does not isolate a boundary-condition mechanism.', '']
+    distal_max = max(abs(100 * (v['beta'] / case['summary_reconstruction']['beta']['reconstructed'] - 1))
+                     for case in cases.values() for v in case['beta_definition_variants']
+                     if v['central_percent'] == 80)
+    denominator_max = max(abs(100 * (case['full_interface_channel_depth_m'] / v['bankfull_depth_m'] - 1))
+                          for case in cases.values() for v in case['denominator_only_variants'])
+    lines += [r'At the default reach, changing each distal band to 5\%, 10\%, or 20\%',
+              r'changes $\beta$ by at most %.2f\%%.' % distal_max,
+              'Holding the default ridge relief fixed and restricting the channel-depth',
+              r'average to bank faces in the nominal central 60\%, 80\%, or full reach',
+              r'changes $\beta$ by at most %.2f\%%.' % denominator_max,
+              'The source record retains all nine reach/band combinations and the',
+              'three separate denominator variants.', '']
+    thresholds = [v for case in cases.values() for v in case['alpha_threshold_variants']]
+    require(all(v['interface']['fraction'] == 1 and
+                v['interface']['definitely_wet_faces'] == v['interface']['possibly_wet_faces']
+                and v['ambiguous_wet_area_cells'] == 0 for v in thresholds),
+            'first-flood threshold interpretation changed')
+    lines += [r'For day-12 $\alpha$, thresholds of 0.1, 1, and 10 mm leave every',
+              'sampled bank face wet in both cases. The full-domain mean depth,',
+              r'including dry cells, is unchanged, so $\alpha$ is unchanged.',
+              'The nominal wet floodplain area nevertheless varies with the threshold:',
+              '%.3f--%.3f km$^2$ at 250 m and %.3f--%.3f km$^2$ at 500 m.' % tuple(
+                  f(v['wet_area_m2'] / 1e6 for v in cases[name]['alpha_threshold_variants'])
+                  for name in ('baseline250', 'coarse500') for f in (min, max)),
+              'No tested wetness classification is ambiguous within float32 rounding.',
+              '',
+              'The default reconstructions of ridge relief, channel depth,',
+              r'$\beta$, and $\alpha$ agree with the double-precision summaries',
+              'within propagated half-ULP snapshot bounds and the recorded arithmetic',
+              'and CSV rounding allowances. These bounds describe representation',
+              'precision, not discretization or physical uncertainty. The scenarios',
+              'do not select a preferred estimator and do not establish robustness',
+              'of the late 20-flood or 200-flood manuscript statistics.',
+              r'\path{figures/first_flood_diagnostic_sensitivity.json} records the',
+              'definitions, effective grid windows, bounds, and input identities.']
+    return '\n'.join(lines) + '\n'
+
+
 def render(comparison, measured, figure):
     cases = comparison['cases']
     fine, coarse = cases['baseline250'], cases['coarse500']
@@ -374,6 +538,16 @@ def main():
             figure = dict(status='pending', reason=reason)
         evidence['validation_figure'] = figure
         content = render(comparison, measured, figure)
+        try:
+            definitions = verify_definitions(args.archive_root, comparison, evidence)
+            definitions_tex = render_definitions(definitions)
+        except (OSError, ValueError, KeyError, TypeError, StopIteration, ZeroDivisionError) as error:
+            reason = ('Missing retained file: ' + Path(error.filename).name
+                      if isinstance(error, FileNotFoundError) else str(error))
+            definitions = dict(status='pending', reason=reason)
+            definitions_tex = render_definitions(definitions)
+        evidence['diagnostic_definitions'] = {key: value for key, value in definitions.items() if key != 'cases'}
+        content += definitions_tex
         evidence.update(status='verified historical observations', measurements=measured,
                         scope='first flood only; no manuscript-panel assessment')
     except (OSError, ValueError, KeyError, TypeError, tarfile.TarError) as error:

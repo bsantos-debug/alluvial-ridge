@@ -34,6 +34,12 @@ separate from the 13 manuscript panels and do not establish convergence.
 See [first-flood-validation.md](first-flood-validation.md) for their numerical
 scope, masks, scales, and archive-based regeneration command.
 
+`python3 -B scripts/diagnostic_sensitivity.py` separately measures the effect
+of diagnostic definitions on those archived first-flood states. Its
+`figures/first_flood_diagnostic_sensitivity.json` records ridge averaging,
+bankfull-depth averaging, wetness thresholds and representation bounds.
+These are diagnostic scenarios, not additional simulations or panel results.
+
 `report/build.sh` only verifies and includes the saved validation figure;
 it does not regenerate it. A missing or stale figure produces a pending
 notice while the independently verified numerical tables remain available.

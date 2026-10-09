@@ -154,6 +154,10 @@ reach enters that profile. Channel depth is mean bank-face elevation minus
 adjacent interpolated channel bed. These averaging choices are not specified
 in the publication and require comparison/sensitivity reporting. Slope is
 removed before measuring relief; absolute datum does not enter beta.
+The [archived first-flood definition analysis](first-flood-validation.md#diagnostic-definition-sensitivity)
+quantifies sensitivity to reach length, distal bands, channel-depth averaging
+and the wetness threshold. It does not establish robustness of the late-time
+manuscript statistics.
 
 No numerical manuscript result has yet been validated. Component tests and
 small coupled experiments are developmental evidence only. Full-resolution

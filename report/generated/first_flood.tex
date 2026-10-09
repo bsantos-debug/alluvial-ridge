@@ -98,3 +98,53 @@ identities are recorded in \path{report/generated/first_flood_evidence.json};
 the retained sources are in \path{validation/first-flood-audit-002}.
 Later conservation drift, bank recycling, finer-grid and time-step
 sensitivity, and long-term morphology require further assessment.
+
+\paragraph{Sensitivity to diagnostic definitions.}
+The published description does not fix all spatial averages in
+$\beta$. Reprocessing the same archived day-20 fields gives:
+
+\begin{center}\small
+\begin{tabular}{lrrrr}
+\toprule
+Nominal central reach & $\beta$, 250 m & Change (\%) & $\beta$, 500 m & Change (\%) \\
+\midrule
+60\% & $1.287\times10^{-3}$ & -21.73 & $3.426\times10^{-3}$ & -18.02 \\
+80\% & $1.644\times10^{-3}$ & 0.00 & $4.178\times10^{-3}$ & 0.00 \\
+100\% & $2.852\times10^{-3}$ & 73.52 & $5.602\times10^{-3}$ & 34.07 \\
+\bottomrule\end{tabular}\end{center}
+Only the reach used for the transverse relief profile changes in this
+table. The distal bands remain at nominal 10\% of the domain width at each side,
+and the denominator remains the full-interface mean bankfull depth.
+Changes are relative to the raster reconstruction of the default
+central-80\% estimator. Integer trimming gives central lengths of
+43.5 and 44 km at nominal 60\%, respectively; both grids use 58 km
+at nominal 80\% and 72 km at 100\%. Their default distal bands are
+4.75 and 4.5 km wide on each side.
+Thus including the end regions materially changes first-flood ridge
+relief. This comparison identifies sensitivity to the averaging
+definition; it does not isolate a boundary-condition mechanism.
+
+At the default reach, changing each distal band to 5\%, 10\%, or 20\%
+changes $\beta$ by at most 0.24\%.
+Holding the default ridge relief fixed and restricting the channel-depth
+average to bank faces in the nominal central 60\%, 80\%, or full reach
+changes $\beta$ by at most 0.20\%.
+The source record retains all nine reach/band combinations and the
+three separate denominator variants.
+
+For day-12 $\alpha$, thresholds of 0.1, 1, and 10 mm leave every
+sampled bank face wet in both cases. The full-domain mean depth,
+including dry cells, is unchanged, so $\alpha$ is unchanged.
+The nominal wet floodplain area nevertheless varies with the threshold:
+3389.625--3404.875 km$^2$ at 250 m and 3371.250--3406.750 km$^2$ at 500 m.
+No tested wetness classification is ambiguous within float32 rounding.
+
+The default reconstructions of ridge relief, channel depth,
+$\beta$, and $\alpha$ agree with the double-precision summaries
+within propagated half-ULP snapshot bounds and the recorded arithmetic
+and CSV rounding allowances. These bounds describe representation
+precision, not discretization or physical uncertainty. The scenarios
+do not select a preferred estimator and do not establish robustness
+of the late 20-flood or 200-flood manuscript statistics.
+\path{figures/first_flood_diagnostic_sensitivity.json} records the
+definitions, effective grid windows, bounds, and input identities.

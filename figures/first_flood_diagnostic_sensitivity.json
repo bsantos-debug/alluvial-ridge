@@ -1,0 +1,978 @@
+{
+  "cases": {
+    "baseline250": {
+      "alpha_elapsed_seconds": 1036800.0,
+      "alpha_threshold_variants": [
+        {
+          "alpha_float64_arithmetic_allowance_m": 1.0747538249712244e-11,
+          "alpha_m": 0.8844859166658093,
+          "alpha_rounding_bounds_m": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "ambiguous_wet_area_cells": 0,
+          "interface": {
+            "ambiguous_faces": 0,
+            "definitely_wet_faces": 576,
+            "fraction": 1.0,
+            "fraction_rounding_bounds": [
+              1.0,
+              1.0
+            ],
+            "interface_faces": 576,
+            "possibly_wet_faces": 576,
+            "wet_faces": 576
+          },
+          "mean_water_float64_arithmetic_allowance_m": 1.0747145459060387e-11,
+          "mean_water_m": 0.8844859166658093,
+          "mean_water_rounding_bounds_m": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "threshold_m": 0.0001,
+          "wet_area_m2": 3404875000.0,
+          "wet_area_rounding_bounds_m2": [
+            3404875000.0,
+            3404875000.0
+          ]
+        },
+        {
+          "alpha_float64_arithmetic_allowance_m": 1.0747538249712244e-11,
+          "alpha_m": 0.8844859166658093,
+          "alpha_rounding_bounds_m": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "ambiguous_wet_area_cells": 0,
+          "interface": {
+            "ambiguous_faces": 0,
+            "definitely_wet_faces": 576,
+            "fraction": 1.0,
+            "fraction_rounding_bounds": [
+              1.0,
+              1.0
+            ],
+            "interface_faces": 576,
+            "possibly_wet_faces": 576,
+            "wet_faces": 576
+          },
+          "mean_water_float64_arithmetic_allowance_m": 1.0747145459060387e-11,
+          "mean_water_m": 0.8844859166658093,
+          "mean_water_rounding_bounds_m": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "threshold_m": 0.001,
+          "wet_area_m2": 3397750000.0,
+          "wet_area_rounding_bounds_m2": [
+            3397750000.0,
+            3397750000.0
+          ]
+        },
+        {
+          "alpha_float64_arithmetic_allowance_m": 1.0747538249712244e-11,
+          "alpha_m": 0.8844859166658093,
+          "alpha_rounding_bounds_m": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "ambiguous_wet_area_cells": 0,
+          "interface": {
+            "ambiguous_faces": 0,
+            "definitely_wet_faces": 576,
+            "fraction": 1.0,
+            "fraction_rounding_bounds": [
+              1.0,
+              1.0
+            ],
+            "interface_faces": 576,
+            "possibly_wet_faces": 576,
+            "wet_faces": 576
+          },
+          "mean_water_float64_arithmetic_allowance_m": 1.0747145459060387e-11,
+          "mean_water_m": 0.8844859166658093,
+          "mean_water_rounding_bounds_m": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "threshold_m": 0.01,
+          "wet_area_m2": 3389625000.0,
+          "wet_area_rounding_bounds_m2": [
+            3389625000.0,
+            3389625000.0
+          ]
+        }
+      ],
+      "beta_definition_variants": [
+        {
+          "actual_central_length_m": 43500.0,
+          "actual_distal_band_width_m": 2250.0,
+          "beta": 0.0012882061112831987,
+          "beta_change_percent_of_reconstructed_default": -21.628433497091105,
+          "beta_float64_arithmetic_allowance": 7.122246332804338e-14,
+          "beta_rounding_bounds": [
+            0.0012881661801483093,
+            0.001288246042421322
+          ],
+          "central_percent": 60,
+          "crest_relief_m": 0.010343300063034423,
+          "distal_percent_each_side": 5,
+          "distal_relief_m": 8.095285140226815e-06,
+          "distal_rows_each_side": 9,
+          "ridge_float64_arithmetic_allowance_m": 5.663587648070437e-13,
+          "ridge_height_m": 0.010335204777894196,
+          "ridge_rounding_bounds_m": [
+            0.010334884831122814,
+            0.010335524724665578
+          ],
+          "selected_columns": 174,
+          "trim_columns_each_end": 57,
+          "valid_distal_rows": 18,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 43500.0,
+          "actual_distal_band_width_m": 4750.0,
+          "beta": 0.0012866080610724206,
+          "beta_change_percent_of_reconstructed_default": -21.72565528269824,
+          "beta_float64_arithmetic_allowance": 7.122181209706301e-14,
+          "beta_rounding_bounds": [
+            0.0012865681300022371,
+            0.0012866479921458376
+          ],
+          "central_percent": 60,
+          "crest_relief_m": 0.010343300063034423,
+          "distal_percent_each_side": 10,
+          "distal_relief_m": 2.0916351605512952e-05,
+          "distal_rows_each_side": 19,
+          "ridge_float64_arithmetic_allowance_m": 5.663594249276078e-13,
+          "ridge_height_m": 0.01032238371142891,
+          "ridge_rounding_bounds_m": [
+            0.010322063764657528,
+            0.010322703658200292
+          ],
+          "selected_columns": 174,
+          "trim_columns_each_end": 57,
+          "valid_distal_rows": 38,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 43500.0,
+          "actual_distal_band_width_m": 9500.0,
+          "beta": 0.0012852369375526505,
+          "beta_change_percent_of_reconstructed_default": -21.809071358101217,
+          "beta_float64_arithmetic_allowance": 7.122116096685832e-14,
+          "beta_rounding_bounds": [
+            0.0012851970065379846,
+            0.00128527686857055
+          ],
+          "central_percent": 60,
+          "crest_relief_m": 0.010343300063034423,
+          "distal_percent_each_side": 20,
+          "distal_relief_m": 3.191679806240367e-05,
+          "distal_rows_each_side": 38,
+          "ridge_float64_arithmetic_allowance_m": 5.663602305087848e-13,
+          "ridge_height_m": 0.010311383264972019,
+          "ridge_rounding_bounds_m": [
+            0.010311063318200636,
+            0.0103117032117434
+          ],
+          "selected_columns": 174,
+          "trim_columns_each_end": 57,
+          "valid_distal_rows": 76,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 58000.0,
+          "actual_distal_band_width_m": 2250.0,
+          "beta": 0.0016456197864212938,
+          "beta_change_percent_of_reconstructed_default": 0.11581174812986816,
+          "beta_float64_arithmetic_allowance": 9.454793074955812e-14,
+          "beta_rounding_bounds": [
+            0.0016455808922275239,
+            0.0016456586806182134
+          ],
+          "central_percent": 80,
+          "crest_relief_m": 0.013228301549779787,
+          "distal_percent_each_side": 5,
+          "distal_relief_m": 2.5587069348643284e-05,
+          "distal_rows_each_side": 9,
+          "ridge_float64_arithmetic_allowance_m": 7.520965539878303e-13,
+          "ridge_height_m": 0.013202714480431144,
+          "ridge_rounding_bounds_m": [
+            0.01320240296908722,
+            0.013203025991775067
+          ],
+          "selected_columns": 232,
+          "trim_columns_each_end": 28,
+          "valid_distal_rows": 18,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 58000.0,
+          "actual_distal_band_width_m": 4750.0,
+          "beta": 0.0016437161699905344,
+          "beta_change_percent_of_reconstructed_default": 0.0,
+          "beta_float64_arithmetic_allowance": 9.454749622331358e-14,
+          "beta_rounding_bounds": [
+            0.0016436772758738432,
+            0.0016437550641103754
+          ],
+          "central_percent": 80,
+          "crest_relief_m": 0.013228301549779787,
+          "distal_percent_each_side": 10,
+          "distal_relief_m": 4.085967631591237e-05,
+          "distal_rows_each_side": 19,
+          "ridge_float64_arithmetic_allowance_m": 7.520976076710478e-13,
+          "ridge_height_m": 0.013187441873463875,
+          "ridge_rounding_bounds_m": [
+            0.013187130362119952,
+            0.013187753384807798
+          ],
+          "selected_columns": 232,
+          "trim_columns_each_end": 28,
+          "valid_distal_rows": 38,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 58000.0,
+          "actual_distal_band_width_m": 9500.0,
+          "beta": 0.0016429248988028148,
+          "beta_change_percent_of_reconstructed_default": -0.04813916186784395,
+          "beta_float64_arithmetic_allowance": 9.454706219104958e-14,
+          "beta_rounding_bounds": [
+            0.0016428860047181626,
+            0.0016429637928906168
+          ],
+          "central_percent": 80,
+          "crest_relief_m": 0.013228301549779787,
+          "distal_percent_each_side": 20,
+          "distal_relief_m": 4.720800030560572e-05,
+          "distal_rows_each_side": 38,
+          "ridge_float64_arithmetic_allowance_m": 7.520983977737049e-13,
+          "ridge_height_m": 0.013181093549474181,
+          "ridge_rounding_bounds_m": [
+            0.013180782038130258,
+            0.013181405060818104
+          ],
+          "selected_columns": 232,
+          "trim_columns_each_end": 28,
+          "valid_distal_rows": 76,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 72000.0,
+          "actual_distal_band_width_m": 2250.0,
+          "beta": 0.0028561834771595215,
+          "beta_change_percent_of_reconstructed_default": 73.76378776975648,
+          "beta_float64_arithmetic_allowance": 1.1755740685172273e-13,
+          "beta_rounding_bounds": [
+            0.0028561459243321074,
+            0.002856221029989977
+          ],
+          "central_percent": 100,
+          "crest_relief_m": 0.022942608360770094,
+          "distal_percent_each_side": 5,
+          "distal_relief_m": 2.760985150433126e-05,
+          "distal_rows_each_side": 9,
+          "ridge_float64_arithmetic_allowance_m": 9.319502763150223e-13,
+          "ridge_height_m": 0.022914998509265764,
+          "ridge_rounding_bounds_m": [
+            0.02291469815288481,
+            0.022915298865646718
+          ],
+          "selected_columns": 288,
+          "trim_columns_each_end": 0,
+          "valid_distal_rows": 18,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 72000.0,
+          "actual_distal_band_width_m": 4750.0,
+          "beta": 0.0028521332685447305,
+          "beta_change_percent_of_reconstructed_default": 73.51738217439055,
+          "beta_float64_arithmetic_allowance": 1.175561040104617e-13,
+          "beta_rounding_bounds": [
+            0.0028520957158813115,
+            0.0028521708212111904
+          ],
+          "central_percent": 100,
+          "crest_relief_m": 0.022942608360770094,
+          "distal_percent_each_side": 10,
+          "distal_relief_m": 6.010444616617516e-05,
+          "distal_rows_each_side": 19,
+          "ridge_float64_arithmetic_allowance_m": 9.319528022721182e-13,
+          "ridge_height_m": 0.02288250391460392,
+          "ridge_rounding_bounds_m": [
+            0.022882203558222965,
+            0.022882804270984873
+          ],
+          "selected_columns": 288,
+          "trim_columns_each_end": 0,
+          "valid_distal_rows": 38,
+          "valid_transverse_rows": 190
+        },
+        {
+          "actual_central_length_m": 72000.0,
+          "actual_distal_band_width_m": 9500.0,
+          "beta": 0.0028469268725910836,
+          "beta_change_percent_of_reconstructed_default": 73.20063673812238,
+          "beta_float64_arithmetic_allowance": 1.1755393329401238e-13,
+          "beta_rounding_bounds": [
+            0.0028468893201384748,
+            0.0028469644250467335
+          ],
+          "central_percent": 100,
+          "crest_relief_m": 0.022942608360770094,
+          "distal_percent_each_side": 20,
+          "distal_relief_m": 0.00010187506646088559,
+          "distal_rows_each_side": 38,
+          "ridge_float64_arithmetic_allowance_m": 9.31956751684829e-13,
+          "ridge_height_m": 0.022840733294309207,
+          "ridge_rounding_bounds_m": [
+            0.022840432937928253,
+            0.02284103365069016
+          ],
+          "selected_columns": 288,
+          "trim_columns_each_end": 0,
+          "valid_distal_rows": 76,
+          "valid_transverse_rows": 190
+        }
+      ],
+      "beta_elapsed_seconds": 1728000.0,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "denominator_only_variants": [
+        {
+          "bankfull_depth_m": 8.010343031294044,
+          "beta_change_percent_of_full_interface_depth": 0.15730181431874435,
+          "beta_float64_arithmetic_allowance": 9.43805302370153e-14,
+          "beta_rounding_bounds": [
+            0.0016462628048290577,
+            0.0016463407258707045
+          ],
+          "beta_with_default_ridge": 0.00164630176534818,
+          "central_percent": 60,
+          "depth_float64_arithmetic_allowance_m": 2.3776717795198164e-12,
+          "depth_rounding_bounds_m": [
+            8.01034268154495,
+            8.010343381043137
+          ],
+          "interface_faces": 348
+        },
+        {
+          "bankfull_depth_m": 8.013204216571717,
+          "beta_change_percent_of_full_interface_depth": 0.12153976587250259,
+          "beta_float64_arithmetic_allowance": 9.450738163014138e-14,
+          "beta_rounding_bounds": [
+            0.001645674994677141,
+            0.0016457528828764398
+          ],
+          "beta_with_default_ridge": 0.0016457139387751495,
+          "central_percent": 80,
+          "depth_float64_arithmetic_allowance_m": 3.16181735521386e-12,
+          "depth_rounding_bounds_m": [
+            8.013203878919112,
+            8.013204554224322
+          ],
+          "interface_faces": 464
+        },
+        {
+          "bankfull_depth_m": 8.022943446215423,
+          "beta_change_percent_of_full_interface_depth": 0.0,
+          "beta_float64_arithmetic_allowance": 9.454749622331358e-14,
+          "beta_rounding_bounds": [
+            0.0016436772758738432,
+            0.0016437550641103754
+          ],
+          "beta_with_default_ridge": 0.0016437161699905344,
+          "central_percent": 100,
+          "depth_float64_arithmetic_allowance_m": 3.9210001411141504e-12,
+          "depth_rounding_bounds_m": [
+            8.0229431213617,
+            8.022943771069146
+          ],
+          "interface_faces": 576
+        }
+      ],
+      "dx_m": 250.0,
+      "flood": 1,
+      "full_interface_channel_depth_m": 8.022943446215423,
+      "full_interface_faces": 576,
+      "summary_reconstruction": {
+        "alpha": {
+          "float64_arithmetic_allowance": 1.0747734645038156e-11,
+          "reconstructed": 0.8844859166658093,
+          "reconstructed_minus_summary": 6.880929159791549e-11,
+          "recorded_summary": 0.884485916597,
+          "rounding_bounds": [
+            0.8844858809828954,
+            0.8844859523487233
+          ],
+          "summary_rounding_half_width": 5e-13,
+          "summary_within_rounding_bounds": true
+        },
+        "beta": {
+          "float64_arithmetic_allowance": 9.454786120155372e-14,
+          "reconstructed": 0.0016437161699905344,
+          "reconstructed_minus_summary": 3.036805342783444e-10,
+          "recorded_summary": 0.00164371586631,
+          "rounding_bounds": [
+            0.0016436772758738432,
+            0.0016437550641103754
+          ],
+          "summary_rounding_half_width": 5e-15,
+          "summary_within_rounding_bounds": true
+        },
+        "channel_depth": {
+          "float64_arithmetic_allowance": 3.9227815924208745e-12,
+          "reconstructed": 8.022943446215423,
+          "reconstructed_minus_summary": 5.07542274874595e-09,
+          "recorded_summary": 8.02294344114,
+          "rounding_bounds": [
+            8.0229431213617,
+            8.022943771069146
+          ],
+          "summary_rounding_half_width": 5e-12,
+          "summary_within_rounding_bounds": true
+        },
+        "ridge_height": {
+          "float64_arithmetic_allowance": 7.521005358708257e-13,
+          "reconstructed": 0.013187441873463875,
+          "reconstructed_minus_summary": 2.4447638757169043e-09,
+          "recorded_summary": 0.0131874394287,
+          "rounding_bounds": [
+            0.013187130362119952,
+            0.013187753384807798
+          ],
+          "summary_rounding_half_width": 5e-14,
+          "summary_within_rounding_bounds": true
+        }
+      }
+    },
+    "coarse500": {
+      "alpha_elapsed_seconds": 1036800.0,
+      "alpha_threshold_variants": [
+        {
+          "alpha_float64_arithmetic_allowance_m": 2.341205315484241e-12,
+          "alpha_m": 0.7705803530315924,
+          "alpha_rounding_bounds_m": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "ambiguous_wet_area_cells": 0,
+          "interface": {
+            "ambiguous_faces": 0,
+            "definitely_wet_faces": 430,
+            "fraction": 1.0,
+            "fraction_rounding_bounds": [
+              1.0,
+              1.0
+            ],
+            "interface_faces": 430,
+            "possibly_wet_faces": 430,
+            "wet_faces": 430
+          },
+          "mean_water_float64_arithmetic_allowance_m": 2.3408631090641373e-12,
+          "mean_water_m": 0.7705803530315924,
+          "mean_water_rounding_bounds_m": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "threshold_m": 0.0001,
+          "wet_area_m2": 3406750000.0,
+          "wet_area_rounding_bounds_m2": [
+            3406750000.0,
+            3406750000.0
+          ]
+        },
+        {
+          "alpha_float64_arithmetic_allowance_m": 2.341205315484241e-12,
+          "alpha_m": 0.7705803530315924,
+          "alpha_rounding_bounds_m": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "ambiguous_wet_area_cells": 0,
+          "interface": {
+            "ambiguous_faces": 0,
+            "definitely_wet_faces": 430,
+            "fraction": 1.0,
+            "fraction_rounding_bounds": [
+              1.0,
+              1.0
+            ],
+            "interface_faces": 430,
+            "possibly_wet_faces": 430,
+            "wet_faces": 430
+          },
+          "mean_water_float64_arithmetic_allowance_m": 2.3408631090641373e-12,
+          "mean_water_m": 0.7705803530315924,
+          "mean_water_rounding_bounds_m": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "threshold_m": 0.001,
+          "wet_area_m2": 3392750000.0,
+          "wet_area_rounding_bounds_m2": [
+            3392750000.0,
+            3392750000.0
+          ]
+        },
+        {
+          "alpha_float64_arithmetic_allowance_m": 2.341205315484241e-12,
+          "alpha_m": 0.7705803530315924,
+          "alpha_rounding_bounds_m": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "ambiguous_wet_area_cells": 0,
+          "interface": {
+            "ambiguous_faces": 0,
+            "definitely_wet_faces": 430,
+            "fraction": 1.0,
+            "fraction_rounding_bounds": [
+              1.0,
+              1.0
+            ],
+            "interface_faces": 430,
+            "possibly_wet_faces": 430,
+            "wet_faces": 430
+          },
+          "mean_water_float64_arithmetic_allowance_m": 2.3408631090641373e-12,
+          "mean_water_m": 0.7705803530315924,
+          "mean_water_rounding_bounds_m": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "threshold_m": 0.01,
+          "wet_area_m2": 3371250000.0,
+          "wet_area_rounding_bounds_m2": [
+            3371250000.0,
+            3371250000.0
+          ]
+        }
+      ],
+      "beta_definition_variants": [
+        {
+          "actual_central_length_m": 44000.0,
+          "actual_distal_band_width_m": 2000.0,
+          "beta": 0.003429742059119902,
+          "beta_change_percent_of_reconstructed_default": -17.918938705834876,
+          "beta_float64_arithmetic_allowance": 3.746547867759837e-14,
+          "beta_rounding_bounds": [
+            0.0034297032736376755,
+            0.0034297808446052524
+          ],
+          "central_percent": 60,
+          "crest_relief_m": 0.02756949133343152,
+          "distal_percent_each_side": 5,
+          "distal_relief_m": 1.2878633358104857e-05,
+          "distal_rows_each_side": 4,
+          "ridge_float64_arithmetic_allowance_m": 2.9101378869106814e-13,
+          "ridge_height_m": 0.027556612700073414,
+          "ridge_rounding_bounds_m": [
+            0.02755630218395682,
+            0.027556923216190007
+          ],
+          "selected_columns": 88,
+          "trim_columns_each_end": 28,
+          "valid_distal_rows": 8,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 44000.0,
+          "actual_distal_band_width_m": 4500.0,
+          "beta": 0.0034255402950198587,
+          "beta_change_percent_of_reconstructed_default": -18.019495905383522,
+          "beta_float64_arithmetic_allowance": 3.746374208816422e-14,
+          "beta_rounding_bounds": [
+            0.0034255015097068536,
+            0.0034255790803359876
+          ],
+          "central_percent": 60,
+          "crest_relief_m": 0.02756949133343152,
+          "distal_percent_each_side": 10,
+          "distal_relief_m": 4.663813595804261e-05,
+          "distal_rows_each_side": 9,
+          "ridge_float64_arithmetic_allowance_m": 2.9101466470335657e-13,
+          "ridge_height_m": 0.02752285319747348,
+          "ridge_rounding_bounds_m": [
+            0.027522542681356885,
+            0.027523163713590072
+          ],
+          "selected_columns": 88,
+          "trim_columns_each_end": 28,
+          "valid_distal_rows": 18,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 44000.0,
+          "actual_distal_band_width_m": 9500.0,
+          "beta": 0.0034201639330062716,
+          "beta_change_percent_of_reconstructed_default": -18.148163744646652,
+          "beta_float64_arithmetic_allowance": 3.746200497710379e-14,
+          "beta_rounding_bounds": [
+            0.0034201251479097933,
+            0.0034202027181058736
+          ],
+          "central_percent": 60,
+          "crest_relief_m": 0.02756949133343152,
+          "distal_percent_each_side": 20,
+          "distal_relief_m": 8.98350654034665e-05,
+          "distal_rows_each_side": 19,
+          "ridge_float64_arithmetic_allowance_m": 2.9101614821696004e-13,
+          "ridge_height_m": 0.027479656268028053,
+          "ridge_rounding_bounds_m": [
+            0.02747934575191146,
+            0.027479966784144647
+          ],
+          "selected_columns": 88,
+          "trim_columns_each_end": 28,
+          "valid_distal_rows": 38,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 58000.0,
+          "actual_distal_band_width_m": 2000.0,
+          "beta": 0.0041884502051005535,
+          "beta_change_percent_of_reconstructed_default": 0.23856957354886354,
+          "beta_float64_arithmetic_allowance": 4.8887234976982774e-14,
+          "beta_rounding_bounds": [
+            0.0041884126534973585,
+            0.004188487756706773
+          ],
+          "central_percent": 80,
+          "crest_relief_m": 0.033688110113143765,
+          "distal_percent_each_side": 5,
+          "distal_relief_m": 3.557936127826798e-05,
+          "distal_rows_each_side": 4,
+          "ridge_float64_arithmetic_allowance_m": 3.8057242916567384e-13,
+          "ridge_height_m": 0.0336525307518655,
+          "ridge_rounding_bounds_m": [
+            0.03365223039498275,
+            0.03365283110874825
+          ],
+          "selected_columns": 116,
+          "trim_columns_each_end": 14,
+          "valid_distal_rows": 8,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 58000.0,
+          "actual_distal_band_width_m": 4500.0,
+          "beta": 0.004178481619320523,
+          "beta_change_percent_of_reconstructed_default": 0.0,
+          "beta_float64_arithmetic_allowance": 4.8884628464827253e-14,
+          "beta_rounding_bounds": [
+            0.004178444068118802,
+            0.004178519170525269
+          ],
+          "central_percent": 80,
+          "crest_relief_m": 0.033688110113143765,
+          "distal_percent_each_side": 10,
+          "distal_relief_m": 0.00011567298137348444,
+          "distal_rows_each_side": 9,
+          "ridge_float64_arithmetic_allowance_m": 3.8057501610765906e-13,
+          "ridge_height_m": 0.03357243713177028,
+          "ridge_rounding_bounds_m": [
+            0.03357213677488753,
+            0.033572737488653026
+          ],
+          "selected_columns": 116,
+          "trim_columns_each_end": 14,
+          "valid_distal_rows": 18,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 58000.0,
+          "actual_distal_band_width_m": 9500.0,
+          "beta": 0.004174090996590253,
+          "beta_change_percent_of_reconstructed_default": -0.105076990406483,
+          "beta_float64_arithmetic_allowance": 4.8882891791523013e-14,
+          "beta_rounding_bounds": [
+            0.004174053445565359,
+            0.004174128547618171
+          ],
+          "central_percent": 80,
+          "crest_relief_m": 0.033688110113143765,
+          "distal_percent_each_side": 20,
+          "distal_relief_m": 0.00015094988791765763,
+          "distal_rows_each_side": 19,
+          "ridge_float64_arithmetic_allowance_m": 3.8057679161082803e-13,
+          "ridge_height_m": 0.033537160225226105,
+          "ridge_rounding_bounds_m": [
+            0.03353685986834336,
+            0.03353746058210885
+          ],
+          "selected_columns": 116,
+          "trim_columns_each_end": 14,
+          "valid_distal_rows": 38,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 72000.0,
+          "actual_distal_band_width_m": 2000.0,
+          "beta": 0.005611805701390846,
+          "beta_change_percent_of_reconstructed_default": 34.302510161655334,
+          "beta_float64_arithmetic_allowance": 6.056255606642263e-14,
+          "beta_rounding_bounds": [
+            0.005611769729972988,
+            0.005611841672811601
+          ],
+          "central_percent": 100,
+          "crest_relief_m": 0.04512027936476839,
+          "distal_percent_each_side": 5,
+          "distal_relief_m": 3.165357435726023e-05,
+          "distal_rows_each_side": 4,
+          "ridge_float64_arithmetic_allowance_m": 4.702298451801959e-13,
+          "ridge_height_m": 0.045088625790411126,
+          "ridge_rounding_bounds_m": [
+            0.045088338590265474,
+            0.04508891299055678
+          ],
+          "selected_columns": 144,
+          "trim_columns_each_end": 0,
+          "valid_distal_rows": 8,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 72000.0,
+          "actual_distal_band_width_m": 4500.0,
+          "beta": 0.005601909695208285,
+          "beta_change_percent_of_reconstructed_default": 34.06567757307091,
+          "beta_float64_arithmetic_allowance": 6.055994958649892e-14,
+          "beta_rounding_bounds": [
+            0.005601873724188978,
+            0.005601945666230489
+          ],
+          "central_percent": 100,
+          "crest_relief_m": 0.04512027936476839,
+          "distal_percent_each_side": 10,
+          "distal_relief_m": 0.00011116404626731453,
+          "distal_rows_each_side": 9,
+          "ridge_float64_arithmetic_allowance_m": 4.702328994718601e-13,
+          "ridge_height_m": 0.045009115318501075,
+          "ridge_rounding_bounds_m": [
+            0.04500882811835542,
+            0.04500940251864673
+          ],
+          "selected_columns": 144,
+          "trim_columns_each_end": 0,
+          "valid_distal_rows": 18,
+          "valid_transverse_rows": 96
+        },
+        {
+          "actual_central_length_m": 72000.0,
+          "actual_distal_band_width_m": 9500.0,
+          "beta": 0.005587801283823619,
+          "beta_change_percent_of_reconstructed_default": 33.728033120611634,
+          "beta_float64_arithmetic_allowance": 6.055473915067747e-14,
+          "beta_rounding_bounds": [
+            0.005587765313372513,
+            0.005587837254277622
+          ],
+          "central_percent": 100,
+          "crest_relief_m": 0.04512027936476839,
+          "distal_percent_each_side": 20,
+          "distal_relief_m": 0.00022451951779811177,
+          "distal_rows_each_side": 19,
+          "ridge_float64_arithmetic_allowance_m": 4.702381509306067e-13,
+          "ridge_height_m": 0.04489575984697028,
+          "ridge_rounding_bounds_m": [
+            0.04489547264682463,
+            0.04489604704711593
+          ],
+          "selected_columns": 144,
+          "trim_columns_each_end": 0,
+          "valid_distal_rows": 38,
+          "valid_transverse_rows": 96
+        }
+      ],
+      "beta_elapsed_seconds": 1728000.0,
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "denominator_only_variants": [
+        {
+          "bankfull_depth_m": 8.018906803076504,
+          "beta_change_percent_of_full_interface_depth": 0.19572845225221958,
+          "beta_float64_arithmetic_allowance": 4.839804216182784e-14,
+          "beta_rounding_bounds": [
+            0.004186622458787648,
+            0.004186697734658948
+          ],
+          "beta_with_default_ridge": 0.004186660096721663,
+          "central_percent": 60,
+          "depth_float64_arithmetic_allowance_m": 1.792003826403678e-12,
+          "depth_rounding_bounds_m": [
+            8.01890645477608,
+            8.01890715137693
+          ],
+          "interface_faces": 262
+        },
+        {
+          "bankfull_depth_m": 8.023537224889827,
+          "beta_change_percent_of_full_interface_depth": 0.13790501682429124,
+          "beta_float64_arithmetic_allowance": 4.8668657951085144e-14,
+          "beta_rounding_bounds": [
+            0.004184206345662144,
+            0.004184281564542295
+          ],
+          "beta_with_default_ridge": 0.004184243955100647,
+          "central_percent": 80,
+          "depth_float64_arithmetic_allowance_m": 2.365271184043282e-12,
+          "depth_rounding_bounds_m": [
+            8.023536889378867,
+            8.023537560400786
+          ],
+          "interface_faces": 349
+        },
+        {
+          "bankfull_depth_m": 8.034602085249714,
+          "beta_change_percent_of_full_interface_depth": 0.0,
+          "beta_float64_arithmetic_allowance": 4.8884628464827253e-14,
+          "beta_rounding_bounds": [
+            0.004178444068118802,
+            0.004178519170525269
+          ],
+          "beta_with_default_ridge": 0.004178481619320523,
+          "central_percent": 100,
+          "depth_float64_arithmetic_allowance_m": 2.9136913053208173e-12,
+          "depth_rounding_bounds_m": [
+            8.034601761664934,
+            8.034602408834495
+          ],
+          "interface_faces": 430
+        }
+      ],
+      "dx_m": 500.0,
+      "flood": 1,
+      "full_interface_channel_depth_m": 8.034602085249714,
+      "full_interface_faces": 430,
+      "summary_reconstruction": {
+        "alpha": {
+          "float64_arithmetic_allowance": 2.3413764186943103e-12,
+          "reconstructed": 0.7705803530315924,
+          "reconstructed_minus_summary": -7.740752483442748e-11,
+          "recorded_summary": 0.770580353109,
+          "rounding_bounds": [
+            0.7705803226342998,
+            0.7705803834288851
+          ],
+          "summary_rounding_half_width": 5e-13,
+          "summary_within_rounding_bounds": true
+        },
+        "beta": {
+          "float64_arithmetic_allowance": 4.888555627348084e-14,
+          "reconstructed": 0.004178481619320523,
+          "reconstructed_minus_summary": 2.912770523041952e-09,
+          "recorded_summary": 0.00417847870655,
+          "rounding_bounds": [
+            0.004178444068118802,
+            0.004178519170525269
+          ],
+          "summary_rounding_half_width": 5e-15,
+          "summary_within_rounding_bounds": true
+        },
+        "channel_depth": {
+          "float64_arithmetic_allowance": 2.915475345365683e-12,
+          "reconstructed": 8.034602085249714,
+          "reconstructed_minus_summary": 3.979714335855533e-09,
+          "recorded_summary": 8.03460208127,
+          "rounding_bounds": [
+            8.034601761664934,
+            8.034602408834495
+          ],
+          "summary_rounding_half_width": 5e-12,
+          "summary_within_rounding_bounds": true
+        },
+        "ridge_height": {
+          "float64_arithmetic_allowance": 3.8058247068099815e-13,
+          "reconstructed": 0.03357243713177028,
+          "reconstructed_minus_summary": 2.341957027612862e-08,
+          "recorded_summary": 0.0335724137122,
+          "rounding_bounds": [
+            0.03357213677488753,
+            0.033572737488653026
+          ],
+          "summary_rounding_half_width": 5e-14,
+          "summary_within_rounding_bounds": true
+        }
+      }
+    }
+  },
+  "command": [
+    "/usr/bin/python3",
+    "scripts/diagnostic_sensitivity.py"
+  ],
+  "dependency_sha256": {
+    "scripts/inundation_metrics.py": "9ed1cfb06b0f06939a559efae2829431cf508e9343d835cc2587c0368276aec2",
+    "scripts/plot_first_flood.py": "506d04250c84058f7e92220ae41ac2420f02e9dac92ac5a280d043ecabe2c6ac",
+    "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15"
+  },
+  "format": 1,
+  "input_sha256": {
+    "validation/first-flood-audit-002/capture-provenance.json": "ccc3c1c087100a2534b6d7c3b84ea9dcdac9dbd84c2b8c7332a8126d5a87f1c1",
+    "validation/first-flood-audit-002/resolution-inputs.tar.xz": "7945e595847f12a5460f6586c82c6b142c0d36fb1cc30018ba0f349c73df34f2",
+    "validation/first-flood-audit-002/two-resolution.json": "6932613746a746f28abae0963e7cf01587cfb3d491f90a2fe5b5c3059951260d",
+    "validation/first-flood-audit-002/two-resolution.py": "293dc1f91d6787ecc057946f7b56b0834c37b71aee63b58c2855bbb9b76c8ba7"
+  },
+  "member_sha256": {
+    "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
+    "validation/runs/baseline250/checkpoint.bin": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951",
+    "validation/runs/baseline250/fields_0001.bin": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180",
+    "validation/runs/baseline250/parameters.txt": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d",
+    "validation/runs/baseline250/peak_channel_0001.csv": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f",
+    "validation/runs/baseline250/peak_fields_0001.bin": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea",
+    "validation/runs/baseline250/process_status.json": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17",
+    "validation/runs/baseline250/progress.json": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f",
+    "validation/runs/baseline250/remap_budget.csv": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4",
+    "validation/runs/baseline250/run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
+    "validation/runs/baseline250/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+    "validation/runs/baseline250/summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d",
+    "validation/runs/coarse500/channel_0001.csv": "6063a21fe8d183cf139c71a4c87de73a378cf21d613616f2b101ae0829d7a6cf",
+    "validation/runs/coarse500/checkpoint.bin": "3d87307d8ebf5bc3968bfb70f1048de5f640aad0a2e219daf5e99024dcb6836a",
+    "validation/runs/coarse500/fields_0001.bin": "20b46ac352eb373c4f5e3cb6b4961ff22d16c80f89af0a2e696001c2256883f4",
+    "validation/runs/coarse500/parameters.txt": "fec8cf263f4f7eb4ba450f734aca5cb05e9fd93c4d0dea77115cbd506fc9fb89",
+    "validation/runs/coarse500/peak_channel_0001.csv": "a9f152a1924c0ed539f429bf2c388e08ed4ed8a43a2b73b1c4d282488c87b6c5",
+    "validation/runs/coarse500/peak_fields_0001.bin": "c4b1f73cd40dac1be85e1ff066bde34e41e7cc3a4bef43e2063b69646632de59",
+    "validation/runs/coarse500/process_status.json": "67ffbfe0ee4ebeb3d7e513fe8c01fe0238267c49026dae4b14d0459cf32483ad",
+    "validation/runs/coarse500/progress.json": "38abde0d7272dd9d4feb92e51172b2662b58b2e653fb3c0a237d3357c3bd1069",
+    "validation/runs/coarse500/remap_budget.csv": "99dbd7f2f9e686dce55f7aa4b49bc02800d251ce1f3d9d0fab6922781b940f9c",
+    "validation/runs/coarse500/run.log": "578cda336778afe3f16f619ee36f740311f167b092d345bdab6149bc5efb816a",
+    "validation/runs/coarse500/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+    "validation/runs/coarse500/summary.csv": "589ef72685348b25f0f007028292df218398df914e46beab8acfbecdbec02ff1"
+  },
+  "method": {
+    "alpha_mean": "full-domain mean including dry floodplain cells; fixed channel mask",
+    "alpha_thresholds_m": [
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "central_percent": [
+      60,
+      80,
+      100
+    ],
+    "default_central_percent": 80,
+    "default_distal_percent_each_side": 10,
+    "denominator_only": "select bank faces by adjacent floodplain cell column in the central reach; default ridge held fixed",
+    "distal_percent_each_side": [
+      5,
+      10,
+      20
+    ],
+    "integer_windows": "trim=floor(nx*(100-central)/200); distal rows=floor(ny*percent/100) per side",
+    "interpretation": "diagnostic-definition contrasts on two saved first floods; not uncertainty intervals or alternatives fitted to the publication",
+    "numerator": "crest of equal-column floodplain row means minus equal-weight valid distal row means; fixed mask",
+    "numerator_denominator": "full-domain mean bank-face bed-to-bank depth held fixed",
+    "rounding": "float32 half-ULP interval propagation; correlated errors may widen bounds; no probabilistic interpretation",
+    "summary_allowance": "12-significant-digit decimal rounding plus float64 sequential-sum gamma_n bounds and final-arithmetic allowances; gamma_n=n*2^-53/(1-n*2^-53)"
+  },
+  "processor_sha256": "c37263083cc795d16b98496046d6b60727f5feb4b6bd34fbe613001b7a1aa98c",
+  "scope": "archived first-flood diagnostic sensitivity only; no manuscript-panel assessment",
+  "status": "verified",
+  "versions": {
+    "numpy": "1.19.5",
+    "python": "3.6.8 (default, Sep 24 2024, 09:44:46) \n[GCC 8.5.0 20210514 (Red Hat 8.5.0-22)]"
+  }
+}

@@ -378,6 +378,7 @@ def finalize(rebuild, output, allow_relocation=False):
         ("inundation", [sys.executable, "scripts/inundation_metrics.py", "--data-root", "data", "--output", "figures/inundation_metrics.json", "--strict"]),
         ("planforms", [sys.executable, "scripts/planform_metrics.py", "--data-root", "data", "--output", "figures", "--strict"]),
         ("first-flood-figure", [sys.executable, "scripts/plot_first_flood.py"]),
+        ("diagnostic-sensitivity", [sys.executable, "scripts/diagnostic_sensitivity.py"]),
         ("validation-report", [sys.executable, "report/make_validation.py", "--data-root", "data", "--sensitivity-root", "validation/runs", "--checks-exit-code", "0", "--strict"])]
     for name, command in commands:
         stage(output, record, name, command)

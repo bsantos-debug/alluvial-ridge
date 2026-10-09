@@ -29,14 +29,15 @@ first-flood sensitivity cases use two
 workers. Do not edit the staged sources or restart live cases. Completion and
 scientific agreement remain pending.
 
-At the later read-only check on 2026-10-09 at 22:02:45 UTC, all 31 production
-PIDs still matched their recorded start identities, commands and executable
-hashes. They were in flood 2, from day 8.7240 to 15.6912. The corrected 125 m
-and half-CFL sensitivity cases were still in their first flood, at days 8.2495
-and 9.6745. Frozen inputs and staged source hashes remained unchanged. The
-wrapper, both drivers, and two older orphan numerical writers were live.
-Destination creation still failed with `Permission denied`; no files moved
-and no simulation process was signaled.
+At the later read-only check on 2026-10-09 at 22:12:59 UTC, all 31 production
+PIDs still matched their recorded start identities. Each had completed one
+flood and was in flood 2, from day 9.9046 to 17.5174. The detailed 22:05 audit
+also verified their exact commands, executable hashes, wrapper and driver
+identities, and unchanged frozen inputs. At 22:13:18 UTC, the corrected 125 m
+and half-CFL sensitivity cases were still in their first flood, at days 8.4025
+and 10.2734; both commands and actual executable hashes matched their records.
+The frozen model and binary remained unchanged. Destination creation still
+requires write access; no files moved and no simulation process was signaled.
 
 At 21:39:16 UTC, all 31 production PIDs were verified live with the corrected
 executable. Every case had completed one full flood and was advancing through
@@ -211,7 +212,7 @@ math, grid coarsening, flood shortening, or skipped floods is used in production
 Plotter and comparison scripts handle all 13 requested panels, record hashes,
 and leave missing/nonfinite samples absent. The report renderer merges actual
 coverage with the maintained scientific assessment and does not infer agreement
-from plot existence. Root `report/report.pdf` is a 25-page work-in-progress
+from plot existence. Root `report/report.pdf` is a 26-page work-in-progress
 report. Its first-flood section verifies 313 retained input files from the
 production observation and completed 250 m and 500 m sensitivity cases,
 including checkpoints, before rendering their measurements. Those files are
@@ -227,6 +228,22 @@ has no TeX warnings, and retains manuscript figure numbers 1--3.
 Figure verification accepted the retained manifest and rejected 26 stale or
 missing variants; a missing figure preserved both verified numerical tables.
 The existing finalizer relocation regression also passed all 34 refusal cases.
+The new diagnostic-definition analysis on page 9 quantifies a separate source
+of interpretation sensitivity: changing the nominal central reach from 80%
+to 60% or 100% changes first-flood beta by −21.73% or +73.52% at 250 m and
+−18.02% or +34.07% at 500 m. Distal-band and channel-depth averaging contrasts
+are smaller than 0.24%. Wetness thresholds of 0.1--10 mm leave first-flood
+alpha unchanged while changing the inundated area. Default reconstructions
+agree with the archived summaries within float32, float64-arithmetic and CSV
+rounding bounds. The standalone saved-data analysis regenerates byte for
+byte; its methods and complete scenario matrix are retained in
+`figures/first_flood_diagnostic_sensitivity.json`. These are first-flood
+definition contrasts, not uncertainty intervals or validation of late-window
+manuscript statistics. Report verification and a separate finalization stage
+preserve the distinction from both model reruns and scientific panel assessment.
+The report accepted the verified analysis and rejected 24 missing, stale or
+inconsistent variants. Missing/stale analysis retained the two original tables
+and verified V1 figure; all checks preserved the historical-observation scope.
 All 13 main-manuscript panels
 remain unreproduced. Clean outputs will be generated in the staged workspace.
 The root `figures/comparison.json` and `.csv` are retained inputs to this
