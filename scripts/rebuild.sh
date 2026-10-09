@@ -174,6 +174,9 @@ try:
     # Missing/failed simulations remain visible as incomplete panels and comparisons.
     stage('figures', [python, 'scripts/plot.py', '--data-root', 'data', '--output', 'figures', '--strict'])
     stage('comparison', [python, 'scripts/compare.py', '--data-root', 'data', '--figures', 'figures', '--output', 'figures', '--strict'])
+    stage('inundation', [python, 'scripts/inundation_metrics.py', '--data-root', 'data',
+                         '--output', 'figures/inundation_metrics.json', '--strict'])
+    stage('planforms', [python, 'scripts/planform_metrics.py', '--data-root', 'data', '--output', 'figures', '--strict'])
     generated = workspace / 'report/generated'
     generated.mkdir(parents=True, exist_ok=True)
     checks_code = next(x['exit_code'] for x in manifest['stages'] if x['name'] == 'checks')
