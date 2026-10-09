@@ -1,0 +1,40 @@
+rounded_loop dx=125 sigma=0 transport=0 class_target=-5592.72 water_target=2.0194e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=0 transport=120 class_target=-4661.81 water_target=2.03242e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=125 transport=0 class_target=-5674.19 water_target=2.0194e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=125 transport=120 class_target=-4936.55 water_target=2.03242e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=250 transport=0 class_target=-6681.42 water_target=2.0194e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=250 transport=120 class_target=-5542.05 water_target=2.03242e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=500 transport=0 class_target=-5553.89 water_target=2.0194e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=500 transport=120 class_target=-5057.5 water_target=2.03242e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=125 sigma=1000 transport=0 class_target=28679 water_target=2.0194e+07 result=pass
+rounded_loop dx=125 sigma=1000 transport=120 class_target=28766.8 water_target=2.03242e+07 result=pass
+rounded_loop dx=250 sigma=0 transport=0 class_target=-22751.5 water_target=1.9569e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=0 transport=120 class_target=-16057.1 water_target=1.96992e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=125 transport=0 class_target=-23485.4 water_target=1.9569e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=125 transport=120 class_target=-15591.2 water_target=1.96992e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=250 transport=0 class_target=-24636.4 water_target=1.9569e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=250 transport=120 class_target=-20292.3 water_target=1.96992e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=500 transport=0 class_target=-28045.9 water_target=1.9569e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=500 transport=120 class_target=-27052.7 water_target=1.96992e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=1000 transport=0 class_target=-16364.3 water_target=1.9569e+07 result=remapping raster footprint exceeds channel inventory
+rounded_loop dx=250 sigma=1000 transport=120 class_target=-16099.1 water_target=1.96992e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=0 transport=0 class_target=-6673.75 water_target=1.92006e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=0 transport=120 class_target=-5319.82 water_target=1.93205e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=125 transport=0 class_target=-6331.01 water_target=1.92006e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=125 transport=120 class_target=-5153.75 water_target=1.93205e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=250 transport=0 class_target=-4401.7 water_target=1.92006e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=250 transport=120 class_target=-3482.87 water_target=1.93205e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=500 transport=0 class_target=-1551.92 water_target=1.92006e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=500 transport=120 class_target=-1144.9 water_target=1.93205e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=125 sigma=1000 transport=0 class_target=24641.9 water_target=1.92006e+07 result=pass
+polygonal_loop dx=125 sigma=1000 transport=120 class_target=26258.3 water_target=1.93205e+07 result=pass
+polygonal_loop dx=250 sigma=0 transport=0 class_target=-38068.7 water_target=1.90131e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=0 transport=120 class_target=-29222 water_target=1.91335e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=125 transport=0 class_target=-37938.6 water_target=1.90131e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=125 transport=120 class_target=-30333.8 water_target=1.91335e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=250 transport=0 class_target=-34635 water_target=1.90131e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=250 transport=120 class_target=-31695.9 water_target=1.91335e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=500 transport=0 class_target=-31718.4 water_target=1.90131e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=500 transport=120 class_target=-29640.9 water_target=1.91335e+07 result=remapping raster footprint exceeds channel inventory
+polygonal_loop dx=250 sigma=1000 transport=0 class_target=5966.61 water_target=1.90131e+07 result=pass
+polygonal_loop dx=250 sigma=1000 transport=120 class_target=7368.24 water_target=1.91335e+07 result=pass

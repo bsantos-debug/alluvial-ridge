@@ -1,0 +1,39 @@
+{
+  "purpose": "Independent small-domain numerical stress tests; not manuscript results or production floods",
+  "utc_created": "2026-10-09T19:11:36.772672Z",
+  "headers": {
+    "model.hpp": "69e57a6820c2a2d148b823972898e0137b9d08683d67a495658819e82d4d320a",
+    "finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2",
+    "migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196"
+  },
+  "compiler_flags": "-O3 -std=c++17 -Wall -Wextra -Wpedantic -lstdc++fs",
+  "production_jobs": "untouched",
+  "utc_completed": "2026-10-09T19:21:34.233796Z",
+  "corrected_headers": {
+    "model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2",
+    "migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196"
+  },
+  "test_sources": {
+    "validation/stress/footprint.cpp": "0743a6e1d7596a1fd1525d0aa3d58748e1714e656144f478c4929524b8cc1007",
+    "validation/stress/plume.cpp": "cf4082d3435bdbcdfa30d033c11e620d0203094f60c64a3026faebbc42cd59c2",
+    "validation/stress/remap-regression.cpp": "6d1526c3403d604b4be667eafe2b1e52d6c256a22392d0d4b971a31ea55ba19b"
+  },
+  "artifacts": {
+    "validation/stress/footprint/cases.csv": "11a167d0df7084e285c900cb476c67aa731fac06283a5142199cfb82f3c6b583",
+    "validation/stress/footprint/nodes.csv": "c3edadf2038a8b5096efad4ae036b7fd4e19f38362d1727ef07258cdf547eb19",
+    "validation/stress/plume/results.csv": "e16dce05af8bed59eabed9dd108b2cf4f7e09914f5381b3809c079112acdfb10",
+    "validation/stress/remap-current.log": "f15da954952c51879246ba596bfea09d0cd4049ff21449dc02b29abb2b1f4e87",
+    "validation/stress/remap-first-control-limit.log": "0fbf773b58d3f1062722e8a37e25d22d5e517a552979137e534cab6249e7e393"
+  },
+  "commands": [
+    "g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Ivalidation/stress/source validation/stress/footprint.cpp -o validation/stress/footprint_probe -lstdc++fs",
+    "nice -n 15 ./validation/stress/footprint_probe > validation/stress/footprint.log",
+    "g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Ivalidation/stress/source validation/stress/plume.cpp -o validation/stress/plume_probe -lstdc++fs",
+    "nice -n 15 ./validation/stress/plume_probe > validation/stress/plume.log",
+    "make build/remap_test",
+    "nice -n 15 ./build/remap_test > validation/stress/remap-current.log"
+  ]
+}

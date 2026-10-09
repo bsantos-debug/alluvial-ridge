@@ -1,0 +1,12 @@
+neck dx=125 max_node_ratio=1.0622 localized_target=-6673.79 uniform_water_target=1.92006e+07 result=remapping raster footprint exceeds channel inventory
+oblique_shift dx=125 max_node_ratio=1.06698 localized_target=-4139.84 uniform_water_target=-495638 result=remapping raster footprint exceeds channel inventory
+sine_halfwidth dx=125 max_node_ratio=0.715819 localized_target=17341.5 uniform_water_target=8.5931e+06 result=pass
+sine_width dx=125 max_node_ratio=1.06075 localized_target=-3707.25 uniform_water_target=593100 result=remapping raster footprint exceeds channel inventory
+neck dx=250 max_node_ratio=1.35478 localized_target=-38068.8 uniform_water_target=1.90131e+07 result=remapping raster footprint exceeds channel inventory
+oblique_shift dx=250 max_node_ratio=1.32237 localized_target=-39848.9 uniform_water_target=-1.18314e+06 result=remapping raster footprint exceeds channel inventory
+sine_halfwidth dx=250 max_node_ratio=0.726236 localized_target=16705.9 uniform_water_target=8.5931e+06 result=pass
+sine_width dx=250 max_node_ratio=1.07117 localized_target=-4342.88 uniform_water_target=593100 result=remapping raster footprint exceeds channel inventory
+neck dx=500 max_node_ratio=3.00027 localized_target=-246248 uniform_water_target=8.01314e+06 result=remapping raster footprint exceeds channel inventory
+oblique_shift dx=500 max_node_ratio=1.7745 localized_target=-95738.4 uniform_water_target=316862 result=remapping raster footprint exceeds channel inventory
+sine_halfwidth dx=500 max_node_ratio=1.55125 localized_target=-67270.4 uniform_water_target=8.5931e+06 result=remapping raster footprint exceeds channel inventory
+sine_width dx=500 max_node_ratio=1.55125 localized_target=-67270.4 uniform_water_target=593100 result=remapping raster footprint exceeds channel inventory

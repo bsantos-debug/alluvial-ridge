@@ -1,0 +1,12 @@
+identity_max_component_change 0
+identity pass
+localized_cutoff_pulse_survives_with_positive_class_storage
+pulse pass
+gaussian_cutoff_grids_125_250_500_and_constant_concentration pass
+smooth pass
+zero_raster_support_nodes_retained 73
+unsupported_and_capture pass
+repeated FAIL prescribed channel bed has reached or exceeded mean bank height; migration depth is undefined
+cutoff_internal_dry_sections 14 inlet_depth 8.4534595074999981
+post_cutoff_transport_120_seconds pass
+dry_gap pass

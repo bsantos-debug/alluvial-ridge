@@ -1,0 +1,18 @@
+identity_max_component_change 0
+identity pass
+localized_cutoff_pulse_survives_with_positive_class_storage
+pulse pass
+smooth_cutoff_transport_120_seconds_dx 125 pass
+smooth_cutoff_transport_120_seconds_dx 250 pass
+smooth_cutoff_transport_120_seconds_dx 500 pass
+gaussian_cutoff_grids_125_250_500_and_constant_concentration pass
+smooth pass
+zero_raster_support_nodes_retained 73
+unsupported_and_capture pass
+repeated_24_events_mask_transitions 192 max_water_residual 1.1641532182693481e-08 max_class_residual 3.910064697265625e-05 max_solid_residual 4.38690185546875e-05 recycled_mass 12720059999.99999
+repeated pass
+expected_reoccupation_limit_event 9 last_valid_event 8 mean_bank_depth -0.030000000000006466
+aggradation_limit pass
+cutoff_internal_dry_sections 14 inlet_depth 8.4534595074999981
+post_cutoff_transport_120_seconds pass
+dry_gap pass
