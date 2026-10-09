@@ -173,3 +173,33 @@ verification, together with explicitly labeled prior source-ledger status and
 notes. Existing data/plot commands, documentation and command formatting are
 preserved. The report counts reflect the merged statuses, while source-ledger
 notes remain visibly prior documentation rather than overriding current data.
+
+## Metadata and physical-closure corrections
+
+2026-10-09: Root `report/main.tex` now states the saved flood-n convention
+explicitly: diagnostics and rasters precede that flood's migration and
+aggradation, hence the imposed bed rise is `(n-1)A`; restart checkpoints follow
+the nth update. The report states the initial plane and its 3.5875 m elevation
+at x=36.125 km, the final-20 mean of per-flood beta ratios, the finite 200-value
+alpha percentile, and the actual plot colors, symbols, and interface geometry.
+
+The sediment review identified an inaccurate statement that the channel uses
+the same sediment source balance as the floodplain. It now explicitly states
+zero net channel suspended-bed exchange, with prescribed bed changes retained
+as independent signed forcing. Omitted secondary-flow/dispersive terms and
+the absence of evolving bed composition are also stated. Total-solid accounting
+does not establish grain-class conservation through deposition and bank erosion.
+
+The report retains pending morphology, production-conservation, and sensitivity
+assessment, and explains that day-12 scalar diagnostics have no accompanying
+rasters. No new numerical results or reproduction claims were added. These
+root report changes do not alter the immutable staged rebuild or live outputs.
+
+Verification: `bash report/build.sh` completed two pdfLaTeX passes, producing
+a 19-page, 324261-byte PDF with no LaTeX warnings, undefined references, or
+overfull/underfull boxes. `git diff --check` passed. Extracted PDF text confirms
+the corrected equation and all three figure captions. The compiled PDF SHA256
+is `8ddefd3e990c4616516868b5d222b51e44ddd5ecd877ca96f2146f14a36728d8`.
+This is a report build, not completion of the full numerical rebuild.
+The coordinator interrupted numerical rebuild 001 at 19:14:19 UTC; its reason
+is recorded separately in that attempt's `interruption_reason.json`.
