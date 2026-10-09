@@ -28,6 +28,32 @@ also includes numeric refinement/assumption differences and production budget
 extrema with input hashes. `validation/remap-full-check.txt` is the root check
 record; `tmp/full-rebuild-002/checks.log` verifies the exact frozen binary.
 
+## Later spatial analysis and report preparation
+
+The numerical source remains unchanged. Root postprocessing now additionally
+contains `scripts/inundation_metrics.py` and `scripts/planform_metrics.py`.
+They measure actual day-12 water extent, wet-interface patches, bulk deposition,
+sparse previous-channel occupancy, planform geometry and correctly indexed
+cutoff events. Float32 water/bed rounding is propagated into diagnostic bounds;
+neither deposit area nor wet patches are labeled breach discharge or avulsion.
+Actual short diagnostic data and analytical geometry/threshold limits were
+checked; all requested manuscript snapshots remain pending. Methods are in
+`docs/inundation-comparison.md` and `docs/planform-comparison.md`.
+
+The root comparator now permits a valid early requested snapshot even if a
+later flood is absent, while retaining complete-history requirements for the
+Figure 3 statistics. It checks the full declared physics configuration.
+Retained scientific assessments require an explicit fingerprint binding their
+numerical inputs, processors, figure and comparison record. These later changes
+are included in future rebuilds; immutable rebuild 002 still uses its original
+postprocessors. Its data and execution manifest must remain unchanged when
+preparing the later assessed report. `docs/finalization-checklist.md` gives
+the 13-panel assessment, separate provenance and publication requirements.
+
+`docs/runtime-observation.md` records live process and timestep measurements.
+All 31 production cases continued advancing through flood 1 during this audit;
+there is no evidence supporting a complete-run ETA or a stalled calculation.
+
 ## Interrupted clean rebuild and correction
 
 Started 2026-10-09 19:06:36 UTC using:
