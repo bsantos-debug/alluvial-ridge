@@ -78,6 +78,45 @@ Acceptance of the candidate requires new cutoff/localized-plume conservation,
 positivity, constant-concentration, and zero-support checks; this analytical
 review does not claim the candidate has already passed them.
 
+## Review of the implemented correction
+
+The subsequent code review covered `model.hpp` SHA256
+`e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15` and
+`main.cpp` SHA256
+`812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90`.
+The coded abandoned-cell density $\sum_jw_{rj}V_jq_j/S_j$ implements the
+projection above. Retained/support fractions are nonnegative, unsupported
+donors remain in 1-D storage, and normalized overlap fractions transfer each
+remaining inventory without global component rescaling. Both terminal overlap
+edges are set to one. No new inventory clipping was introduced; the existing
+small-negative-state check still records any numerical corrections.
+
+The implemented angular convention rotates abandoned scalar momentum using the
+old segment tangent and projects swallowed floodplain momentum onto the new
+segment tangent before splitting it between adjacent nodes. This is the inverse
+of the raster interpolation convention. It differs from the recipient-node
+projection used during lateral exchange, but is a defensible declared geometric
+choice; neither is conservation of global Cartesian momentum during migration.
+
+`remap_budget.csv` now records each remap's water, three suspended-class, and
+solid residuals, together with cumulative post-remap residuals. Its solid
+increment is $\Delta I_{\rm remap}-\Delta B_{\rm remap}$. Adding this to the
+pre-remap residual and subtracting the remap's numerical correction increment
+has the correct signs. This closes the previous final-remap diagnostic gap.
+The `ridge-checkpoint-v2` signature is compared before reading saved dynamic
+state, so v1 checkpoints cannot be resumed with the corrected remapper merely
+because their physical parameters match.
+
+The new `peak_` snapshots record $0.6T$ after flood onset: their name denotes the
+post-peak diagnostic time, not the hydrograph maximum. Read-only inspection of
+the existing short restart experiment found flood-2 times 5760 s and 7200 s for
+diagnostic and final fields, respectively, with $T=3600$ s, and a v2 checkpoint.
+Its second remap recorded water error $-1.86\times10^{-8}$ m³, suspended-class
+errors no larger than $2.98\times10^{-8}$ kg, and solid error
+$2.16\times10^{-5}$ kg. These are limited serialization/ledger observations;
+acceptance of the correction still awaits the dedicated remap agent's tests
+and the separately recorded complete check outcome.
+
 ## Definite documentation error: channel sediment sources
 
 The initial report said the channel integrates the same
@@ -164,9 +203,9 @@ sources or fixed grain composition.
 DR1's migration-before-aggradation ordering is respected. Normalized-arc-length
 redistribution and the raster versus rectangular control-area difference remain
 explicit remapping assumptions. Snapshots and summary budgets precede each
-flood's migration/aggradation; checkpoints follow it. Therefore the last summary
-does not independently audit the final post-flood remap. Comparisons between a
-snapshot and checkpoint must retain that phase distinction.
+flood's migration/aggradation; checkpoints follow it. The original last summary
+did not audit the final post-flood remap; the new `remap_budget.csv` now does.
+Comparisons between a snapshot and checkpoint must retain that phase distinction.
 
 ## Written sources
 
