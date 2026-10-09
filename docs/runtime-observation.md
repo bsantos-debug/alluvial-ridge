@@ -97,3 +97,44 @@ post-remap conservation check, or evidence that production 002 has completed.
 Its manifest keeps the channel node spacing at 250 m while changing the
 floodplain grid to 500 m. The newer conservative remap and checkpoint revision
 are outside this older binary's validation scope.
+
+## Available compute resources at 22:42 UTC
+
+A later read-only check used `lscpu`, `mpstat`, `/proc`, cgroup files, and
+NVIDIA tools while corrected rebuild 002 continued. The host has two Intel
+Xeon Gold 5220R sockets, with 48 physical cores and 96 online logical CPUs.
+All 31 production processes and both sensitivity processes may use CPUs
+0--95. Each is a single thread with nice value 10. The root CPU cgroup has
+quota −1 and no recorded throttling; no restrictive cpuset was identified.
+
+Three one-second `mpstat` samples reported zero idle CPU and mean I/O wait
+of 0.12%. The one- and five-minute load averages were approximately 123.
+Available memory was about 695 GiB; the 33 model processes together used
+about 589 MiB resident memory and no swap. These observations identify
+shared CPU contention without a detected quota, affinity, memory, or I/O
+constraint to correct. They do not establish future throughput or a
+580-flood completion time. More local jobs would compete for the same
+observed busy processors.
+
+A Quadro P400 with 2 GiB VRAM was idle, and CUDA compiler 11.3 was installed.
+The current solver has no GPU backend, so the live binaries cannot use it
+through a configuration change. No GPU performance measurement was made.
+The existing tested CPU optimizations are documented in
+[performance-review.md](performance-review.md); this resource check does
+not supply evidence for another numerical or implementation change.
+
+The installed Slurm 20.11.9 clients also do not expose an identified usable
+allocation. `/etc/slurm/slurm.conf` specifies a local controller at
+127.0.0.1:6817 and one `localhost CPUs=1` node in partition `debug`.
+An initial five-second status query timed out. A subsequent bounded
+`scontrol ping`, with that configuration explicitly selected, reported the
+primary controller down; `ss` found no listener on port 6817. Both Slurm
+services were absent and inactive according to `systemctl`. No alternative
+controller or allocation appeared in the inspected standard configuration
+locations or selected job/allocation environment variables. This establishes
+the state of the identified local configuration, not the absence of any
+separate remote facility.
+
+The resource check launched no benchmark or model and changed no source,
+process, priority, affinity, or service. Continuing the existing verified
+calculations remains the supported next action.
