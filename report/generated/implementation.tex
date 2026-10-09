@@ -87,10 +87,23 @@ to the pre-aggradation channel bed; abandoned cells retain their former
 bed. Eroded dry mass enters a reservoir and is returned at the next inlet
 with the selected grain fractions and a $Q^{3/2}$ concentration shape.
 Release is limited by available reservoir inventory, with quadrature
-remainders carried forward. Conservative overlap in normalized arc length
-remaps channel state; changes in masked raster storage are transferred
-between the channel and floodplain. The redistribution after migration
-and fixed bank grain fractions are explicit assumptions. Prescribed bed
+remainders carried forward. To transfer abandoned cells, we normalize the
+old interpolation weights over each section's entire raster support. If
+$V_jq_j$ is its inventory and $S_j=\sum_r a_rw_{rj}$ its sampled area,
+abandoned cell $r$ receives $\sum_j(a_rw_{rj}/S_j)V_jq_j$. The retained
+support fraction stays in the channel; unsupported sections retain all their
+inventory. Conservative overlap in normalized arc length remaps the remaining
+channel state. Newly captured floodplain inventories enter neighboring new
+sections using the new interpolation weights. Water and every sediment class
+share these nonnegative weights, preserving mass and constant concentrations.
+Local depth need not be preserved when raster and rectangular areas differ.
+The earlier subtraction of full ghost-cell inventories failed a 250 m cutoff
+test by overdrawing a localized sediment class by 35.48\%; that attempt was
+stopped and its records retained.
+Abandoned momentum rotates into the old segment tangent; incoming floodplain
+momentum projects onto the new segment tangent. Geometry change therefore
+does not conserve Cartesian momentum. This remapping closure and fixed bank
+grain fractions are explicit assumptions. Prescribed bed
 changes have a separate signed sediment source in the mass ledger.
 A nonpositive bankfull depth is treated as a failure of the prescribed
 channel geometry, not replaced by an artificial minimum.

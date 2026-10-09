@@ -1,54 +1,111 @@
 # Current authoritative state
 
-2026-10-09: Project relocated from /home/brnisant/alluvial-ridge to
-/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge at the user's request.
-All project outputs/caches/tempfiles must stay on /data volumes. The home
-project directory no longer exists. The supplied request is now copied to
-docs/user-request.txt. Required guidance is in AGENTS.md and the style guide.
+2026-10-09: All project files, caches, and temporary files belong under
+`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`. The former home
+project and task-created TeX cache are absent. Available space was about 1.9 TB.
+The original request is copied into `docs/user-request.txt`.
 
-Previous goal turn made progress: written specifications/configuration/panel
-ledger and finite-volume kernel were created and committed. This continuation
-has implemented the coupled driver and has not yet completed production.
+## Interrupted clean rebuild and correction
 
-Current implementation: independent C++ first-order hydrostatic HLL 1-D/2-D
-coupling, three sediment advection/diffusion/deposition classes, Chezy friction,
-turbulent stress, Howard–Knutson/Ikeda migration, neck cutoffs, conservative
-remapping, bank recycling, prescribed bed aggradation, diagnostics and outputs.
-Written source recovery/assumptions: docs/sediment-methods.md and migration.md.
-Current numerical choices: docs/implementation.md. Many original parameters
-remain unspecified; no exact original-code equivalence is asserted.
+Started 2026-10-09 19:06:36 UTC using:
 
-Component checks pass. Coupled checks identified/fixed wrong reflecting-wall
-orientation, donor weighting that withdrew sediment from empty interpolating
-nodes, double-counted aggradation in remap, and incorrect downstream boundary.
-Characteristic inlet/outlet fixes and assembled-model validation now pass.
-`validation/current-build.txt` records the current build, component and coupled
-checks, and byte-identical restart test. A changed-parameter checkpoint is
-rejected. Full-domain first-flood baseline, floodplain-grid refinement, and
-time-step sensitivity calculations are running with frozen validation inputs.
-Performance optimization skips exactly dry regions and preserves all full-grid
-state values; early7000step benchmark improved41.76→15.08s byte-identically.
-See docs/performance-review.md when finalized. No production580-flood suite
-has yet been completed. The invalid full_flood_v3 developmental process was
-explicitly terminated and logged as rejected; it is not a live production job.
+```sh
+RIDGE_JOBS=31 RIDGE_VALIDATION_JOBS=2 nice -n 10 bash scripts/rebuild.sh tmp/full-rebuild-001
+```
 
-Report scaffold: report/main.tex and compiled report/report.pdf (work in
-progress, conditional figures). Plotter scripts/plot.py handles all13 panels,
-strictly checks requested flood times/windows, and records input hashes.
-Developmental plots/tests under figures/test* and tmp/ are not manuscript
-results. See docs/report-audit.md and plotting.md.
+Artifacts: `tmp/full-rebuild-001/`; numerical workspace:
+`tmp/full-rebuild-001/workspace/`. Root exec session: 10864.
+Launch output: `tmp/full-rebuild-001.launch.log`.
+Prepare and all exact-binary component, coupling, and restart checks passed.
+Simulation driver PID 3782519 and sensitivity driver PID 3782518 started at
+19:07:02 UTC. All 31 numerical cases were verified live, each requesting 580
+full 20-day floods on the documented 250 m grid. Eight first-flood refinement
+and assumption-sensitivity cases run concurrently with two workers.
 
-No original author code/output/source-data/plotting script was retrieved.
-Written papers locally under sources/ are excluded from git and are not model
-inputs. DR2's configuration columns were transcribed; its result columns were
-not imported into the numerical or plotting workflow.
+At 2026-10-09 19:14:19 UTC, the verified wrapper was sent SIGTERM because a
+new cutoff test demonstrated that the remap could overdraw suspended inventory.
+All its numerical child processes stopped, and the manifest records
+`interrupted`. The reason is retained in `interruption_reason.json`. No
+production flood had completed. Frozen source remains unchanged at revision
+dc96644; all partial output and provenance are preserved. This is a rejected
+numerical attempt, not a completed clean rebuild.
 
-GitHub: authorized SSH authenticated as bsantos-debug. gh CLI had no API login.
-User was asked to authenticate gh or provide an empty repository URL; no answer
-yet. Do not repeat this request while useful local work remains. No repo is
-published, so no remote PDF link exists.
+The correction normalizes each old channel section's inventory over its whole
+raster support, transfers the abandoned fraction, and remaps the remainder
+with positive overlap weights. Water and all classes share the same weights.
+Newly captured floodplain inventories enter neighboring new sections locally.
+There is no global component rescaling. Regression tests exercise the actual
+250 m cutoff counterexample, smooth plumes at 125/250/500 m, repeated transfers,
+constant concentrations, unsupported sections, and subsequent hydraulic flow.
+Root source additionally saves day-12 rasters at the requested snapshot floods,
+records post-remap budgets, and rejects old checkpoints with a v2 signature.
+All component, coupled, remap, and actual-executable restart checks pass in
+`validation/remap-full-check.txt`. Fresh rebuild is pending.
 
-Outstanding: finish long-case stability and spatial/time/
-closure sensitivities; run every published configuration through580floods,
-generate all13 panels from saved outputs, quantify differences, complete report,
-run a clean full rebuild, publish/verify repository+PDF. Goal remains active.
+Read manifests, per-case `process_status.json`, and `progress.json` before
+acting. Never restart live work. Do not edit any staged source. No manuscript
+panel is yet established from a completed production history. Goal remains active.
+
+## Earlier independent validation
+
+The 500 m first-flood case completed in 724.49 s. Absolute budget residuals
+normalized by prescribed input are approximately 6.18e-15 for water,
+6.17e-12 for suspended sediment plus deposition, and 4.76e-12 for the total
+solid/bank/suspension ledger. This is validation, not a manuscript panel.
+
+The older 250 m baseline (root session 40462, PID 3756153), 125 m case
+(PID 3757990), and half-CFL case (PID 3770900) remain live as of 19:07 UTC.
+Their runner PID 3757950 writes `validation/runs/`. Its original agent
+session 38913 cannot be polled from root; inspect logs and process records.
+All use the frozen v4 binary with corrected characteristic boundaries,
+preceding the norm optimization and output/checkpoint metadata additions.
+Do not mistake these for production or the new clean rebuild.
+
+The invalid earlier full_flood_v3 process was explicitly terminated and
+recorded as rejected. Small-domain and wall-time-limited development outputs
+under `tmp/` and `figures/test*/` are not manuscript results.
+
+## Implementation and report
+
+Independent C++17: conservative 1-D/2-D shallow-water coupling, Chezy friction,
+turbulent stress, three suspended advection/diffusion/deposition classes,
+Howard--Knutson/Ikeda migration and neck cutoffs, conservative remapping, bank
+recycling, prescribed aggradation, diagnostics, checkpoints, and provenance.
+Equations and assumptions are in `docs/implementation.md`,
+`docs/sediment-methods.md`, and `docs/migration.md`. Written descriptions leave
+substantial parameters and closures unspecified; exact original equivalence
+is not asserted. No original author code, output, plotting script, source data,
+or separate figure file was used. DR2 result columns were not numerical inputs.
+
+`validation/optimized-build.txt` records passing component/coupled/restart
+checks. Restart reproduces uninterrupted output byte-for-byte and rejects
+changed parameters. `docs/performance-review.md` records exact dry-support
+optimization and paired HLL/norm tests: combined CPU reduction 16.26%, maximum
+warm-continuation state difference 4.09e-14 from norm roundoff. No compiler fast
+math, grid coarsening, flood shortening, or skipped floods is used in production.
+
+Plotter and comparison scripts handle all 13 requested panels, record hashes,
+and leave missing/nonfinite samples absent. The report renderer merges actual
+coverage with the maintained scientific assessment and does not infer agreement
+from plot existence. Root `report/report.pdf` is a 20-page work-in-progress
+report; clean outputs will be generated in the next staged workspace.
+The supplement has prose and a table, with no supplementary figures.
+
+## Publication and remaining work
+
+SSH authentication identified the GitHub account as bsantos-debug. The gh CLI
+has no API login, so repository creation is not yet available. The user was
+already asked to authenticate gh or provide an empty repository SSH URL;
+no answer has arrived. Do not repeat the request while local work remains.
+No repository or remote PDF link has been published.
+
+Next: monitor actual processes; inspect completed first-flood/refinement
+results; investigate any numerical failures without substituting shorter runs;
+complete all attempted 580-flood configurations; generate and inspect all
+panels; quantify discrepancies; finalize panel assessments and report; record
+the clean rebuild outcome; publish and verify repository/PDF.
+
+At publication, retain scientific run/compile logs. Consider including final
+checkpoints and the exact frozen binary so published provenance and resume
+records are usable; checkpoints are currently ignored to prevent committing
+live intermediate state. All final files must stay on the selected /data volume.

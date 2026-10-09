@@ -29,15 +29,13 @@ All project files, outputs, and caches are kept on a `/data/data0` through
 
 ```bash
 source scripts/environment.sh
-make -j4 all check
-python3 tests/restart.py
-python3 scripts/run_suite.py --jobs 8 --data-root data --floods 580
-python3 scripts/plot.py --data-root data --output figures --strict
-bash report/build.sh
+RIDGE_JOBS=8 RIDGE_VALIDATION_JOBS=2 bash scripts/rebuild.sh
 ```
 
-These are the rebuild commands; the full 580-flood procedure has not yet
-completed. Existing results are protected from accidental overwrite. See
+This procedure freezes and compiles source, runs checks and fresh full-duration
+simulations, generates figures and quantitative validation, then builds the PDF.
+The full 580-flood procedure has not yet completed. Existing results are
+protected from accidental overwrite. See
 [docs/rebuild.md](docs/rebuild.md) for fresh-run/resume details and remaining
 workflow work. GCC 8 uses `-lstdc++fs`; newer compilers may omit that flag.
 Python requires NumPy/Matplotlib. The report uses pdfLaTeX.

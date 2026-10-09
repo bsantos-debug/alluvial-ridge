@@ -69,6 +69,13 @@ Snapshots currently occur at the end of a completed hydrograph, before that
 flood's migration, cutoff and bed-aggradation step. Therefore the section and
 channel mask correspond to the geometry used during that flood. This ordering
 is an implementation convention; the manuscript captions do not resolve it.
+The corrected executable also saves `peak_fields_NNNN.bin` and
+`peak_channel_NNNN.csv` at day 12 (0.6 of the flood duration) for the same
+requested floods. The `peak_` prefix denotes the diagnostic sampling time;
+the assumed symmetric hydrograph reaches its actual discharge maximum at
+day 10. These additional files support inundation assessment and do not
+replace the end-flood deposition maps below. Both output phases precede
+migration/aggradation, so flood n has `(n-1)A` prescribed bed elevation gain.
 
 ## Panels 1A–F
 

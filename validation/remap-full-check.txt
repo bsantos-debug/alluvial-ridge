@@ -1,0 +1,95 @@
+mkdir -p build
+mkdir -p build
+mkdir -p build
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Isrc tests/finite_volume.cpp -o build/finite_volume_test -lstdc++fs
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Isrc tests/sediment.cpp -o build/sediment_test -lstdc++fs
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Isrc tests/migration.cpp -o build/migration_test -lstdc++fs
+./build/finite_volume_test
+lake_at_rest_max_error 6.75848e-15
+shared_face_water_sediment_conservation pass
+analytical_settling_and_mass_conservation pass
+dry_interface pass
+./build/sediment_test
+fall_speeds_m_s 0.023244 0.0002 3.597e-06
+analytic_settling_shear_suppression_mass_budget pass
+diffusion_mass_uniform_concentration_dry_boundary pass
+periodic_diffusion_rms_error 1.04099e-05 3.04442e-06 7.61299e-07
+./build/migration_test
+circle_curvature_max_error 4.46257614195e-16
+upstream_integral_errors 0.000520661587741 0.000130205067272 ratio 3.99878129667
+cutoff_length_budget_error 0
+migration_580_floods_sinuosity 3.86169929266
+migration_580_floods_cutoffs 29
+PASS migration limits, exact quadrature, convergence, cutoff geometry, symmetry, finite evolution
+./build/coupled_test
+inlet_discharge_and_outgoing_characteristic pass error=-8.526512829121202e-14
+outlet_rating_and_outgoing_characteristic pass error=1.77635683940025e-15
+outlet_passive_concentration pass error=0
+outlet_passive_concentration pass error=0
+outlet_passive_concentration pass error=0
+dry_outlet_zero_flux pass error=0
+closed_dry_inlet_zero_flux pass error=0
+supercritical_outgoing_flux pass error=0
+subcritical_backflow_respects_outlet_rating pass error=0
+zero_slope_outlet_lake pass error=0
+underspecified_boundary_regimes_reported pass error=0
+coupled_closed_lake_momentum_rate pass error=0
+coupled_closed_lake_water pass error=0
+coupled_exchange_water pass error=-1.111197889258619e-08
+coupled_exchange_class_0 pass error=-1.051489562087227e-09
+coupled_exchange_class_1 pass error=-6.682853381789755e-09
+coupled_exchange_class_2 pass error=-5.122728907736018e-09
+remap_water pass error=0
+remap_suspended_class_0 pass error=0
+remap_suspended_class_1 pass error=0
+remap_suspended_class_2 pass error=0
+translated_remap_solid_and_bank pass error=0
+remap_water pass error=0
+remap_suspended_class_0 pass error=0
+remap_suspended_class_1 pass error=0
+remap_suspended_class_2 pass error=0
+aggrading_translated_remap_solid_and_bank pass error=0
+coupled_plume_exchange_positive_timestep pass error=10.14312575650496
+subcycled_plume_water_budget pass error=3.725290298461914e-09
+subcycled_plume_sediment_budget pass error=-4.365574568510056e-11
+uniform_channel_depth_relative_error pass error=0.001789645767152348
+uniform_channel_grid_refinement pass error=0.0008425366504686282
+recycle_reservoir_debit_matches_injection pass error=6.51925802230835e-09
+recycle_reservoir_nonnegative pass error=1788.759313162588
+recycle_global_solid_bank_suspension_ledger pass error=-4.74974513053894e-08
+recycle_shape_error cfl=0.4 error=0.004914504271504638
+recycle_reservoir_debit_matches_injection pass error=9.313225746154785e-10
+recycle_reservoir_nonnegative pass error=888.3250184037224
+recycle_global_solid_bank_suspension_ledger pass error=-9.546056389808655e-07
+recycle_shape_error cfl=0.2 error=0.002460888841706088
+recycle_shape_time_refinement pass error=0.002460888841706088
+./build/remap_test
+identity_max_component_change 0
+identity pass
+localized_cutoff_pulse_survives_with_positive_class_storage
+pulse pass
+smooth_cutoff_transport_120_seconds_dx 125 pass
+smooth_cutoff_transport_120_seconds_dx 250 pass
+smooth_cutoff_transport_120_seconds_dx 500 pass
+gaussian_cutoff_grids_125_250_500_and_constant_concentration pass
+smooth pass
+zero_raster_support_nodes_retained 73
+unsupported_and_capture pass
+repeated_24_events_mask_transitions 192 max_water_residual 1.1641532182693481e-08 max_class_residual 3.910064697265625e-05 max_solid_residual 4.38690185546875e-05 recycled_mass 12720059999.99999
+repeated pass
+expected_reoccupation_limit_event 9 last_valid_event 8 mean_bank_depth -0.030000000000006466
+aggradation_limit pass
+cutoff_internal_dry_sections 14 inlet_depth 8.4534595074999981
+post_cutoff_transport_120_seconds pass
+dry_gap pass
+python3 tests/restart.py
+restart_identical fields_0002.bin 6531dc141931be20cbc628eb10c3785856c07d73c830eb508c41889b700682c7
+restart_identical channel_0002.csv 7bda64a38c6d36c83085813237cbdcb3385a2db3f3f4648d19f408714f66ec56
+restart_identical peak_fields_0002.bin be8d908b3bf2ed3df018c3c2e16a4781e55dc94598b63dc456d64bf148da6d81
+restart_identical peak_channel_0002.csv 08e5a1cf077089fb0a13bb5115ef851ac150d562186c1b798413eb9817abc358
+restart_identical checkpoint.bin 70689c6a5a597cca255a6961d859cd72702e16e9e19e97fb5eee865743624385
+uncheckpointed_diagnostic_row_regenerated pass
+day12_snapshot_clock pass
+post_remap_budget_closure pass
+changed_checkpoint_parameters_rejected pass
+rejected_remap_version_checkpoint_rejected pass

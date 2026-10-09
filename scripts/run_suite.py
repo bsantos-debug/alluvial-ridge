@@ -153,6 +153,13 @@ def completion(folder, floods):
         for key in ('water_storage', 'water_residual', 'sediment_residual', 'solid_sediment_residual'):
             if not math.isfinite(float(row[key])):
                 raise ValueError('nonfinite conservation diagnostic: ' + key)
+    with (folder / 'remap_budget.csv').open() as stream:
+        remaps = list(csv.DictReader(stream))
+    if [int(row['flood']) for row in remaps] != list(range(1, floods + 1)):
+        raise ValueError('remap budgets must contain each requested flood exactly once')
+    for row in remaps:
+        if not all(math.isfinite(float(value)) for value in row.values()):
+            raise ValueError('nonfinite post-remap conservation diagnostic')
     values = {}
     for line in (folder / 'parameters.txt').read_text().splitlines():
         key, value = line.split(' ', 1)
@@ -171,6 +178,19 @@ def completion(folder, floods):
     with (folder / 'channel_{:04d}.csv'.format(floods)).open() as stream:
         if len(list(csv.DictReader(stream))) != nodes:
             raise ValueError('final channel snapshot has the wrong section count')
+    peak = folder / 'peak_fields_{:04d}.bin'.format(floods)
+    with peak.open('rb') as stream:
+        peak_header = struct.unpack('=4i', stream.read(16))
+        peak_dx, peak_elapsed, peak_slope = struct.unpack('=3d', stream.read(24))
+    if peak_header != (nx, ny, nodes, floods) or peak.stat().st_size != snapshot.stat().st_size:
+        raise ValueError('invalid day-12 snapshot header or length')
+    if not all(math.isfinite(v) for v in (peak_dx, peak_elapsed, peak_slope)):
+        raise ValueError('nonfinite day-12 snapshot metadata')
+    if peak_dx != dx or peak_slope != slope or abs(peak_elapsed - (floods - .4) * float(values['duration'])) > 1e-5:
+        raise ValueError('day-12 snapshot metadata do not match completed run')
+    with (folder / 'peak_channel_{:04d}.csv'.format(floods)).open() as stream:
+        if len(list(csv.DictReader(stream))) != nodes:
+            raise ValueError('day-12 channel snapshot has the wrong section count')
     return {'completed_floods': floods, 'final_elapsed_seconds': elapsed,
             'scope': 'completed numerical calculation; scientific agreement is assessed separately'}
 

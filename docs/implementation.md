@@ -99,16 +99,50 @@ remaining mass is carried into the next flood. Released mass is recorded
 separately from the prescribed external rating supply.
 
 Water and suspension from abandoned channel raster cells are transferred out
-of the 1-D storage; newly cut cells transfer their existing water and suspended
-mass into it. Channel sections are conservatively remapped by overlap in
-normalized arc length; the mask-exchange correction is distributed in proportion
-to remapped component inventories. This preserves total water and class masses
-but is an explicit assumption about redistribution immediately after migration.
+of the 1-D storage. The old method subtracted full interpolated raster-cell
+inventories and globally rescaled each remaining component. A 250 m neck-cutoff
+test demonstrated a negative class target of -38,068.75 kg, despite positive
+water storage. Smooth Gaussian tracers also failed. The raster support can
+exceed the exact rectangular area of an individual channel section, so this
+method was rejected before completing the first production flood.
+
+The corrected remap partitions each old section's inventory using normalized
+geometrical weights. Let $V_j$ be its exact control area, $q_j$ its conserved
+state, $a_r$ a raster-cell area, and $w_{rj}$ its linear interpolation weight.
+For $S_j=\sum_{r\in\mathrm{old\ mask}}a_rw_{rj}>0$, an abandoned cell receives
+$\sum_j (a_rw_{rj}/S_j)V_jq_j$. This replaces its previous ghost state.
+The section retains the fraction of $S_j$ lying in cells still mapped to the
+new channel; a section with no raster support retains all its inventory.
+Each remaining donor is conservatively resampled by overlap in normalized
+arc length. Newly captured floodplain-cell inventories enter adjacent new
+sections with their new interpolation weights. All water and sediment classes
+use the same nonnegative weights. This preserves class masses and constant
+concentrations without component-dependent global scaling. It cannot also
+preserve local water depth when raster and exact channel areas disagree.
+
+Abandoned-cell momentum rotates from streamwise to the old segment tangent;
+captured-cell momentum projects onto the new segment tangent. The retained
+streamwise momentum follows the remapped channel. Global Cartesian momentum
+is not conserved through an imposed geometry change: unresolved bank forces
+and the loss of transverse momentum are explicit assumptions. Normalized
+arc-length redistribution may leave shallow or dry channel sections after
+a cutoff. The flow solver, rather than a depth floor, must resolve them.
 Abandoned cells retain the former excavated bed, allowing cutoff-channel filling.
 The prescribed bed geometry may require signed bed mass sources, which are
 recorded separately. Bed inventory is evaluated on the topographic raster;
 its channel footprint differs slightly from exact W times centreline length.
 Water storage always uses the latter for the 1-D channel, never both.
+
+`remap_budget.csv` records water and each suspended class before and after
+every remap, the bank-plus-bed-plus-suspension residual after subtracting
+prescribed bed forcing, and post-remap cumulative residuals. Cumulative
+residuals restart from the beginning of each executable invocation; they
+must not be summed across rows or interpreted as a full-history residual
+after checkpoint resume. The per-remap residual is independent of that window.
+At each requested snapshot flood, `peak_fields_NNNN.bin` and
+`peak_channel_NNNN.csv` additionally save the day-12 diagnostic state.
+Unprefixed snapshots remain at the end of the flood, before its migration
+and aggradation. Both have `(n-1)A` prescribed channel aggradation at flood n.
 
 For the diagnostic alpha, mean floodplain depth includes dry cells. The wet
 interface is the fraction of immediate channel/FP grid faces whose floodplain

@@ -382,45 +382,66 @@ inline Metrics metrics(const Model& m) {
 }
 inline void remap_after_flood(Model& m,int flood) {
     synchronize(m);auto oldmapping=m.mapping;auto oldchannel=m.channel;auto oldvolume=m.volume;auto olds=m.s;
-    State original{};for(size_t i=0;i<oldchannel.size();++i)for(int k=0;k<6;++k)original[k]+=oldchannel[i][k]*oldvolume[i];
     double h=metrics(m).channel_depth;
     if(!(h>0))throw std::runtime_error("prescribed channel bed has reached or exceeded mean bank height; migration depth is undefined");
     if(m.p.migration){auto result=migrate(m.line,m.p.channel_width,m.p.migration_scale,m.p.E,h,g/(m.p.channel_chezy*m.p.channel_chezy));m.cutoffs+=result.cutoffs;}
     for(auto p:m.line)if(p.x<0||p.x>m.p.length||p.y<.5*m.p.channel_width||p.y>m.p.width-.5*m.p.channel_width)
         throw std::runtime_error("channel migrated outside domain; expand domain, do not clip centerline");
     // Migration/cutting precedes the prescribed bed increment (DR1).
-    geometry(m,flood-1);State target=original;double area=m.p.dx*m.p.dx;
+    geometry(m,flood-1);double area=m.p.dx*m.p.dx;
+    // The sampled raster footprint need not equal the exact rectangular 1-D
+    // control area. Partition each old donor inventory over its entire raster
+    // support before transferring abandoned cells. The same nonnegative
+    // geometrical weights apply to water, momentum, and every sediment class.
+    std::vector<double> support(oldchannel.size(),0),retained(oldchannel.size(),0);
+    for(size_t i=0;i<oldmapping.size();++i)if(oldmapping[i].a>=0) {
+        auto mp=oldmapping[i];int nodes[2]={mp.a,mp.b};double weights[2]={1-mp.w,mp.w};
+        for(int side=0;side<2;++side) {
+            support[nodes[side]]+=area*weights[side];
+            if(m.mapping[i].a>=0)retained[nodes[side]]+=area*weights[side];
+        }
+    }
+    size_t n=m.line.size();std::vector<State> incoming(n);
     for(size_t i=0;i<m.q.size();++i){
         if(oldmapping[i].a>=0&&m.mapping[i].a>=0){
             auto mp=m.mapping[i];double newz=(1-mp.w)*m.zc[mp.a]+mp.w*m.zc[mp.b];
             m.bed_external_mass+=(newz-m.z[i])*area*m.p.rho_s*(1-m.p.porosity);
         } else if(oldmapping[i].a>=0&&m.mapping[i].a<0){
-            auto mp=oldmapping[i];State r=m.q[i];double stream=r[1]*mp.tx+r[2]*mp.ty;r[1]=stream;r[2]=0;
-            for(int k=0;k<6;++k)target[k]-=r[k]*area;
+            auto mp=oldmapping[i];int nodes[2]={mp.a,mp.b};double weights[2]={1-mp.w,mp.w};State r{};
+            for(int side=0;side<2;++side) {
+                int j=nodes[side];
+                if(support[j]>0)for(int k=0;k<6;++k)r[k]+=weights[side]*oldvolume[j]/support[j]*oldchannel[j][k];
+            }
+            double stream=r[1];r[1]=stream*mp.tx;r[2]=stream*mp.ty;m.q[i]=r;
+            check_state(m.q[i],m,area,"abandoned channel cell");
         } else if(oldmapping[i].a<0&&m.mapping[i].a>=0) {
             auto mp=m.mapping[i];double newz=(1-mp.w)*m.zc[mp.a]+mp.w*m.zc[mp.b];
             double erosion=std::max(0.,m.z[i]-newz)*area*m.p.rho_s*(1-m.p.porosity);
             for(int k=0;k<3;++k)m.bank[k]+=erosion*m.fractions[k];
             m.bed_external_mass+=std::max(0.,newz-m.z[i])*area*m.p.rho_s*(1-m.p.porosity);
             State r=m.q[i];r[1]=r[1]*mp.tx+r[2]*mp.ty;r[2]=0;
-            for(int k=0;k<6;++k)target[k]+=r[k]*area;
+            for(int k=0;k<6;++k){incoming[mp.a][k]+=(1-mp.w)*area*r[k];incoming[mp.b][k]+=mp.w*area*r[k];}
         }
     }
-    for(int k:{0,3,4,5})if(target[k]<-1e-6)throw std::runtime_error("remapping raster footprint exceeds channel inventory");
-    // Conservative resampling in normalized arc length. Each old control volume
-    // contributes its inventory to overlapping new intervals; global mask change
-    // is then distributed in proportion to that component's remapped inventory.
-    size_t n=m.line.size();m.channel.assign(n,State{});
+    // Unsupported donors remain in 1-D storage. Resample each remaining donor
+    // conservatively in normalized arc length, then add newly captured floodplain
+    // inventories locally. No component-dependent global rescaling is used.
+    for(size_t j=0;j<oldchannel.size();++j) {
+        double fraction=support[j]>0?retained[j]/support[j]:1;
+        for(double& x:oldchannel[j])x*=fraction;
+    }
+    m.channel.assign(n,State{});
     std::vector<double> oldedges(oldchannel.size()+1,0),newedges(n+1,0);
     for(size_t i=0;i<oldchannel.size();++i)oldedges[i+1]=oldedges[i]+oldvolume[i]/(m.p.channel_width*olds.back());
     for(size_t i=0;i<n;++i)newedges[i+1]=newedges[i]+m.volume[i]/(m.p.channel_width*m.s.back());
+    oldedges.back()=newedges.back()=1;
     size_t a=0;
     for(size_t i=0;i<n;++i){while(a+1<oldchannel.size()&&oldedges[a+1]<=newedges[i])++a;
         for(size_t j=a;j<oldchannel.size()&&oldedges[j]<newedges[i+1];++j){double overlap=std::max(0.,std::min(newedges[i+1],oldedges[j+1])-std::max(newedges[i],oldedges[j]));
-            for(int k=0;k<6;++k)m.channel[i][k]+=overlap*olds.back()*m.p.channel_width*oldchannel[j][k]/m.volume[i];}
+            double fraction=overlap/(oldedges[j+1]-oldedges[j]);
+            for(int k=0;k<6;++k)m.channel[i][k]+=fraction*oldvolume[j]/m.volume[i]*oldchannel[j][k];}
     }
-    double newarea=m.p.channel_width*m.s.back();
-    for(size_t i=0;i<n;++i)for(int k=0;k<6;++k){if(std::abs(original[k])>1e-12)m.channel[i][k]*=target[k]/original[k];else m.channel[i][k]=target[k]/newarea;}
+    for(size_t i=0;i<n;++i)for(int k=0;k<6;++k)m.channel[i][k]+=incoming[i][k]/m.volume[i];
     for(size_t i=0;i<n;++i)check_state(m.channel[i],m,m.volume[i],"remapped channel");
     for(auto& z:m.zc)z+=m.p.A;
     for(const auto& mp:m.mapping)if(mp.a>=0)
@@ -433,17 +454,17 @@ inline double total_sediment_inventory(const Model& m) {
     for(size_t i=0;i<m.z.size();++i)total+=(m.z[i]-m.initial_z[i])*density;
     return total;
 }
-inline void snapshot(const Model& m,const std::string& out,int flood) {
-    char name[64];std::snprintf(name,sizeof(name),"/fields_%04d.bin",flood);
-    std::ofstream file(out+name,std::ios::binary);int header[4]={m.nx,m.ny,int(m.line.size()),flood};
+inline void snapshot(const Model& m,const std::string& out,int flood,const std::string& prefix="") {
+    char name[64];std::snprintf(name,sizeof(name),"fields_%04d.bin",flood);
+    std::ofstream file(out+"/"+prefix+name,std::ios::binary);int header[4]={m.nx,m.ny,int(m.line.size()),flood};
     file.write(reinterpret_cast<char*>(header),sizeof(header));double scalars[3]={m.p.dx,m.clock,m.p.slope};file.write(reinterpret_cast<char*>(scalars),sizeof(scalars));
     for(size_t i=0;i<m.q.size();++i){float x[4]={float(m.z[i]),float(m.q[i][0]),float(m.deposition[i]),float(m.mapping[i].a>=0)};file.write(reinterpret_cast<char*>(x),sizeof(x));}
-    std::snprintf(name,sizeof(name),"/channel_%04d.csv",flood);std::ofstream c(out+name);c<<std::setprecision(12)<<"x,y,bed,water_depth,velocity,control_area\n";
+    std::snprintf(name,sizeof(name),"channel_%04d.csv",flood);std::ofstream c(out+"/"+prefix+name);c<<std::setprecision(12)<<"x,y,bed,water_depth,velocity,control_area\n";
     for(size_t i=0;i<m.line.size();++i)c<<m.line[i].x<<','<<m.line[i].y<<','<<m.zc[i]<<','<<m.channel[i][0]<<','<<m.channel[i][1]/std::max(m.channel[i][0],1e-30)<<','<<m.volume[i]<<'\n';
     if(!file||!c)throw std::runtime_error("snapshot write failed");
 }
 inline std::string parameter_signature(const Parameters& p) {
-    std::ostringstream s;s<<std::setprecision(17)<<"ridge-checkpoint-v1 ";
+    std::ostringstream s;s<<std::setprecision(17)<<"ridge-checkpoint-v2 ";
     for(double x:{p.length,p.width,p.dx,p.channel_width,p.slope,p.initial_depth,p.duration,p.qmin,p.qmax,
                   p.channel_chezy,p.floodplain_chezy,p.A,p.C,p.E,p.migration_scale,p.perturbation,p.cfl,
                   p.max_dt,p.porosity,p.rho_s,p.tau_critical,p.sand_d,p.silt_ws,p.clay_d,

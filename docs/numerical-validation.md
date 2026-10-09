@@ -1,5 +1,44 @@
 # Numerical sensitivity validation
 
+## Remapping defect and corrected transfer
+
+The original remap could overdraw a sediment class when a cutoff abandoned
+interpolated raster ghosts whose weighted area exceeded the donor's exact
+one-dimensional control area. At 250 m spacing, one neck-cutoff test requested
+145,371.759 kg from a 107,303.006 kg pulse. A smooth Gaussian plume also failed
+after 120 s of coupled transport. These are numerical counterexamples, not
+published data. The source and results are retained under `validation/stress/`.
+Clean rebuild `tmp/full-rebuild-001` was interrupted at 2026-10-09 19:14:19 UTC
+because of this demonstrated defect; no production flood had completed.
+
+The replacement projects donor inventories with nonnegative weights normalized
+over their full old raster support. It uses identical weights for water and
+every sediment class and records a separate transfer budget after every flood.
+The derivation and momentum/depth limitations are in `docs/implementation.md`.
+Dedicated cutoff, repeated-motion, and concentration tests pass in
+`validation/remap-full-check.txt`, alongside all component/coupled/restart
+checks. In 24 remaps and recycling events, the maximum water residual is
+1.16e-8 m3, class residual 3.91e-5 kg, and total solid residual 4.39e-5 kg
+while 1.272006e10 kg passes through the bank reservoir. Smooth cutoffs followed
+by 120 s of coupled transport pass at all three grid spacings. The tests also
+retain an expected physical limit: repeated excavation with aggradation
+reaches nonpositive mean bank height at event 9, after eight conservative
+remaps. No artificial depth floor is introduced to suppress that failure.
+
+The actual executable's two-flood restart test now compares day-12 rasters,
+day-12 channel sections, end-flood outputs, and the final checkpoint byte for
+byte. It also verifies exact day-12 metadata, repairs uncheckpointed rows in
+both diagnostic CSV files, and checks per-remap water/class/solid budgets.
+The updated test passed in `validation/remap-restart.txt`. The checkpoint
+signature is version 2, preventing a new executable from silently accepting
+state produced by the rejected transfer method.
+The initial log `validation/remap-build.txt` retains a false restart-test
+failure: searching for the substring `999` also matched a legitimate numerical
+value. The test now checks the injected sentinel's actual CSV field and row
+structure. No model change was required for that test correction.
+
+## Full-flood sensitivity scope
+
 These calculations test numerical sensitivity over the first complete flood.
 They are separate from the 580-flood manuscript experiments. A completed
 first flood cannot establish the accuracy of long-term meander, cutoff,
