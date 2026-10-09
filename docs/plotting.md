@@ -23,6 +23,23 @@ the scientific reconstruction succeeded. Even strict success only verifies
 data availability and the recorded documented configuration; the implementation
 and scientific agreement require their own verification.
 
+## Archived first-flood validation figure
+
+`python3 -B scripts/plot_first_flood.py` generates
+`figures/first_flood_validation.pdf`, its PNG, and a separate provenance
+manifest. It reads the retained `validation/first-flood-audit-002` archive,
+verifies all 24 input members and completed case records, and reproduces the
+recorded common-cell difference measures. These six diagnostic maps are
+separate from the 13 manuscript panels and do not establish convergence.
+See [first-flood-validation.md](first-flood-validation.md) for their numerical
+scope, masks, scales, and archive-based regeneration command.
+
+`report/build.sh` only verifies and includes the saved validation figure;
+it does not regenerate it. A missing or stale figure produces a pending
+notice while the independently verified numerical tables remain available.
+The saved-data finalizer runs the plotter as a separate recorded stage before
+compiling the report. Its render-only mode preserves the existing figure bytes.
+
 ## Saved products
 
 - `figures/figure1.pdf` and `.png`: manuscript panels 1A–F.

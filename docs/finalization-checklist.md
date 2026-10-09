@@ -199,13 +199,14 @@ historical observational evidence: preserve its original timestamps, PIDs,
 input hashes and invocation paths. Do not rewrite its captured JSON or imply
 that the original audit invocation becomes portable unchanged.
 
-Update the local raw-data links in `docs/first-flood-validation.md` before
-the final package is staged: change
-`../tmp/full-rebuild-002/workspace/data/` to `../data/`, and
-`../tmp/full-rebuild-002/workspace/validation/runs/` to `../validation/runs/`.
-Its audit links should target `../validation/first-flood-audit-002/`. Check
-these links in the copied workspace after staging. Keep the corrected audit,
-the independent remap regression under `validation/stress/`, and rejected 001
+The evidence links in [first-flood-validation.md](first-flood-validation.md)
+target the retained records and archives under
+`validation/first-flood-audit-002/` and require no staging-time path changes.
+Check these links and run the [archive integrity check](../validation/first-flood-audit-002/README.md)
+in the copied workspace after staging. Exact archive member names identify
+the captured files; historical workspace paths remain provenance text.
+Keep the corrected audit, the independent remap regression under
+`validation/stress/`, and rejected 001
 evidence as three distinct records. The 001 archive belongs in a separately
 labeled rejected-attempt directory; never copy its numerical files into
 canonical `data/` or `validation/runs/`. Historical path strings inside
@@ -216,7 +217,7 @@ unchanged execution records remain provenance, not executable package paths.
 | Final code/configuration/tests/docs and LaTeX | Versioned final workspace; preserve 002 frozen model inputs alongside later postprocessors. |
 | Numerical data and provenance | 002 `data/`, including `_inputs/`, parameters, summaries, remap ledgers, all requested end/peak fields and channel coordinates, logs and process/suite records. |
 | Validation evidence | 002 `validation/runs/`, exact check log, generated validation summary, and the remap regression evidence under root `validation/stress/`. |
-| Corrected first-flood audit | Versioned `validation/first-flood-audit-002/`, its methods/provenance record, and unchanged 002 coarse500 inputs already included under `validation/runs/`. |
+| Corrected first-flood audit | Complete versioned `validation/first-flood-audit-002/`, including methods, observations, capture manifest, and both archives of the original first-flood input bytes. |
 | Figures and derived comparisons | Final workspace `figures/`, manifests, metric/section tables and optional helper records. |
 | Final report and execution records | Final workspace `report/main.tex`, required `report/generated/` inputs, `report/report.pdf`, original 002 manifest/PDF, and separate postprocess manifest. |
 | Rejected-attempt record | Clearly separated 001 reason, manifest, frozen sources and logs; never mixed into canonical data folders. |

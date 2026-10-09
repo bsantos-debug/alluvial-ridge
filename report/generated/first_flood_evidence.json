@@ -12,7 +12,7 @@
     "two-resolution.py": "293dc1f91d6787ecc057946f7b56b0834c37b71aee63b58c2855bbb9b76c8ba7"
   },
   "capture_manifest_sha256": "ccc3c1c087100a2534b6d7c3b84ea9dcdac9dbd84c2b8c7332a8126d5a87f1c1",
-  "generator_sha256": "1df369af46c54dfe3975c210ccb4da96aa279516560186beafa1f0d256c8c6f1",
+  "generator_sha256": "2f7fff38f5397facedab3730b22aa99764dca757ce86aaaea15a498e910a111a",
   "measurements": {
     "all_zero_quantities": [
       "captured_cells",
@@ -354,7 +354,7 @@
     "data/run31/summary.csv": "04731ccd2abdd3228292bed595be9d1bdb0429be502af095aeed307773350966",
     "data/suite_manifest.json": "cb0bf8119e522b65fea7cd5c71bd7ec5f9ec6d793d6f0074c5a8b906e3920da5"
   },
-  "rendered_tex_sha256": "e4e708330d8c8cf932e6964fd7eaca43aa690f7dd4d5629e28756ef0bb5d262b",
+  "rendered_tex_sha256": "9377d7e0474c7d71f07aaec9802ef7c8246b5165368fe75a3b15406e447b66b0",
   "scope": "first flood only; no manuscript-panel assessment",
   "sensitivity_input_sha256": {
     "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
@@ -383,6 +383,51 @@
     "validation/runs/coarse500/summary.csv": "589ef72685348b25f0f007028292df218398df914e46beab8acfbecdbec02ff1"
   },
   "status": "verified historical observations",
+  "validation_figure": {
+    "manifest": "figures/first_flood_validation_manifest.json",
+    "manifest_sha256": "ef7fc2cafe303b37ff8c8adb58945c062470beb89156aa38ef32a2ffd4b235e0",
+    "outputs_sha256": {
+      "figures/first_flood_validation.pdf": "b30381412d3d3b728eea5c78eb6e6ac5b8eae901d72a518dd17dedfe69a45736",
+      "figures/first_flood_validation.png": "34fca7a505eac8524ee6c2ee9158cb681b1103d23fe693626b2f7fefa5f49a0d"
+    },
+    "plotting_conventions": {
+      "absolute_mask": "active channel cells gray; floodplain values retained",
+      "below_deposition_display_threshold": "values below 1e-6 m white; no clipping in metrics",
+      "deposition_difference_linear_core_m": 0.0001,
+      "deposition_difference_symlog_base": 10,
+      "deposition_difference_symlog_limits_m": [
+        -0.15,
+        0.15
+      ],
+      "deposition_log_limits_m": [
+        1e-06,
+        0.5
+      ],
+      "difference_mask": "exclude coarse blocks containing any active channel cell in either grid",
+      "difference_sign": "coarse minus arithmetic mean of four fine cells",
+      "dry_cells": "retained in common-floodplain comparisons",
+      "extent_km": [
+        0,
+        72,
+        0,
+        48
+      ],
+      "interpolation": "nearest",
+      "origin": "lower",
+      "scientific_scope": "one first flood; no manuscript-panel reproduction or convergence inference",
+      "snapshot_phase": "flood 1, day 20, before first remap",
+      "water_depth_limits_m": [
+        0,
+        0.5
+      ],
+      "water_difference_limits_m": [
+        -0.4,
+        0.4
+      ]
+    },
+    "processor_sha256": "506d04250c84058f7e92220ae41ac2420f02e9dac92ac5a280d043ecabe2c6ac",
+    "status": "verified"
+  },
   "verified_production_input_count": 289,
   "verified_sensitivity_input_count": 24
 }

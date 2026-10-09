@@ -18,11 +18,37 @@ both completed process records was verified. The retained
 [comparison](../validation/first-flood-audit-002/two-resolution.json) has SHA-256
 `6932613746a746f28abae0963e7cf01587cfb3d491f90a2fe5b5c3059951260d`.
 Its [analysis script](../validation/first-flood-audit-002/two-resolution.py)
-reads the saved data and prints JSON without running the model:
+reads the saved data and prints JSON without running the model. The
+[retained resolution inputs](../validation/first-flood-audit-002/resolution-inputs.tar.xz)
+contain the 24 files under `validation/runs/baseline250/`
+and `validation/runs/coarse500/`. The [archive verification instructions](../validation/first-flood-audit-002/README.md)
+check those bytes without the original temporary workspace. The original
+analysis invocation, which requires that historical source-case layout, was:
 
 ```sh
 python3 -B validation/first-flood-audit-002/two-resolution.py .
 ```
+
+The separate [validation figure](../figures/first_flood_validation.pdf) maps
+day-20 water depth, event-deposit thickness, and coarse-minus-fine differences.
+It can be regenerated directly from the retained archive, without the live
+workspace or a model run:
+
+```sh
+python3 -B scripts/plot_first_flood.py
+bash report/build.sh
+```
+
+The plotter verifies all 24 archived members and the completed case records,
+then recomputes the common-cell differences against the retained comparison.
+Its [manifest](../figures/first_flood_validation_manifest.json) records input,
+processor and output hashes, package versions, and display conventions.
+Water scales are linear; deposit scales are logarithmic from 1e-6 to 0.5 m,
+with smaller values white. Signed deposit differences use a base-10 symmetric
+logarithmic scale with a linear core of ±1e-4 m. Gray marks channel cells or
+excluded comparison blocks. Display thresholds do not modify the metrics.
+The report verifies the figure manifest before including it as **Validation
+figure V1**; it leaves all 13 manuscript-panel assessments unchanged.
 
 The percentage column uses `100*(coarse500/baseline250 - 1)`. Alpha is sampled
 on day 12; the remaining quantities below precede the first remap at day 20.
@@ -126,11 +152,12 @@ closure residuals therefore do not establish that all modeled solid changes
 arise from conservative transport of upstream sediment.
 
 All 289 hashed production inputs are preserved in the
-[capture archive](../validation/first-flood-audit-002/README.md), including
+[capture archive](../validation/first-flood-audit-002/production-inputs-20261009T213916.tar.xz), including
 the first-flood checkpoints that subsequent floods replace in the live suite.
-The capture manifest binds the observation, retained audit scripts, and input
-archive. Its verification command reads the saved archive without changing
-any simulation output.
+The [capture manifest](../validation/first-flood-audit-002/capture-provenance.json)
+binds the observation, retained audit scripts, and input archive. The
+[verification command](../validation/first-flood-audit-002/README.md) reads the
+saved archive without changing any simulation output.
 
 ## Historical coarse audit: 19:44:59 UTC
 
@@ -147,10 +174,19 @@ The calculation completed with exit code 0 at 19:41:34 UTC, after 1101.11 s
 wall time, 59,535 floodplain steps and 404,334 channel steps. The executable
 SHA-256 is
 `b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c`.
-It matches the production executable and the exact frozen source/compiler
-record in the [production provenance](../tmp/full-rebuild-002/workspace/data/_inputs/provenance.json).
-The [case process record](../tmp/full-rebuild-002/workspace/validation/runs/coarse500/process_status.json)
-contains its command, runtime, return code, and artifact hashes. This wall
+It matches the production executable. The source hashes, compiler command
+and version, and executable identity are retained in the `provenance` object
+of member `data/suite_manifest.json` in the
+[production input archive](../validation/first-flood-audit-002/production-inputs-20261009T213916.tar.xz).
+The original separate record was read at
+`tmp/full-rebuild-002/workspace/data/_inputs/provenance.json`; that file is
+not a member of the capture archive.
+
+The [resolution input archive](../validation/first-flood-audit-002/resolution-inputs.tar.xz)
+retains the case process record as
+`validation/runs/coarse500/process_status.json`, including its command,
+runtime, return code, and artifact hashes. These case files were captured
+from `tmp/full-rebuild-002/workspace/validation/runs/coarse500/`. This wall
 time was measured under concurrent host load; it does not establish a
 production-run completion estimate.
 
@@ -191,8 +227,9 @@ transfer preserves inventory, not uniform stage. This one-flood experiment
 does not advance that post-remap state through another hydrograph.
 
 The summary is written before migration; the remap ledger and checkpoint
-follow it. The [summary](../tmp/full-rebuild-002/workspace/validation/runs/coarse500/summary.csv)
-and [remap ledger](../tmp/full-rebuild-002/workspace/validation/runs/coarse500/remap_budget.csv)
+follow it. The members `validation/runs/coarse500/summary.csv` and
+`validation/runs/coarse500/remap_budget.csv` in the
+[resolution input archive](../validation/first-flood-audit-002/resolution-inputs.tar.xz)
 give the following residuals:
 
 | Inventory | Before remap | Remap increment | After remap |

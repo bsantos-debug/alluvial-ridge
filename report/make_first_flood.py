@@ -173,7 +173,63 @@ def measurements(comparison, observation):
                 binary_sha256=observation['binary_sha256'])
 
 
-def render(comparison, measured):
+def verify_figure(folder, comparison, evidence, manifest_path):
+    manifest = json.loads(manifest_path.read_text())
+    require(manifest['format'] == 1 and manifest['scope'] ==
+            'archived first-flood validation only; no manuscript-panel assessment',
+            'unexpected validation figure format or scope')
+    require(manifest['processor_sha256'] == sha(ROOT / 'scripts/plot_first_flood.py'),
+            'validation figure processor changed')
+    expected = {label(folder / name): evidence['archive_sha256'][name]
+                for name in ('two-resolution.json', 'two-resolution.py', 'resolution-inputs.tar.xz')}
+    expected[label(folder / 'capture-provenance.json')] = evidence['capture_manifest_sha256']
+    require(manifest['input_sha256'] == expected and
+            manifest['member_sha256'] == evidence['sensitivity_input_sha256'],
+            'validation figure input identities differ from the verified archive')
+    for name in ('baseline250', 'coarse500'):
+        case = comparison['cases'][name]
+        snapshot = case['snapshot']
+        expected = dict(state='complete', exit_code=0,
+                        binary_sha256=case['process']['binary_sha256'],
+                        snapshot=dict(nx=snapshot['nx'], ny=snapshot['ny'],
+                                      channel_nodes=snapshot['nodes'], flood=snapshot['flood'],
+                                      dx_m=snapshot['dx'], elapsed_seconds=snapshot['elapsed_seconds']))
+        require(manifest['verified_case_records'][name] == expected,
+                'validation figure case metadata differs: ' + name)
+    common = comparison['common_floodplain_fields']
+    require(manifest['comparison']['common_floodplain_area_m2'] == common['common_floodplain_area_m2'],
+            'validation figure comparison area differs')
+    for metric in ('mean_absolute_difference_m', 'maximum_absolute_difference_m'):
+        for field in ('bed', 'water_depth', 'deposition'):
+            require(math.isclose(manifest['comparison'][metric][field], common[metric][field],
+                                 rel_tol=1e-10, abs_tol=1e-14),
+                    'validation figure comparison differs: ' + metric + '/' + field)
+    conventions = manifest['plotting_conventions']
+    for name, expected in dict(extent_km=[0, 72, 0, 48], origin='lower', interpolation='nearest',
+                               water_depth_limits_m=[0, .5], water_difference_limits_m=[-.4, .4],
+                               deposition_log_limits_m=[1e-6, .5],
+                               deposition_difference_symlog_limits_m=[-.15, .15],
+                               deposition_difference_linear_core_m=1e-4,
+                               deposition_difference_symlog_base=10,
+                               snapshot_phase='flood 1, day 20, before first remap',
+                               absolute_mask='active channel cells gray; floodplain values retained',
+                               below_deposition_display_threshold='values below 1e-6 m white; no clipping in metrics',
+                               difference_sign='coarse minus arithmetic mean of four fine cells',
+                               difference_mask='exclude coarse blocks containing any active channel cell in either grid',
+                               dry_cells='retained in common-floodplain comparisons',
+                               scientific_scope='one first flood; no manuscript-panel reproduction or convergence inference').items():
+        require(conventions[name] == expected, 'validation figure display convention differs: ' + name)
+    outputs = manifest['outputs_sha256']
+    require(set(outputs) == {'figures/first_flood_validation.pdf', 'figures/first_flood_validation.png'},
+            'unexpected validation figure outputs')
+    for name, expected in outputs.items():
+        require(sha(ROOT / name) == expected, 'validation figure output changed: ' + name)
+    return dict(status='verified', manifest=label(manifest_path), manifest_sha256=sha(manifest_path),
+                processor_sha256=manifest['processor_sha256'], outputs_sha256=outputs,
+                plotting_conventions=conventions)
+
+
+def render(comparison, measured, figure):
     cases = comparison['cases']
     fine, coarse = cases['baseline250'], cases['coarse500']
     lines = [r'\subsection{Archived first-flood validation}',
@@ -215,7 +271,31 @@ def render(comparison, measured):
               (common['mean_absolute_difference_m']['water_depth'],
                common['maximum_absolute_difference_m']['water_depth']),
               'These averages include dry areas and omit the excluded channel blocks.',
-              '',
+              '']
+    if figure['status'] == 'verified':
+        lines += ['Validation figure V1 maps these end-flood fields and their differences.',
+                  r'\begin{figure}[p]\centering',
+                  r'\includegraphics[width=\linewidth]{figures/first_flood_validation.pdf}',
+                  r'\par\smallskip\begingroup\small\noindent\textbf{Validation figure V1.}',
+                  'Independent first-flood calculation for configuration 11 over the',
+                  '72 km by 48 km domain. Rows show day-20 water depth and event-deposit',
+                  'thickness before migration and remapping. The first two columns use',
+                  '250 m and 500 m floodplain grids; both retain 250 m channel-node spacing.',
+                  'The third column subtracts the arithmetic mean of each two-by-two',
+                  'fine block from the coarse cell. Gray marks active channel cells,',
+                  'or excluded comparison blocks containing any channel cell in either grid.',
+                  'Dry cells remain in the comparisons. Depth scales are linear;',
+                  r'deposit scales are logarithmic from $10^{-6}$ to 0.5 m, with smaller',
+                  'deposits white. Signed deposit differences use a base-10 symmetric',
+                  r'logarithmic scale with a linear core of $\pm10^{-4}$ m.',
+                  'Display thresholds do not modify the reported differences.',
+                  'These two first-flood cases establish neither convergence nor',
+                  'reproduction of a manuscript panel.',
+                  r'\par\endgroup\end{figure}', '']
+    else:
+        lines += [r'\pending{Validation figure V1 is unavailable: ' + tex(figure['reason']) +
+                  '. The verified numerical tables remain available.}', '']
+    lines += [
               'The coarser grid captures %d bank cells after the first hydrograph,' %
               coarse['checkpoint']['new_channel_cells'],
               'whereas the finer grid captures none. This difference changes the',
@@ -285,7 +365,15 @@ def main():
         measured = measurements(comparison, observation)
         measured['verified_production_input_count'] = evidence['verified_production_input_count']
         measured['verified_sensitivity_input_count'] = evidence['verified_sensitivity_input_count']
-        content = render(comparison, measured)
+        try:
+            figure = verify_figure(args.archive_root, comparison, evidence,
+                                   ROOT / 'figures/first_flood_validation_manifest.json')
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            reason = ('Missing retained file: ' + Path(error.filename).name
+                      if isinstance(error, FileNotFoundError) else str(error))
+            figure = dict(status='pending', reason=reason)
+        evidence['validation_figure'] = figure
+        content = render(comparison, measured, figure)
         evidence.update(status='verified historical observations', measurements=measured,
                         scope='first flood only; no manuscript-panel assessment')
     except (OSError, ValueError, KeyError, TypeError, tarfile.TarError) as error:

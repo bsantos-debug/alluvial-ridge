@@ -30,6 +30,26 @@ Over the resulting 3384 km$^2$ common floodplain, water-depth differences
 have mean absolute value 0.100738 m and maximum 0.386764 m.
 These averages include dry areas and omit the excluded channel blocks.
 
+Validation figure V1 maps these end-flood fields and their differences.
+\begin{figure}[p]\centering
+\includegraphics[width=\linewidth]{figures/first_flood_validation.pdf}
+\par\smallskip\begingroup\small\noindent\textbf{Validation figure V1.}
+Independent first-flood calculation for configuration 11 over the
+72 km by 48 km domain. Rows show day-20 water depth and event-deposit
+thickness before migration and remapping. The first two columns use
+250 m and 500 m floodplain grids; both retain 250 m channel-node spacing.
+The third column subtracts the arithmetic mean of each two-by-two
+fine block from the coarse cell. Gray marks active channel cells,
+or excluded comparison blocks containing any channel cell in either grid.
+Dry cells remain in the comparisons. Depth scales are linear;
+deposit scales are logarithmic from $10^{-6}$ to 0.5 m, with smaller
+deposits white. Signed deposit differences use a base-10 symmetric
+logarithmic scale with a linear core of $\pm10^{-4}$ m.
+Display thresholds do not modify the reported differences.
+These two first-flood cases establish neither convergence nor
+reproduction of a manuscript panel.
+\par\endgroup\end{figure}
+
 The coarser grid captures 49 bank cells after the first hydrograph,
 whereas the finer grid captures none. This difference changes the
 reservoir available for later recycling. Capture occurs after the

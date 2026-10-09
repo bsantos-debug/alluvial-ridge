@@ -29,6 +29,15 @@ first-flood sensitivity cases use two
 workers. Do not edit the staged sources or restart live cases. Completion and
 scientific agreement remain pending.
 
+At the later read-only check on 2026-10-09 at 22:02:45 UTC, all 31 production
+PIDs still matched their recorded start identities, commands and executable
+hashes. They were in flood 2, from day 8.7240 to 15.6912. The corrected 125 m
+and half-CFL sensitivity cases were still in their first flood, at days 8.2495
+and 9.6745. Frozen inputs and staged source hashes remained unchanged. The
+wrapper, both drivers, and two older orphan numerical writers were live.
+Destination creation still failed with `Permission denied`; no files moved
+and no simulation process was signaled.
+
 At 21:39:16 UTC, all 31 production PIDs were verified live with the corrected
 executable. Every case had completed one full flood and was advancing through
 flood 2, between days 5.86135 and 11.32774 in its saved progress. Frozen source
@@ -202,12 +211,23 @@ math, grid coarsening, flood shortening, or skipped floods is used in production
 Plotter and comparison scripts handle all 13 requested panels, record hashes,
 and leave missing/nonfinite samples absent. The report renderer merges actual
 coverage with the maintained scientific assessment and does not infer agreement
-from plot existence. Root `report/report.pdf` is a 24-page work-in-progress
+from plot existence. Root `report/report.pdf` is a 25-page work-in-progress
 report. Its first-flood section verifies 313 retained input files from the
 production observation and completed 250 m and 500 m sensitivity cases,
 including checkpoints, before rendering their measurements. Those files are
 preserved in two compressed archives under `validation/first-flood-audit-002`;
-the section does not read changing live outputs. All 13 main-manuscript panels
+the section does not read changing live outputs. Validation figure V1 on page 8
+maps the archived 250 m and 500 m end-flood water depth and deposit fields,
+with common-cell differences. Its independent plotter verifies all 24 source
+members and recomputes the recorded difference measures. Repeated plotting
+produced identical PDF, PNG and manifest bytes. Report compilation verifies
+the figure identities and leaves plotting to a separate finalization stage;
+render-only preserves figure bytes. The compiled PDF was visually checked,
+has no TeX warnings, and retains manuscript figure numbers 1--3.
+Figure verification accepted the retained manifest and rejected 26 stale or
+missing variants; a missing figure preserved both verified numerical tables.
+The existing finalizer relocation regression also passed all 34 refusal cases.
+All 13 main-manuscript panels
 remain unreproduced. Clean outputs will be generated in the staged workspace.
 The root `figures/comparison.json` and `.csv` are retained inputs to this
 provisional report: they contain zero computed comparisons, and the report

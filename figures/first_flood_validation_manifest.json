@@ -1,0 +1,126 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "scripts/plot_first_flood.py"
+  ],
+  "comparison": {
+    "common_floodplain_area_m2": 3384000000.0,
+    "maximum_absolute_difference_m": {
+      "bed": 0.12889909744262695,
+      "deposition": 0.1288989559689071,
+      "water_depth": 0.386763540096581
+    },
+    "mean_absolute_difference_m": {
+      "bed": 0.0002979310672858457,
+      "deposition": 0.00029793082630776805,
+      "water_depth": 0.10073807927861747
+    }
+  },
+  "format": 1,
+  "input_sha256": {
+    "validation/first-flood-audit-002/capture-provenance.json": "ccc3c1c087100a2534b6d7c3b84ea9dcdac9dbd84c2b8c7332a8126d5a87f1c1",
+    "validation/first-flood-audit-002/resolution-inputs.tar.xz": "7945e595847f12a5460f6586c82c6b142c0d36fb1cc30018ba0f349c73df34f2",
+    "validation/first-flood-audit-002/two-resolution.json": "6932613746a746f28abae0963e7cf01587cfb3d491f90a2fe5b5c3059951260d",
+    "validation/first-flood-audit-002/two-resolution.py": "293dc1f91d6787ecc057946f7b56b0834c37b71aee63b58c2855bbb9b76c8ba7"
+  },
+  "member_sha256": {
+    "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
+    "validation/runs/baseline250/checkpoint.bin": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951",
+    "validation/runs/baseline250/fields_0001.bin": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180",
+    "validation/runs/baseline250/parameters.txt": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d",
+    "validation/runs/baseline250/peak_channel_0001.csv": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f",
+    "validation/runs/baseline250/peak_fields_0001.bin": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea",
+    "validation/runs/baseline250/process_status.json": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17",
+    "validation/runs/baseline250/progress.json": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f",
+    "validation/runs/baseline250/remap_budget.csv": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4",
+    "validation/runs/baseline250/run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
+    "validation/runs/baseline250/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+    "validation/runs/baseline250/summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d",
+    "validation/runs/coarse500/channel_0001.csv": "6063a21fe8d183cf139c71a4c87de73a378cf21d613616f2b101ae0829d7a6cf",
+    "validation/runs/coarse500/checkpoint.bin": "3d87307d8ebf5bc3968bfb70f1048de5f640aad0a2e219daf5e99024dcb6836a",
+    "validation/runs/coarse500/fields_0001.bin": "20b46ac352eb373c4f5e3cb6b4961ff22d16c80f89af0a2e696001c2256883f4",
+    "validation/runs/coarse500/parameters.txt": "fec8cf263f4f7eb4ba450f734aca5cb05e9fd93c4d0dea77115cbd506fc9fb89",
+    "validation/runs/coarse500/peak_channel_0001.csv": "a9f152a1924c0ed539f429bf2c388e08ed4ed8a43a2b73b1c4d282488c87b6c5",
+    "validation/runs/coarse500/peak_fields_0001.bin": "c4b1f73cd40dac1be85e1ff066bde34e41e7cc3a4bef43e2063b69646632de59",
+    "validation/runs/coarse500/process_status.json": "67ffbfe0ee4ebeb3d7e513fe8c01fe0238267c49026dae4b14d0459cf32483ad",
+    "validation/runs/coarse500/progress.json": "38abde0d7272dd9d4feb92e51172b2662b58b2e653fb3c0a237d3357c3bd1069",
+    "validation/runs/coarse500/remap_budget.csv": "99dbd7f2f9e686dce55f7aa4b49bc02800d251ce1f3d9d0fab6922781b940f9c",
+    "validation/runs/coarse500/run.log": "578cda336778afe3f16f619ee36f740311f167b092d345bdab6149bc5efb816a",
+    "validation/runs/coarse500/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+    "validation/runs/coarse500/summary.csv": "589ef72685348b25f0f007028292df218398df914e46beab8acfbecdbec02ff1"
+  },
+  "outputs_sha256": {
+    "figures/first_flood_validation.pdf": "b30381412d3d3b728eea5c78eb6e6ac5b8eae901d72a518dd17dedfe69a45736",
+    "figures/first_flood_validation.png": "34fca7a505eac8524ee6c2ee9158cb681b1103d23fe693626b2f7fefa5f49a0d"
+  },
+  "plotting_conventions": {
+    "absolute_mask": "active channel cells gray; floodplain values retained",
+    "below_deposition_display_threshold": "values below 1e-6 m white; no clipping in metrics",
+    "deposition_difference_linear_core_m": 0.0001,
+    "deposition_difference_symlog_base": 10,
+    "deposition_difference_symlog_limits_m": [
+      -0.15,
+      0.15
+    ],
+    "deposition_log_limits_m": [
+      1e-06,
+      0.5
+    ],
+    "difference_mask": "exclude coarse blocks containing any active channel cell in either grid",
+    "difference_sign": "coarse minus arithmetic mean of four fine cells",
+    "dry_cells": "retained in common-floodplain comparisons",
+    "extent_km": [
+      0,
+      72,
+      0,
+      48
+    ],
+    "interpolation": "nearest",
+    "origin": "lower",
+    "scientific_scope": "one first flood; no manuscript-panel reproduction or convergence inference",
+    "snapshot_phase": "flood 1, day 20, before first remap",
+    "water_depth_limits_m": [
+      0,
+      0.5
+    ],
+    "water_difference_limits_m": [
+      -0.4,
+      0.4
+    ]
+  },
+  "processor_sha256": "506d04250c84058f7e92220ae41ac2420f02e9dac92ac5a280d043ecabe2c6ac",
+  "scope": "archived first-flood validation only; no manuscript-panel assessment",
+  "verified_case_records": {
+    "baseline250": {
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "exit_code": 0,
+      "snapshot": {
+        "channel_nodes": 289,
+        "dx_m": 250.0,
+        "elapsed_seconds": 1728000.0,
+        "flood": 1,
+        "nx": 288,
+        "ny": 192
+      },
+      "state": "complete"
+    },
+    "coarse500": {
+      "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "exit_code": 0,
+      "snapshot": {
+        "channel_nodes": 289,
+        "dx_m": 500.0,
+        "elapsed_seconds": 1728000.0,
+        "flood": 1,
+        "nx": 144,
+        "ny": 96
+      },
+      "state": "complete"
+    }
+  },
+  "versions": {
+    "matplotlib": "3.3.4",
+    "numpy": "1.19.5",
+    "python": "3.6.8 (default, Sep 24 2024, 09:44:46) \n[GCC 8.5.0 20210514 (Red Hat 8.5.0-22)]"
+  }
+}

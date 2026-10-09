@@ -47,7 +47,8 @@ Python requires NumPy/Matplotlib. The report uses pdfLaTeX.
 - [Implemented equations, assumptions and boundary conditions](docs/implementation.md)
 - [Hydraulic/sediment evidence](docs/sediment-methods.md)
 - [Completed first-flood validation](docs/first-flood-validation.md) and
-  [preserved numerical inputs](validation/first-flood-audit-002/README.md)
+  [preserved numerical inputs](validation/first-flood-audit-002/README.md), with
+  a separate [validation figure](figures/first_flood_validation.pdf)
 - [Migration evidence and equations](docs/migration.md)
 - [Complete panel ledger](docs/panels.csv)
 - [Plot input/output conventions](docs/plotting.md)

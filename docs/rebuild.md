@@ -194,8 +194,16 @@ history; overwritten artifacts from those attempts are not claimed reverified.
 
 The current checkout's numerical source and configuration must still match
 002. Reporting code and prose may differ. Before staging, follow the
-finalization checklist to retain the versioned first-flood audit and update
-its document links from local temporary paths to packaged data paths.
+[finalization checklist](finalization-checklist.md) to retain the complete
+versioned first-flood audit, including both input archives. Its evidence
+links target those retained files and need no staging-time path changes.
+Check the links and archive hashes in the copied workspace; preserve the
+historical paths inside captured records.
+The later `first-flood-figure` stage regenerates Validation figure V1 from
+that historical archive and records its output hashes separately. Report
+compilation verifies the saved figure without rerunning its plotter, so
+`--render-only` preserves all figure bytes. This diagnostic is not one of the
+13 manuscript panels and supplies no convergence claim.
 The package contains:
 
 - `original/`: the unchanged outer rebuild manifest, stage logs, frozen source,
