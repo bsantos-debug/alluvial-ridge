@@ -100,6 +100,138 @@ exhaustion despite permitting positive carry-over; its remaining inventory
 was not caused by this traversal change. The coupling review replaced that
 criterion with inventory conservation.
 
+## Wet-state flux and velocity evaluation
+
+A second review used the corrected characteristic inlet and normal-rating outlet.
+It retained the active rectangle, grid, adaptive timesteps, channel subcycling,
+transport equations, sediment closures, and all floods. Two changes were adopted.
+First, HLL evaluates the three hydraulic components where the caller subsequently
+replaces all three suspended-sediment fluxes with its existing donor-cell advection
+and turbulent diffusion. The complete six-component HLL remains the default for
+other callers. No retained component depends on the omitted passive components.
+Second, the velocity magnitude is evaluated as `sqrt(u*u + v*v)`, with
+`u = hu/h` and `v = hv/h`, and an explicit failure on nonfinite squared velocity.
+This is the same Euclidean magnitude as `hypot(hu,hv)/h`, with different floating-point
+roundoff. The existing small-depth condition is unchanged.
+
+The continuation benchmark restored every original `Model` member from the same
+12,219,681-byte state at macrostep 8,000 and time 401,532.86370333412 s. Its input
+contained 16,170 physical floodplain cells with positive depth, of which 12,446
+exceeded 1 mm. Each comparison advanced exactly 1,000 further macrosteps, through
+time approximately 416,423.1419400012 s, with 4,000 additional channel substeps.
+Thus these are wet-state performance tests during the first flood, not complete
+20-day floods or manuscript-panel simulations. No output from these timing tests
+is used as a paper prediction.
+
+The source state SHA-256 is
+`4d071f39772fb418a721a783dcecfb2457a6f71d6bf5dbc2366bcbe74b47ec32`.
+The portable compiler command used GCC 8.5.0 with
+`-O3 -std=c++17 -Wall -Wextra -Wpedantic -lstdc++fs`. No fast-math or native-architecture
+flags were used for the adopted combined comparison. Runs were pinned to logical
+CPU 46, in baseline/combined/combined/baseline order. CPU time is preferable to
+wall time on this shared host; both were recorded, and within-variant variation
+remains material. Individual baseline CPU times were 9.7940 and 11.2799 s;
+combined times were 8.5135 and 9.1346 s. The mean phase measurements were:
+
+| Phase | Corrected baseline CPU (s) | Combined CPU (s) | Reduction |
+|---|---:|---:|---:|
+| Floodplain rates | 7.427761 | 6.022816 | 18.91% |
+| Channel substeps | 0.192542 | 0.181318 | 5.83% |
+| Floodplain advance | 2.883819 | 2.596328 | 9.97% |
+| Whole continuation process | 10.536935 | 8.824053 | 16.26% |
+
+Whole-process timing includes writing the final state and small timing overhead.
+Mean wall time decreased from 21.199886 to 17.764786 s
+(16.20%). These observations do not establish
+a hardware-independent speedup or the runtime of the 580-flood ensemble.
+
+Separate trials measured the contribution of each change. HLL alone, with the
+same portable flags, reduced mean CPU time from 8.859934 to 8.165229 s
+(7.84%). Its two final states were byte-identical to both baseline states,
+including physical variables, rates, exchange, gradients, counters, and ledgers.
+All had SHA-256
+`537ca01ed408c2f7b6ac8d47b4019fb14f2c64ac0dd6ce15be57558e1f35ecfc`.
+A comparison of 100,000 randomized hydraulic interfaces also found bitwise identity
+between the first three components of full and hydraulic HLL. The HLL prototype
+passed the coupled tests. Component, sediment, migration, and coupled tests also
+passed with the HLL and zero-settling prototypes together; the latter shortcut was
+subsequently rejected on performance grounds.
+
+A separate velocity-magnitude trial on CPU 47 used native flags in both variants
+and reduced mean CPU from 8.819014 to 7.665703 s
+(13.08%). That experiment is evidence
+for the operation, not the portable combined timing. Native flags alone improved
+mean CPU by about 1.46% and were not adopted. The separate gains must not be added;
+the directly measured combined result above is the relevant comparison.
+
+The adopted combined implementation also passed the full component, sediment,
+migration, coupled, and restart checks (`make check`).
+
+The adopted combined state is not byte-identical because the magnitude expression
+changes rounding. Both repeats produced the same final state within each variant.
+Observed maximum absolute differences, over every stored component, were:
+
+| Quantity | Maximum absolute difference |
+|---|---:|
+| Channel water depth | 3.55e-15 m |
+| Grid water depth, including mapped ghosts | 5.33e-15 m |
+| Channel or grid momentum | 3.02e-14 m²/s |
+| Suspended class inventory | 4.09e-14 kg/m² |
+| Bed elevation | 4.44e-16 m |
+| Event deposit thickness | 2.39e-18 m |
+| Simulation clock | 5.82e-11 s |
+
+The largest component difference scaled by `max(1, maximum absolute baseline
+component)` was 2.74e-15. Both variants finished at macrostep 9,000 and channel
+substep 82,727. All physical arrays were finite. Both water and sediment correction
+ledgers remained zero. The water-storage difference was 5.96e-8 m³, the beta
+difference was 1.22e-19, and the ridge-height difference was 9.76e-19 m.
+The water-budget residual differed by 1.49e-7 m³ and the suspended-sediment residual
+by 3.88e-7 kg. These are observed roundoff limits for this finite interval, not a
+bound on divergence after hundreds of nonlinear floods. The test ends within a
+flood and does not exercise migration or the output clock normalization at a
+completed-flood boundary.
+
+The archived hashes below identify the exact compared headers. Source files were
+copied before compilation and retained with the harness and binary hashes in
+`tmp/performance_alternatives/combined_comparison.json`. Earlier hashes in this
+review identify their own historical experiments and have not been replaced.
+
+| Snapshot | Header | SHA-256 |
+|---|---|---|
+| base | `model.hpp` | `ac1a935c8f908ce12eaa7fad347048bcbd9957fc5fb4ed7dc5a385a9ded79b2c` |
+| base | `finite_volume.hpp` | `0c5a6cb7b9d7af69a6125cc8c3b721674796fe07f388e3cf5c670dd952108111` |
+| hydro | `model.hpp` | `855180ab6796c43cf5e979e63b2b5f2356f1705ff229ff18c89ea423191edbd6` |
+| hydro | `finite_volume.hpp` | `b05451791f0f9028db567006f32f99aaabf6fb3500d5051c47d1eee9ce7836d6` |
+| combined | `model.hpp` | `69e57a6820c2a2d148b823972898e0137b9d08683d67a495658819e82d4d320a` |
+| combined | `finite_volume.hpp` | `57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d` |
+
+The separate norm-only model header has SHA-256
+`a239cd94cf3a7cc2a3601be07403f6a8a148a8056d71f4d99ba1bfe122539bc2`.
+
+The unchanged sediment and migration headers have SHA-256
+`3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2` and
+`047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196`, respectively. The frozen
+continuation harness has SHA-256
+`7fa3fa77700541cf38f546fbd942bce1ea9c76777f14b98d6a77c332504273c3`.
+All original and combined hashes, binary hashes, exact process commands, repeated
+phase measurements, individual component differences, and ledgers are retained in
+the JSON records. The main source file is not an input to this stepping harness.
+
+Reproduction commands, from the repository root, are:
+
+```sh
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic tmp/performance_alternatives/base/continuation.cpp -o tmp/performance_alternatives/base/continuation -lstdc++fs
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic tmp/performance_alternatives/combined/continuation.cpp -o tmp/performance_alternatives/combined/continuation -lstdc++fs
+python3 tmp/performance_alternatives/run_combined.py
+python3 tmp/performance_alternatives/analyze_combined.py
+```
+
+The analyzer reads the native benchmark serialization; it is separate from the
+production checkpoint format. Its metrics helper was compiled with the unchanged
+baseline metric functions. The experiment directories are development evidence,
+not required production inputs.
+
 ## Further opportunities and limits
 
 A prototype cached velocity magnitudes and diffusivities once per cell to
@@ -117,10 +249,16 @@ without changing the numerical problem. A per-run flux loop cannot simply
 be parallelized: adjacent faces update shared cells and channel sections,
 so careless parallel accumulation introduces data races and changes sums.
 
-Further low-risk candidates include reusing `Q^2.5` within each channel
-substep and skipping the exponential settling evaluation for exactly zero
-settling speed or suspended mass. These have not been credited with a
-measured gain. Changes to HLL work, face-property storage, or parallel
-accumulation require a separate benchmark and comparison of complete states.
-Coarsening space or time, shortening floods, and omitting late floods are
-not computational optimizations of the same simulation.
+A later per-cell diffusivity cache, tested in the wetter continuation above,
+reduced mean CPU by 13.32% and preserved all original model state bytes.
+It was not adopted: its benefit overlaps the new velocity calculation, its sparse
+behavior was unfavorable, and its additional scratch storage was unnecessary for
+the selected patch. No gains from caching are included in the combined result.
+
+Exact-zero settling shortcuts passed 6,561 bitwise operator comparisons, including
+signed zeros, extreme finite inputs, and dry states. The coupled runs remained
+byte-identical, but the measured benefit was small and inconsistent; those
+shortcuts were not adopted. Reusing `Q^2.5` remains an uncredited opportunity.
+Parallel accumulation would require its own race and summation-order analysis.
+Coarsening space or time, shortening floods, and omitting late floods are not
+computational optimizations of the same simulation.
