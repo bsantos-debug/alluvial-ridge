@@ -102,15 +102,17 @@ geometry and zero-inundation handling must be explicitly documented.
    configuration, plots, generated data, LaTeX and PDF to a new repository in
    the authenticated user's account. Verify remote files and PDF link.
 
-## Implemented numerical kernel (preliminary)
+## Implemented reconstruction
 
 `src/finite_volume.hpp` independently implements a first-order HLL shallow-water
 face flux with hydrostatic reconstruction and side-specific bed pressure
 corrections, following the numerical construction described by Audusse et al.
 (2004), https://doi.org/10.1137/S1064827503431090. This is an explicit numerical
 choice, not a claim to use the exact Mingham–Causon implementation named in DR1.
-It evolves h, hu, hv and three h*c masses; concentration units kg/m^3 are a
-provisional implementation convention, not established units for the paper's C.
+It evolves h, hu, hv and three h*c masses. Internal concentration uses kg/m^3.
+The inlet assumes the published concentration is in mg/L, with a factor of
+0.001 converting it to kg/m^3; the 2018 text does not establish this choice.
+The rationale and alternatives are in `docs/sediment-methods.md`.
 
 For each face use z*=max(zL,zR), h*=max(0,h+z-z*), retaining original velocity
 and concentration in reconstructed wet states. HLL wave speeds bound u +/-
@@ -118,8 +120,21 @@ sqrt(g*h). Each side's momentum receives g*(h^2-h*^2)/2 in the face-normal
 component. This preserves constant free-surface zero-velocity solutions over
 bed steps. Water and sediment fluxes are identical on both sides.
 
-The settling substep integrates d(h*c)/dt=-ws*c exactly at constant depth.
-It is a provisional well-mixed settling law pending acquisition of the cited
-sediment closures. It must not be described as the complete published model.
-No friction, diffusion, coupled channel geometry, migration, or model driver
-is implemented yet.
+The coupled driver now includes Chezy resistance, turbulent stress, sediment
+advection and diffusion, shear-dependent cohesive deposition, channel exchange,
+centerline migration and neck cutoffs, bank sediment recycling, prescribed
+channel aggradation, and conservative remapping. The settling substep integrates
+the selected well-mixed loss exactly at fixed depth. The recovered 2013 methods
+specify channel/floodplain Chezy values of 55/10, viscosity 0.07 u* h, a silt
+fall speed of 0.0002 m/s, and a Krone deposition factor. Representative sand
+and clay sizes, critical deposition stress, and several other closures remain
+explicit assumptions. See `docs/implementation.md`, `docs/sediment-methods.md`,
+and `docs/migration.md` for equations, units, provenance, and limitations.
+
+Component and assembled-model checks pass, including closed-lake balance,
+coupled mass conservation, positive transport, remapping and recycling budgets,
+normal-flow refinement, and restart equivalence. These checks validate the
+implemented discretization in their stated limits. They do not establish
+agreement with the manuscript or resolve undocumented physical choices.
+Full-domain numerical refinement and production runs have separate logs and
+completion records; the panel ledger remains authoritative for figure status.

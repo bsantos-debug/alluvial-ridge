@@ -1,5 +1,15 @@
 /build/
+/report/build/
 /sources/
 *.aux
 *.log
 *.out
+/tmp/
+/data/**/checkpoint.bin
+/data/**/checkpoint.tmp
+__pycache__/
+/data/.bin/
+/validation/.bin/
+/validation/runs/**/checkpoint.bin
+/figures/test*/
+/figures/test*/**

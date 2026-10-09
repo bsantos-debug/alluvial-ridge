@@ -1,0 +1,33 @@
+Component and coupled tests pass in the current development build. The
+lake-at-rest kernel error is $6.76\times10^{-15}$ after 1000 steps.
+Analytical settling conserves suspended plus deposited mass, and periodic
+sediment diffusion errors decrease from $1.04\times10^{-5}$ to
+$3.04\times10^{-6}$ to $7.61\times10^{-7}$ under successive refinement.
+Migration tests verify curvature, the upstream convolution, symmetry,
+cutoff length accounting, and finite evolution over 580 migration steps.
+These are tests of the migration component, not 580 coupled flood runs.
+
+Coupled tests verify reflecting boundaries, two-way class and water
+exchange, remapping with and without aggradation, and the complete
+suspension--bed--bank-reservoir ledger. A localized suspended plume remains
+nonnegative through 150 macro steps. Its water and sediment budget
+residuals are approximately $4\times10^{-9}$ m$^3$ and
+$4\times10^{-11}$ kg. A steady normal-channel test has maximum relative
+depth errors 0.179\% and 0.0843\% at 250 and 125 m section spacing.
+The imposed reservoir-release waveform error decreases from 0.004915
+to 0.002461 when the CFL coefficient is halved. Positive integration
+remainders remain in the reservoir; injected plus remaining mass is
+conserved.
+
+A two-flood short-domain checkpoint test reproduces uninterrupted raster
+output, channel coordinates, and the final checkpoint byte-for-byte.
+Changed checkpoint parameters are rejected, and diagnostic rows written
+after the last valid checkpoint are regenerated. These checks establish
+restart behavior for the tested case.
+
+The first full-domain, 20-day flood and representative floodplain-grid and
+time-step refinement calculations are still running. Their results are
+not yet available, and the component tests do not establish grid independence
+or long-term quantitative agreement for the 31 production configurations.
+Exact commands and logs are in \texttt{validation/} and
+\texttt{docs/numerical-validation.md}.

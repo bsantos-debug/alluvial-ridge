@@ -1,0 +1,11 @@
+Existing kernel verification log (scope limited to the named checks):
+\begingroup\scriptsize\begin{verbatim}
+mkdir -p build
+g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Isrc tests/finite_volume.cpp -o build/finite_volume_test
+./build/finite_volume_test
+lake_at_rest_max_error 6.75848e-15
+shared_face_water_sediment_conservation pass
+analytical_settling_and_mass_conservation pass
+dry_interface pass
+
+\end{verbatim}\endgroup

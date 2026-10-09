@@ -1,0 +1,358 @@
+\documentclass[11pt]{article}
+\usepackage[margin=23mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,graphicx,booktabs,longtable,array,xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\pending}[1]{\par\noindent\fbox{\parbox{0.95\linewidth}{\textbf{Not yet available.} #1}}\par}
+\newcommand{\optionalinput}[2]{\IfFileExists{#1}{\input{#1}}{\pending{#2}}}
+\newcommand{\resultfigure}[3]{%
+  \begin{figure}[p]\centering
+  \IfFileExists{#1}{\includegraphics[width=\linewidth,height=0.71\textheight,keepaspectratio]{#1}}%
+  {\fbox{\parbox[c][45mm][c]{0.91\linewidth}{\centering Numerical figure is pending.\\Expected independently generated artifact: \texttt{\detokenize{#1}}.}}}
+  \caption{#2}\label{#3}\end{figure}}
+\title{Alluvial ridge construction and channel--floodplain connectivity:\\an independent numerical reconstruction}
+\author{Independent implementation of the written model specification of Nicholas et al. (2018)}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The balance between channel bed aggradation and overbank deposition controls
+channel depth and the pathways by which water reaches a floodplain. Nicholas
+et al.\ \cite{nicholas2018} used this balance to relate alluvial ridge relief
+to channel--floodplain connectivity over 580 repeated floods. This report
+documents an independent reconstruction from the paper and its written
+supplement. It records the physical specification, numerical assumptions,
+verification evidence, and the status of all 13 manuscript panels. Numerical
+panels must be generated from saved output of this implementation; published
+curves and raster values are not model or plotting inputs. The current
+completion status and remaining limitations are reported explicitly below.
+\end{abstract}
+
+\section{Scope and current evidence}
+The calculation tests whether a coupled one-dimensional channel and
+two-dimensional floodplain model yields the spatial and temporal behavior
+reported by Nicholas et al.\ \cite{nicholas2018}. Their calculations describe
+the period preceding an avulsion. Neither their prescribed channel migration
+model nor the reconstruction should be interpreted as a prediction of an
+avulsion occurrence or recurrence interval.
+
+The permitted scientific inputs are published descriptions and configuration
+values. The authors' original implementation, simulation files, plotting
+scripts, and source data are excluded. Published figures were inspected for
+comparison, without digitization. Published values in the supplement's
+results columns are not substitutes for computed values. No published
+figure is embedded in this report. There are no supplementary figures in
+GSA Data Repository 2018219; DR1 is a written model description and DR2 is
+a parameter and results table \cite{supplement}.
+
+\optionalinput{report/generated/status.tex}{The panel ledger has not been rendered. Run \texttt{report/build.sh}.}
+
+\section{Physical specification}
+We model a floodplain that is 48 km wide and 72 km long. The documented
+grid spacing is 250 m, giving 192 by 288 cells. The initial floodplain is
+planar with downstream slope $10^{-4}$. The initially straight channel has
+width $B=500$ m and depth 8 m. A flood lasts $T_f=20$ days and has minimum
+and peak discharges of 2,500 and 15,000 m$^3$ s$^{-1}$. Each configuration
+requires 580 floods with the same hydrograph. These values are specified
+by DR1 \cite{supplement}; the hydrograph shape is not specified there.
+
+The channel bed rises by a prescribed increment $A$ after each flood.
+At any given flood it has constant slope in channel arc length $s$.
+For a channel of length $L_c$, the slope is $7.2\,\mathrm{m}/L_c$, so the
+inlet--outlet bed elevation drop remains 7.2 m as sinuosity changes.
+For flood index $n$, the prescribed bed is therefore
+\begin{equation}
+ z_c(s,n)=z_c(0,0)+nA-7.2\,\mathrm{m}\frac{s}{L_c(n)}.
+ \label{eq:bed}
+\end{equation}
+The choice of whether a saved snapshot precedes or follows the $n$th bed
+increment must be recorded with the output. Equation~\eqref{eq:bed} imposes
+bed elevation; it does not predict bedload transport.
+
+The inlet concentration follows $S=CQ^{1.5}$. The supplement does not
+state units for $S$ or $C$. Any conversion to SI concentration must be
+identified as an assumption. The default grain fractions are 5\% sand,
+75\% silt, and 20\% clay; the fine mixture is 5\% sand, 20\% silt, and
+75\% clay. The bank erodibility multiplier $E$ is usually 1, with selected
+values of 0.5 and 1.5. Appendix~\ref{sec:runs} lists all 31 configurations.
+
+\subsection{Conservation laws and coupling}
+The written specification requires depth-averaged shallow-water flow and
+three suspended sediment fractions. In a floodplain cell, let $h$ be water
+depth, $\mathbf{u}=(u,v)$ velocity, $z$ bed elevation, and $c_k$ the suspended
+mass concentration for grain class $k$. Away from external boundaries,
+the governing balances have the form
+\begin{align}
+ \partial_t h+\nabla\cdot(h\mathbf{u}) &= 0, \\
+ \partial_t(h\mathbf{u})+
+ \nabla\cdot\left(h\mathbf{u}\otimes\mathbf{u}
+                   +\tfrac12 gh^2\mathbf{I}\right)
+ &= -gh\nabla z-\mathbf{f}_b+\nabla\cdot\mathbf{T}, \label{eq:momentum}\\
+ \partial_t(hc_k)+\nabla\cdot(h\mathbf{u}c_k)
+ &= \nabla\cdot(hD_k\nabla c_k)-d_k . \label{eq:sediment}
+\end{align}
+Here $\mathbf{f}_b$ is bed resistance per unit water density,
+$\mathbf{T}$ represents any chosen horizontal momentum diffusion,
+$D_k$ is sediment diffusivity, and $d_k$ is deposition per unit bed area
+and time. The written sources determine the required transport structure;
+the final constitutive choices and any omitted terms must be stated in the
+implementation record below. If concentration is in kg m$^{-3}$, $d_k$ is
+in kg m$^{-2}$ s$^{-1}$. Deposit thickness is related to deposited mass by
+\begin{equation}
+ \partial_t z=\frac{\sum_k d_k}{\rho_s(1-p)},
+ \label{eq:deposit}
+\end{equation}
+where $\rho_s$ is sediment density and $p$ is deposit porosity. Equation
+\eqref{eq:deposit} applies to the modeled depositional bed changes, not to
+the separately prescribed channel aggradation.
+
+The channel equations integrate the same balances across a rectangular
+section. Channel variables are interpolated to floodplain-grid cells within
+$B/2$ of the centerline, with velocity rotated into the local channel tangent.
+Interface face fluxes update the floodplain and the corresponding channel
+section with equal and opposite water and sediment mass transfers. The
+overlaid channel cells must not duplicate the water or sediment storage
+already represented by the one-dimensional channel.
+
+At the end of each flood, the written specification calls for
+Howard--Knutson migration with neck cutoffs \cite{howard1984}. Newly occupied
+channel cells are lowered to the interpolated channel bed. Their eroded
+sediment is returned at the upstream concentration boundary. The timing,
+grain allocation, and mass accounting for this return are implementation
+choices where DR1 is incomplete. The topography of abandoned channel cells,
+cutoff handling, and remapping of water and sediment also require explicit
+choices. A migration displacement is not itself a shallow-water avulsion.
+
+\subsection{Implementation and unresolved assumptions}
+\optionalinput{report/generated/implementation.tex}{The full coupled implementation record is pending. The initial numerical kernel uses a first-order HLL flux with hydrostatic reconstruction and a fixed-depth, well-mixed settling substep. These choices alone do not implement the complete coupled model. See \texttt{docs/specification.md} for the current assumption ledger.}
+
+DR1 specifies first-order spatial accuracy and an explicit finite-volume
+approximate Riemann solver. The independent kernel uses hydrostatic
+reconstruction \cite{audusse2004}. At an interface, $z_* = \max(z_L,z_R)$ and
+$h_* = \max(0,h+z-z_*)$. Velocities and concentrations are retained in the
+reconstructed wet states. Side-specific pressure corrections balance a
+stationary free surface over bed steps. The HLL water flux and the sediment flux formed from upwind concentration
+are shared between the two sides. These are independently selected numerical
+details, not a claim to match the original implementation.
+
+\section{Diagnostics and verification}
+The published super-elevation ratio is
+\begin{equation}
+ \beta_n=\frac{z_{\mathrm{ridge},n}-z_{\mathrm{distal},n}}
+                  {H_{\mathrm{channel},n}}.
+\end{equation}
+The reported late-time statistic uses the final 20 floods. DR1 does not
+fully define ridge and distal averaging, nor whether averages are taken
+before or after forming the ratio. The reconstruction must state both
+choices. A constant vertical datum cancels from the numerator, but changes
+in the selected ridge or distal region do not.
+
+For each flood, the connectivity measure is sampled at $t=0.6T_f=12$ days:
+\begin{equation}
+ \alpha_n=\frac{\overline{h}_{\mathrm{fp},n}}
+                         {f_{\mathrm{wet},n}},\qquad
+ \alpha_{95}=P_{95}\{\alpha_{381},\ldots,\alpha_{580}\}.
+ \label{eq:alpha}
+\end{equation}
+Here $f_{\mathrm{wet}}$ is the inundated fraction of the channel--floodplain
+interface. Unlike $\beta$, $\alpha$ has units of meters. The depth average
+must specify whether it includes dry floodplain cells. Interface length
+weighting, wetting threshold, and treatment of zero inundation must also
+be recorded. A missing or undefined value must not be silently replaced by
+zero or included as a finite value in a percentile.
+
+Verification must distinguish discrete conservation from agreement with
+the paper. Required checks include a lake at rest, positive wetting and
+drying, coupled water and grain-mass exchange, analytical transport and
+settling, zero forcing limits, and cutoff/remapping budgets. External
+boundary fluxes, bed changes, and prescribed channel aggradation must be
+reported separately. Representative coupled cases require grid and time
+step sensitivity. Kernel tests alone cannot establish these properties for
+the full coupled model.
+
+\optionalinput{report/generated/validation.tex}{Full coupled verification and grid/time sensitivity are pending. The kernel check output, if present, is transcribed below without extending its scope.}
+\optionalinput{report/generated/kernel.tex}{No kernel verification log was available at report build time.}
+
+\section{Independent figures and comparison targets}
+Figures~\ref{fig:deposits}--\ref{fig:diagnostics} reserve all manuscript panels.
+A placeholder is a missing result. A generated panel must retain the
+configuration, sampling time, and plotted-data provenance in
+Appendix~\ref{sec:panels}. Status is assessed separately from whether a
+plotting script produced a file: a valid numerical panel may still disagree
+with the publication.
+
+\subsection{Flood deposits: manuscript panels 1A--F}
+The published comparison is between deposits from individual floods, not
+accumulated bed elevation. Panels 1A--D use $A=0$, $C=0.003$, and the default
+load at floods 61, 251, 501, and 562. Panels 1E and 1F use flood 562, with
+$(A,C)=(0.036,0.003)$ and $(0,0.0003)$, respectively. The published color
+scale spans 0--0.5 m, with deposits below $10^{-6}$ m distinguished from
+the active channel. This scale is a comparison reference, not a clipping
+rule for the computed mass budget.
+
+The paper reports early splay deposition near migrating bend apices,
+progressive widening of the channel belt, and later deposition along
+abandoned channels. It reports reduced floodplain inundation as channel
+depth increases, with event-to-event fluctuations under identical imposed
+floods. The high-aggradation and lower-load cases retain more widespread
+inundation. Independent comparison should measure deposit area above
+$10^{-6}$ m, deposit volume, transverse spread, channel sinuosity, and
+abandoned-channel coverage where saved output supports these diagnostics.
+No pixel-wise match is expected without the undocumented initial migration
+perturbation and dimensional migration parameters.
+
+\resultfigure{figures/figure1.pdf}{Independent model output for manuscript
+panels 1A--F: deposit thickness during each listed flood, in meters, on the
+48 km by 72 km domain. A--D use $A=0$, $C=0.003$, $E=1$, and the default
+grain mixture, at floods 61, 251, 501, and 562. E uses $A=0.036$ and
+$C=0.003$ at flood 562; F uses $A=0$ and $C=0.0003$ at flood 562.
+Flow is downstream. Active channel cells and deposits below $10^{-6}$ m
+must be distinguished in the plot legend. Panel E must show the actual
+interface used for the connectivity calculation. These panels test whether
+levee breaches and abandoned channels focus deposition as the ridge grows.
+The panel ledger gives the status and commands for each requested result.}{fig:deposits}
+
+\subsection{Transverse elevation: manuscript panels 2A--D}
+The cross-section uses the saved grid column nearest the domain midpoint,
+at downstream distance 36.125 km for the 250 m grid. Each panel requires the computed elevations after 50, 225, 400,
+and 580 floods. The published panels show a growing ridge with a concave
+cross-sectional envelope, interrupted by active and abandoned channels.
+The approximate late-time ridge elevations visible in the published
+panels are 40--45 m (2A), 25--30 m (2B), 15--17 m (2C), and 30--33 m (2D).
+These are coarse visual ranges, not digitized observations. The initial
+mid-domain floodplain is plotted near 9 m in the publication; DR1 leaves
+the absolute vertical datum unspecified. Therefore comparisons should
+report ridge relief relative to the initial plane as well as absolute
+elevation, and state any datum shift. Channel minima, ridge width, and the
+sign and scale of relief growth provide additional comparisons.
+
+\resultfigure{figures/figure2.pdf}{Independent model output for manuscript
+panels 2A--D: floodplain elevation versus transverse distance at the
+central grid column, 36.125 km downstream, after 50, 225, 400, and 580 floods.
+Line styles or colors identify flood number and the active channel must be
+marked using saved channel geometry. All cases use $E=1$ and the default
+grain mixture. A: $A=0.036$, $C=0.01$; B: $A=0.036$, $C=0.0003$;
+C: $A=0$, $C=0.0003$; D: $A=0.018$, $C=0.003$.
+Aggradation $A$ is in m per flood. Distance and elevation are in km and m,
+respectively. The plotted vertical datum must be stated. The comparison
+tests ridge relief growth and channel deepening under different balances
+of prescribed bed aggradation and computed overbank deposition.}{fig:sections}
+
+\subsection{Super-elevation and connectivity: manuscript panels 3A--C}
+Panel 3A requires one late-time $\beta$ value for each of the 31
+configurations. The paper reports that $\beta$ rises with $A$ and, over
+most shared $A$ values, decreases with increasing $C$. A finer load reduces
+ridge super-elevation. The prose reports approximately a 15\% increase in
+$\beta$ for lower erodibility and a 6.5\% decrease for higher erodibility;
+these are comparisons to test, not coefficients to impose. Only one of
+the fine-load simulations has published $\beta>1$. The $\beta=1$ line is
+an interpreted topographic threshold, not a modeled avulsion criterion.
+
+Panel 3B compares $\alpha_n$ for $C=0.0003$, 0.003, and 0.01 at
+$A=0.018$ m per flood. The paper reports stronger temporal variability
+and higher peaks as sediment load increases. The published axis spans
+approximately 0.1--10 m; exact event timing is not identifiable from the
+written specification. Panel 3C compares $\alpha_{95}$ across all runs.
+The main reported pattern is large values for high suspended load and
+low aggradation, when conveyance occurs through localized breaches.
+Numerical comparison should report the computed ranges, trend signs,
+late-time variability, and any failure to preserve this ordering. A high
+$\alpha$ by itself does not demonstrate avulsion.
+
+\resultfigure{figures/figure3.pdf}{Independent model output for manuscript
+panels 3A--C. A: super-elevation ratio $\beta$, based on the final 20
+floods, against imposed bed aggradation $A$, for all 31 configurations.
+B: connectivity $\alpha$ at day 12 of each flood for $A=0.018$ m per flood
+and $C=0.0003$, 0.003, and 0.01, with default load and $E=1$.
+C: the 95th percentile of $\alpha$ over floods 381--580 against $A$.
+$\beta$ is dimensionless; $\alpha$ and $\alpha_{95}$ are in meters.
+Symbols must distinguish $C$, fine versus default load, and $E=0.5$, 1,
+or 1.5. A line at $\beta=1$ is a reference from the published
+interpretation. Every plotted value must be computed from saved model
+output, with any missing run or flood identified in the panel ledger.}{fig:diagnostics}
+
+\clearpage
+\optionalinput{report/generated/results.tex}{Quantitative comparison from completed coupled simulations is pending. The comparison targets above describe the publication and do not constitute independently reproduced results.}
+
+\section{Limits of the reconstruction}
+The largest identifiable ambiguities concern the sediment concentration
+units, grain diameters and settling closures, flow resistance, the
+hydrograph shape, and the dimensional migration scale. These choices
+change sediment delivery, bankfull capacity, and the time needed to widen
+the channel belt. Their effects can therefore propagate into every panel.
+The definitions of ridge height and inundated interface add uncertainty
+to $\beta$ and $\alpha$ even when the underlying hydraulic solution is
+unchanged. Assumption sensitivity must be separated from numerical
+resolution sensitivity.
+
+The written model fixes channel width and bed aggradation. It does not
+resolve the bedload supply required to sustain the imposed bed elevation
+changes. Comparisons consequently concern alluvial ridge construction and
+connectivity within that idealization. Inferences about natural avulsion
+likelihood remain bounded by those assumptions.
+
+\section{Rebuild and deliverables}
+\optionalinput{report/generated/rebuild.tex}{A verified clean model-to-report rebuild remains pending. To rebuild this report from the current ledger and figures, run \texttt{bash report/build.sh} from the repository root. That command does not run missing simulations and does not establish a completed reconstruction.}
+
+\appendix
+\section{Figure-by-figure record}\label{sec:panels}
+The record is generated from \texttt{docs/panels.csv}. Every numerical
+panel requires both a data command and a plot command. ``Not reproduced''
+includes unattempted or failed computations; ``partially reproduced'' must
+name the missing sampling, physics, resolution, or agreement; ``independently
+reproduced'' is reserved for a documented panel whose plotted values come
+from this implementation. A schematic cannot satisfy a numerical panel.
+\optionalinput{report/generated/panels.tex}{Panel table has not been generated.}
+
+\section{Configuration matrix}\label{sec:runs}
+This table contains input parameters only. It is generated from
+\texttt{config/runs.csv}, transcribed from the configuration columns of
+DR2 \cite{supplement}. $A$ is in m per flood. Units for the published $C$
+are unspecified. All runs require 580 floods at the documented resolution.
+\optionalinput{report/generated/runs.tex}{Configuration table has not been generated.}
+
+\begin{thebibliography}{9}
+\bibitem{nicholas2018} Nicholas, A. P., Aalto, R. E., Sambrook Smith,
+G. H., and Schwendel, A. C. (2018). Hydrodynamic controls on alluvial ridge
+construction and avulsion likelihood in meandering river floodplains.
+\emph{Geology}, 46, 639--642. \url{https://doi.org/10.1130/G40104.1}.
+\bibitem{supplement} Nicholas, A. P., Aalto, R. E., Sambrook Smith,
+G. H., and Schwendel, A. C. (2018). GSA Data Repository 2018219,
+DR1: Model description; DR2: Table of model parameters and results.
+\url{https://doi.org/10.1130/2018219}.
+\bibitem{howard1984} Howard, A. D., and Knutson, T. R. (1984).
+Sufficient conditions for river meandering: A simulation approach.
+\emph{Water Resources Research}, 20, 1659--1667.
+\url{https://doi.org/10.1029/WR020i011p01659}.
+\bibitem{audusse2004} Audusse, E., Bouchut, F., Bristeau, M.-O.,
+Klein, R., and Perthame, B. (2004). A fast and stable well-balanced scheme
+with hydrostatic reconstruction for shallow water flows.
+\emph{SIAM Journal on Scientific Computing}, 25, 2050--2065.
+\url{https://doi.org/10.1137/S1064827503431090}.
+\bibitem{nicholas2013} Nicholas, A. P., Ashworth, P. J., Sambrook Smith,
+G. H., and Sandbach, S. D. (2013). Numerical simulation of bar and island
+morphodynamics in anabranching megarivers.
+\emph{Journal of Geophysical Research: Earth Surface}, 118, 2019--2044.
+\url{https://doi.org/10.1002/jgrf.20132}.
+\bibitem{ferguson2004} Ferguson, R. I., and Church, M. (2004).
+A simple universal equation for grain settling velocity.
+\emph{Journal of Sedimentary Research}, 74, 933--937.
+\url{https://doi.org/10.1306/051204740933}.
+\bibitem{schwendel2015} Schwendel, A. C., Nicholas, A. P., Aalto, R. E.,
+Sambrook Smith, G. H., and Buckley, S. (2015). Interaction between meander
+dynamics and floodplain heterogeneity in a large tropical sand-bed river:
+the Rio Beni, Bolivian Amazon.
+\emph{Earth Surface Processes and Landforms}, 40, 2026--2040.
+\url{https://doi.org/10.1002/esp.3777}.
+\bibitem{limaye2014} Limaye, A. B. S., and Lamb, M. P. (2014).
+Numerical simulations of bedrock valley evolution by meandering rivers
+with variable bank material.
+\emph{Journal of Geophysical Research: Earth Surface}, 119, 927--950.
+\url{https://doi.org/10.1002/2013JF002997}.
+\end{thebibliography}
+\end{document}

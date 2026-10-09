@@ -1,0 +1,108 @@
+The computational model is C++17. It uses the specified 250 m floodplain
+grid and rectangular channel sections at approximately 250 m spacing.
+The channel mask consists of grid centers within 250 m of the centerline.
+The nearest segment gives linear interpolation weights, which are also used
+for incoming exchange. An outgoing mass is removed in proportion to each
+section's contribution to the interpolated donor inventory; this prevents
+withdrawal from an empty section. The channel's exact rectangular control
+areas replace masked floodplain storage. The raster bed inventory and the
+rectangular water storage consequently have slightly different footprints.
+
+We inherit channel and floodplain Chezy coefficients of 55 and 10
+m$^{1/2}$ s$^{-1}$ from Nicholas et al. (2013) \cite{nicholas2013}. Let $C_h$ denote this
+coefficient, distinct from sediment coefficient $C$. The resistance and
+eddy viscosity are
+\begin{equation}
+ \mathbf f_b=\frac{g}{C_h^2}\mathbf u|\mathbf u|,\qquad
+ u_*=\frac{\sqrt g}{C_h}|\mathbf u|,\qquad \nu_t=0.07u_*h.
+\end{equation}
+The symmetric velocity-gradient tensor gives horizontal turbulent stress;
+we set sediment diffusivity equal to $\nu_t$, an assumed Schmidt number of
+one. A local friction update follows each transport substep.
+
+We assume that $S$ is in mg L$^{-1}$, consistent with concentration units
+reported in the 2013 methods paper, so internal inlet concentration is
+$10^{-3}CQ^{3/2}$ kg m$^{-3}$. At the peak discharge, $C=0.003$ gives
+5.511 kg m$^{-3}$. The 2018 paper does not establish this unit convention.
+Porosity 0.4 and grain density 2650 kg m$^{-3}$ are assumed. Sand settles
+at 0.023244 m s$^{-1}$, calculated from the Ferguson--Church relation \cite{ferguson2004} for
+assumed 0.2 mm particles. Silt uses 0.0002 m s$^{-1}$ from the earlier
+methods paper. Clay uses Stokes settling for assumed unflocculated 2 $\mu$m
+spheres, giving $3.597\times10^{-6}$ m s$^{-1}$.
+For silt and clay, the deposition sink is
+\begin{equation}
+ d_k=w_{s,k}c_k\max(0,1-\tau_b/\tau_c),\qquad
+ \tau_b=\rho_w g|\mathbf u|^2/C_h^2,
+\end{equation}
+with assumed $\tau_c=0.1$ Pa. Sand deposition is independent of this shear
+reduction. At fixed depth and stress, deposition integrates exponentially,
+and the removed suspended mass increments bed elevation exactly once.
+Vertical floodplain entrainment is omitted because the earlier
+sand-capacity-based closure does not close the three-fraction,
+prescribed-channel-bed problem. This omission is a physical uncertainty.
+
+The floodplain is initially dry. The channel starts at the minimum-discharge
+normal depth, 4.356 m, with zero suspended concentration. The unreported
+hydrograph shape is taken as
+\begin{equation}
+ Q(t)=2500+12500\sin^2(\pi t/T_f)\quad\mathrm{m^3\,s^{-1}}.
+\end{equation}
+Water and sediment fields persist between floods. At the inlet we prescribe
+$Q$ and preserve the outgoing shallow-water characteristic
+$u-2\sqrt{gh}$. At the subcritical outlet we preserve $u+2\sqrt{gh}$ and
+impose the Chezy normal-flow rating for the current channel slope.
+These boundary conditions are assumptions. Unsupported incoming
+supercritical states stop the calculation with an explicit error.
+Floodplain lateral and upstream boundaries reflect flow; the downstream
+boundary is transmissive with continued valley slope.
+
+Floodplain transport rates are evaluated once per macro step, with CFL
+coefficient 0.4, a 120 s ceiling, and positive-inventory restrictions.
+The channel takes additional wave-limited substeps with fixed lateral
+exchange rates during that interval. The scheme is first order in time.
+Both representations receive identical integrated water and sediment
+exchange; channel momentum exchange includes the advective streamwise
+component. Side pressure is normal to the physical streamline and is not
+added as a streamwise force from raster stair steps. Exactly dry regions
+are skipped computationally without changing active-state arithmetic.
+
+Migration uses the linear-curvature Howard--Knutson/Ikeda parameterization
+written in later methods descriptions \cite{schwendel2015,limaye2014}. For curvature $\kappa$, define
+\begin{equation}
+ R_0=k_l B\kappa,\qquad
+ R_1=E\left[-R_0+2.5\frac{\int_0^s R_0(\xi)
+ e^{-a(s-\xi)}\,d\xi}{\int_0^s e^{-a(s-\xi)}\,d\xi}\right],
+ \quad a=\frac{2g}{C_h^2 H}.
+\end{equation}
+We use assumed $k_l=400$ m per flood, bankfull depth $H$, fixed endpoints,
+and 5 m initial random perturbations with seed 2018. Here $k_l$ is the
+coefficient per unit dimensionless curvature, not the mean observed
+migration speed. The upstream integral is exact for piecewise-linear
+curvature. Adaptive steps and geometric resampling control numerical
+crowding. Nonadjacent limbs closer than one channel width form a neck
+cutoff. The precise 2018 migration parameterization is unverified.
+
+Migration precedes prescribed aggradation. Newly cut cells are excavated
+to the pre-aggradation channel bed; abandoned cells retain their former
+bed. Eroded dry mass enters a reservoir and is returned at the next inlet
+with the selected grain fractions and a $Q^{3/2}$ concentration shape.
+Release is limited by available reservoir inventory, with quadrature
+remainders carried forward. Conservative overlap in normalized arc length
+remaps channel state; changes in masked raster storage are transferred
+between the channel and floodplain. The redistribution after migration
+and fixed bank grain fractions are explicit assumptions. Prescribed bed
+changes have a separate signed sediment source in the mass ledger.
+A nonpositive bankfull depth is treated as a failure of the prescribed
+channel geometry, not replaced by an artificial minimum.
+
+For $\alpha$, the floodplain depth average includes dry cells. A bank face
+is inundated when floodplain water and channel overtopping both exceed
+1 mm; this threshold affects diagnostics only. No wet interface gives an
+undefined value. The immediate active-channel interface is consistent
+with visual inspection of published Figure 1E, although the raster
+implementation and wetness criterion are assumptions. Ridge relief for
+$\beta$ uses the maximum transverse value of longitudinal-mean relief over
+the central 80\% of the reach, relative to the outermost 10\% lateral bands.
+Channel depth is the bank-face mean elevation minus adjacent channel bed.
+We average the resulting $\beta_n$ over floods 561--580. These averaging
+choices are not specified in DR1.
