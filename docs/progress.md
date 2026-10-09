@@ -5,6 +5,29 @@
 project and task-created TeX cache are absent. Available space was about 1.9 TB.
 The original request is copied into `docs/user-request.txt`.
 
+## Active corrected clean rebuild
+
+Started 2026-10-09 19:22:42 UTC from revision `e8656f4` using:
+
+```sh
+RIDGE_JOBS=31 RIDGE_VALIDATION_JOBS=2 nice -n 10 bash scripts/rebuild.sh tmp/full-rebuild-002
+```
+
+Artifacts: `tmp/full-rebuild-002/`; staged workspace:
+`tmp/full-rebuild-002/workspace/`; root exec session **72007**.
+Launch log: `tmp/full-rebuild-002.launch.log`. Frozen compilation and all
+exact-binary component, coupling, remap and restart checks passed. Sensitivity
+driver PID **3805339** and simulation driver PID **3805340** are running.
+All **31** production case processes were verified live. Each requests the
+full 580-flood calculation; eight full first-flood sensitivity cases use two
+workers. Do not edit the staged sources or restart live cases. Completion and
+scientific agreement remain pending.
+
+This version saves day-12 fields and post-remap budgets. Its automatic report
+also includes numeric refinement/assumption differences and production budget
+extrema with input hashes. `validation/remap-full-check.txt` is the root check
+record; `tmp/full-rebuild-002/checks.log` verifies the exact frozen binary.
+
 ## Interrupted clean rebuild and correction
 
 Started 2026-10-09 19:06:36 UTC using:
@@ -40,7 +63,7 @@ constant concentrations, unsupported sections, and subsequent hydraulic flow.
 Root source additionally saves day-12 rasters at the requested snapshot floods,
 records post-remap budgets, and rejects old checkpoints with a v2 signature.
 All component, coupled, remap, and actual-executable restart checks pass in
-`validation/remap-full-check.txt`. Fresh rebuild is pending.
+`validation/remap-full-check.txt`. The corrected fresh rebuild is described above.
 
 Read manifests, per-case `process_status.json`, and `progress.json` before
 acting. Never restart live work. Do not edit any staged source. No manuscript
