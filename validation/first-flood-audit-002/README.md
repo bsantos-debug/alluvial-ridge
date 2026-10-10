@@ -135,6 +135,44 @@ These are first-flood sensitivities to an explicit concentration assumption,
 without a convergence claim, later-time prediction, or manuscript-panel
 assessment.
 
+`fine-grid.json` compares the completed 250 m baseline and 125 m floodplain-grid
+case, with the same channel geometry and 250 m node spacing during the flood.
+`fine-grid-inputs.tar.xz`
+retains 24 original case files and six evidence files: the full terminal auditor
+and result, its earlier process-identity observation, the validation provenance
+and terminal manifest, and the earlier baseline capture. All 12 baseline member
+bytes are reused unchanged from the retained time-step archive. The new
+`fine-grid-capture.json` records the acquisition and member hashes;
+`fine-grid.py` pins the six evidence files and unchanged `time-step.py` helper.
+The archived historical auditor is retained as source evidence and is not
+executed by the portable replay.
+
+Replay the completed fine-grid comparison using only five adjacent files
+(`fine-grid.py`, its JSON result and capture, its archive, and `time-step.py`):
+
+```sh
+python3 -B validation/first-flood-audit-002/fine-grid.py
+```
+
+The replay decodes both native grids at day 12 and day 20, recomputes native
+area integrals, and compares local fields using equal-area averages of each
+aligned 2-by-2 fine block over a 250 m square. Only squares for which the
+baseline cell and all four fine children are floodplain enter that comparison;
+dry cells are included, and excluded areas and mask disagreements are reported.
+The replay also decodes both complete post-remap checkpoints, reconstructs
+their native channel masks and control areas, reaggregates current water and
+sediment inventories, and recomputes capture and abandonment counts and areas.
+Every numerical result group must match the retained full terminal audit, and
+the CLI must reproduce the saved `fine-grid.json` exactly.
+
+Initial water and full-solid reference inventories remain inferred from the
+recorded residuals, rather than regenerated. Raster half-ULP bounds and channel
+CSV rounding bounds describe storage precision, not discretization error.
+Historical process observations are preserved evidence, not fresh observations
+made during replay. This completed first-flood grid comparison establishes
+sensitivity without a spatial-convergence order, later-flood prediction, or
+manuscript-panel assessment.
+
 `production-observation.py` is the retained live-observation procedure. It
 requires the first-flood checkpoints and matching live processes, and refuses
 later states. Full numerical regeneration follows the documented clean

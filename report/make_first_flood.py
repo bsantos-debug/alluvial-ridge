@@ -513,8 +513,8 @@ def render(comparison, measured, figure):
               'It reads no live process or checkpoint. Artifact and generator',
               r'identities are recorded in \path{report/generated/first_flood_evidence.json};',
               r'the retained sources are in \path{validation/first-flood-audit-002}.',
-              'Later conservation drift, bank recycling, finer-grid sensitivity,',
-              'and long-term morphology require further assessment.']
+              'Later conservation drift, bank recycling, and long-term morphology',
+              'require further assessment.']
     return '\n'.join(lines) + '\n'
 
 
@@ -909,6 +909,153 @@ def render_concentration(evidence):
     return '\n'.join(lines) + '\n'
 
 
+def verify_fine_grid(folder, original_comparison):
+    comparison = runpy.run_path(str(folder / 'fine-grid.py'))['verify'](folder)
+    require(comparison == json.loads((folder / 'fine-grid.json').read_text()),
+            'saved fine-grid comparison differs from archived inputs')
+    baseline = comparison['cases']['baseline250']
+    original = original_comparison['cases']['baseline250']
+    require(all(baseline[key] == original[key] for key in ('process', 'parameters', 'remap')),
+            'fine-grid baseline differs from the retained resolution baseline')
+    return dict(status='verified', comparison=comparison,
+                baseline_reference='verified resolution-inputs.tar.xz baseline250',
+                files_sha256={name: sha(folder / name) for name in
+                              ('fine-grid.py', 'fine-grid.json', 'fine-grid-capture.json',
+                               'fine-grid-inputs.tar.xz', 'time-step.py')})
+
+
+def render_fine_grid(evidence):
+    lines = ['', r'\subsection{Completed first-flood 125 m grid sensitivity}']
+    if evidence['status'] != 'verified':
+        lines.append(r'\pending{The retained fine-grid comparison could not be verified: ' +
+                     tex(evidence['reason']) + '. No numerical fine-grid claim is rendered.}')
+        return '\n'.join(lines) + '\n'
+    comparison = evidence['comparison']
+    names = ('baseline250', 'fine125')
+    require(comparison['format'] == 1 and comparison['baseline_case'] == names[0] and
+            set(comparison['cases']) == set(names) and
+            comparison['parameter_differences'] == {'dx': [250, 125]},
+            'unexpected fine-grid comparison schema or parameter changes')
+    cases = [comparison['cases'][name] for name in names]
+    for case, dx, nx, ny in zip(cases, (250, 125), (288, 576), (192, 384)):
+        require(case['parameters']['dx'] == dx and case['exit_code'] == 0 and
+                case['checkpoint']['flood'] == 1 and
+                case['checkpoint']['elapsed_seconds'] == 1728000,
+                'fine-grid case is not a completed first flood at its declared spacing')
+        for phase, elapsed in (('peak', 1036800), ('end', 1728000)):
+            meta = case[phase]['metadata']
+            require([meta[key] for key in ('dx_m', 'nx', 'ny', 'channel_nodes',
+                                          'flood', 'elapsed_seconds')] ==
+                    [dx, nx, ny, 289, 1, elapsed],
+                    'fine-grid native snapshot geometry or clock changed')
+    require(all(case['summary']['interface_fraction'] == 1 and
+                case['end']['wet_faces'] == 0 and
+                case['end']['reconstructed_alpha_m'] is None and
+                case['checkpoint']['complete_payload_verified'] and
+                case['checkpoint']['finite_payload'] and
+                case['checkpoint']['water_and_suspended_inventory_nonnegative']
+                for case in cases) and
+            cases[0]['prescribed_inputs'] == cases[1]['prescribed_inputs'],
+            'fine-grid interfaces, payload inventories, or prescribed inputs differ')
+    require(all(case['checkpoint'][key] == 0 for case in cases for key in
+                ('captured_floodplain_cells', 'abandoned_channel_cells', 'bank_mass_kg',
+                 'recycled_mass_kg', 'cutoffs', 'water_correction_m3', 'mass_correction_kg')),
+            'fine-grid first-remap activity changed')
+    lines += ['The final first-flood case refines floodplain spacing from 250 to 125 m.',
+              'Both cases retain configuration 11, the corrected executable, the full',
+              '72 km by 48 km domain, CFL limit 0.4, and 250 m initial channel-node',
+              'spacing. Their only numerical parameter difference is floodplain',
+              'spacing. Both complete the 20-day hydrograph with exit code zero.',
+              'The native rasters contain 288 by 192 and 576 by 384 cells, respectively.',
+              'The final case completes the eight-case first-flood campaign;',
+              'the 31 production histories still require the full 580 floods.',
+              '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
+              r'\begin{tabular}{lrrr}', r'\toprule',
+              r'Quantity & 250 m & 125 m & Change (\%) \\', r'\midrule']
+    for title, key in (
+            (r'Day-12 connectivity $\alpha$ (m)', 'alpha'),
+            ('End-flood ridge height (m)', 'ridge_height'),
+            (r'End-flood relative relief $\beta$', 'beta'),
+            ('Mean bankfull depth (m)', 'channel_depth'),
+            (r'End-flood water storage (m$^3$)', 'water_storage'),
+            ('Deposited mineral mass (kg)', 'deposition_source_mineral_mass_kg')):
+        metric = comparison['metric_comparison'][key]
+        lines.append(r'%s & $%s$ & $%s$ & %+.5f \\' %
+                     (title, number(metric['baseline250']), number(metric['fine125']),
+                      metric['percent']))
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'Changes subtract the 250 m baseline and use it as denominator.',
+              'Connectivity is sampled on day 12; relief, depth, and water storage',
+              'are sampled on day 20 before the first remap. Both day-12 inundated',
+              'interface fractions equal one. Deposited mineral mass is the cumulative',
+              'source ledger, whereas raster event deposit is remaining porous',
+              'thickness. At day 20 neither case has a wet bank interface, so',
+              'instantaneous connectivity is undefined there.',
+              '',
+              'For local field comparisons, each aligned two-by-two block of 125 m',
+              'cells is averaged onto its 250 m footprint. Only baseline floodplain',
+              'cells with four floodplain children are included. Here the masks agree:',
+              'all 54,720 floodplain footprints, covering 3,420 km$^2$, are retained,',
+              'including dry cells. The 576 channel footprints (36 km$^2$) are excluded.',
+              'This averaging preserves the native area integral over the common',
+              'floodplain. Values below are in metres; the final column bounds only',
+              'float32 storage error in the mean difference, excluding discretization',
+              'error, arithmetic error, and rounding of the displayed values.',
+              '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
+              r'\begin{tabular}{llrrr}', r'\toprule',
+              r'Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\',
+              r'\midrule']
+    for phase, phase_title in (('peak', 'Day 12'), ('end', 'Day 20')):
+        common = comparison['common_250m_footprint_fields'][phase]
+        require(common['coarse_cells'] == 54720 and common['common_area_m2'] == 3420000000 and
+                common['excluded_coarse_cells'] == 576 and
+                common['excluded_total_area_m2'] == 36000000 and
+                common['excluded_baseline_floodplain_area_m2'] == 0 and
+                common['raster_mask_disagreement_area_m2'] == 0,
+                'fine-grid common footprints or excluded areas changed')
+        for key, title in (('water_depth', 'Water depth'), ('event_deposit', 'Event deposit')):
+            field = common['fields'][key]
+            values = [field[name] for name in ('mean_absolute_difference_m',
+                      'maximum_absolute_difference_m', 'mean_difference_float32_storage_bound_m')]
+            lines.append(phase_title + ' & ' + title + ' & ' +
+                         ' & '.join('$' + number(value) + '$' for value in values) + r' \\')
+    fine = cases[1]
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'The fine-grid post-remap residuals below retain their signs. Water',
+              'uses prescribed upstream input of $%s$ m$^3$ as denominator; both' %
+              number(fine['prescribed_inputs']['prescribed_water_input_m3']),
+              'sediment residuals use $%s$ kg of prescribed mineral input.' %
+              number(fine['prescribed_inputs']['prescribed_sediment_input_kg']),
+              'These inputs exclude outflow, recycling, and signed bed forcing.',
+              '', r'\begin{center}\small', r'\begin{tabular}{lrr}', r'\toprule',
+              r'Inventory & Signed residual & Residual/input \\', r'\midrule']
+    for title, raw, normalized in (
+            (r'Water (m$^3$)', 'post_water_residual', 'post_water'),
+            ('Suspension + deposition (kg)', 'post_sediment_residual', 'post_suspension_plus_deposition'),
+            ('Full solids (kg)', 'post_solid_sediment_residual', 'post_full_solid')):
+        lines.append(r'%s & $%s$ & $%s$ \\' %
+                     (title, number(fine['remap'][raw]),
+                      number(fine['signed_normalized_residuals'][normalized])))
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'The full native checkpoint payload is verified, and current water,',
+              'suspension, bed, and bank inventories are independently reaggregated.',
+              'Initial water and full-solid references are inferred separately from',
+              'each recorded ledger; they are not independently regenerated.',
+              'Both native first remaps have zero captured or abandoned cells, bank',
+              'reservoir, recycling, cutoffs, and water or mass corrections. Signed',
+              'bed forcing is retained separately in each full-solid balance.',
+              '',
+              'Small conservation residuals coexist with substantial changes in',
+              'water storage, ridge relief, and deposition. Adaptive hydraulic steps',
+              'also change with floodplain spacing, while channel spacing stays fixed.',
+              'These first-flood comparisons establish neither a convergence order',
+              'nor grid independence, later bank recycling, 580-flood behavior, or',
+              'agreement with a manuscript panel.',
+              r'The portable replay command is:',
+              r'\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/fine-grid.py}']
+    return '\n'.join(lines) + '\n'
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive-root', type=Path, default=ROOT / 'validation/first-flood-audit-002')
@@ -974,6 +1121,17 @@ def main():
             concentration_tex = render_concentration(concentration)
         evidence['concentration'] = concentration
         content += concentration_tex
+        try:
+            fine_grid = verify_fine_grid(args.archive_root, comparison)
+            fine_grid_tex = render_fine_grid(fine_grid)
+        except (OSError, ValueError, KeyError, TypeError, IndexError, AssertionError,
+                RuntimeError, ZeroDivisionError, struct.error, tarfile.TarError) as error:
+            reason = ('Missing retained file: ' + Path(error.filename).name
+                      if isinstance(error, FileNotFoundError) else str(error))
+            fine_grid = dict(status='pending', reason=reason)
+            fine_grid_tex = render_fine_grid(fine_grid)
+        evidence['fine_grid'] = fine_grid
+        content += fine_grid_tex
         evidence.update(status='verified historical observations', measurements=measured,
                         scope='first flood only; no manuscript-panel assessment')
     except (OSError, ValueError, KeyError, TypeError, tarfile.TarError) as error:

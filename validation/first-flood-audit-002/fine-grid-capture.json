@@ -1,0 +1,277 @@
+{
+  "acquisition": {
+    "baseline": "Twelve original member bytes reused from the unchanged retained time-step-inputs.tar.xz; original baseline source metadata is preserved.",
+    "fine": "Twelve terminal files read twice from the completed corrected rebuild002 fine125 case.",
+    "terminal_evidence": "Six separately pinned evidence files read twice; the original auditor is retained as source and is not executed during portable replay."
+  },
+  "archive": {
+    "bytes": 12494944,
+    "file": "fine-grid-inputs.tar.xz",
+    "member_sha256": {
+      "evidence/audit.py": "089f7083511eb9985baaa5a903f5844bb973fbd2ae4a819bd51149f34025ca43",
+      "evidence/readiness.json": "f5846cdcdb466d51222d7f34c1de14368882026b5456a9be3dd4c8172a45f6f0",
+      "evidence/terminal.json": "a7c108dda3877e033b42c3bc8f0b2879deb5b556712e21c1028b4386685d74af",
+      "evidence/time-step-capture.json": "b47e8c73d2ec99445678bb0d47614edbb021f73aba61d492581e6094135f6b5f",
+      "evidence/validation-manifest.json": "f9fbf826d749847c86d4b6ce5e651751939c466d4c0634cd49f7a10bfa385cf9",
+      "evidence/validation-provenance.json": "66d040d7d9a77b6725efc3d1beaa1089ae6b82df072463ed6b80210401715a94",
+      "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
+      "validation/runs/baseline250/checkpoint.bin": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951",
+      "validation/runs/baseline250/fields_0001.bin": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180",
+      "validation/runs/baseline250/parameters.txt": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d",
+      "validation/runs/baseline250/peak_channel_0001.csv": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f",
+      "validation/runs/baseline250/peak_fields_0001.bin": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea",
+      "validation/runs/baseline250/process_status.json": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17",
+      "validation/runs/baseline250/progress.json": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f",
+      "validation/runs/baseline250/remap_budget.csv": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4",
+      "validation/runs/baseline250/run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
+      "validation/runs/baseline250/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/baseline250/summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d",
+      "validation/runs/fine125/channel_0001.csv": "2d00860469c3a25867318a9b6f3b83d3de6b2fb8d8c1540810736f5725cea8bf",
+      "validation/runs/fine125/checkpoint.bin": "f5b1460baad9502a9743ac96360fa30fb86c0facdb39020833e87677f52db811",
+      "validation/runs/fine125/fields_0001.bin": "0b66b73f4cf575373264d5c1fd3480f5ef0359db95d12ee6b6168937be058998",
+      "validation/runs/fine125/parameters.txt": "4dc61a436c9dbed4935f972971f311f353e5574fdff64b574e7c9d9be7d7e26a",
+      "validation/runs/fine125/peak_channel_0001.csv": "edd6a29aa78885537268c2e286e86c01860cf3560091cbd9314a9a1123a59117",
+      "validation/runs/fine125/peak_fields_0001.bin": "af9a368db2831515b8563ac503811a43cf3208b27b185b44cee720a19441e631",
+      "validation/runs/fine125/process_status.json": "0a5844d6dcc222be5169d3901cef6eb069b7c1bb037633266d917e087e76885d",
+      "validation/runs/fine125/progress.json": "4f6b2e46cdc5bc8c19159901f59a36a7b0aeafac11f065349ee6f1c9cc23494e",
+      "validation/runs/fine125/remap_budget.csv": "4dc1f94e263eba3df9aac27d8d916305070e56dcc9d30f7758b3f291cf6b3145",
+      "validation/runs/fine125/run.log": "e8e3a72e9d94aaf1a93cb1e99b404803e8017d3bb53bb9aa106e60432c8a715f",
+      "validation/runs/fine125/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/fine125/summary.csv": "2c2004423fac5dc49823fbe44faca2aac2bed8fac05a4454e43a484fefdef7df"
+    },
+    "members": 30,
+    "metadata": "Regular-file members only; sorted paths, mode0644, owner names/ids and timestamps normalized; original numerical bytes unchanged.",
+    "sha256": "d635f7f015f5051d09944ce5a43d53e84416b5932914bd45e139601904388bc5"
+  },
+  "captured_utc": "2026-10-10T10:55:46.010491+00:00",
+  "format": 1,
+  "helper_sha256": {
+    "time-step.py": "7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073"
+  },
+  "scope": "Original completed first-flood baseline250 and fine125 artifacts plus pinned terminal audit evidence; numerical bytes unchanged.",
+  "source_identity": {
+    "byte_order": "little",
+    "cases": {
+      "baseline250": {
+        "original_command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250"
+        ],
+        "process_pid": 3805343,
+        "process_pid_absent_at_capture": true,
+        "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250",
+        "source_files": {
+          "channel_0001.csv": {
+            "bytes": 22070,
+            "device": 2049,
+            "inode": 27902168653,
+            "sha256": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533"
+          },
+          "checkpoint.bin": {
+            "bytes": 3115545,
+            "device": 2049,
+            "inode": 27902168654,
+            "sha256": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951"
+          },
+          "fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 27902001309,
+            "sha256": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180"
+          },
+          "parameters.txt": {
+            "bytes": 1115,
+            "device": 2049,
+            "inode": 27902001284,
+            "sha256": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d"
+          },
+          "peak_channel_0001.csv": {
+            "bytes": 22072,
+            "device": 2049,
+            "inode": 27902120510,
+            "sha256": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f"
+          },
+          "peak_fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 27902001302,
+            "sha256": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea"
+          },
+          "process_status.json": {
+            "bytes": 2010,
+            "device": 2049,
+            "inode": 27902168656,
+            "sha256": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17"
+          },
+          "progress.json": {
+            "bytes": 149,
+            "device": 2049,
+            "inode": 27902120503,
+            "sha256": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f"
+          },
+          "remap_budget.csv": {
+            "bytes": 390,
+            "device": 2049,
+            "inode": 27902001286,
+            "sha256": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4"
+          },
+          "run.log": {
+            "bytes": 146,
+            "device": 2049,
+            "inode": 27902001282,
+            "sha256": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad"
+          },
+          "status.txt": {
+            "bytes": 18,
+            "device": 2049,
+            "inode": 27902168655,
+            "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+          },
+          "summary.csv": {
+            "bytes": 433,
+            "device": 2049,
+            "inode": 27902001285,
+            "sha256": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d"
+          }
+        },
+        "utc_finished": "2026-10-09T20:53:50.452840Z",
+        "utc_started": "2026-10-09T19:23:13.257099Z"
+      },
+      "fine125": {
+        "original_command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/fine125",
+          "--dx",
+          "125"
+        ],
+        "process_pid": 3831031,
+        "process_pid_absent_at_capture": true,
+        "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/fine125",
+        "source_files": {
+          "channel_0001.csv": {
+            "bytes": 22073,
+            "device": 2049,
+            "inode": 8590090817,
+            "mtime_ns": 1791629414872649095,
+            "sha256": "2d00860469c3a25867318a9b6f3b83d3de6b2fb8d8c1540810736f5725cea8bf"
+          },
+          "checkpoint.bin": {
+            "bytes": 12405273,
+            "device": 2049,
+            "inode": 8590090818,
+            "mtime_ns": 1791629414967649143,
+            "sha256": "f5b1460baad9502a9743ac96360fa30fb86c0facdb39020833e87677f52db811"
+          },
+          "fields_0001.bin": {
+            "bytes": 3538984,
+            "device": 2049,
+            "inode": 8590081510,
+            "mtime_ns": 1791629414872649095,
+            "sha256": "0b66b73f4cf575373264d5c1fd3480f5ef0359db95d12ee6b6168937be058998"
+          },
+          "parameters.txt": {
+            "bytes": 1120,
+            "device": 2049,
+            "inode": 8590067952,
+            "mtime_ns": 1791574894464400716,
+            "sha256": "4dc61a436c9dbed4935f972971f311f353e5574fdff64b574e7c9d9be7d7e26a"
+          },
+          "peak_channel_0001.csv": {
+            "bytes": 22085,
+            "device": 2049,
+            "inode": 8590081509,
+            "mtime_ns": 1791600060144150587,
+            "sha256": "edd6a29aa78885537268c2e286e86c01860cf3560091cbd9314a9a1123a59117"
+          },
+          "peak_fields_0001.bin": {
+            "bytes": 3538984,
+            "device": 2049,
+            "inode": 8590081487,
+            "mtime_ns": 1791600060144150587,
+            "sha256": "af9a368db2831515b8563ac503811a43cf3208b27b185b44cee720a19441e631"
+          },
+          "process_status.json": {
+            "bytes": 2026,
+            "device": 2049,
+            "inode": 8590090820,
+            "mtime_ns": 1791629415149649236,
+            "sha256": "0a5844d6dcc222be5169d3901cef6eb069b7c1bb037633266d917e087e76885d"
+          },
+          "progress.json": {
+            "bytes": 150,
+            "device": 2049,
+            "inode": 8590069375,
+            "mtime_ns": 1791629319643600557,
+            "sha256": "4f6b2e46cdc5bc8c19159901f59a36a7b0aeafac11f065349ee6f1c9cc23494e"
+          },
+          "remap_budget.csv": {
+            "bytes": 408,
+            "device": 2049,
+            "inode": 8590067954,
+            "mtime_ns": 1791629414936649127,
+            "sha256": "4dc1f94e263eba3df9aac27d8d916305070e56dcc9d30f7758b3f291cf6b3145"
+          },
+          "run.log": {
+            "bytes": 144,
+            "device": 2049,
+            "inode": 8590067950,
+            "mtime_ns": 1791629414872649095,
+            "sha256": "e8e3a72e9d94aaf1a93cb1e99b404803e8017d3bb53bb9aa106e60432c8a715f"
+          },
+          "status.txt": {
+            "bytes": 18,
+            "device": 2049,
+            "inode": 8590090819,
+            "mtime_ns": 1791629414967649143,
+            "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+          },
+          "summary.csv": {
+            "bytes": 428,
+            "device": 2049,
+            "inode": 8590067953,
+            "mtime_ns": 1791629414838649077,
+            "sha256": "2c2004423fac5dc49823fbe44faca2aac2bed8fac05a4454e43a484fefdef7df"
+          }
+        },
+        "utc_finished": "2026-10-10T10:50:14.972269Z",
+        "utc_started": "2026-10-09T19:41:34.416347Z"
+      }
+    },
+    "corrected_binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "frozen_source_sha256": {
+      "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+      "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+      "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+      "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+      "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+    },
+    "pointer_and_size_t_bytes": 8,
+    "source_scope": "Historical source metadata and process identities are evidence; portable replay never resolves or reads these paths.",
+    "validation_provenance_sha256": "66d040d7d9a77b6725efc3d1beaa1089ae6b82df072463ed6b80210401715a94"
+  },
+  "stability_check": {
+    "comparison": "All 30 retained member bytes and current source/container device, inode, size, mtime_ns, ctime_ns.",
+    "first_read_utc": "2026-10-10T10:55:17.862590+00:00",
+    "minimum_pause_seconds": 2,
+    "second_read_utc": "2026-10-10T10:55:21.650499+00:00",
+    "unchanged_files": 30
+  }
+}

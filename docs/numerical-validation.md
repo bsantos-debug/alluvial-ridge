@@ -152,17 +152,31 @@ precision ledger, not from the float32 plot snapshots.
 
 ## Current outcome
 
-The eight-case first-flood campaign is running. The corrected `baseline250`,
-`coarse500`, `time250_cfl02`, `tau005`, `tau020`, `concentration_half`, and
-`concentration_double` cases have completed. Their
+All eight corrected first-flood cases completed with exit code 0:
+`baseline250`, `coarse500`, `fine125`, `time250_cfl02`, `tau005`, `tau020`,
+`concentration_half`, and `concentration_double`. Their
 [retained comparisons](first-flood-validation.md) distinguish grid and
 time-step sensitivity from changes to the assumed deposition threshold and
 concentration multiplier. No convergence result is claimed from these
 comparisons. The half-concentration case completed at
 2026-10-10 06:31:55.020253 UTC with exit 0. The driver automatically started
 `concentration_double` at 06:31:55.245746 UTC; that case completed at
-08:28:03.970245 UTC with exit 0. Only `fine125` remains active, with no
-sensitivity case left queued. The concentration cases vary the
+08:28:03.970245 UTC with exit 0. The final case, `fine125`, completed at
+10:50:14.972269 UTC; the sensitivity driver completed with exit 0 at
+10:50:24.195323 UTC. All 31 production calculations still request 580 floods
+each and remain in progress. The concentration cases vary the
 explicit concentration assumption without changing the hydrograph. Their
 sediment budget denominators use each case's actual concentration multiplier.
 The dimensional deposition threshold remains an unresolved physical parameter.
+
+The [completed 125 m comparison](first-flood-validation.md#completed-250-m-and-125-m-comparison)
+changes only floodplain `dx` relative to 250 m; initial channel nodes remain
+250 m apart. Day-12 alpha increases by 7.52707%, end-flood water storage by
+44.6647%, and ridge height by 109.740%, while deposited mineral source mass
+decreases by 20.4507%. Local fields are compared through aligned 2 by 2 fine
+cell means over common 250 m floodplain footprints, including dry cells.
+The portable `fine-grid.py` replay checks native checkpoint inventories and
+first-remap event masks; initial water and full-solid references remain
+inferred from the recorded residuals. Small normalized budget residuals and
+zero native-grid capture/abandonment counts do not establish convergence or
+predict later-flood behavior.

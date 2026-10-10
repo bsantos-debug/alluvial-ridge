@@ -30,9 +30,10 @@ exact-binary component, coupling, remap and restart checks passed. Sensitivity
 driver PID **3805339** and simulation driver PID **3805340** were launched.
 All **31** production case processes were verified live at the observation
 described below. Each requests the full 580-flood calculation; eight full
-first-flood sensitivity cases use two
-workers. Do not edit the staged sources or restart live cases. Completion and
-scientific agreement remain pending.
+first-flood sensitivity cases were assigned two workers. All eight sensitivity
+cases and their driver have since completed with exit 0, as recorded below.
+Do not edit the staged sources or restart live cases. The full production
+rebuild and scientific agreement remain pending.
 
 At the later read-only check on 2026-10-09 at 22:12:59 UTC, all 31 production
 PIDs still matched their recorded start identities. Each had completed one
@@ -159,8 +160,31 @@ end-flood water storage by +0.336177%. Its post-remap budget normalization
 uses the actual doubled sediment input, `1.0946918077837616e11 kg`.
 The retained comparison now contains all three concentration cases and
 preserves the earlier baseline and half-concentration inputs and results.
-Seven of the eight full first-flood sensitivity cases have now completed;
-only `fine125` remains active, with no sensitivity case left queued.
+The corrected `fine125` case completed at 2026-10-10 10:50:14.972269 UTC
+with exit 0, completing all eight first-flood sensitivity cases. Its original
+PID 3831031 is absent; every case's terminal process record matches the
+validation manifest. The sensitivity driver exited 0 at 10:50:24.195323 UTC.
+The read-only 10:51:20 UTC check found the original wrapper and production
+driver with their expected identities, the production suite lock still held,
+and the historical project alias still resolving directly to the Brooke path.
+
+The fine case changes only floodplain spacing from 250 to 125 m, retaining
+250 m initial channel nodes and the full 20-day hydrograph. Relative to the
+baseline, day-12 alpha increases by 7.52707%, day-20 water storage by 44.6647%,
+and ridge height by 109.740%, while deposited mineral source mass decreases
+by 20.4507%. Common 250 m footprints compare each baseline floodplain cell
+to the mean of four fine floodplain cells; both native first-remap masks give
+zero capture and abandonment. The full checkpoint has finite state and
+nonnegative water, suspended-class, and bank inventories. Water,
+suspension-plus-deposition, and full-solid post-remap residuals divided by
+their prescribed inputs are
+`5.94470e-15`, `-5.94829e-11`, and `-8.12916e-12`, respectively. Current
+inventories are reaggregated; initial water and full-solid references remain
+inferred. The [retained comparison](first-flood-validation.md#completed-250-m-and-125-m-comparison)
+records the native-grid integrals, common-footprint differences, and portable
+replay. These are first-flood resolution sensitivities without a convergence
+order, later-flood prediction, or manuscript-panel claim.
+
 The requested scope remains all 31 production cases at 580 floods each and
 all eight sensitivity cases. Original runner outcomes are preserved; complete
 rebuild and manuscript-panel assessments remain pending.

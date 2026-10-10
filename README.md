@@ -8,10 +8,11 @@ configuration combinations, plotting scripts for all 13 manuscript panels,
 and a LaTeX report scaffold are implemented. Full-duration verification and
 production simulations are ongoing. No manuscript panel is claimed reproduced
 yet. The report's placeholders explicitly identify missing evidence.
-Seven of the eight first-flood sensitivity cases have completed, including
-both concentration perturbations. The 125 m case remains active; the
-[retained comparisons](docs/first-flood-validation.md) cover completed cases
-only.
+All eight first-flood sensitivity cases completed with exit code 0; the
+125 m case finished on 2026-10-10 at 10:50:14 UTC. The
+[retained comparisons](docs/first-flood-validation.md) include the 125 m and
+250 m floodplain grids, with common 250 m initial channel spacing. Their
+substantial diagnostic differences do not establish grid convergence.
 
 Only published written scientific descriptions are specifications. Original
 model code, output files, plotting scripts, source data, and figure files are

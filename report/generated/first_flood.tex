@@ -96,8 +96,8 @@ and 24 completed sensitivity-input file hashes.
 It reads no live process or checkpoint. Artifact and generator
 identities are recorded in \path{report/generated/first_flood_evidence.json};
 the retained sources are in \path{validation/first-flood-audit-002}.
-Later conservation drift, bank recycling, finer-grid sensitivity,
-and long-term morphology require further assessment.
+Later conservation drift, bank recycling, and long-term morphology
+require further assessment.
 
 \paragraph{Sensitivity to diagnostic definitions.}
 The published description does not fix all spatial averages in
@@ -435,3 +435,84 @@ physical concentration, numerical convergence, later bank recycling,
 580-flood behavior, or manuscript-panel agreement.
 The portable replay command is:
 \par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/concentration.py}
+
+\subsection{Completed first-flood 125 m grid sensitivity}
+The final first-flood case refines floodplain spacing from 250 to 125 m.
+Both cases retain configuration 11, the corrected executable, the full
+72 km by 48 km domain, CFL limit 0.4, and 250 m initial channel-node
+spacing. Their only numerical parameter difference is floodplain
+spacing. Both complete the 20-day hydrograph with exit code zero.
+The native rasters contain 288 by 192 and 576 by 384 cells, respectively.
+The final case completes the eight-case first-flood campaign;
+the 31 production histories still require the full 580 floods.
+
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+Quantity & 250 m & 125 m & Change (\%) \\
+\midrule
+Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $9.51062\times10^{-1}$ & +7.52707 \\
+End-flood ridge height (m) & $1.31874\times10^{-2}$ & $2.76593\times10^{-2}$ & +109.73973 \\
+End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $3.43805\times10^{-3}$ & +109.16350 \\
+Mean bankfull depth (m) & $8.02294\times10^{0}$ & $8.04505\times10^{0}$ & +0.27550 \\
+End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $8.0414\times10^{8}$ & +44.66472 \\
+Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $1.78412\times10^{9}$ & -20.45067 \\
+\bottomrule\end{tabular}\end{center}
+Changes subtract the 250 m baseline and use it as denominator.
+Connectivity is sampled on day 12; relief, depth, and water storage
+are sampled on day 20 before the first remap. Both day-12 inundated
+interface fractions equal one. Deposited mineral mass is the cumulative
+source ledger, whereas raster event deposit is remaining porous
+thickness. At day 20 neither case has a wet bank interface, so
+instantaneous connectivity is undefined there.
+
+For local field comparisons, each aligned two-by-two block of 125 m
+cells is averaged onto its 250 m footprint. Only baseline floodplain
+cells with four floodplain children are included. Here the masks agree:
+all 54,720 floodplain footprints, covering 3,420 km$^2$, are retained,
+including dry cells. The 576 channel footprints (36 km$^2$) are excluded.
+This averaging preserves the native area integral over the common
+floodplain. Values below are in metres; the final column bounds only
+float32 storage error in the mean difference, excluding discretization
+error, arithmetic error, and rounding of the displayed values.
+
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrr}
+\toprule
+Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\
+\midrule
+Day 12 & Water depth & $6.74484\times10^{-2}$ & $1.11952\times10^{-1}$ & $7.64439\times10^{-8}$ \\
+Day 12 & Event deposit & $5.08967\times10^{-5}$ & $1.31514\times10^{-2}$ & $1.89734\times10^{-11}$ \\
+Day 20 & Water depth & $7.1387\times10^{-2}$ & $2.40879\times10^{-1}$ & $1.26012\times10^{-8}$ \\
+Day 20 & Event deposit & $1.33319\times10^{-4}$ & $1.55621\times10^{-2}$ & $3.2524\times10^{-11}$ \\
+\bottomrule\end{tabular}\end{center}
+The fine-grid post-remap residuals below retain their signs. Water
+uses prescribed upstream input of $1.512\times10^{10}$ m$^3$ as denominator; both
+sediment residuals use $5.47346\times10^{10}$ kg of prescribed mineral input.
+These inputs exclude outflow, recycling, and signed bed forcing.
+
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+Inventory & Signed residual & Residual/input \\
+\midrule
+Water (m$^3$) & $8.98838\times10^{-5}$ & $5.9447\times10^{-15}$ \\
+Suspension + deposition (kg) & $-3.25577\times10^{0}$ & $-5.94829\times10^{-11}$ \\
+Full solids (kg) & $-4.44946\times10^{-1}$ & $-8.12916\times10^{-12}$ \\
+\bottomrule\end{tabular}\end{center}
+The full native checkpoint payload is verified, and current water,
+suspension, bed, and bank inventories are independently reaggregated.
+Initial water and full-solid references are inferred separately from
+each recorded ledger; they are not independently regenerated.
+Both native first remaps have zero captured or abandoned cells, bank
+reservoir, recycling, cutoffs, and water or mass corrections. Signed
+bed forcing is retained separately in each full-solid balance.
+
+Small conservation residuals coexist with substantial changes in
+water storage, ridge relief, and deposition. Adaptive hydraulic steps
+also change with floodplain spacing, while channel spacing stays fixed.
+These first-flood comparisons establish neither a convergence order
+nor grid independence, later bank recycling, 580-flood behavior, or
+agreement with a manuscript panel.
+The portable replay command is:
+\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/fine-grid.py}

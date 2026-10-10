@@ -1,9 +1,11 @@
 # Full first-flood validation: corrected rebuild 002
 
-The corrected 250 m, 500 m, 250 m half-CFL, 0.05 and 0.2 Pa
-deposition-threshold, and both concentration sensitivity cases have completed
-one full flood. The 125 m case remains active, with no sensitivity case left
-queued.
+All eight corrected sensitivity cases have completed one full flood with
+exit code 0: the 125 m, 250 m, and 500 m grids, 250 m half-CFL, 0.05 and
+0.2 Pa deposition thresholds, and both concentration perturbations. The
+125 m case finished on 2026-10-10 at 10:50:14.972269 UTC; the sensitivity
+driver completed successfully at 10:50:24.195323 UTC. The 31 production
+calculations still request 580 floods each and remain in progress.
 All 31 production cases also completed their first flood and remained active
 in flood 2 at the captured observation on 2026-10-09 at 21:39:16 UTC. These
 results extend the earlier coarse-grid audit preserved below. They establish
@@ -92,16 +94,101 @@ conservative: post-remap water residuals are -1.91927e-5 and -9.29907e-5 m³,
 and full-solid residuals are -0.360248 and -0.259179 kg, respectively.
 Both water and mass correction ledgers are zero.
 
-Two resolutions do not determine a convergence order. The CFL-controlled
-time steps change with floodplain spacing, while channel spacing is held
-fixed; the 125 m case remains active. The time-step comparison follows below. Neither
-first-flood case tests recycling through a subsequent complete hydrograph.
+This two-resolution comparison does not determine a convergence order. The
+CFL-controlled time steps change with floodplain spacing, while channel
+spacing is held fixed. The completed 125 m comparison and the separate
+time-step comparison follow below. Neither first-flood case tests recycling
+through a subsequent complete hydrograph.
 Run 11 at flood 1 also supplies none of the Figure 2 configurations and
 sampling times. Its ridge height is a longitudinal-mean estimator used for
 beta, whereas Figure 2 shows individual central cross-sections at floods
 50, 225, 400, and 580. The profile area, spread, width, and flank definitions
 in [comparison.md](comparison.md) cannot turn these early diagnostics into a
 late-time profile comparison.
+
+## Completed 250 m and 125 m comparison
+
+The corrected `fine125` process completed the full 20-day flood at
+2026-10-10 10:50:14.972269 UTC with exit code 0. Its terminal record agrees
+with the driver manifest and all recorded artifact hashes. Relative to
+`baseline250`, its sole numerical parameter change is `dx`, from 250 to
+125 m. Both use configuration 11, CFL 0.4, the 72 km by 48 km domain, and
+the same corrected executable. Their native rasters are 288 by 192 and
+576 by 384 cells; both start with the same 289 channel nodes at 250 m
+spacing. This refines the floodplain and its channel coupling while holding
+initial channel resolution fixed.
+
+The [saved comparison](../validation/first-flood-audit-002/fine-grid.json),
+[capture record](../validation/first-flood-audit-002/fine-grid-capture.json),
+and [input archive](../validation/first-flood-audit-002/fine-grid-inputs.tar.xz)
+retain the terminal evidence and support an offline replay:
+
+```sh
+python3 -B validation/first-flood-audit-002/fine-grid.py
+```
+
+Day-12 and day-20 fields precede the first remap; the checkpoint follows it.
+Percentages below use `100*(fine125/baseline250 - 1)`. Deposited mineral mass
+is the cumulative source ledger, distinct from porous raster-deposit volume.
+
+| Quantity | 250 m | 125 m | Fine change (%) |
+|---|---:|---:|---:|
+| Alpha on day 12 (m) | 0.884485917 | 0.951061764 | +7.527067 |
+| Ridge height on day 20 (m) | 0.0131874394 | 0.0276593005 | +109.739735 |
+| Beta on day 20 | 0.00164371587 | 0.0034380536 | +109.163498 |
+| Mean channel bankfull depth on day 20 (m) | 8.02294344 | 8.04504633 | +0.275496 |
+| Total water storage before remap (m³) | 555864786 | 804140263 | +44.664725 |
+| Deposited mineral source mass (kg) | 2.24278687e+09 | 1.7841219e+09 | -20.450671 |
+
+At day 12, both sampled bank interfaces are 144 km long and fully inundated,
+so the alpha difference equals the mean floodplain-depth difference. The
+increase in ridge height and decrease in integrated deposited mass describe
+different spatial weightings of the deposit; they do not establish the
+mechanism producing those differences.
+
+For local field differences, each aligned 2 by 2 group of 125 m cells is
+averaged onto its 250 m footprint. A square is included only when the baseline
+cell and all four fine children are floodplain; dry cells are included.
+Both snapshot pairs have 54,720 common squares covering 3420 km², no mask
+disagreement, and 576 excluded channel squares covering 36 km². At day 20,
+water-depth differences have mean absolute value 0.0713870 m and maximum
+0.240879 m; event-deposit thickness differences are 0.000133319 m and
+0.0155621 m, respectively. Float32 half-ULP bounds propagate through the four
+fine-cell averages and quantify storage rounding only, not discretization
+error. Native-grid integrals retain each case's own cell areas and mask.
+
+Both cases use prescribed inputs of `1.512e10 m³` water and
+`5.473459038918808e10 kg` sediment. The latter is independently integrated
+from their actual `C=0.003`, `concentration_scale=0.001`, and hydrograph using
+20,000-interval Simpson quadrature. These gross upstream inputs exclude
+outflow, recycling, and signed bed forcing.
+
+| Signed post-remap residual / prescribed input | 250 m | 125 m |
+|---|---:|---:|
+| Water | -1.2693582e-15 | 5.9446961e-15 |
+| Suspension plus deposition | -1.3782020e-11 | -5.9482943e-11 |
+| Full solid inventory | -6.5817294e-12 | -8.1291568e-12 |
+
+The complete checkpoints have finite state and nonnegative water, suspended
+classes, and bank inventories. The fine case contains 255,409 macrosteps,
+558,524 channel substeps, and 290 post-remap channel nodes. The portable
+replay reaggregates current water, suspended-class, and full-solid inventories
+from each native checkpoint. Fine-grid water storage differs from the ledger
+by `2.02656e-6 m³`; its independently reconstructed suspension-plus-deposition
+residual differs by `-4.75906e-7 kg`. Initial water and full-solid reference
+inventories are inferred separately from the recorded residuals, not
+independently regenerated, and equality across grids is not required.
+
+Native-grid comparisons of the pre-remap channel masks with checkpoint
+centerlines give zero captured and abandoned cells and zero converted area
+in both cases. Bank reservoir, recycling, cutoffs, and numerical correction
+terms are also zero; these raster events do not measure continuous bank
+sweeping. Signed bed forcing remains a separate ledger. The small budget
+residuals coexist with substantial resolution sensitivity. These comparisons
+do not establish spatial convergence: channel spacing remains fixed, CFL time
+steps vary with resolution, and the deposit diagnostics remain sensitive to
+the grid. They establish neither later-flood behavior nor a manuscript-panel
+reproduction.
 
 ## Completed first-flood time-step comparison
 
