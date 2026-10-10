@@ -1,14 +1,19 @@
 # Current authoritative state
 
-2026-10-09: The working project, caches, and temporary files remain under
-`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge` while relocation to
-the requested `/data/data0/brooke` awaits directory creation and suitable
-ownership by an administrator. The current checkout is maintained temporarily
-for the resumed scientific task; its subsequent changes belong in the eventual
-move. No project files are written under home directories. Earlier cleanup
-removed the former home project and task-created TeX cache. Available space
-was about 1.9 TB when this location was selected. The original request is
-copied into `docs/user-request.txt`.
+2026-10-10: The working project, caches, temporary files, and live outputs are
+under `/data/data0/brooke/alluvial-ridge`. At 00:25:50 UTC, an atomic directory
+exchange moved the original directory there and left the former path under
+`dominik-scratch` as a symlink. The account's newly available `fastwriters`
+membership allowed creation of the destination parent, owned by
+`brnisant:others` with mode 0755. About 1.9 TB remained free on the volume.
+All 43 frozen source hashes, all 37 known process identities, 175 writable
+file handles, and the held suite-lock inode survived the move unchanged.
+All 34 model CPU counters advanced afterward. The
+[relocation record](../validation/relocation-20261010/README.md) preserves the
+checks and the requirement to retain the old alias through terminal audit and
+packaging. No project files are written under home directories. Earlier
+cleanup removed the former home project and task-created TeX cache. The
+original request is copied into `docs/user-request.txt`.
 
 ## Active corrected clean rebuild
 
@@ -137,8 +142,8 @@ process records after a live project move. The later finalizer's explicit
 `--reconcile-relocation` option checks only that specific discrepancy against
 the recorded historical output path, unchanged artifact hashes and saved
 completion metadata. It records the later check separately and preserves all
-original states. Relocation and this terminal audit have not occurred; the
-destination still awaits administrator creation. The procedure and its limits
+original states. Relocation occurred on 2026-10-10 at 00:25:50 UTC; the terminal
+audit remains pending while calculations run. The procedure and its limits
 are in [rebuild.md](rebuild.md#relocating-a-project-with-running-calculations).
 `python3 -B tests/runner_relocation.py` passed with real harmless children.
 `python3 -B tests/finalizer_relocation.py` passed the explicit relocation case

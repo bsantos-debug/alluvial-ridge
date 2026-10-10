@@ -1,9 +1,9 @@
 # Coupled implementation, in development
 
 All project artifacts, including temporary files, reside under
-`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`. The `/data/data0`
-volume had approximately 1.9 TB free when selected. Its volume root was not
-writable by the current account; the shared scratch location was writable.
+`/data/data0/brooke/alluvial-ridge`. The `/data/data0` volume had approximately
+1.9 TB free at the 2026-10-10 relocation. The former project path is retained
+as a symlink while existing writers and their terminal provenance audit need it.
 `source scripts/environment.sh` directs temporary files and Python plotting
 caches here. The report build also redirects TeX caches here.
 

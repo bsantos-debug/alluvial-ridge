@@ -25,10 +25,10 @@ the unpublished original model has been recovered exactly.
 
 All project files, outputs, and caches are kept on a `/data/data0` through
 `/data/data7` volume. Current checkout:
-`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`.
-The requested destination is `/data/data0/brooke/alluvial-ridge`; its parent
-directory still requires administrator creation with write access for
-`brnisant`. Work remains in the current checkout until that move is possible.
+`/data/data0/brooke/alluvial-ridge`.
+The project moved there on 2026-10-10 at 00:25:50 UTC. The former path under
+`dominik-scratch` is a temporary symlink for running jobs and their later
+provenance audit. See [the relocation record](validation/relocation-20261010/README.md).
 
 ```bash
 source scripts/environment.sh

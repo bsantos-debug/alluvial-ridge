@@ -1,0 +1,125 @@
+{
+  "contents_copied": false,
+  "destination": "/data/data0/brooke/alluvial-ridge",
+  "directory_and_file_anchors_after": {
+    ".": {
+      "device": 2049,
+      "inode": 4430121513
+    },
+    ".git": {
+      "device": 2049,
+      "inode": 15446244832
+    },
+    "tmp/full-rebuild-002/workspace": {
+      "device": 2049,
+      "inode": 4579499782
+    },
+    "tmp/full-rebuild-002/workspace/data": {
+      "device": 2049,
+      "inode": 67114100
+    },
+    "tmp/full-rebuild-002/workspace/data/.suite.lock": {
+      "device": 2049,
+      "inode": 67114101
+    },
+    "tmp/full-rebuild-002/workspace/data/_inputs/ridge": {
+      "device": 2049,
+      "inode": 4579499800
+    },
+    "tmp/full-rebuild-002/workspace/validation/runs": {
+      "device": 2049,
+      "inode": 19327352990
+    }
+  },
+  "directory_and_file_anchors_before": {
+    ".": {
+      "device": 2049,
+      "inode": 4430121513
+    },
+    ".git": {
+      "device": 2049,
+      "inode": 15446244832
+    },
+    "tmp/full-rebuild-002/workspace": {
+      "device": 2049,
+      "inode": 4579499782
+    },
+    "tmp/full-rebuild-002/workspace/data": {
+      "device": 2049,
+      "inode": 67114100
+    },
+    "tmp/full-rebuild-002/workspace/data/.suite.lock": {
+      "device": 2049,
+      "inode": 67114101
+    },
+    "tmp/full-rebuild-002/workspace/data/_inputs/ridge": {
+      "device": 2049,
+      "inode": 4579499800
+    },
+    "tmp/full-rebuild-002/workspace/validation/runs": {
+      "device": 2049,
+      "inode": 19327352990
+    }
+  },
+  "frozen_source_sha256": {
+    "AGENTS.md": "f0d220a68760daf24c41da082176a107061b0ea33eada5f3b19e0eb5d6c3c837",
+    "Makefile": "625c61bd1b18df2212b4666ed1d4cad605f2ce7b23c54fb70b738ab8aa08f259",
+    "README.md": "3c1b1e33f018d0c9edd91426b797c12575bbe029c6eb7e41d557c2dc6a1ad76a",
+    "brad-lipovsky-academic-style-guide.md": "9856e89591c25dcdc00dda251678912fcea2fba58615ce3f5c19c76d3c5944dd",
+    "config/physics.txt": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+    "config/runs.csv": "3e94421b556e08e8f8b4843974787f1f370393ac1f454c565a2bd03db6952a32",
+    "docs/comparison.md": "c82a4d548cff6f3e4ff2d5f8a3142c9dd47f32699441c246312389c94be6fa29",
+    "docs/deliverable-audit.md": "fb91f349df9c0c6124ac512aae74724879639a5d6f9c501bea216ee836561fcf",
+    "docs/implementation.md": "ca19e765c0a864aec3e332b4ab4cf7d391b2c7eac22954591a7fddf4c5c580d2",
+    "docs/migration.md": "8e2976cda90aab99ae9ee59c1e57c51375529cd030a3a36bcb8c6140192bf52d",
+    "docs/numerical-validation.md": "ce8fd7302a812603ada6eedb237f3a8fbbdbcb99c4c49ab0c7ea9b764691c084",
+    "docs/panels.csv": "0965c3422f8cca2f5d0c12d0bb87e42d4e52ef50372660166425131dcac4fcc7",
+    "docs/performance-review.md": "a4b4535e4a04b6deb1f7f7edfb31f69923346f871eceaa8310c8454ce9f07a8c",
+    "docs/plotting.md": "da6e047278f518c6b1e534ad728338513b971db628619156bb1eac84d090dc0d",
+    "docs/progress.md": "c64f59cd9e7c5d5d8ab6608814efadac1c175b7b2de7227f9efed91095955ef2",
+    "docs/rebuild.md": "c8fd1d6ce68fc24e84e4734ba506dfd3208f7a8a6fedc17ba2478c1730cd1b93",
+    "docs/report-audit.md": "ad5e061e270b4d9d9eba2dd71d3fcd382f933656727bfc52bae195ab013178d2",
+    "docs/scientific-audit.md": "1b3581d40cb714e5642ced67856ec09bb0e554060fe08b80a1681c27ce58bd68",
+    "docs/sediment-methods.md": "9b0336e8a1495b4a691bcb25892facde12c33ecc508ea2be1811bc12b7357a18",
+    "docs/specification.md": "ab775265e0b0dd6d4ef0b3f49240c75e9022cf6a7970922600702b472820f328",
+    "docs/user-request.txt": "7a0cc12dfb4ab1c80007313d523ca519788205a59569c5297a860307209e7957",
+    "report/build.sh": "d49e47a1c53d017a38c9b8e53528a05c638b97f979319c67c0dbd05001ed95bc",
+    "report/generated/implementation.tex": "84f9dff38bea9faa5ca5742cc3a46a9f71a733a064231fc18953f5a272d74efe",
+    "report/main.tex": "e364a562bcfffed754a4eb518766ff2d29fb7e17589239fcba38b3af7ec32fcb",
+    "report/make_inputs.py": "76d6261858b867ff8f2e258d24bee75f93c68b9730b2b1a35a49186899460d42",
+    "report/make_validation.py": "bdb3df0c9550c3b4e0bfa01445f21007eaa8902dd2e4d858c3e27af2006b7d81",
+    "scripts/compare.py": "2bbb43bafd2fbf33c16a795119ebfca12d5bbdce69ae0e1e16c052ddcfc1f003",
+    "scripts/environment.sh": "4ebbcd146f1f51cb1ef0e61b66acd56c0adab33cb0a63f600d89104c9caec60a",
+    "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24",
+    "scripts/rebuild.sh": "03f9cc91f42f78996a77bbd00e5fcab936bef2641e7b743f8cd0cd5006006c81",
+    "scripts/run_suite.py": "b63fe4699820c7b589003ff386c71b6f8d9014143ab2cc34f1fccf427a821367",
+    "scripts/validate_runs.py": "3fbfd561804ad0b2b8f6cc905878c4a2494f7d7da33fd2247903c18e735aeba8",
+    "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+    "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+    "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2",
+    "tests/coupled.cpp": "11e794d47383f1f84c02468a2484d7ebb08f2d7b1cd84f8d3b4fdcb5061593eb",
+    "tests/finite_volume.cpp": "f6bff6e7cd249e220e44d760b4049e6ff1099408b4fa8e6e85c4078dab4c2286",
+    "tests/migration.cpp": "c5edf259e135060874f2ee3cd7e1583a689a474725cdd8ad3fb3b76d05aa9d32",
+    "tests/remap.cpp": "6d1526c3403d604b4be667eafe2b1e52d6c256a22392d0d4b971a31ea55ba19b",
+    "tests/restart.py": "1c8159a702506f1b9b695e8df7ac2a56c20303585be9aaaeeea79642d46f2928",
+    "tests/sediment.cpp": "06cf6bd7ce0046a2cd1e9589de5bf9f81d0f71a356618f8180b4829631fdf57f"
+  },
+  "immutable_sha256": {
+    "scripts/finalize_report.py": "3e7b2995b1c7155427129cd2ff8223d2b4a656c8392ffa911f8347af440f823b",
+    "scripts/run_suite.py": "94ff3f7c0db0cfd8cb28fc81dd3f5d1190404e3172eea8e7c2fb9cfec7e0089a",
+    "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "tmp/full-rebuild-002/workspace/data/_inputs/ridge": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "tmp/full-rebuild-002/workspace/scripts/run_suite.py": "b63fe4699820c7b589003ff386c71b6f8d9014143ab2cc34f1fccf427a821367"
+  },
+  "keep_alias_until": "all writers terminate and the separate relocation audit and packaging finish",
+  "method": "renameat2 RENAME_EXCHANGE with destination self-target symlink",
+  "old_alias_target": "/data/data0/brooke/alluvial-ridge",
+  "parent_directories_fsynced": true,
+  "processes_signaled": false,
+  "source": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge",
+  "state": "moved",
+  "utc_complete": "2026-10-10T00:25:50.471036+00:00",
+  "utc_start": "2026-10-10T00:25:50.439256+00:00"
+}

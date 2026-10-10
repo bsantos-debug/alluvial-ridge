@@ -4,7 +4,7 @@ Keep the checkout and generated files inside this project on a `/data/data0`
 through `/data/data7` volume. The scripts reject output paths outside their
 project root and redirect compiler temporaries and application caches into the
 project. This checkout is at
-`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`. Dependencies are a
+`/data/data0/brooke/alluvial-ridge`. Dependencies are a
 GNU C++17 compiler, GNU make, Python 3 with NumPy and Matplotlib, and pdfLaTeX.
 The numerical rebuild does not require the authors' code, data, or source PDFs.
 
@@ -119,10 +119,15 @@ wrapper execution passed; preserve that distinction in the execution record.
 
 # Relocating a project with running calculations
 
-The requested project destination is `/data/data0/brooke/alluvial-ridge`.
-Its parent must first be writable by the project account. A same-filesystem
-move must preserve the directory inodes and provide the old project path as
-an alias throughout the lifetime of existing writers. Their recorded commands,
+The project moved to `/data/data0/brooke/alluvial-ridge` on 2026-10-10 at
+00:25:50 UTC using an atomic same-filesystem directory exchange. The old path
+is now a symlink to that directory. All 37 known process identities and 175
+writable file handles survived unchanged; all 43 frozen source hashes matched
+before and after the move. The [relocation record](../validation/relocation-20261010/README.md)
+preserves the observations. No numerical process was signaled or restarted.
+
+A same-filesystem move must preserve the directory inodes and provide the old
+project path as an alias throughout the lifetime of existing writers. Their recorded commands,
 working directories and cache paths still reference that location. Do not
 launch a second suite to perform the move or to replace a merely unobserved
 process. The maintained runner resolves output aliases and relative process
@@ -221,6 +226,8 @@ The package contains:
 The tracked `validation/rejected-rebuild-001/` archive is retained under the
 copied workspace's same relative path. Its unchanged interrupted records stay
 inside that labeled archive, separate from canonical production data.
+The tracked `validation/relocation-20261010/` evidence is also retained at its
+original relative path, preserving the documentation links and move audit.
 
 Files are copied as real files, rehashed, and checked against unchanged source
 evidence. A read-only descriptor holds the existing suite lock during the

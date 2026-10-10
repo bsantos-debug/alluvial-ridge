@@ -1,12 +1,15 @@
 # Finalization and publication checklist
 
-Read-only audit at 2026-10-09 19:26 UTC. All files remain under
-`/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge`. Rebuild 002 is
-running: its exact-binary checks passed, all 31 per-case process records are
-running, and no production summary contains a completed flood yet. Its frozen
-source hashes match the outer manifest. No generated manuscript figures or
-002 report PDF exist yet. Root `report/report.pdf` is the 20-page provisional
-report, not the eventual 002 report. All 13 scientific assessments remain open.
+Status at 2026-10-10 00:26 UTC. All project files are under
+`/data/data0/brooke/alluvial-ridge`; the former path is a temporary alias.
+Rebuild 002 remains active with all 31 production processes live. Runs 19,
+20, and 21 have completed three floods; the other 28 have completed two.
+The corrected fine-grid and half-CFL sensitivity jobs remain live. The move
+preserved all 43 frozen source hashes, process identities and open writable
+file handles; see the [relocation record](../validation/relocation-20261010/README.md).
+The full 580-flood calculation and manuscript figures remain pending.
+Root `report/report.pdf` remains provisional. All 13 scientific assessments
+remain open.
 
 ## Evidence required for each panel
 
@@ -228,6 +231,7 @@ timing and its component-only scope explicit when reporting validation.
 | Validation evidence | 002 `validation/runs/`, exact check log, generated validation summary, and the remap regression evidence under root `validation/stress/`. |
 | Corrected first-flood audit | Complete versioned `validation/first-flood-audit-002/`, including methods, observations, capture manifest, and both archives of the original first-flood input bytes. |
 | Later migration component check | `validation/migration-linear/`, `tests/migration_linear.cpp`, and `docs/migration.md`; separate from frozen launch checks and coupled sensitivity. |
+| Live relocation evidence | `validation/relocation-20261010/`; filesystem and process continuity records, separate from terminal numerical checks. |
 | Figures and derived comparisons | Final workspace `figures/`, manifests, metric/section tables and optional helper records. |
 | Final report and execution records | Final workspace `report/main.tex`, required `report/generated/` inputs, `report/report.pdf`, original 002 manifest/PDF, and separate postprocess manifest. |
 | Rejected-attempt record | Clearly separated 001 reason, manifest, frozen sources and logs; never mixed into canonical data folders. |
