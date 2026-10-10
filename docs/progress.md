@@ -185,6 +185,17 @@ records the native-grid integrals, common-footprint differences, and portable
 replay. These are first-flood resolution sensitivities without a convergence
 order, later-flood prediction, or manuscript-panel claim.
 
+At the 2026-10-10 12:03 UTC observation, case 30 had completed flood 7
+with nonzero recycling. Its retained post-flood-6 reservoir contained
+`7.95318281148e8 kg`; flood 7 recycled `7.95318210766e8 kg` before the
+next remap added further bank material. The
+[offline two-checkpoint comparison](../validation/production-recycling-002/README.md)
+reintegrates current physical inventories, computes temporal budget changes,
+and identifies five captured and five abandoned raster cells. It records
+the approximately 2.1 g full-solid arithmetic discrepancy and its sensitivity
+to accumulation order. Pre-remap excavation in each cell remains unassessed.
+This historical validation interval does not establish a manuscript panel.
+
 The requested scope remains all 31 production cases at 580 floods each and
 all eight sensitivity cases. Original runner outcomes are preserved; complete
 rebuild and manuscript-panel assessments remain pending.

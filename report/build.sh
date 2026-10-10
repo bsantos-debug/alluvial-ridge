@@ -9,6 +9,7 @@ export TEXMFVAR="$PWD/report/build/texmf-var"
 export TEXMFCONFIG="$PWD/report/build/texmf-config"
 export TEXMFCACHE="$PWD/report/build/cache"
 python3 report/make_first_flood.py
+python3 -B report/make_recycling.py
 python3 report/make_inputs.py
 pdflatex -interaction=nonstopmode -halt-on-error -output-directory=report/build -jobname=report report/main.tex > report/build/compile-1.txt
 pdflatex -interaction=nonstopmode -halt-on-error -output-directory=report/build -jobname=report report/main.tex > report/build/compile-2.txt

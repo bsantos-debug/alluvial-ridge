@@ -242,6 +242,7 @@ def source_files():
         paths.extend(p for p in files(ROOT / name) if "__pycache__" not in p.parts)
     # Validation evidence is selected from version control, excluding local binaries.
     tracked = subprocess.check_output(["git", "ls-files", "-z", "validation/stress", "validation/first-flood-audit-002",
+                                       "validation/production-recycling-002",
                                        "validation/rejected-rebuild-001", "validation/migration-linear",
                                        "validation/relocation-20261010"], cwd=str(ROOT))
     paths.extend(ROOT / name for name in tracked.decode().split("\0") if name)

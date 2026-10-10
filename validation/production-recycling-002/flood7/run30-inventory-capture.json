@@ -1,0 +1,112 @@
+{
+  "archive": "run30-inventory-inputs.tar.xz",
+  "archive_bytes": 1963912,
+  "archive_sha256": "dfb8a935b69a3e28c486f6fd0053327adb1806c097a23db4118bc8a4cb5aa161",
+  "base_observer_sha256": "035304ef672a640e3c3053a16e137dbb19c8844471c1e8da6adbdcec2c579039",
+  "captured_utc": "2026-10-10T12:04:51.705093+00:00",
+  "member_sha256": {
+    "decoder-source.py": "d6dc1e7833783c09039d7ce41854ac51de3642c6cfd046298dc5c2b35b1f31fd",
+    "inputs/checkpoint.bin": "a82f394f2fdc506e45961c1c37347e3287e463b62a933f03436ed4b47625e8a9",
+    "inputs/parameters.txt": "7eb432fc51585aa80eae480852f10916469c58a653fe8eab8ce86cd691610584",
+    "inputs/process_status.json": "6ca9cf39b2e5f0876264958b17096750f153530561d90f2c37787edb21311370",
+    "inputs/remap_budget.csv": "37c3ed04ffd42cffae33ef1eca3f7ba9f7b8b67c03661a89f97ecd4b8887299c",
+    "inputs/summary.csv": "518cec64413daf134ca54c4e124aab718d9b3268155217eeb512df7408b2ea17",
+    "run30-flood7.json": "02ffa75cc99a069634eb69db64c7dfe5b37ab6b2769065f7d2f6f38139c9ce4c",
+    "run30-inventory.json": "0781c54eced2001efed72abe1d931bb8a941517af241cc16f9f824f30313fabe",
+    "run30-inventory.py": "7dd7e7217274b17b275409a52822a158d4625502c2926b043bfc1dd67182cb82",
+    "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+    "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+    "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+  },
+  "observation_started_utc": "2026-10-10T12:04:46.620230+00:00",
+  "scope": "Retained exact five observed inputs, five frozen numerical sources, reviewed decoder source, pinned seventh-flood scalar audit and new inventory observer/result for case 30 current post-flood-seven inventory. No flood-seven pre-remap bed arrays are captured. Post-flood-six geometry exists separately but is not compared here. Capture/abandonment counts, erosion-by-cell and continuous swept-bank area remain unassessed; initial inventory references are inferred, not independently regenerated. The observer requires live paths/processes; this archive retains evidence without claiming an offline replay.",
+  "source_metadata": {
+    "decoder-source.py": [
+      2049,
+      19327461275,
+      18424,
+      1791614079143073076
+    ],
+    "inputs/checkpoint.bin": [
+      2049,
+      6442658291,
+      3115552,
+      1791633758121331739
+    ],
+    "inputs/parameters.txt": [
+      2049,
+      4579500116,
+      1019,
+      1791573798672675333
+    ],
+    "inputs/process_status.json": [
+      2049,
+      4579500111,
+      1608,
+      1791573798574675267
+    ],
+    "inputs/remap_budget.csv": [
+      2049,
+      4579500118,
+      1458,
+      1791633758113331734
+    ],
+    "inputs/summary.csv": [
+      2049,
+      4579500117,
+      1698,
+      1791633758076331710
+    ],
+    "run30-flood7.json": [
+      2049,
+      27902186926,
+      4560,
+      1791633782485347121
+    ],
+    "run30-inventory.json": [
+      2049,
+      27902186884,
+      3533,
+      1791633868136401167
+    ],
+    "run30-inventory.py": [
+      2049,
+      27902197416,
+      5842,
+      1791633848353388706
+    ],
+    "src/finite_volume.hpp": [
+      2049,
+      17342277173,
+      2188,
+      1791572563104942928
+    ],
+    "src/main.cpp": [
+      2049,
+      17342277174,
+      10938,
+      1791573361928380615
+    ],
+    "src/migration.hpp": [
+      2049,
+      17342277175,
+      9769,
+      1791570858112862385
+    ],
+    "src/model.hpp": [
+      2049,
+      17342277176,
+      30924,
+      1791573377056390823
+    ],
+    "src/sediment.hpp": [
+      2049,
+      17342277177,
+      4323,
+      1791570590331687487
+    ]
+  },
+  "stable_seconds": 2
+}

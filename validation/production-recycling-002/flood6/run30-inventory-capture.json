@@ -1,0 +1,110 @@
+{
+  "archive": "run30-inventory-inputs.tar.xz",
+  "archive_bytes": 1974420,
+  "archive_sha256": "3dc5f8ebec960afbccb1effbce0dfd47cc9d4d94c78c2d130dad9e1e3ddc6893",
+  "captured_utc": "2026-10-10T07:10:26.610060+00:00",
+  "member_sha256": {
+    "decoder-source.py": "d6dc1e7833783c09039d7ce41854ac51de3642c6cfd046298dc5c2b35b1f31fd",
+    "inputs/checkpoint.bin": "ea1ac8b47a8994cc9fd6e23d13500bd339c018264a9ef7f320d7adeb26c0c4a4",
+    "inputs/parameters.txt": "7eb432fc51585aa80eae480852f10916469c58a653fe8eab8ce86cd691610584",
+    "inputs/process_status.json": "6ca9cf39b2e5f0876264958b17096750f153530561d90f2c37787edb21311370",
+    "inputs/remap_budget.csv": "7ab3735f2c061724d39da6537216a0f03fa40bf9bafd39476e2338bce6f7fc60",
+    "inputs/summary.csv": "1af1b5b5f0312f2e68fb589226a11cd2e5ae7c012dade8e38e9b7f375d327416",
+    "run30-flood6.json": "2558a39aa6ec4fc16eb842261a3e565a3b4d8b348fa3e399a0a052c939fe24ed",
+    "run30-inventory.json": "aa27eebf5a0355ea884f30d4d919b2f62d1b1b07da47d8468bc36de469b975ab",
+    "run30-inventory.py": "035304ef672a640e3c3053a16e137dbb19c8844471c1e8da6adbdcec2c579039",
+    "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+    "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+    "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+  },
+  "scope": "Retained exact inputs, frozen numerical sources and audit source/results for case30 flood6 independent inventory check. Captures no pre-remap flood6 snapshot; capture and abandonment counts remain unavailable. The original observer requires live paths/processes; this archive preserves evidence for offline reconstruction without claiming an offline replay was executed.",
+  "source_metadata": {
+    "decoder-source.py": [
+      2049,
+      19327461275,
+      18424,
+      1791614079143073076
+    ],
+    "inputs/checkpoint.bin": [
+      2049,
+      6442673092,
+      3115552,
+      1791616054858310247
+    ],
+    "inputs/parameters.txt": [
+      2049,
+      4579500116,
+      1019,
+      1791573798672675333
+    ],
+    "inputs/process_status.json": [
+      2049,
+      4579500111,
+      1608,
+      1791573798574675267
+    ],
+    "inputs/remap_budget.csv": [
+      2049,
+      4579500118,
+      1266,
+      1791616054839310235
+    ],
+    "inputs/summary.csv": [
+      2049,
+      4579500117,
+      1469,
+      1791616054794310207
+    ],
+    "run30-flood6.json": [
+      2049,
+      6442669976,
+      4499,
+      1791616085410329399
+    ],
+    "run30-inventory.json": [
+      2049,
+      6442670010,
+      3396,
+      1791616159015375540
+    ],
+    "run30-inventory.py": [
+      2049,
+      6442669978,
+      5709,
+      1791616140006363624
+    ],
+    "src/finite_volume.hpp": [
+      2049,
+      17342277173,
+      2188,
+      1791572563104942928
+    ],
+    "src/main.cpp": [
+      2049,
+      17342277174,
+      10938,
+      1791573361928380615
+    ],
+    "src/migration.hpp": [
+      2049,
+      17342277175,
+      9769,
+      1791570858112862385
+    ],
+    "src/model.hpp": [
+      2049,
+      17342277176,
+      30924,
+      1791573377056390823
+    ],
+    "src/sediment.hpp": [
+      2049,
+      17342277177,
+      4323,
+      1791570590331687487
+    ]
+  },
+  "stable_seconds": 2
+}

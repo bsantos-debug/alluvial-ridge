@@ -1,0 +1,48 @@
+\subsection{Archived production bank recycling}
+Retained post-remap checkpoints for case 30 bracket flood 7 of rebuild 002
+($A=0.012$ m per flood, $C=0.0003$, $E=1.5$, 250 m grid).
+Independent endpoint raster masks contain 576 channel cells at each time,
+with 571 common, 5 newly occupied, and 5 abandoned cells.
+The post-flood-6 bank reservoir contains $7.95318281\times10^{8}$ kg;
+$7.95318211\times10^{8}$ kg enters the upstream boundary during flood 7, leaving
+$7.03823\times10^{1}$ kg before remapping. The ledger-derived remap addition is $3.98318\times10^{9}$ kg.
+The reservoir balance differs from the rounded pre-remap summary by $-1.71158\times10^{-5}$ kg.
+
+Let $\Delta$ denote post-flood-7 minus post-flood-6. Water inventory is $W$,
+total suspension $S$, deposited-source mass $D$, signed bed inventory $M$,
+and stored bank mass $K$. The net external ledgers are $N_W,N_S$,
+numerical corrections $C_W,C_S$, signed bed forcing $F$, and cumulative
+recycling $R$. Independent temporal residuals are
+\begin{align*}
+ r_W &= \Delta W-\Delta N_W-\Delta C_W,\\
+ r_{S+D} &= \Delta(S+D)-\Delta N_S-\Delta C_S,\\
+ r_T &= \Delta(S+M+K)+\Delta R-\Delta F-\Delta N_S-\Delta C_S.
+\end{align*}
+Recycling enters the external inlet ledger; $+\Delta R$ removes its
+duplicate contribution when the bank reservoir is included.
+The table compares $r$ with the difference $\Delta e$ of recorded
+post-remap residuals. Normalization uses one prescribed hydrograph:
+$1.512\times10^{10}$ m$^3$ water and $5.47346\times10^{9}$ kg sediment, excluding recycling.
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Inventory & $r$ & $r-\Delta e$ & $(r-\Delta e)$/input \\
+\midrule
+Water (m$^3$) & $-1.86503\times10^{-4}$ & $-1.49012\times10^{-6}$ & $-9.85527\times10^{-17}$ \\
+Suspension + deposition (kg) & $-3.86236\times10^{0}$ & $-8.41566\times10^{-7}$ & $-1.53754\times10^{-16}$ \\
+Full solids (kg) & $-9.36328\times10^{-1}$ & $2.13587\times10^{-3}$ & $3.90224\times10^{-13}$ \\
+\bottomrule\end{tabular}\end{center}
+The full-solid discrepancy remains
+$2.10774\times10^{-3}$ kg when bed changes are summed cell by cell.
+Replaying the frozen diagnostic addition order in Python gives
+$-3.57628\times10^{-7}$ kg; this diagnoses summation-order sensitivity without claiming
+compiled bit identity or a numerical pass threshold.
+
+These are endpoint raster transitions, not continuous swept-bank area
+or counts of physical erosion events. The pre-remap flood-7 bed is absent,
+so excavation mass by cell is unavailable. Current and incremental
+inventory checks require no regenerated initial reference. This single
+production interval establishes neither convergence, long-term behavior,
+nor manuscript-panel agreement. The offline replay verifies both saved
+capsules and reproduces the retained comparison; source and artifact pins
+are in \path{report/generated/recycling_evidence.json}.

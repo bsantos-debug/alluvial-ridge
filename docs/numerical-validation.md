@@ -180,3 +180,24 @@ first-remap event masks; initial water and full-solid references remain
 inferred from the recorded residuals. Small normalized budget residuals and
 zero native-grid capture/abandonment counts do not establish convergence or
 predict later-flood behavior.
+
+## Production bank recycling
+
+The [retained flood-6/7 comparison](../validation/production-recycling-002/README.md)
+tests nonzero bank recycling in production case 30 (`A=0.012`, `C=0.0003`,
+`E=1.5`, 250 m). During flood 7, the recorded reservoir releases
+`7.95318210766e8 kg`; about 70.38 kg remains before remapping. Independently
+decoded masks identify five captured and five abandoned raster cells.
+The ledger records a new bank addition of `3.98318032085e9 kg`. The unsaved
+pre-remap bed prevents an independent per-cell excavation calculation.
+
+Offline integration of both complete checkpoint payloads checks temporal
+water, suspension-plus-deposition and full-solid balances. Their differences
+from the recorded residual changes are `-1.49012e-6 m3`, `-8.41566e-7 kg`,
+and `+0.00213587 kg`. The full-solid difference is approximately accounted
+for by accumulation order; the retained record also reports a stable
+cellwise bed difference and a source-order Python diagnostic, without a
+fitted acceptance threshold or compiled bit-identity claim. Initial
+inventory references cancel in these temporal differences. This is a
+single production interval, not evidence of long-term convergence or
+manuscript-panel agreement.
