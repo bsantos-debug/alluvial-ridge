@@ -34,6 +34,15 @@ continue. The scientific interpretation is in
   member bytes are unchanged. Analysis format 2 names `baseline250` explicitly
   and stores each candidate's parameter, diagnostic, and field comparisons
   under `comparisons`.
+- `concentration.json` compares the corrected 250 m baseline with the completed
+  `concentration_half` case. Their sole parameter difference is the explicit
+  inlet-concentration multiplier, from 0.001 to 0.0005. The 24 original files
+  are retained in `concentration-inputs.tar.xz`, bound by
+  `concentration-capture.json`. `concentration.py` checks the retained capture
+  and replays the analysis using the unchanged, hash-checked `time-step.py`
+  helpers. The baseline member bytes match the earlier archives. The report
+  also binds its baseline process, parameters, and remap ledger to the verified
+  resolution comparison. This capture leaves the prior evidence unchanged.
 
 The original production observation checked live PIDs, start times and
 executables. Those process identities describe that observation time. Later
@@ -102,6 +111,25 @@ candidate minus baseline; percentages use the 0.1 Pa case as denominator.
 This is first-flood sensitivity to an assumed physical
 parameter; it does not establish numerical convergence or constrain the
 appropriate deposition threshold.
+
+Replay the completed half-concentration comparison from its retained files:
+
+```sh
+python3 -B validation/first-flood-audit-002/concentration.py
+```
+
+This command reads only adjacent retained files, verifies both terminal process
+records and all 24 archived inputs, requires the multiplier to be the sole
+parameter change, and compares its replay with the saved analysis. It does not
+read the original live paths. The report requires the same verification and
+renders this comparison as pending if its evidence is missing, stale, or
+altered. Percentage changes use the 0.001 baseline as denominator; field
+differences subtract baseline from half concentration. The sediment residuals
+use separate prescribed-input denominators of `5.473459038918808e10 kg` and
+`2.736729519459404e10 kg`, calculated from the actual multipliers. These are
+first-flood sensitivities to an explicit concentration assumption, without a
+convergence claim, later-time prediction, or manuscript-panel assessment.
+The separate double-concentration calculation remains unfinished.
 
 `production-observation.py` is the retained live-observation procedure. It
 requires the first-flood checkpoints and matching live processes, and refuses

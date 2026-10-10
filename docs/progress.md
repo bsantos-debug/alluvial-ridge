@@ -139,7 +139,20 @@ The driver started `concentration_half` at 04:06:34.128871 UTC. PID 97109
 and start tick 54684527 were verified live at 04:07:29 UTC, with matching
 recorded arguments and the corrected executable. Its sole numerical change
 is the concentration scale, from 0.001 to 0.0005; `fine125` remained live.
-Five of the eight full first-flood sensitivity cases have now completed.
+The half-concentration case completed at 2026-10-10 06:31:55.020253 UTC
+with exit 0. Its retained comparison uses the unchanged baseline and the
+actual half-concentration sediment input, `2.736729519459404e10 kg`.
+Deposited mineral mass decreases by 49.8869%, ridge height by 50.3195%, and
+beta by 50.2482%; day-12 alpha changes by -0.0144729% and end-flood water
+storage by -0.198028%. These are full first-flood assumption sensitivities,
+without a claim about later evolution or an appropriate physical concentration.
+The original process records, complete artifacts, budget normalization, and
+same-grid field differences are retained in the portable
+[concentration comparison](first-flood-validation.md#completed-first-flood-concentration-comparison).
+The driver automatically started `concentration_double` at 06:31:55.245746 UTC,
+with PID 190256 and start tick 55556639. Six of the eight full first-flood
+sensitivity cases have now completed; `fine125` and `concentration_double`
+remain active, with no sensitivity case left queued.
 The requested scope remains all 31 production cases at 580 floods each and
 all eight sensitivity cases. Original runner outcomes are preserved; complete
 rebuild and manuscript-panel assessments remain pending.

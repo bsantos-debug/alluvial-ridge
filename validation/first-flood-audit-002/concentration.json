@@ -1,0 +1,799 @@
+{
+  "baseline_case": "baseline250",
+  "cases": {
+    "baseline250": {
+      "checkpoint": {
+        "abandoned_channel_cells": 0,
+        "bank_by_class_kg": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bank_mass_kg": 0.0,
+        "bed_forcing_mass_kg": 176403.1149361661,
+        "captured_floodplain_cells": 0,
+        "channel_steps": 452282,
+        "complete_payload_verified": true,
+        "cutoffs": 0,
+        "deposited_mass_kg": 2242786871.3885674,
+        "elapsed_seconds": 1728000.0,
+        "finite_payload": true,
+        "flood": 1,
+        "format": "ridge-checkpoint-v2",
+        "mass_correction_kg": 0.0,
+        "net_external_sediment_by_class_kg": [
+          1233531440.2314408,
+          1906477539.3367734,
+          390600577.68546
+        ],
+        "net_external_water_m3": 398972259.98536295,
+        "parameter_signature_verified": true,
+        "post_channel_max_depth_m": 4.991927882537581,
+        "post_channel_min_depth_m": 4.359764703164188,
+        "post_channel_nodes": 290,
+        "recycled_mass_kg": 0.0,
+        "steps": 125765,
+        "water_and_suspended_inventory_nonnegative": true,
+        "water_correction_m3": 0.0
+      },
+      "end": {
+        "alpha_storage_interval_m": [
+          null,
+          null
+        ],
+        "definitely_wet_faces": 0,
+        "event_deposit_bulk_volume_m3": 1410557.7773289056,
+        "event_deposit_bulk_volume_storage_bound_m3": 0.06232028169412818,
+        "floodplain_area_m2": 3420000000.0,
+        "floodplain_cells": 54720,
+        "floodplain_water_volume_m3": 389395604.7826072,
+        "interface_faces": 576,
+        "inundated_area_m2": 2192937500.0,
+        "inundated_area_storage_interval_m2": [
+          2192937500.0,
+          2192937500.0
+        ],
+        "mean_depth_storage_bound_m": 4.791066888623728e-09,
+        "mean_floodplain_depth_m": 0.11385836397152257,
+        "metadata": {
+          "channel_nodes": 289,
+          "dx_m": 250.0,
+          "elapsed_seconds": 1728000.0,
+          "flood": 1,
+          "nx": 288,
+          "ny": 192,
+          "slope": 0.0001
+        },
+        "possibly_wet_faces": 0,
+        "reconstructed_alpha_m": null,
+        "wet_faces": 0
+      },
+      "parameters": {
+        "A": 0.0,
+        "C": 0.003,
+        "E": 1.0,
+        "cfl": 0.4,
+        "channel_chezy": 55.0,
+        "channel_width": 500.0,
+        "clay_d": 2e-06,
+        "concentration_scale": 0.001,
+        "diffusion_scale": 1.0,
+        "duration": 1728000.0,
+        "dx": 250.0,
+        "fine": 0.0,
+        "floodplain_chezy": 10.0,
+        "floods": 1.0,
+        "initial_depth": 8.0,
+        "length": 72000.0,
+        "max_dt": 120.0,
+        "migration": 1.0,
+        "migration_scale": 400.0,
+        "perturbation": 5.0,
+        "porosity": 0.4,
+        "qmax": 15000.0,
+        "qmin": 2500.0,
+        "rho_s": 2650.0,
+        "run": 11.0,
+        "sand_d": 0.0002,
+        "seed": 2018.0,
+        "silt_ws": 0.0002,
+        "slope": 0.0001,
+        "tau_critical": 0.1,
+        "viscosity": 1.0,
+        "width": 48000.0
+      },
+      "peak": {
+        "alpha_storage_interval_m": [
+          0.8844858809828954,
+          0.8844859523487233
+        ],
+        "definitely_wet_faces": 576,
+        "event_deposit_bulk_volume_m3": 807055.5005500951,
+        "event_deposit_bulk_volume_storage_bound_m3": 0.035159497504029864,
+        "floodplain_area_m2": 3420000000.0,
+        "floodplain_cells": 54720,
+        "floodplain_water_volume_m3": 3024941834.997068,
+        "interface_faces": 576,
+        "inundated_area_m2": 3397750000.0,
+        "inundated_area_storage_interval_m2": [
+          3397750000.0,
+          3397750000.0
+        ],
+        "mean_depth_storage_bound_m": 3.568291399856297e-08,
+        "mean_floodplain_depth_m": 0.8844859166658093,
+        "metadata": {
+          "channel_nodes": 289,
+          "dx_m": 250.0,
+          "elapsed_seconds": 1036800.0,
+          "flood": 1,
+          "nx": 288,
+          "ny": 192,
+          "slope": 0.0001
+        },
+        "possibly_wet_faces": 576,
+        "reconstructed_alpha_m": 0.8844859166658093,
+        "wet_faces": 576
+      },
+      "prescribed_inputs": {
+        "prescribed_sediment_input_kg": 54734590389.18808,
+        "prescribed_water_input_m3": 15120000000.0,
+        "sediment_simpson_intervals": 20000
+      },
+      "process": {
+        "artifact_sha256": {
+          "channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
+          "checkpoint.bin": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951",
+          "fields_0001.bin": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180",
+          "parameters.txt": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d",
+          "peak_channel_0001.csv": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f",
+          "peak_fields_0001.bin": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea",
+          "progress.json": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f",
+          "remap_budget.csv": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4",
+          "run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
+          "status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+          "summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d"
+        },
+        "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250"
+        ],
+        "exit_code": 0,
+        "name": "baseline250",
+        "pid": 3805343,
+        "state": "complete",
+        "utc_finished": "2026-10-09T20:53:50.452840Z",
+        "utc_started": "2026-10-09T19:23:13.257099Z",
+        "wall_seconds": 5437.195755243301
+      },
+      "remap": {
+        "clay_transfer_residual": -2.980232238769531e-07,
+        "flood": 1.0,
+        "post_sediment_residual": -0.7543532256968319,
+        "post_solid_sediment_residual": -0.3602482607821003,
+        "post_water_residual": -1.919269561767578e-05,
+        "post_water_storage": 555864786.4839953,
+        "sand_transfer_residual": -4.656612873077393e-10,
+        "silt_transfer_residual": 0.0,
+        "solid_transfer_residual": -0.0004952481249347329,
+        "water_transfer_residual": 3.576278686523438e-07
+      },
+      "signed_residuals_over_prescribed_input": {
+        "post_full_solid": -6.58172936383683e-12,
+        "post_suspension_plus_deposition": -1.3782020114392635e-11,
+        "post_water": -1.2693581757722078e-15,
+        "pre_full_solid": -6.572681189335498e-12,
+        "pre_suspension_plus_deposition": -1.3782014661006945e-11,
+        "pre_water": -1.2930108125859789e-15
+      },
+      "summary": {
+        "alpha": 0.884485916597,
+        "bank_mass": 0.0,
+        "bed_forcing_mass": 0.0,
+        "beta": 0.00164371586631,
+        "channel_depth": 8.02294344114,
+        "channel_steps": 452282.0,
+        "cutoffs": 0.0,
+        "flood": 1.0,
+        "interface_fraction": 1.0,
+        "mean_water": 0.884485916597,
+        "recycled_mass": 0.0,
+        "ridge_height": 0.0131874394287,
+        "sediment_residual": -0.754352927208,
+        "sinuosity": 1.00039418699,
+        "solid_sediment_residual": -0.359753012657,
+        "steps": 125765.0,
+        "wall_seconds": 5437.13830941,
+        "water_residual": -1.95503234863e-05,
+        "water_storage": 555864786.484
+      }
+    },
+    "concentration_half": {
+      "checkpoint": {
+        "abandoned_channel_cells": 0,
+        "bank_by_class_kg": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bank_mass_kg": 0.0,
+        "bed_forcing_mass_kg": 175855.05963611804,
+        "captured_floodplain_cells": 0,
+        "channel_steps": 455511,
+        "complete_payload_verified": true,
+        "cutoffs": 0,
+        "deposited_mass_kg": 1123929735.3039832,
+        "elapsed_seconds": 1728000.0,
+        "finite_payload": true,
+        "flood": 1,
+        "format": "ridge-checkpoint-v2",
+        "mass_correction_kg": 0.0,
+        "net_external_sediment_by_class_kg": [
+          617543651.8093995,
+          953259949.4219706,
+          195153258.13347453
+        ],
+        "net_external_water_m3": 397871494.42979443,
+        "parameter_signature_verified": true,
+        "post_channel_max_depth_m": 4.995617912675071,
+        "post_channel_min_depth_m": 4.359900423672785,
+        "post_channel_nodes": 290,
+        "recycled_mass_kg": 0.0,
+        "steps": 126871,
+        "water_and_suspended_inventory_nonnegative": true,
+        "water_correction_m3": 0.0
+      },
+      "end": {
+        "alpha_storage_interval_m": [
+          null,
+          null
+        ],
+        "definitely_wet_faces": 0,
+        "event_deposit_bulk_volume_m3": 706874.0476829004,
+        "event_deposit_bulk_volume_storage_bound_m3": 0.031271412825565996,
+        "floodplain_area_m2": 3420000000.0,
+        "floodplain_cells": 54720,
+        "floodplain_water_volume_m3": 388241010.6452562,
+        "interface_faces": 576,
+        "inundated_area_m2": 2198250000.0,
+        "inundated_area_storage_interval_m2": [
+          2198250000.0,
+          2198250000.0
+        ],
+        "mean_depth_storage_bound_m": 4.777240130366869e-09,
+        "mean_floodplain_depth_m": 0.11352076334656615,
+        "metadata": {
+          "channel_nodes": 289,
+          "dx_m": 250.0,
+          "elapsed_seconds": 1728000.0,
+          "flood": 1,
+          "nx": 288,
+          "ny": 192,
+          "slope": 0.0001
+        },
+        "possibly_wet_faces": 0,
+        "reconstructed_alpha_m": null,
+        "wet_faces": 0
+      },
+      "parameters": {
+        "A": 0.0,
+        "C": 0.003,
+        "E": 1.0,
+        "cfl": 0.4,
+        "channel_chezy": 55.0,
+        "channel_width": 500.0,
+        "clay_d": 2e-06,
+        "concentration_scale": 0.0005,
+        "diffusion_scale": 1.0,
+        "duration": 1728000.0,
+        "dx": 250.0,
+        "fine": 0.0,
+        "floodplain_chezy": 10.0,
+        "floods": 1.0,
+        "initial_depth": 8.0,
+        "length": 72000.0,
+        "max_dt": 120.0,
+        "migration": 1.0,
+        "migration_scale": 400.0,
+        "perturbation": 5.0,
+        "porosity": 0.4,
+        "qmax": 15000.0,
+        "qmin": 2500.0,
+        "rho_s": 2650.0,
+        "run": 11.0,
+        "sand_d": 0.0002,
+        "seed": 2018.0,
+        "silt_ws": 0.0002,
+        "slope": 0.0001,
+        "tau_critical": 0.1,
+        "viscosity": 1.0,
+        "width": 48000.0
+      },
+      "peak": {
+        "alpha_storage_interval_m": [
+          0.88435787010782,
+          0.8843579414532244
+        ],
+        "definitely_wet_faces": 576,
+        "event_deposit_bulk_volume_m3": 403475.59843461384,
+        "event_deposit_bulk_volume_storage_bound_m3": 0.017573253267851374,
+        "floodplain_area_m2": 3420000000.0,
+        "floodplain_cells": 54720,
+        "floodplain_water_volume_m3": 3024504037.769386,
+        "interface_faces": 576,
+        "inundated_area_m2": 3397750000.0,
+        "inundated_area_storage_interval_m2": [
+          3397750000.0,
+          3397750000.0
+        ],
+        "mean_depth_storage_bound_m": 3.567270226119433e-08,
+        "mean_floodplain_depth_m": 0.8843579057805222,
+        "metadata": {
+          "channel_nodes": 289,
+          "dx_m": 250.0,
+          "elapsed_seconds": 1036800.0,
+          "flood": 1,
+          "nx": 288,
+          "ny": 192,
+          "slope": 0.0001
+        },
+        "possibly_wet_faces": 576,
+        "reconstructed_alpha_m": 0.8843579057805222,
+        "wet_faces": 576
+      },
+      "prescribed_inputs": {
+        "prescribed_sediment_input_kg": 27367295194.59404,
+        "prescribed_water_input_m3": 15120000000.0,
+        "sediment_simpson_intervals": 20000
+      },
+      "process": {
+        "artifact_sha256": {
+          "channel_0001.csv": "df0aeec5cd8928f82989d1ac57fd4314ca670adfbd0ac18d3ecbe46e56799710",
+          "checkpoint.bin": "d8e1f05df67da979eeb65a62df15d5a6675141f25fb9eded5395572821853b16",
+          "fields_0001.bin": "164c4fdce5d7fbe0d3d9a19486dbb64594cb8cefcf4725913686000fc4d75c61",
+          "parameters.txt": "e64bf661f08189166b9490fc738d68a24e128b3827ba4878106ad81eb8356ba1",
+          "peak_channel_0001.csv": "60caa9cb103ec0d57ce081aa6c35d0bf9257d3f5671cc5f63f976e19192f0dd4",
+          "peak_fields_0001.bin": "52b918ec12909da81e73dca63f1abd695f6cad9584451ce33285027d015a4ca4",
+          "progress.json": "462b04245e4ccf2de7e44e7562a6d93ccbf18900c9294daa22f8be09f8b8c028",
+          "remap_budget.csv": "6394552fb7f70d5e873e5c5b88eedf7b993042c47f467f58f8b28100e39cec65",
+          "run.log": "3ea2f611af33938ed1e0cf203f84e09be6a09a9facc213e89e98dbdd8d5e7142",
+          "status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+          "summary.csv": "4fabb5591ac871cd3dd8fdeed2863b628cc47852bd91bfab1b462055acf42845"
+        },
+        "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/concentration_half",
+          "--concentration-scale",
+          "0.0005"
+        ],
+        "exit_code": 0,
+        "name": "concentration_half",
+        "pid": 97109,
+        "state": "complete",
+        "utc_finished": "2026-10-10T06:31:55.020253Z",
+        "utc_started": "2026-10-10T04:06:34.128871Z",
+        "wall_seconds": 8720.891387701035
+      },
+      "remap": {
+        "clay_transfer_residual": 1.192092895507812e-07,
+        "flood": 1.0,
+        "post_sediment_residual": -0.3827291128691286,
+        "post_solid_sediment_residual": -0.3516048809105996,
+        "post_water_residual": 4.690885543823242e-05,
+        "post_water_storage": 554764020.9284929,
+        "sand_transfer_residual": 2.328306436538696e-10,
+        "silt_transfer_residual": 2.384185791015625e-07,
+        "solid_transfer_residual": -0.0003709813172463328,
+        "water_transfer_residual": -7.152557373046875e-07
+      },
+      "signed_residuals_over_prescribed_input": {
+        "post_full_solid": -1.2847629932389276e-11,
+        "post_suspension_plus_deposition": -1.3984908269076238e-11,
+        "post_water": 3.1024375289836257e-15,
+        "pre_full_solid": -1.2834074288144504e-11,
+        "pre_suspension_plus_deposition": -1.3984921345299844e-11,
+        "pre_water": 3.149742802612434e-15
+      },
+      "summary": {
+        "alpha": 0.88435790583,
+        "bank_mass": 0.0,
+        "bed_forcing_mass": 0.0,
+        "beta": 0.000817777462136,
+        "channel_depth": 8.01145115189,
+        "channel_steps": 455511.0,
+        "cutoffs": 0.0,
+        "flood": 1.0,
+        "interface_fraction": 1.0,
+        "mean_water": 0.88435790583,
+        "recycled_mass": 0.0,
+        "ridge_height": 0.00655158419102,
+        "sediment_residual": -0.38272947073,
+        "sinuosity": 1.00039418699,
+        "solid_sediment_residual": -0.351233899593,
+        "steps": 126871.0,
+        "wall_seconds": 8720.76983781,
+        "water_residual": 4.76241111755e-05,
+        "water_storage": 554764020.928
+      }
+    }
+  },
+  "comparisons": {
+    "concentration_half": {
+      "concentration_relative_to_baseline_percent": {
+        "alpha": -0.014472900540074551,
+        "beta": -50.24824673793289,
+        "channel_depth": -0.14324280526608613,
+        "channel_steps": 0.7139351112801284,
+        "deposited_mass": -49.886913034757995,
+        "interface_fraction": 0.0,
+        "mean_water": -0.014472900540074551,
+        "ridge_height": -50.31951254493195,
+        "steps": 0.8794179620721154,
+        "wall_seconds": 60.39264299598655,
+        "water_storage": -0.19802757482851874
+      },
+      "parameter_differences": {
+        "concentration_scale": [
+          0.001,
+          0.0005
+        ]
+      },
+      "same_grid_fields": {
+        "end": {
+          "fields": {
+            "bed": {
+              "maximum_absolute_difference_m": 0.1622767448425293,
+              "maximum_difference_storage_bound_m": 4.76837158203125e-07,
+              "mean_absolute_difference_m": 0.00020575560210681144,
+              "mean_difference_storage_bound_m": 3.0023901252217634e-07,
+              "mean_signed_difference_m": -0.00020575560210681144
+            },
+            "event_deposit": {
+              "maximum_absolute_difference_m": 0.1622769832611084,
+              "maximum_difference_storage_bound_m": 2.2351741790771484e-08,
+              "mean_absolute_difference_m": 0.00020575547650467994,
+              "mean_difference_storage_bound_m": 2.7365992549618175e-11,
+              "mean_signed_difference_m": -0.00020575547650467994
+            },
+            "water_depth": {
+              "maximum_absolute_difference_m": 0.004333116114139557,
+              "maximum_difference_storage_bound_m": 2.9802322387695312e-08,
+              "mean_absolute_difference_m": 0.00035395557568240597,
+              "mean_difference_storage_bound_m": 9.568307018990598e-09,
+              "mean_signed_difference_m": -0.0003376006249564393
+            }
+          },
+          "floodplain_area_m2": 3420000000.0,
+          "floodplain_cells": 54720
+        },
+        "peak": {
+          "fields": {
+            "bed": {
+              "maximum_absolute_difference_m": 0.13199996948242188,
+              "maximum_difference_storage_bound_m": 4.76837158203125e-07,
+              "mean_absolute_difference_m": 0.0001180058863280853,
+              "mean_difference_storage_bound_m": 3.0023837428028037e-07,
+              "mean_signed_difference_m": -0.0001180058863280853
+            },
+            "event_deposit": {
+              "maximum_absolute_difference_m": 0.13199971616268158,
+              "maximum_difference_storage_bound_m": 2.2351741790771484e-08,
+              "mean_absolute_difference_m": 0.00011800581933201209,
+              "mean_difference_storage_bound_m": 1.5418932974234282e-11,
+              "mean_signed_difference_m": -0.00011800581933201209
+            },
+            "water_depth": {
+              "maximum_absolute_difference_m": 0.11806178092956543,
+              "maximum_difference_storage_bound_m": 1.1920928955078125e-07,
+              "mean_absolute_difference_m": 0.00035700949175972087,
+              "mean_difference_storage_bound_m": 7.13556162597573e-08,
+              "mean_signed_difference_m": -0.00012801088528715979
+            }
+          },
+          "floodplain_area_m2": 3420000000.0,
+          "floodplain_cells": 54720
+        }
+      }
+    }
+  },
+  "evidence": {
+    "archive_sha256": "bfbbbefe3ba9607fcaa4e1e1e91ebb24c2bbf310216866e319548f2966bf2104",
+    "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "capture_sha256": "146f4276795c50f41033db40dde998daa61f7b95d207a159e52119615a43eb3d",
+    "captured_utc": "2026-10-10T06:33:45.699566+00:00",
+    "helper_sha256": {
+      "time-step.py": "7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073"
+    },
+    "member_sha256": {
+      "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
+      "validation/runs/baseline250/checkpoint.bin": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951",
+      "validation/runs/baseline250/fields_0001.bin": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180",
+      "validation/runs/baseline250/parameters.txt": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d",
+      "validation/runs/baseline250/peak_channel_0001.csv": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f",
+      "validation/runs/baseline250/peak_fields_0001.bin": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea",
+      "validation/runs/baseline250/process_status.json": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17",
+      "validation/runs/baseline250/progress.json": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f",
+      "validation/runs/baseline250/remap_budget.csv": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4",
+      "validation/runs/baseline250/run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
+      "validation/runs/baseline250/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/baseline250/summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d",
+      "validation/runs/concentration_half/channel_0001.csv": "df0aeec5cd8928f82989d1ac57fd4314ca670adfbd0ac18d3ecbe46e56799710",
+      "validation/runs/concentration_half/checkpoint.bin": "d8e1f05df67da979eeb65a62df15d5a6675141f25fb9eded5395572821853b16",
+      "validation/runs/concentration_half/fields_0001.bin": "164c4fdce5d7fbe0d3d9a19486dbb64594cb8cefcf4725913686000fc4d75c61",
+      "validation/runs/concentration_half/parameters.txt": "e64bf661f08189166b9490fc738d68a24e128b3827ba4878106ad81eb8356ba1",
+      "validation/runs/concentration_half/peak_channel_0001.csv": "60caa9cb103ec0d57ce081aa6c35d0bf9257d3f5671cc5f63f976e19192f0dd4",
+      "validation/runs/concentration_half/peak_fields_0001.bin": "52b918ec12909da81e73dca63f1abd695f6cad9584451ce33285027d015a4ca4",
+      "validation/runs/concentration_half/process_status.json": "e69c0ffb240ee2612b971f6701dc11994aedd4e56e78afb9ef40c5e0d54a6a3e",
+      "validation/runs/concentration_half/progress.json": "462b04245e4ccf2de7e44e7562a6d93ccbf18900c9294daa22f8be09f8b8c028",
+      "validation/runs/concentration_half/remap_budget.csv": "6394552fb7f70d5e873e5c5b88eedf7b993042c47f467f58f8b28100e39cec65",
+      "validation/runs/concentration_half/run.log": "3ea2f611af33938ed1e0cf203f84e09be6a09a9facc213e89e98dbdd8d5e7142",
+      "validation/runs/concentration_half/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/concentration_half/summary.csv": "4fabb5591ac871cd3dd8fdeed2863b628cc47852bd91bfab1b462055acf42845"
+    },
+    "original_source_identity": {
+      "byte_order": "little",
+      "cases": {
+        "baseline250": {
+          "original_command": [
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+            "--config",
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+            "--runs",
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+            "--run",
+            "11",
+            "--floods",
+            "1",
+            "--out",
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250"
+          ],
+          "process_pid": 3805343,
+          "process_pid_absent_at_capture": true,
+          "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250",
+          "source_files": {
+            "channel_0001.csv": {
+              "bytes": 22070,
+              "device": 2049,
+              "inode": 27902168653,
+              "mtime_ns": 1791579230424367839,
+              "sha256": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533"
+            },
+            "checkpoint.bin": {
+              "bytes": 3115545,
+              "device": 2049,
+              "inode": 27902168654,
+              "mtime_ns": 1791579230448367852,
+              "sha256": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951"
+            },
+            "fields_0001.bin": {
+              "bytes": 884776,
+              "device": 2049,
+              "inode": 27902001309,
+              "mtime_ns": 1791579230424367839,
+              "sha256": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180"
+            },
+            "parameters.txt": {
+              "bytes": 1115,
+              "device": 2049,
+              "inode": 27902001284,
+              "mtime_ns": 1791573793274671690,
+              "sha256": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d"
+            },
+            "peak_channel_0001.csv": {
+              "bytes": 22072,
+              "device": 2049,
+              "inode": 27902120510,
+              "mtime_ns": 1791576754570560814,
+              "sha256": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f"
+            },
+            "peak_fields_0001.bin": {
+              "bytes": 884776,
+              "device": 2049,
+              "inode": 27902001302,
+              "mtime_ns": 1791576754570560814,
+              "sha256": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea"
+            },
+            "process_status.json": {
+              "bytes": 2010,
+              "device": 2049,
+              "inode": 27902168656,
+              "mtime_ns": 1791579230528367894,
+              "sha256": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17"
+            },
+            "progress.json": {
+              "bytes": 149,
+              "device": 2049,
+              "inode": 27902120503,
+              "mtime_ns": 1791579192756347850,
+              "sha256": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f"
+            },
+            "remap_budget.csv": {
+              "bytes": 390,
+              "device": 2049,
+              "inode": 27902001286,
+              "mtime_ns": 1791579230440367848,
+              "sha256": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4"
+            },
+            "run.log": {
+              "bytes": 146,
+              "device": 2049,
+              "inode": 27902001282,
+              "mtime_ns": 1791579230424367839,
+              "sha256": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad"
+            },
+            "status.txt": {
+              "bytes": 18,
+              "device": 2049,
+              "inode": 27902168655,
+              "mtime_ns": 1791579230449367852,
+              "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+            },
+            "summary.csv": {
+              "bytes": 433,
+              "device": 2049,
+              "inode": 27902001285,
+              "mtime_ns": 1791579230417367835,
+              "sha256": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d"
+            }
+          },
+          "utc_finished": "2026-10-09T20:53:50.452840Z",
+          "utc_started": "2026-10-09T19:23:13.257099Z"
+        },
+        "concentration_half": {
+          "original_command": [
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+            "--config",
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+            "--runs",
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+            "--run",
+            "11",
+            "--floods",
+            "1",
+            "--out",
+            "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/concentration_half",
+            "--concentration-scale",
+            "0.0005"
+          ],
+          "process_pid": 97109,
+          "process_pid_absent_at_capture": true,
+          "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/concentration_half",
+          "source_files": {
+            "channel_0001.csv": {
+              "bytes": 22071,
+              "device": 2049,
+              "inode": 19327461269,
+              "mtime_ns": 1791613914963970361,
+              "sha256": "df0aeec5cd8928f82989d1ac57fd4314ca670adfbd0ac18d3ecbe46e56799710"
+            },
+            "checkpoint.bin": {
+              "bytes": 3115562,
+              "device": 2049,
+              "inode": 19327461272,
+              "mtime_ns": 1791613914989970377,
+              "sha256": "d8e1f05df67da979eeb65a62df15d5a6675141f25fb9eded5395572821853b16"
+            },
+            "fields_0001.bin": {
+              "bytes": 884776,
+              "device": 2049,
+              "inode": 19327461249,
+              "mtime_ns": 1791613914963970361,
+              "sha256": "164c4fdce5d7fbe0d3d9a19486dbb64594cb8cefcf4725913686000fc4d75c61"
+            },
+            "parameters.txt": {
+              "bytes": 1168,
+              "device": 2049,
+              "inode": 19327461260,
+              "mtime_ns": 1791605194182508879,
+              "sha256": "e64bf661f08189166b9490fc738d68a24e128b3827ba4878106ad81eb8356ba1"
+            },
+            "peak_channel_0001.csv": {
+              "bytes": 22070,
+              "device": 2049,
+              "inode": 19327461270,
+              "mtime_ns": 1791609489941198728,
+              "sha256": "60caa9cb103ec0d57ce081aa6c35d0bf9257d3f5671cc5f63f976e19192f0dd4"
+            },
+            "peak_fields_0001.bin": {
+              "bytes": 884776,
+              "device": 2049,
+              "inode": 19327461266,
+              "mtime_ns": 1791609489941198728,
+              "sha256": "52b918ec12909da81e73dca63f1abd695f6cad9584451ce33285027d015a4ca4"
+            },
+            "process_status.json": {
+              "bytes": 2065,
+              "device": 2049,
+              "inode": 19327461274,
+              "mtime_ns": 1791613915231970528,
+              "sha256": "e69c0ffb240ee2612b971f6701dc11994aedd4e56e78afb9ef40c5e0d54a6a3e"
+            },
+            "progress.json": {
+              "bytes": 152,
+              "device": 2049,
+              "inode": 19327461271,
+              "mtime_ns": 1791613854950932816,
+              "sha256": "462b04245e4ccf2de7e44e7562a6d93ccbf18900c9294daa22f8be09f8b8c028"
+            },
+            "remap_budget.csv": {
+              "bytes": 408,
+              "device": 2049,
+              "inode": 19327461262,
+              "mtime_ns": 1791613914980970371,
+              "sha256": "6394552fb7f70d5e873e5c5b88eedf7b993042c47f467f58f8b28100e39cec65"
+            },
+            "run.log": {
+              "bytes": 146,
+              "device": 2049,
+              "inode": 19327461257,
+              "mtime_ns": 1791613914963970361,
+              "sha256": "3ea2f611af33938ed1e0cf203f84e09be6a09a9facc213e89e98dbdd8d5e7142"
+            },
+            "status.txt": {
+              "bytes": 18,
+              "device": 2049,
+              "inode": 19327461273,
+              "mtime_ns": 1791613914989970377,
+              "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+            },
+            "summary.csv": {
+              "bytes": 431,
+              "device": 2049,
+              "inode": 19327461261,
+              "mtime_ns": 1791613914956970356,
+              "sha256": "4fabb5591ac871cd3dd8fdeed2863b628cc47852bd91bfab1b462055acf42845"
+            }
+          },
+          "utc_finished": "2026-10-10T06:31:55.020253Z",
+          "utc_started": "2026-10-10T04:06:34.128871Z"
+        }
+      },
+      "corrected_binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "frozen_source_sha256": {
+        "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+        "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+        "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+        "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+        "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+      },
+      "pointer_and_size_t_bytes": 8,
+      "source_scope": "Paths and process IDs are historical identity evidence; replay never resolves or reads them.",
+      "validation_provenance_sha256": "66d040d7d9a77b6725efc3d1beaa1089ae6b82df072463ed6b80210401715a94"
+    }
+  },
+  "format": 1,
+  "method": {
+    "arithmetic": "Saved float32 values promoted to Python float; reductions use math.fsum.",
+    "checkpoint_layout": "Captured little-endian v2, 64-bit size_t and step counters; full payload checked.",
+    "deposit_volume": "Bulk event-deposit volume includes pore space; peak deposition is cumulative through day 12.",
+    "deposited_mass": "Cumulative mineral mass from deposition sources in the complete checkpoint; excludes pore space and is not the raster bulk-deposit volume.",
+    "difference": "Candidate minus baseline250 (concentration_scale 0.001); percentage denominator is baseline250.",
+    "field_domain": "identical physical floodplain cells, including dry cells; fixed within-flood channel mask",
+    "normalization": "Gross prescribed upstream input for one sinusoidal flood, using the actual C and concentration_scale of each case; excludes recycling, outlet flux, and signed bed forcing. This is not the checkpoint net external ledger.",
+    "post_remap": "Retained remap-ledger residuals; checkpoint payload checked for layout, clocks, parameter signature, finite state, and nonnegative inventories. Physical inventory balances are not independently reconstructed here.",
+    "snapshot_phase": "peak is day 12; end is day 20 before migration/aggradation; checkpoint is after remap",
+    "storage_bounds": "Conservative float32 half-ULP storage bounds only; exclude discretization, separate float64 arithmetic error, and CSV rounding."
+  },
+  "processor_sha256": "b16e0629bd77c781f5e3d924343c8b32fe289c6edd34301372c34b1a39b7789a",
+  "scope": "Completed first-flood sediment-concentration sensitivity only; no grid or temporal convergence, 580-flood behavior, or manuscript-panel assessment.",
+  "status": "verified"
+}

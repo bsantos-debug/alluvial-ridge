@@ -153,12 +153,15 @@ precision ledger, not from the float32 plot snapshots.
 ## Current outcome
 
 The eight-case first-flood campaign is running. The corrected `baseline250`,
-`coarse500`, `time250_cfl02`, `tau005`, and `tau020` cases have completed. Their
+`coarse500`, `time250_cfl02`, `tau005`, `tau020`, and `concentration_half` cases
+have completed. Their
 [retained comparisons](first-flood-validation.md) distinguish grid and
-time-step sensitivity from changes to the assumed deposition threshold.
-No convergence result is claimed from these comparisons. The 0.2 Pa case
-completed at 2026-10-10 04:06:33.990250 UTC with exit 0. The 125 m case and
-`concentration_half` remain active at the 04:07:29 UTC observation;
-`concentration_double` remains queued. The concentration cases vary the
-explicit concentration-unit assumption without changing the hydrograph.
+time-step sensitivity from changes to the assumed deposition threshold and
+concentration multiplier. No convergence result is claimed from these
+comparisons. The half-concentration case completed at
+2026-10-10 06:31:55.020253 UTC with exit 0. The driver automatically started
+`concentration_double` at 06:31:55.245746 UTC; it and `fine125` remain active,
+with no sensitivity case left queued. The concentration cases vary the
+explicit concentration assumption without changing the hydrograph. Their
+sediment budget denominators use each case's actual concentration multiplier.
 The dimensional deposition threshold remains an unresolved physical parameter.

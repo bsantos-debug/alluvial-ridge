@@ -1,7 +1,9 @@
 # Full first-flood validation: corrected rebuild 002
 
-The corrected 250 m, 500 m, 250 m half-CFL, and 0.05 and 0.2 Pa
-deposition-threshold sensitivity cases have completed one full flood.
+The corrected 250 m, 500 m, 250 m half-CFL, 0.05 and 0.2 Pa
+deposition-threshold, and half-concentration sensitivity cases have completed
+one full flood. The 125 m and double-concentration cases remain active, with
+no sensitivity case left queued.
 All 31 production cases also completed their first flood and remained active
 in flood 2 at the captured observation on 2026-10-09 at 21:39:16 UTC. These
 results extend the earlier coarse-grid audit preserved below. They establish
@@ -297,6 +299,90 @@ a first-flood assumption sensitivity; it does not select a physical threshold,
 establish spatial or temporal convergence, test later recycling, or reproduce
 a manuscript panel. Float32 storage bounds do not estimate discretization or
 physical uncertainty.
+
+## Completed first-flood concentration comparison
+
+The corrected `concentration_half` process completed at
+2026-10-10 06:31:55.020253 UTC with exit code 0. Relative to `baseline250`,
+its sole numerical parameter change is `concentration_scale`, from 0.001
+to 0.0005. Both cases use configuration 11, the 72 km by 48 km domain,
+250 m floodplain and initial channel spacing, CFL limit 0.4, and the full
+20-day hydrograph. This perturbation assesses an explicit concentration
+assumption because the manuscript leaves the units in `S=C Q^1.5` unstated.
+It does not establish an appropriate physical concentration.
+
+The [saved comparison](../validation/first-flood-audit-002/concentration.json),
+[capture record](../validation/first-flood-audit-002/concentration-capture.json),
+and [input archive](../validation/first-flood-audit-002/concentration-inputs.tar.xz)
+retain both original completed process records and all 22 recorded artifacts.
+The capture was made at 2026-10-10 06:33:45.699566 UTC after a two-second
+stability check. Its 24 members occupy 5,145,216 compressed bytes. The baseline
+member bytes agree with the earlier retained baseline. The terminal checkpoint
+for half concentration has 126,871 macrosteps, 455,511 channel substeps,
+290 post-remap channel nodes, and elapsed time 1,728,000 s. Replay requires
+only the retained files and the unchanged hash-checked numerical helper:
+
+```sh
+python3 -B validation/first-flood-audit-002/concentration.py
+```
+
+The report runs the same verification, compares the replay with the saved
+analysis, and binds the baseline process, parameters, and remap ledger to
+the earlier verified resolution archive. Missing, stale, or altered
+concentration evidence makes this report subsection pending without removing
+the preceding verified evidence groups.
+
+| Quantity | Baseline | Half concentration | Change relative to baseline |
+|---|---:|---:|---:|
+| Day-12 connectivity alpha, m | 0.884485917 | 0.884357906 | -0.0144729% |
+| End-flood ridge height, m | 0.0131874394 | 0.00655158419 | -50.3195% |
+| End-flood relative relief beta | 0.00164371587 | 0.000817777462 | -50.2482% |
+| Mean bankfull channel depth, m | 8.02294344 | 8.01145115 | -0.143243% |
+| End-flood water storage, m³ | 555,864,786 | 554,764,021 | -0.198028% |
+| Deposited mineral mass, kg | 2,242,786,871 | 1,123,929,735 | -49.8869% |
+
+Percentages use the baseline as denominator. Alpha is sampled on day 12;
+ridge height, beta, channel depth, and water storage are sampled on day 20
+before migration/remapping. Deposited mass is the accumulated deposition
+source ledger in the post-remap checkpoint. It differs from the remaining
+porous event-deposit thickness stored in the raster. Both day-12 inundated
+interface fractions equal one, so the small alpha change is a mean-depth
+change. The reduction in deposited mass and ridge height is close to, but
+not exactly, the 50% reduction in prescribed sediment supply.
+
+The peak and end channel/floodplain masks agree. Over all 3,420 km² of physical
+floodplain, including dry cells, day-20 water-depth differences have mean
+absolute value `0.000353955576 m` and maximum `0.00433311611 m`. Event-deposit
+thickness differences have mean absolute value `0.000205755477 m` and maximum
+`0.162276983 m`. Float32 storage bounds on the respective mean differences
+are `9.56830702e-9 m` and `2.73659925e-11 m`; these exclude discretization,
+separate arithmetic error, and tabulation rounding. The saved analysis also
+retains signed differences, bed differences, and the day-12 comparison.
+
+Both water residuals use the prescribed upstream input, `1.512e10 m³`, as
+denominator. Sediment denominators use each case's actual concentration
+multiplier: `5.473459038918808e10 kg` for the baseline and
+`2.736729519459404e10 kg` for half concentration. Each is independently
+integrated from `concentration_scale × C × Q^(5/2)` using 20,000-interval
+Simpson quadrature. These denominators exclude recycling, outflow, and signed
+bed forcing; they are neither current storage nor net external input.
+
+| Half-concentration post-remap inventory | Signed residual | Residual/prescribed input |
+|---|---:|---:|
+| Water, m³ | `+4.69088554e-5` | `+3.10243753e-15` |
+| Suspension + deposition, kg | `-0.382729113` | `-1.39849083e-11` |
+| Full solids, kg | `-0.351604881` | `-1.28476299e-11` |
+
+These residuals are from the model's double-precision ledgers. Both first
+remaps have zero captured or abandoned cells, bank reservoir, recycled mass,
+cutoffs, and water or mass corrections. Signed bed forcing is separately
+retained: `176403.114936 kg` for the baseline and `175855.059636 kg` for half
+concentration. This forcing contributes to solid-inventory change independently
+of suspended transport and is subtracted in the full-solid residual. The
+comparison establishes a full first-flood assumption sensitivity only; it
+does not establish numerical convergence, later bank recycling, 580-flood
+behavior, or manuscript-panel agreement. The double-concentration case is
+still running.
 
 ## Diagnostic-definition sensitivity
 
