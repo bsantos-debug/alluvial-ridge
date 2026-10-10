@@ -202,3 +202,63 @@ time-step independence. This first-flood comparison does not test
 later recycling, 580-flood evolution, or manuscript-panel agreement.
 The portable replay command is:
 \par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/time-step.py}
+
+\subsection{Completed first-flood deposition-threshold sensitivity}
+This comparison reduces the assumed critical deposition stress $\tau_c$
+from 0.1 to 0.05 Pa. The silt and clay settling rates contain the factor
+$\max(0,1-\tau_b/\tau_c)$; lowering $\tau_c$ suppresses their settling
+at fixed bed shear stress and concentration. Sand settling has no
+shear reduction. Both cases use the corrected executable, configuration
+11, 250 m floodplain grid, 250 m initial channel spacing, CFL limit
+0.4, and one complete 20-day hydrograph. All other numerical parameters
+agree. Both recorded processes exit successfully.
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Quantity & $\tau_c=0.1$ Pa & $\tau_c=0.05$ Pa & Change (\%) \\
+\midrule
+Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $8.8449\times10^{-1}$ & +0.00043 \\
+End-flood ridge height (m) & $1.31874\times10^{-2}$ & $1.41532\times10^{-2}$ & +7.32334 \\
+End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $1.76389\times10^{-3}$ & +7.31106 \\
+Mean bankfull channel depth (m) & $8.02294\times10^{0}$ & $8.02386\times10^{0}$ & +0.01145 \\
+End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $5.56111\times10^{8}$ & +0.04423 \\
+Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $1.80697\times10^{9}$ & -19.43183 \\
+\bottomrule\end{tabular}\end{center}
+Percentage changes use the 0.1 Pa case as denominator. Connectivity
+is sampled on day 12; ridge height, relative relief, channel depth,
+and water storage are sampled on day 20 before migration/remapping.
+Deposited mineral mass is the accumulated deposition-source ledger
+in the checkpoint. It differs from the remaining event-deposit volume,
+which includes pore space. Both day-12 inundated interface fractions
+equal one, so the connectivity difference is a mean-depth difference.
+
+The ridge-height metric increases by 7.323\% while total deposited
+mineral mass decreases by 19.432\%. Ridge relief and integrated
+deposition therefore respond differently in this comparison. The
+local settling factor alone does not determine the sign of the
+coupled spatial response.
+
+The end-flood masks agree. Across all 3420 km$^2$ of floodplain,
+including dry cells, water-depth differences have mean absolute value
+0.00009540 m and maximum 0.00367419 m. Event-deposit thickness differences have
+mean absolute value 0.00011204 m and maximum 0.00822584 m.
+The respective float32 storage bounds on the mean differences are
+$9.58587\times10^{-9}$ m and $3.28866\times10^{-11}$ m. They exclude discretization, separate floating-point
+arithmetic error, and rounding of the tabulated values.
+
+The 0.05 Pa post-remap residuals are $-5.13196\times10^{-5}$ m$^3$ water,
+$-6.3638\times10^{-1}$ kg suspension plus deposition, and $-3.44117\times10^{-1}$ kg total solids.
+The largest residual magnitude normalized by the corresponding
+prescribed upstream input is $1.16266\times10^{-11}$; the denominators are $1.512\times10^{10}$ m$^3$
+and $5.47346\times10^{10}$ kg. They exclude recycling, outflow, and signed bed forcing.
+Both first remaps have zero captured or abandoned cells, bank mass,
+recycled mass, cutoffs, and correction terms. Signed bed forcing
+remains a separate ledger in the retained comparison.
+
+This result quantifies sensitivity to an assumed deposition parameter.
+It does not constrain the appropriate physical threshold, numerical
+convergence, later bank recycling, 580-flood behavior, or agreement
+with a manuscript panel.
+The portable replay command is:
+\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/threshold.py}

@@ -107,6 +107,27 @@ started `tau005` automatically; PID 4128664 and start tick 53463257 were
 verified live with the corrected executable at 00:44:47 UTC. Fine125 and
 all 31 production calculations remain active.
 
+The corrected `tau005` case completed at 2026-10-10 02:22:51.647420 UTC
+with exit 0. Its process record agrees with the driver manifest, all 11
+artifact hashes match, and the full checkpoint and exact day-12/day-20
+snapshots passed finite-value and physical-inventory checks. Only
+`tau_critical` changes from the completed baseline, from 0.1 to 0.05 Pa.
+Integrated mineral deposition decreases by 19.4318%, while ridge height
+increases by 7.32334% and beta by 7.31106%; these quantities summarize the
+spatial deposit pattern differently. The
+[completed threshold comparison](first-flood-validation.md#completed-first-flood-deposition-threshold-comparison)
+retains the original records, field differences, normalized budgets, and
+portable replay command. First-remap capture, abandonment, bank reservoir,
+recycling, cutoffs, and correction terms remain zero. This is a completed
+first-flood assumption comparison, without a claim about later evolution.
+The driver automatically started `tau020` at 02:22:51.717996 UTC. PID 16284
+and start tick 54062286 were verified live at 02:24:05 UTC with matching
+recorded arguments and the corrected executable; `fine125` remained live.
+Four of the eight full first-flood sensitivity cases have now completed.
+The requested scope remains all 31 production cases at 580 floods each and
+all eight sensitivity cases. Original runner outcomes are preserved; complete
+rebuild and manuscript-panel assessments remain pending.
+
 This version saves day-12 fields and post-remap budgets. Its automatic report
 also includes numeric refinement/assumption differences and production budget
 extrema with input hashes. `validation/remap-full-check.txt` is the root check

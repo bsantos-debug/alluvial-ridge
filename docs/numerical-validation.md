@@ -152,10 +152,13 @@ precision ledger, not from the float32 plot snapshots.
 
 ## Current outcome
 
-The campaign is running. No convergence result is claimed before the full
-first-flood outputs have passed the completion checks. The dimensional
-deposition threshold remains an unresolved physical parameter; optional
-cases `tau005` and `tau020` are available in the runner but are deferred
-until the core grid/time comparisons establish computational cost. Optional
-`concentration_half` and `concentration_double` cases vary the explicit
-concentration-unit assumption without changing the hydrograph.
+The eight-case first-flood campaign is running. The corrected `baseline250`,
+`coarse500`, `time250_cfl02`, and `tau005` cases have completed. Their
+[retained comparisons](first-flood-validation.md) distinguish grid and
+time-step sensitivity from changes to the assumed deposition threshold.
+No convergence result is claimed from these comparisons. The 125 m and
+0.2 Pa cases remain active at the 2026-10-10 02:24 UTC observation;
+`concentration_half` and `concentration_double` remain queued. Those two
+cases vary the explicit concentration-unit assumption without changing the
+hydrograph. The dimensional deposition threshold remains an unresolved
+physical parameter.

@@ -25,6 +25,12 @@ continue. The scientific interpretation is in
   files, bound by `time-step-capture.json`. This later capture preserves the
   earlier archives and manifests unchanged. `time-step.py` verifies the
   capture and recomputes the comparison without consulting live paths.
+- `threshold.json` compares the completed corrected 250 m baseline and
+  `tau005` cases, whose critical deposition stresses are 0.1 and 0.05 Pa.
+  `threshold-inputs.tar.xz` retains their 24 original process/output files,
+  bound by `threshold-capture.json`. `threshold.py` verifies the capture
+  and recomputes the comparison, reusing the hash-checked numerical helpers
+  from the unchanged `time-step.py`.
 
 The original production observation checked live PIDs, start times and
 executables. Those process identities describe that observation time. Later
@@ -79,6 +85,19 @@ recomputed result against `time-step.json`. The report performs the same
 verification before displaying the comparison. Percentages use the CFL 0.4
 case as denominator. These two limits establish first-flood sensitivity,
 without a temporal convergence order or a manuscript-panel assessment.
+
+Replay the completed deposition-threshold comparison from its retained files:
+
+```sh
+python3 -B validation/first-flood-audit-002/threshold.py
+```
+
+The command verifies that critical deposition stress is the only numerical
+parameter difference, then checks the saved comparison against its replay.
+The report requires the same verification. Percentages use the 0.1 Pa case
+as denominator. This is first-flood sensitivity to an assumed physical
+parameter; it does not establish numerical convergence or constrain the
+appropriate deposition threshold.
 
 `production-observation.py` is the retained live-observation procedure. It
 requires the first-flood checkpoints and matching live processes, and refuses

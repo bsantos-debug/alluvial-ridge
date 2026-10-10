@@ -1,7 +1,7 @@
 # Full first-flood validation: corrected rebuild 002
 
-The corrected 250 m, 500 m, and 250 m half-CFL sensitivity cases have completed
-one full flood.
+The corrected 250 m, 500 m, 250 m half-CFL, and 0.05 Pa deposition-threshold
+sensitivity cases have completed one full flood.
 All 31 production cases also completed their first flood and remained active
 in flood 2 at the captured observation on 2026-10-09 at 21:39:16 UTC. These
 results extend the earlier coarse-grid audit preserved below. They establish
@@ -155,6 +155,98 @@ The pre-remap summaries precede this first forcing update and report zero.
 Two CFL limits do not determine a temporal convergence order or establish
 time-step independence. This completed first-flood comparison does not test
 later bank recycling, 580-flood evolution, or agreement with a manuscript panel.
+
+## Completed first-flood deposition-threshold comparison
+
+The corrected `tau005` process completed at 2026-10-10 02:22:51.647420 UTC
+with exit code 0. Its process record matches the sensitivity driver manifest,
+and all 11 recorded artifact hashes passed verification. Among the 32 numerical
+parameter entries, the sole difference from `baseline250` is the critical
+deposition shear stress, `tau_critical`, reduced from 0.1 to 0.05 Pa. Both
+cases retain CFL 0.4, the 250 m floodplain grid, the same initial channel
+geometry, and the complete 20-day hydrograph. Their corrected executable
+SHA-256 is
+`b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c`.
+The `tau005` checkpoint SHA-256 is
+`2bd71574c427fc7f5a74c3775bae8cf3afc7d7e9ba7f2e81ffea3bee5b610411`.
+
+The [retained comparison](../validation/first-flood-audit-002/threshold.json),
+[capture record](../validation/first-flood-audit-002/threshold-capture.json),
+and [input archive](../validation/first-flood-audit-002/threshold-inputs.tar.xz)
+preserve both completed cases and their original process records. Replay
+reads the retained archive without consulting the live workspace:
+
+```sh
+python3 -B validation/first-flood-audit-002/threshold.py
+```
+
+Percentage changes use `100*(tau005/baseline250 - 1)`. Alpha is sampled on
+day 12; ridge height, beta, channel depth, and water storage precede remapping
+at day 20. Deposited mineral mass is the cumulative deposition-source ledger
+retained in the post-remap checkpoint.
+
+| Quantity | 0.1 Pa | 0.05 Pa | Change (%) |
+|---|---:|---:|---:|
+| Alpha (m) | 0.884485917 | 0.884489763 | +0.000434874 |
+| Ridge height (m) | 0.0131874394 | 0.0141532006 | +7.32334 |
+| Beta | 0.00164371587 | 0.00176388889 | +7.31106 |
+| Mean channel bankfull depth (m) | 8.02294344 | 8.02386174 | +0.0114460 |
+| Total water storage (m³) | 5.55864786e8 | 5.56110624e8 | +0.0442261 |
+| Deposited mineral mass (kg) | 2.24278687e9 | 1.80697245e9 | −19.4318 |
+
+Lower integrated deposition accompanies higher ridge relief and beta. The
+ridge estimator uses crest-to-distal relief in a longitudinally averaged
+profile, whereas the deposition ledger integrates mineral mass over the
+domain. These quantities weight the spatial deposit pattern differently.
+This comparison records their opposite changes without identifying a
+mechanism for the changed pattern.
+
+End-flood porous deposit volume decreases from 1,410,557.78 to
+1,136,460.66 m³. Multiplication by the dry bulk density
+`rho_s*(1-porosity) = 1590 kg/m³` converts those volumes to mineral mass.
+For `tau005`, the raster-derived mass differs from the source ledger by
+4.26 kg, within its 79.74 kg float32 storage bound. The source ledger and
+remaining porous deposit volume retain distinct definitions. Their agreement
+here is checked for this first flood with zero captured or abandoned cells.
+
+The field comparison uses all 54,720 common floodplain cells, including dry
+cells, over 3420 km². Differences are `tau005` minus baseline; the table gives
+their magnitudes. Both day-12 inundated interface fractions equal one, and
+wet floodplain area above 1 mm remains 3397.75 km². End-flood inundated area
+increases by 0.125 km², or two cells.
+
+| Snapshot | Field | Mean absolute difference (m) | Maximum absolute difference (m) |
+|---|---|---:|---:|
+| Day 12 | Water depth | 3.72141e-5 | 0.00788608 |
+| Day 12 | Event-deposit thickness | 3.70402e-5 | 0.00843491 |
+| Day 20 | Water depth | 9.53963e-5 | 0.00367419 |
+| Day 20 | Event-deposit thickness | 1.12036e-4 | 0.00822584 |
+
+The snapshot clocks are exactly 1,036,800 and 1,728,000 s, with 289 matching
+channel rows. The post-remap v2 checkpoint records flood 1 at 1,728,000 s,
+125,769 steps, 452,283 channel substeps, and 290 nodes. Its full parameter
+signature, payload size, finite arrays, and nonnegative water and suspended
+inventories passed inspection. Actual pre/post-remap mask comparisons give
+zero captured and abandoned cells. Bank reservoir, recycled mass, cutoffs,
+and water/mass correction terms are zero in both cases. The `tau005`
+checkpoint separately records 176,446.832 kg of signed bed forcing; the
+pre-remap summary precedes that update and reports zero.
+
+| Tau005 post-remap inventory | Signed residual | Residual / prescribed input |
+|---|---:|---:|
+| Water | −5.13196e-5 m³ | −3.39415e-15 |
+| Suspension plus deposition | −0.636380 kg | −1.16266e-11 |
+| Full solid inventory | −0.344117 kg | −6.28701e-12 |
+
+Normalization uses one complete prescribed upstream hydrograph:
+1.512e10 m³ water and 5.47345904e10 kg sediment. These gross inputs exclude
+outflow, recycling, and signed bed forcing; the checkpoint's net external
+ledgers are separate quantities. Small budget residuals establish numerical
+closure for the stated inventories. This two-value threshold comparison
+quantifies a first-flood assumption sensitivity; it does not select a physical
+threshold, establish spatial or temporal convergence, test later recycling,
+or reproduce a manuscript panel. Float32 storage bounds do not estimate
+discretization or physical uncertainty.
 
 ## Diagnostic-definition sensitivity
 
