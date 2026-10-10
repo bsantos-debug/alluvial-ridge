@@ -787,33 +787,37 @@ def render_concentration(evidence):
                      tex(evidence['reason']) + '. No numerical concentration claim is rendered.}')
         return '\n'.join(lines) + '\n'
     comparison = evidence['comparison']
-    names = ('baseline250', 'concentration_half')
+    names = ('baseline250', 'concentration_half', 'concentration_double')
     require(comparison['format'] == 1 and comparison['baseline_case'] == names[0] and
             set(comparison['cases']) == set(names) and
-            set(comparison['comparisons']) == {names[1]},
+            set(comparison['comparisons']) == set(names[1:]),
             'unexpected concentration comparison schema')
     cases = [comparison['cases'][name] for name in names]
-    candidate = comparison['comparisons'][names[1]]
-    require(candidate['parameter_differences'] == {'concentration_scale': [0.001, 0.0005]} and
-            [case['parameters']['concentration_scale'] for case in cases] == [0.001, 0.0005],
+    candidates = [comparison['comparisons'][name] for name in names[1:]]
+    scales = [case['parameters']['concentration_scale'] for case in cases]
+    require(scales == [0.001, 0.0005, 0.002] and
+            all(candidate['parameter_differences'] == {'concentration_scale': [0.001, scale]}
+                for candidate, scale in zip(candidates, scales[1:])),
             'concentration parameters differ beyond the inlet multiplier')
     water_inputs = [case['prescribed_inputs']['prescribed_water_input_m3'] for case in cases]
     sediment_inputs = [case['prescribed_inputs']['prescribed_sediment_input_kg'] for case in cases]
-    require(water_inputs[0] > 0 and water_inputs[1] == water_inputs[0] and
-            sediment_inputs[0] > 0 and math.isclose(sediment_inputs[1] / sediment_inputs[0], 0.5,
-                                                   rel_tol=1e-14, abs_tol=0),
+    require(water_inputs[0] > 0 and all(value == water_inputs[0] for value in water_inputs) and
+            sediment_inputs[0] > 0 and
+            all(math.isclose(value / sediment_inputs[0], ratio, rel_tol=1e-14, abs_tol=0)
+                for value, ratio in zip(sediment_inputs[1:], (0.5, 2.0))),
             'concentration comparison prescribed inputs have unexpected normalization')
     lines += [r'The manuscript leaves the concentration units in $S=CQ^{1.5}$ unstated.',
-              'This comparison halves the explicit multiplier that converts that law',
-              r'to internal mass concentration, from 0.001 to 0.0005, at fixed $C=0.003$.',
-              'Both cases retain configuration 11, the corrected executable, 250 m',
+              'This comparison halves and doubles the explicit multiplier that converts',
+              'that law to internal mass concentration, from the 0.001 baseline to',
+              r'0.0005 and 0.002, at fixed $C=0.003$. All three cases retain',
+              'configuration 11, the corrected executable, 250 m',
               'floodplain and initial channel spacing, CFL limit 0.4, and the complete',
-              '20-day hydrograph. All other numerical parameters agree, and both',
+              '20-day hydrograph. All other numerical parameters agree, and all three',
               'recorded processes exit successfully. The retained baseline process,',
               'parameters, and remap ledger match the earlier resolution archive.',
               '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
               r'\begin{tabular}{lrrr}', r'\toprule',
-              r'Quantity & Baseline & Half concentration & Change (\%) \\', r'\midrule']
+              r'Quantity & Baseline & Half & Double \\', r'\midrule']
     metrics = ((r'Day-12 connectivity $\alpha$ (m)', 'alpha'),
                (r'End-flood ridge height (m)', 'ridge_height'),
                (r'End-flood relative relief $\beta$', 'beta'),
@@ -823,42 +827,50 @@ def render_concentration(evidence):
     for title, key in metrics:
         values = [case['checkpoint']['deposited_mass_kg'] if key == 'deposited_mass'
                   else case['summary'][key] for case in cases]
-        change = candidate['concentration_relative_to_baseline_percent'][key]
-        lines.append(title + ' & ' + ' & '.join('$' + number(v) + '$' for v in values) +
-                     ' & %+.5f' % change + r' \\')
+        lines.append(title + ' & ' + ' & '.join('$' + number(v) + '$' for v in values) + r' \\')
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              r'\begin{center}\small', r'\begin{tabular}{lrr}', r'\toprule',
+              r'Percentage change from baseline & Half & Double \\', r'\midrule']
+    for title, key in metrics:
+        lines.append(title + ' & ' + ' & '.join('%+.5f' %
+                     candidate['concentration_relative_to_baseline_percent'][key]
+                     for candidate in candidates) + r' \\')
     lines += [r'\bottomrule\end{tabular}\end{center}',
               'Percentage changes use the baseline as denominator. Connectivity is',
               'sampled on day 12; ridge height, relative relief, channel depth, and',
               'water storage are sampled on day 20 before migration/remapping.',
               'Deposited mineral mass is the accumulated deposition source ledger',
               'in the post-remap checkpoint. It differs from the remaining porous',
-              'event-deposit thickness stored in the raster. Both day-12 inundated',
-              'interface fractions equal one, so the connectivity change is a',
+              'event-deposit thickness stored in the raster. All three day-12 inundated',
+              'interface fractions equal one, so each connectivity change is a',
               'mean-depth change.', '',
               'The channel/floodplain classification masks agree at peak and end',
               'flood. The following differences cover all %.0f km$^2$ of physical' %
-              (candidate['same_grid_fields']['end']['floodplain_area_m2'] / 1e6),
-              'floodplain, including dry cells, and subtract baseline from half',
-              'concentration. All values are in metres. The storage bounds apply',
+              (candidates[0]['same_grid_fields']['end']['floodplain_area_m2'] / 1e6),
+              'floodplain, including dry cells, and subtract baseline from each',
+              'candidate. All values are in metres. The storage bounds apply',
               'only to float32 representation of the mean differences; they exclude',
-              'discretization, separate arithmetic error, and tabulation rounding.',
-              '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
-              r'\begin{tabular}{llrrr}', r'\toprule',
-              r'Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\',
-              r'\midrule']
-    for phase, phase_title in (('peak', 'Day 12'), ('end', 'Day 20')):
-        for key, title in (('water_depth', 'Water depth'), ('event_deposit', 'Event deposit')):
-            field = candidate['same_grid_fields'][phase]['fields'][key]
-            values = [field[key] for key in ('mean_absolute_difference_m',
-                      'maximum_absolute_difference_m', 'mean_difference_storage_bound_m')]
-            lines.append(phase_title + ' & ' + title + ' & ' +
-                         ' & '.join('$' + number(value) + '$' for value in values) + r' \\')
-    lines += [r'\bottomrule\end{tabular}\end{center}', '',
+              'discretization, separate arithmetic error, and tabulation rounding.']
+    for title, candidate in zip(('Half concentration', 'Double concentration'), candidates):
+        lines += ['', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
+                  title + r' relative to baseline\par\smallskip',
+                  r'\begin{tabular}{llrrr}', r'\toprule',
+                  r'Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\',
+                  r'\midrule']
+        for phase, phase_title in (('peak', 'Day 12'), ('end', 'Day 20')):
+            for key, title in (('water_depth', 'Water depth'), ('event_deposit', 'Event deposit')):
+                field = candidate['same_grid_fields'][phase]['fields'][key]
+                values = [field[key] for key in ('mean_absolute_difference_m',
+                          'maximum_absolute_difference_m', 'mean_difference_storage_bound_m')]
+                lines.append(phase_title + ' & ' + title + ' & ' +
+                             ' & '.join('$' + number(value) + '$' for value in values) + r' \\')
+        lines += [r'\bottomrule\end{tabular}\end{center}']
+    lines += ['',
               'The signed post-remap residuals below come from the double-precision',
-              'ledgers. Both water residuals use prescribed upstream water input',
+              'ledgers. All three water residuals use prescribed upstream water input',
               'of $%s$ m$^3$ as denominator. The sediment denominators are' % number(water_inputs[0]),
-              '$%s$ kg for the baseline and $%s$ kg for half concentration.' %
-              tuple(number(value) for value in sediment_inputs),
+              '%s kg for baseline, half, and double concentration, respectively.' %
+              ', '.join('$' + number(value) + '$' for value in sediment_inputs),
               r'Each is independently integrated from the case-specific multiplier',
               r'times $CQ^{5/2}$ with 20,000-interval Simpson quadrature. These',
               'denominators exclude recycling, outflow, and signed bed forcing;',
@@ -866,7 +878,7 @@ def render_concentration(evidence):
               '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
               r'\begin{tabular}{llrr}', r'\toprule',
               r'Case & Inventory & Signed residual & Residual/input \\', r'\midrule']
-    for name, case in zip(('Baseline', 'Half'), cases):
+    for name, case in zip(('Baseline', 'Half', 'Double'), cases):
         for title, raw, normalized in (
                 (r'Water (m$^3$)', 'post_water_residual', 'post_water'),
                 ('Suspension + deposition (kg)', 'post_sediment_residual', 'post_suspension_plus_deposition'),
@@ -875,18 +887,17 @@ def render_concentration(evidence):
                          (name, title, number(case['remap'][raw]),
                           number(case['signed_residuals_over_prescribed_input'][normalized])))
     lines += [r'\bottomrule\end{tabular}\end{center}',
-              'Both first remaps have zero captured or abandoned cells, bank mass,',
+              'All three first remaps have zero captured or abandoned cells, bank mass,',
               'recycled mass, cutoffs, and water or mass correction terms. The',
-              'signed bed-forcing ledgers are $%s$ kg and $%s$ kg for the baseline' %
-              tuple(number(case['checkpoint']['bed_forcing_mass_kg']) for case in cases),
-              'and half concentration. This forcing contributes to solid-inventory',
+              'signed bed-forcing ledgers are %s kg for baseline, half, and double' %
+              ', '.join('$' + number(case['checkpoint']['bed_forcing_mass_kg']) + '$' for case in cases),
+              'concentration, respectively. This forcing contributes to solid-inventory',
               'change independently of suspended transport and is subtracted in',
               'the full-solid residual.', '',
               'This completed first-flood comparison quantifies sensitivity to an',
               'explicit concentration assumption. It does not determine the intended',
               'physical concentration, numerical convergence, later bank recycling,',
-              '580-flood behavior, or manuscript-panel agreement. The run with twice',
-              'the concentration remains a separate unfinished calculation.',
+              '580-flood behavior, or manuscript-panel agreement.',
               r'The portable replay command is:',
               r'\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/concentration.py}']
     require(all(case['summary']['interface_fraction'] == 1 for case in cases),

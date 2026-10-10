@@ -325,43 +325,57 @@ The portable replay command is:
 
 \subsection{Completed first-flood concentration sensitivity}
 The manuscript leaves the concentration units in $S=CQ^{1.5}$ unstated.
-This comparison halves the explicit multiplier that converts that law
-to internal mass concentration, from 0.001 to 0.0005, at fixed $C=0.003$.
-Both cases retain configuration 11, the corrected executable, 250 m
+This comparison halves and doubles the explicit multiplier that converts
+that law to internal mass concentration, from the 0.001 baseline to
+0.0005 and 0.002, at fixed $C=0.003$. All three cases retain
+configuration 11, the corrected executable, 250 m
 floodplain and initial channel spacing, CFL limit 0.4, and the complete
-20-day hydrograph. All other numerical parameters agree, and both
+20-day hydrograph. All other numerical parameters agree, and all three
 recorded processes exit successfully. The retained baseline process,
 parameters, and remap ledger match the earlier resolution archive.
 
 \begin{center}\small\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrr}
 \toprule
-Quantity & Baseline & Half concentration & Change (\%) \\
+Quantity & Baseline & Half & Double \\
 \midrule
-Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $8.84358\times10^{-1}$ & -0.01447 \\
-End-flood ridge height (m) & $1.31874\times10^{-2}$ & $6.55158\times10^{-3}$ & -50.31951 \\
-End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $8.17777\times10^{-4}$ & -50.24825 \\
-Mean bankfull depth (m) & $8.02294\times10^{0}$ & $8.01145\times10^{0}$ & -0.14324 \\
-End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $5.54764\times10^{8}$ & -0.19803 \\
-Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $1.12393\times10^{9}$ & -49.88691 \\
+Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $8.84358\times10^{-1}$ & $8.84647\times10^{-1}$ \\
+End-flood ridge height (m) & $1.31874\times10^{-2}$ & $6.55158\times10^{-3}$ & $2.67555\times10^{-2}$ \\
+End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $8.17777\times10^{-4}$ & $3.32525\times10^{-3}$ \\
+Mean bankfull depth (m) & $8.02294\times10^{0}$ & $8.01145\times10^{0}$ & $8.04618\times10^{0}$ \\
+End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $5.54764\times10^{8}$ & $5.57733\times10^{8}$ \\
+Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $1.12393\times10^{9}$ & $4.46263\times10^{9}$ \\
+\bottomrule\end{tabular}\end{center}
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+Percentage change from baseline & Half & Double \\
+\midrule
+Day-12 connectivity $\alpha$ (m) & -0.01447 & +0.01817 \\
+End-flood ridge height (m) & -50.31951 & +102.88661 \\
+End-flood relative relief $\beta$ & -50.24825 & +102.30074 \\
+Mean bankfull depth (m) & -0.14324 & +0.28960 \\
+End-flood water storage (m$^3$) & -0.19803 & +0.33618 \\
+Deposited mineral mass (kg) & -49.88691 & +98.97701 \\
 \bottomrule\end{tabular}\end{center}
 Percentage changes use the baseline as denominator. Connectivity is
 sampled on day 12; ridge height, relative relief, channel depth, and
 water storage are sampled on day 20 before migration/remapping.
 Deposited mineral mass is the accumulated deposition source ledger
 in the post-remap checkpoint. It differs from the remaining porous
-event-deposit thickness stored in the raster. Both day-12 inundated
-interface fractions equal one, so the connectivity change is a
+event-deposit thickness stored in the raster. All three day-12 inundated
+interface fractions equal one, so each connectivity change is a
 mean-depth change.
 
 The channel/floodplain classification masks agree at peak and end
 flood. The following differences cover all 3420 km$^2$ of physical
-floodplain, including dry cells, and subtract baseline from half
-concentration. All values are in metres. The storage bounds apply
+floodplain, including dry cells, and subtract baseline from each
+candidate. All values are in metres. The storage bounds apply
 only to float32 representation of the mean differences; they exclude
 discretization, separate arithmetic error, and tabulation rounding.
 
 \begin{center}\small\setlength{\tabcolsep}{4pt}
+Half concentration relative to baseline\par\smallskip
 \begin{tabular}{llrrr}
 \toprule
 Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\
@@ -372,10 +386,22 @@ Day 20 & Water depth & $3.53956\times10^{-4}$ & $4.33312\times10^{-3}$ & $9.5683
 Day 20 & Event deposit & $2.05755\times10^{-4}$ & $1.62277\times10^{-1}$ & $2.7366\times10^{-11}$ \\
 \bottomrule\end{tabular}\end{center}
 
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+Double concentration relative to baseline\par\smallskip
+\begin{tabular}{llrrr}
+\toprule
+Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\
+\midrule
+Day 12 & Water depth & $6.71152\times10^{-4}$ & $2.17374\times10^{-1}$ & $7.13884\times10^{-8}$ \\
+Day 12 & Event deposit & $2.3608\times10^{-4}$ & $2.44559\times10^{-1}$ & $3.08121\times10^{-11}$ \\
+Day 20 & Water depth & $6.86106\times10^{-4}$ & $9.28627\times10^{-3}$ & $9.60609\times10^{-9}$ \\
+Day 20 & Event deposit & $4.08299\times10^{-4}$ & $2.88753\times10^{-1}$ & $5.39156\times10^{-11}$ \\
+\bottomrule\end{tabular}\end{center}
+
 The signed post-remap residuals below come from the double-precision
-ledgers. Both water residuals use prescribed upstream water input
+ledgers. All three water residuals use prescribed upstream water input
 of $1.512\times10^{10}$ m$^3$ as denominator. The sediment denominators are
-$5.47346\times10^{10}$ kg for the baseline and $2.73673\times10^{10}$ kg for half concentration.
+$5.47346\times10^{10}$, $2.73673\times10^{10}$, $1.09469\times10^{11}$ kg for baseline, half, and double concentration, respectively.
 Each is independently integrated from the case-specific multiplier
 times $CQ^{5/2}$ with 20,000-interval Simpson quadrature. These
 denominators exclude recycling, outflow, and signed bed forcing;
@@ -392,18 +418,20 @@ Baseline & Full solids (kg) & $-3.60248\times10^{-1}$ & $-6.58173\times10^{-12}$
 Half & Water (m$^3$) & $4.69089\times10^{-5}$ & $3.10244\times10^{-15}$ \\
 Half & Suspension + deposition (kg) & $-3.82729\times10^{-1}$ & $-1.39849\times10^{-11}$ \\
 Half & Full solids (kg) & $-3.51605\times10^{-1}$ & $-1.28476\times10^{-11}$ \\
+Double & Water (m$^3$) & $-8.16584\times10^{-5}$ & $-5.40069\times10^{-15}$ \\
+Double & Suspension + deposition (kg) & $-1.45685\times10^{0}$ & $-1.33083\times10^{-11}$ \\
+Double & Full solids (kg) & $-3.20001\times10^{-1}$ & $-2.92321\times10^{-12}$ \\
 \bottomrule\end{tabular}\end{center}
-Both first remaps have zero captured or abandoned cells, bank mass,
+All three first remaps have zero captured or abandoned cells, bank mass,
 recycled mass, cutoffs, and water or mass correction terms. The
-signed bed-forcing ledgers are $1.76403\times10^{5}$ kg and $1.75855\times10^{5}$ kg for the baseline
-and half concentration. This forcing contributes to solid-inventory
+signed bed-forcing ledgers are $1.76403\times10^{5}$, $1.75855\times10^{5}$, $1.77506\times10^{5}$ kg for baseline, half, and double
+concentration, respectively. This forcing contributes to solid-inventory
 change independently of suspended transport and is subtracted in
 the full-solid residual.
 
 This completed first-flood comparison quantifies sensitivity to an
 explicit concentration assumption. It does not determine the intended
 physical concentration, numerical convergence, later bank recycling,
-580-flood behavior, or manuscript-panel agreement. The run with twice
-the concentration remains a separate unfinished calculation.
+580-flood behavior, or manuscript-panel agreement.
 The portable replay command is:
 \par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/concentration.py}

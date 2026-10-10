@@ -8,10 +8,10 @@ configuration combinations, plotting scripts for all 13 manuscript panels,
 and a LaTeX report scaffold are implemented. Full-duration verification and
 production simulations are ongoing. No manuscript panel is claimed reproduced
 yet. The report's placeholders explicitly identify missing evidence.
-Six of the eight first-flood sensitivity cases have completed, including the
-half-concentration case. The 125 m and double-concentration cases are running;
-the [retained comparisons](docs/first-flood-validation.md) cover completed
-cases only.
+Seven of the eight first-flood sensitivity cases have completed, including
+both concentration perturbations. The 125 m case remains active; the
+[retained comparisons](docs/first-flood-validation.md) cover completed cases
+only.
 
 Only published written scientific descriptions are specifications. Original
 model code, output files, plotting scripts, source data, and figure files are

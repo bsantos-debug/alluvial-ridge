@@ -1,6 +1,6 @@
 {
   "archive": {
-    "bytes": 5145216,
+    "bytes": 7749636,
     "file": "concentration-inputs.tar.xz",
     "member_sha256": {
       "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
@@ -15,6 +15,18 @@
       "validation/runs/baseline250/run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
       "validation/runs/baseline250/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
       "validation/runs/baseline250/summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d",
+      "validation/runs/concentration_double/channel_0001.csv": "02951bb2217a5b59ee9df1e8dc0b77caef9d2eb79e8ac16be3d7ea90a91482af",
+      "validation/runs/concentration_double/checkpoint.bin": "78c6208e13fc997c43d150a2fed352228c16dae2a90fcdc9dce52a78a16245bb",
+      "validation/runs/concentration_double/fields_0001.bin": "4752ae1a8eff7bc5bf9b14eeee7aa5a0fa04221ed0aeef009e061b2a7e63fefb",
+      "validation/runs/concentration_double/parameters.txt": "82489a9d8d87838ecce77f2c7036bbdf3cffa72e6844f65dabf6bc13d19f2b68",
+      "validation/runs/concentration_double/peak_channel_0001.csv": "d3adf9b332f053eeafc39116b02888cbca409d982c33d7ab682e08f690620fdf",
+      "validation/runs/concentration_double/peak_fields_0001.bin": "3d296a21d188d4e155ce758f8220e52728317215de6f084d28269f35e9ff92e4",
+      "validation/runs/concentration_double/process_status.json": "9cef770a8b0ee98cdddf6333776ba7c3dd4d8f67ea91800904f7a699605cfeda",
+      "validation/runs/concentration_double/progress.json": "df5014fbb665e322a02b4b4b50d9cb29811c86ade22267687ef0c7e7dc7e724d",
+      "validation/runs/concentration_double/remap_budget.csv": "a3e932350906a1285ffe5233dd3f773cbb53e568bcafde0b5b78a1400457c7bd",
+      "validation/runs/concentration_double/run.log": "3bd0898a1d993b2cfc94c176621bf15d87504ce7e4cef3f508edeae4d7323b75",
+      "validation/runs/concentration_double/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/concentration_double/summary.csv": "084aa03ac2c30cdcc09d872e933e92d506a70969f9043801ffe710879be26fc6",
       "validation/runs/concentration_half/channel_0001.csv": "df0aeec5cd8928f82989d1ac57fd4314ca670adfbd0ac18d3ecbe46e56799710",
       "validation/runs/concentration_half/checkpoint.bin": "d8e1f05df67da979eeb65a62df15d5a6675141f25fb9eded5395572821853b16",
       "validation/runs/concentration_half/fields_0001.bin": "164c4fdce5d7fbe0d3d9a19486dbb64594cb8cefcf4725913686000fc4d75c61",
@@ -28,16 +40,16 @@
       "validation/runs/concentration_half/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
       "validation/runs/concentration_half/summary.csv": "4fabb5591ac871cd3dd8fdeed2863b628cc47852bd91bfab1b462055acf42845"
     },
-    "members": 24,
+    "members": 36,
     "metadata": "Regular-file members only; sorted paths, mode0644, owner names/ids and timestamps normalized; original numerical bytes unchanged.",
-    "sha256": "bfbbbefe3ba9607fcaa4e1e1e91ebb24c2bbf310216866e319548f2966bf2104"
+    "sha256": "a2c607d328888299a7a9317d72b7658326b831fd962282ac1da481706f51936d"
   },
-  "captured_utc": "2026-10-10T06:33:45.699566+00:00",
+  "captured_utc": "2026-10-10T08:30:22.250708+00:00",
   "format": 1,
   "helper_sha256": {
     "time-step.py": "7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073"
   },
-  "scope": "Original terminal corrected rebuild002 first-flood baseline and half-concentration artifacts; numerical bytes unchanged.",
+  "scope": "Original terminal corrected rebuild002 first-flood baseline, half-concentration, and double-concentration artifacts; numerical bytes unchanged.",
   "source_identity": {
     "byte_order": "little",
     "cases": {
@@ -146,6 +158,114 @@
         },
         "utc_finished": "2026-10-09T20:53:50.452840Z",
         "utc_started": "2026-10-09T19:23:13.257099Z"
+      },
+      "concentration_double": {
+        "original_command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/concentration_double",
+          "--concentration-scale",
+          "0.002"
+        ],
+        "process_pid": 190256,
+        "process_pid_absent_at_capture": true,
+        "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/concentration_double",
+        "source_files": {
+          "channel_0001.csv": {
+            "bytes": 22066,
+            "device": 2049,
+            "inode": 11057362802,
+            "mtime_ns": 1791620883939462073,
+            "sha256": "02951bb2217a5b59ee9df1e8dc0b77caef9d2eb79e8ac16be3d7ea90a91482af"
+          },
+          "checkpoint.bin": {
+            "bytes": 3115545,
+            "device": 2049,
+            "inode": 11057362803,
+            "mtime_ns": 1791620883965462089,
+            "sha256": "78c6208e13fc997c43d150a2fed352228c16dae2a90fcdc9dce52a78a16245bb"
+          },
+          "fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 11057362799,
+            "mtime_ns": 1791620883939462073,
+            "sha256": "4752ae1a8eff7bc5bf9b14eeee7aa5a0fa04221ed0aeef009e061b2a7e63fefb"
+          },
+          "parameters.txt": {
+            "bytes": 1152,
+            "device": 2049,
+            "inode": 11057362787,
+            "mtime_ns": 1791613915370970615,
+            "sha256": "82489a9d8d87838ecce77f2c7036bbdf3cffa72e6844f65dabf6bc13d19f2b68"
+          },
+          "peak_channel_0001.csv": {
+            "bytes": 22067,
+            "device": 2049,
+            "inode": 11057362800,
+            "mtime_ns": 1791618018872569522,
+            "sha256": "d3adf9b332f053eeafc39116b02888cbca409d982c33d7ab682e08f690620fdf"
+          },
+          "peak_fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 11057362770,
+            "mtime_ns": 1791618018872569522,
+            "sha256": "3d296a21d188d4e155ce758f8220e52728317215de6f084d28269f35e9ff92e4"
+          },
+          "process_status.json": {
+            "bytes": 2069,
+            "device": 2049,
+            "inode": 11057362805,
+            "mtime_ns": 1791620884061462150,
+            "sha256": "9cef770a8b0ee98cdddf6333776ba7c3dd4d8f67ea91800904f7a699605cfeda"
+          },
+          "progress.json": {
+            "bytes": 149,
+            "device": 2049,
+            "inode": 11057362801,
+            "mtime_ns": 1791620878484458621,
+            "sha256": "df5014fbb665e322a02b4b4b50d9cb29811c86ade22267687ef0c7e7dc7e724d"
+          },
+          "remap_budget.csv": {
+            "bytes": 404,
+            "device": 2049,
+            "inode": 11057362789,
+            "mtime_ns": 1791620883957462084,
+            "sha256": "a3e932350906a1285ffe5233dd3f773cbb53e568bcafde0b5b78a1400457c7bd"
+          },
+          "run.log": {
+            "bytes": 145,
+            "device": 2049,
+            "inode": 11057362786,
+            "mtime_ns": 1791620883939462073,
+            "sha256": "3bd0898a1d993b2cfc94c176621bf15d87504ce7e4cef3f508edeae4d7323b75"
+          },
+          "status.txt": {
+            "bytes": 18,
+            "device": 2049,
+            "inode": 11057362804,
+            "mtime_ns": 1791620883966462090,
+            "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+          },
+          "summary.csv": {
+            "bytes": 432,
+            "device": 2049,
+            "inode": 11057362788,
+            "mtime_ns": 1791620883932462069,
+            "sha256": "084aa03ac2c30cdcc09d872e933e92d506a70969f9043801ffe710879be26fc6"
+          }
+        },
+        "utc_finished": "2026-10-10T08:28:03.970245Z",
+        "utc_started": "2026-10-10T06:31:55.245746Z"
       },
       "concentration_half": {
         "original_command": [
@@ -270,9 +390,9 @@
   },
   "stability_check": {
     "comparison": "bytes, device, inode, size, mtime_ns, ctime_ns",
-    "first_read_utc": "2026-10-10T06:33:35.108215+00:00",
+    "first_read_utc": "2026-10-10T08:30:03.992672+00:00",
     "minimum_pause_seconds": 2,
-    "second_read_utc": "2026-10-10T06:33:37.183470+00:00",
-    "unchanged_files": 24
+    "second_read_utc": "2026-10-10T08:30:06.064343+00:00",
+    "unchanged_files": 36
   }
 }

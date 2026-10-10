@@ -150,9 +150,17 @@ The original process records, complete artifacts, budget normalization, and
 same-grid field differences are retained in the portable
 [concentration comparison](first-flood-validation.md#completed-first-flood-concentration-comparison).
 The driver automatically started `concentration_double` at 06:31:55.245746 UTC,
-with PID 190256 and start tick 55556639. Six of the eight full first-flood
-sensitivity cases have now completed; `fine125` and `concentration_double`
-remain active, with no sensitivity case left queued.
+with PID 190256 and start tick 55556639. That case completed at
+2026-10-10 08:28:03.970245 UTC with exit 0. Its only numerical parameter
+change from the baseline is the concentration multiplier, from 0.001 to
+0.002. Deposited mineral mass increases by 98.9770%, ridge height by
+102.8866%, and beta by 102.3007%; day-12 alpha changes by +0.0181746% and
+end-flood water storage by +0.336177%. Its post-remap budget normalization
+uses the actual doubled sediment input, `1.0946918077837616e11 kg`.
+The retained comparison now contains all three concentration cases and
+preserves the earlier baseline and half-concentration inputs and results.
+Seven of the eight full first-flood sensitivity cases have now completed;
+only `fine125` remains active, with no sensitivity case left queued.
 The requested scope remains all 31 production cases at 580 floods each and
 all eight sensitivity cases. Original runner outcomes are preserved; complete
 rebuild and manuscript-panel assessments remain pending.

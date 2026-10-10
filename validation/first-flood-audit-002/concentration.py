@@ -10,7 +10,7 @@ from pathlib import Path
 import runpy
 import tarfile
 
-CASES = ('baseline250', 'concentration_half')
+CASES = ('baseline250', 'concentration_half', 'concentration_double')
 BINARY = 'b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c'
 HELPER_SHA256 = '7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073'
 FROZEN_SOURCE_SHA256 = {
@@ -42,7 +42,7 @@ def verify(folder):
     artifacts = helper['ARTIFACTS']
     capture_bytes = (folder / 'concentration-capture.json').read_bytes()
     capture = json.loads(capture_bytes.decode())
-    require(capture['format'] == 1 and capture['stability_check']['unchanged_files'] == 24 and
+    require(capture['format'] == 1 and capture['stability_check']['unchanged_files'] == 36 and
             capture['stability_check']['minimum_pause_seconds'] >= 2,
             'unsupported capture format or missing stable terminal capture')
     archive_bytes = (folder / 'concentration-inputs.tar.xz').read_bytes()
@@ -61,7 +61,7 @@ def verify(folder):
     required = {'validation/runs/' + case + '/' + filename
                 for case in CASES for filename in artifacts + ('process_status.json',)}
     require(set(expected) == required and capture['archive']['members'] == len(required),
-            'capture does not describe exactly the two corrected completed cases')
+            'capture does not describe exactly the three corrected completed cases')
     members = {}
     with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode='r:xz') as archive:
         for item in archive:
@@ -74,7 +74,7 @@ def verify(folder):
             members[item.name] = blob
     require(list(members) == sorted(required), 'retained archive is incomplete or not sorted')
     cases, arrays, geometry = {}, {}, {}
-    for name, scale in zip(CASES, (.001, .0005)):
+    for name, scale in zip(CASES, (.001, .0005, .002)):
         prefix = 'validation/runs/' + name + '/'
         data = {filename: members[prefix + filename] for filename in artifacts + ('process_status.json',)}
         process = json.loads(data['process_status.json'].decode())
@@ -152,7 +152,7 @@ def verify(folder):
     baseline, comparisons = cases[CASES[0]], {}
     metrics = ('alpha', 'interface_fraction', 'mean_water', 'beta', 'ridge_height', 'channel_depth',
                'water_storage', 'steps', 'channel_steps', 'wall_seconds')
-    for name, scale in zip(CASES[1:], (.0005,)):
+    for name, scale in zip(CASES[1:], (.0005, .002)):
         candidate = cases[name]
         differences = {key: [baseline['parameters'][key], candidate['parameters'][key]]
                        for key in baseline['parameters']
