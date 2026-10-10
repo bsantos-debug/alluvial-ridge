@@ -25,12 +25,15 @@ continue. The scientific interpretation is in
   files, bound by `time-step-capture.json`. This later capture preserves the
   earlier archives and manifests unchanged. `time-step.py` verifies the
   capture and recomputes the comparison without consulting live paths.
-- `threshold.json` compares the completed corrected 250 m baseline and
-  `tau005` cases, whose critical deposition stresses are 0.1 and 0.05 Pa.
-  `threshold-inputs.tar.xz` retains their 24 original process/output files,
+- `threshold.json` compares the completed corrected 250 m baseline,
+  `tau005`, and `tau020` cases at critical deposition stresses of 0.1,
+  0.05, and 0.2 Pa. `threshold-inputs.tar.xz` retains their 36 original files,
   bound by `threshold-capture.json`. `threshold.py` verifies the capture
   and recomputes the comparison, reusing the hash-checked numerical helpers
-  from the unchanged `time-step.py`.
+  from the unchanged `time-step.py`. The earlier 24 baseline and `tau005`
+  member bytes are unchanged. Analysis format 2 names `baseline250` explicitly
+  and stores each candidate's parameter, diagnostic, and field comparisons
+  under `comparisons`.
 
 The original production observation checked live PIDs, start times and
 executables. Those process identities describe that observation time. Later
@@ -92,10 +95,11 @@ Replay the completed deposition-threshold comparison from its retained files:
 python3 -B validation/first-flood-audit-002/threshold.py
 ```
 
-The command verifies that critical deposition stress is the only numerical
-parameter difference, then checks the saved comparison against its replay.
-The report requires the same verification. Percentages use the 0.1 Pa case
-as denominator. This is first-flood sensitivity to an assumed physical
+The command verifies that critical deposition stress is each candidate's only
+numerical parameter difference, then checks the saved comparison against its
+replay. The report requires the same verification. Field differences are
+candidate minus baseline; percentages use the 0.1 Pa case as denominator.
+This is first-flood sensitivity to an assumed physical
 parameter; it does not establish numerical convergence or constrain the
 appropriate deposition threshold.
 

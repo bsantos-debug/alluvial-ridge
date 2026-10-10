@@ -10,7 +10,7 @@ from pathlib import Path
 import runpy
 import tarfile
 
-CASES = ('baseline250', 'tau005')
+CASES = ('baseline250', 'tau005', 'tau020')
 BINARY = 'b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c'
 HELPER_SHA256 = '7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073'
 SCOPE = ('Completed first-flood deposition-threshold sensitivity only; no grid or temporal '
@@ -42,13 +42,14 @@ def verify(folder):
     require(capture['source_identity']['corrected_binary_sha256'] == BINARY and
             capture['source_identity']['byte_order'] == 'little' and
             capture['source_identity']['pointer_and_size_t_bytes'] == 8 and
-            capture['helper_sha256'] == {'time-step.py': HELPER_SHA256},
+            capture['helper_sha256'] == {'time-step.py': HELPER_SHA256} and
+            set(capture['source_identity']['cases']) == set(CASES),
             'incorrect captured executable/layout/helper identity')
     expected = capture['archive']['member_sha256']
     required = {'validation/runs/' + case + '/' + filename
                 for case in CASES for filename in artifacts + ('process_status.json',)}
-    require(set(expected) == required and capture['archive']['members'] == 24,
-            'capture does not describe exactly the two corrected completed cases')
+    require(set(expected) == required and capture['archive']['members'] == len(required),
+            'capture does not describe exactly the three corrected completed cases')
     members = {}
     with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode='r:xz') as archive:
         for item in archive:
@@ -61,7 +62,7 @@ def verify(folder):
             members[item.name] = blob
     require(list(members) == sorted(required), 'retained archive is incomplete or not sorted')
     cases, arrays, geometry = {}, {}, {}
-    for name, threshold in zip(CASES, (.1, .05)):
+    for name, threshold in zip(CASES, (.1, .05, .2)):
         prefix = 'validation/runs/' + name + '/'
         data = {filename: members[prefix + filename] for filename in artifacts + ('process_status.json',)}
         process = json.loads(data['process_status.json'].decode())
@@ -85,9 +86,9 @@ def verify(folder):
                 'unexpected original executable command')
         options = dict(zip(command[1::2], command[2::2]))
         flags = {'--config', '--runs', '--run', '--floods', '--out'}
-        if name == 'tau005':
+        if name != CASES[0]:
             flags.add('--tau-critical')
-            require(options.get('--tau-critical') == '0.05', 'incorrect threshold command')
+            require(options.get('--tau-critical') == str(threshold), 'incorrect threshold command')
         require(set(options) == flags and len(options) == len(command) // 2 and
                 options['--floods'] == '1' and options['--run'] == '11' and
                 Path(options['--out']).name == name, 'unexpected original process command')
@@ -133,28 +134,31 @@ def verify(folder):
         cases[name] = dict(parameters=parameters, process=process, summary=summary, remap=remap,
                            prescribed_inputs=inputs, signed_residuals_over_prescribed_input=normalized,
                            checkpoint=stored, peak=phases['peak'], end=phases['end'])
-    baseline, candidate = (cases[name] for name in CASES)
-    differences = {key: [baseline['parameters'][key], candidate['parameters'][key]]
-                   for key in baseline['parameters']
-                   if baseline['parameters'][key] != candidate['parameters'][key]}
-    require(differences == {'tau_critical': [.1, .05]} and geometry[CASES[0]] == geometry[CASES[1]],
-            'cases differ in more than deposition threshold or initial channel geometry')
+    baseline, comparisons = cases[CASES[0]], {}
     metrics = ('alpha', 'interface_fraction', 'mean_water', 'beta', 'ridge_height', 'channel_depth',
                'water_storage', 'steps', 'channel_steps', 'wall_seconds')
-    percentages = {key: 100 * (candidate['summary'][key] / baseline['summary'][key] - 1)
-                   if baseline['summary'][key] else None for key in metrics}
-    percentages['deposited_mass'] = 100 * (candidate['checkpoint']['deposited_mass_kg'] /
-                                         baseline['checkpoint']['deposited_mass_kg'] - 1)
-    return dict(format=1, status='verified', scope=SCOPE, processor_sha256=sha(Path(__file__).read_bytes()),
+    for name, threshold in zip(CASES[1:], (.05, .2)):
+        candidate = cases[name]
+        differences = {key: [baseline['parameters'][key], candidate['parameters'][key]]
+                       for key in baseline['parameters']
+                       if baseline['parameters'][key] != candidate['parameters'][key]}
+        require(differences == {'tau_critical': [.1, threshold]} and geometry[CASES[0]] == geometry[name],
+                'cases differ in more than deposition threshold or initial channel geometry')
+        percentages = {key: 100 * (candidate['summary'][key] / baseline['summary'][key] - 1)
+                       if baseline['summary'][key] else None for key in metrics}
+        percentages['deposited_mass'] = 100 * (candidate['checkpoint']['deposited_mass_kg'] /
+                                             baseline['checkpoint']['deposited_mass_kg'] - 1)
+        comparisons[name] = dict(parameter_differences=differences,
+            threshold_relative_to_baseline_percent=percentages,
+            same_grid_fields={phase: helper['compare_fields'](arrays[CASES[0]][phase], arrays[name][phase], 250.)
+                              for phase in ('peak', 'end')})
+    return dict(format=2, status='verified', scope=SCOPE, processor_sha256=sha(Path(__file__).read_bytes()),
                 evidence=dict(captured_utc=capture['captured_utc'], capture_sha256=sha(capture_bytes),
                               archive_sha256=sha(archive_bytes), member_sha256=expected,
                               helper_sha256={'time-step.py': HELPER_SHA256}, binary_sha256=BINARY,
                               original_source_identity=capture['source_identity']),
-                parameter_differences=differences, cases=cases,
-                threshold_relative_to_baseline_percent=percentages,
-                same_grid_fields={phase: helper['compare_fields'](arrays[CASES[0]][phase], arrays[CASES[1]][phase], 250.)
-                                  for phase in ('peak', 'end')},
-                method=dict(difference='tau_critical 0.05 Pa minus 0.1 Pa baseline; percentage denominator is baseline',
+                baseline_case=CASES[0], cases=cases, comparisons=comparisons,
+                method=dict(difference='Each candidate minus baseline250 (tau_critical 0.1 Pa); percentage denominator is baseline250.',
                     snapshot_phase='peak is day 12; end is day 20 before migration/aggradation; checkpoint is after remap',
                     field_domain='identical physical floodplain cells, including dry cells; fixed within-flood channel mask',
                     storage_bounds='Conservative float32 half-ULP storage bounds only; exclude discretization, separate float64 arithmetic error, and CSV rounding.',

@@ -1,6 +1,6 @@
 {
   "archive": {
-    "bytes": 5101208,
+    "bytes": 7750744,
     "file": "threshold-inputs.tar.xz",
     "member_sha256": {
       "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
@@ -26,18 +26,30 @@
       "validation/runs/tau005/remap_budget.csv": "699d7bb920f9259cf0d86fd50fc0df37663b630ede441ea7342419a7bc08462b",
       "validation/runs/tau005/run.log": "185ae364944d7a72231ca80b120f74302dbfc42eee0ae779f9365b0d06a586fc",
       "validation/runs/tau005/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
-      "validation/runs/tau005/summary.csv": "c1a9c59b22497124dd5985db159e90df282af0094cce97b8a81f4949e9a69dc4"
+      "validation/runs/tau005/summary.csv": "c1a9c59b22497124dd5985db159e90df282af0094cce97b8a81f4949e9a69dc4",
+      "validation/runs/tau020/channel_0001.csv": "5f96454d4f339017e63fc1136f05de2f3959b3979514e0113d14162bed4f43b3",
+      "validation/runs/tau020/checkpoint.bin": "a723ace825a011677f37a7171f45d9f28e3a7b05dcd20b4aa4bfe9ee184c1795",
+      "validation/runs/tau020/fields_0001.bin": "ebac318e9dac68c9a07d6ff703ebd42bfa0303ba0ea284c6553adfa35c52a1c7",
+      "validation/runs/tau020/parameters.txt": "9dcb81b80176b329347a9d27ce420b662a2c21fdc2bc148764f48229202d16cb",
+      "validation/runs/tau020/peak_channel_0001.csv": "163882704cd815de82432cff2b1817aaa43b412a5a142085c4a8934217b5de71",
+      "validation/runs/tau020/peak_fields_0001.bin": "4a065af6cdb9d24eac302c17f779d9e8b80984dad8df79b6a17466fff089b229",
+      "validation/runs/tau020/process_status.json": "6222a91e8fce7ba181123d28a501b8bf70d98128c6c3478ad4c49b45ec3a758a",
+      "validation/runs/tau020/progress.json": "38ea61eb71a49df412108e4c3c9a58907e62063d697e55b20268f8912b328e71",
+      "validation/runs/tau020/remap_budget.csv": "ddd1b2a7b11226d58131992ae83c5529f78bdeb8d25d96a07b8e5796919d73b9",
+      "validation/runs/tau020/run.log": "886f20bcc2c384d0110e07e8dec2903140af742ea5473fae4efff1f3df94b65b",
+      "validation/runs/tau020/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/tau020/summary.csv": "495c2eb0a952e407b3c6cafad9a1365718e03779508dd53d47ae48575d08c038"
     },
-    "members": 24,
+    "members": 36,
     "metadata": "Regular-file members only; sorted paths, mode0644, owner names/ids and timestamps normalized; original numerical bytes unchanged.",
-    "sha256": "24cf8e9cf883ff0db1564f156560e308ed736a0a7d0a264329c7b7201f13a887"
+    "sha256": "c6ad85f238401b4920c2bc48a6d6ab06ce1d8b40d011085fcde02e6f94a40974"
   },
-  "captured_utc": "2026-10-10T02:26:58.046415+00:00",
+  "captured_utc": "2026-10-10T04:08:46.920658+00:00",
   "format": 1,
   "helper_sha256": {
     "time-step.py": "7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073"
   },
-  "scope": "Original terminal corrected rebuild002 first-flood baseline and tau_critical 0.05 Pa artifacts; numerical bytes unchanged.",
+  "scope": "Original terminal corrected rebuild002 first-flood baseline, tau_critical 0.05 Pa, and tau_critical 0.2 Pa artifacts; numerical bytes unchanged.",
   "source_identity": {
     "byte_order": "little",
     "cases": {
@@ -254,6 +266,114 @@
         },
         "utc_finished": "2026-10-10T02:22:51.647420Z",
         "utc_started": "2026-10-10T00:43:01.423859Z"
+      },
+      "tau020": {
+        "original_command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/tau020",
+          "--tau-critical",
+          "0.2"
+        ],
+        "process_pid": 16284,
+        "process_pid_absent_at_capture": true,
+        "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/tau020",
+        "source_files": {
+          "channel_0001.csv": {
+            "bytes": 22083,
+            "device": 2049,
+            "inode": 19327461253,
+            "mtime_ns": 1791605193957508738,
+            "sha256": "5f96454d4f339017e63fc1136f05de2f3959b3979514e0113d14162bed4f43b3"
+          },
+          "checkpoint.bin": {
+            "bytes": 3115545,
+            "device": 2049,
+            "inode": 19327461254,
+            "mtime_ns": 1791605193983508754,
+            "sha256": "a723ace825a011677f37a7171f45d9f28e3a7b05dcd20b4aa4bfe9ee184c1795"
+          },
+          "fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 19327370235,
+            "mtime_ns": 1791605193957508738,
+            "sha256": "ebac318e9dac68c9a07d6ff703ebd42bfa0303ba0ea284c6553adfa35c52a1c7"
+          },
+          "parameters.txt": {
+            "bytes": 1129,
+            "device": 2049,
+            "inode": 19327370232,
+            "mtime_ns": 1791598971737492921,
+            "sha256": "9dcb81b80176b329347a9d27ce420b662a2c21fdc2bc148764f48229202d16cb"
+          },
+          "peak_channel_0001.csv": {
+            "bytes": 22078,
+            "device": 2049,
+            "inode": 19327461251,
+            "mtime_ns": 1791602048545520289,
+            "sha256": "163882704cd815de82432cff2b1817aaa43b412a5a142085c4a8934217b5de71"
+          },
+          "peak_fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 19327353015,
+            "mtime_ns": 1791602048545520289,
+            "sha256": "4a065af6cdb9d24eac302c17f779d9e8b80984dad8df79b6a17466fff089b229"
+          },
+          "process_status.json": {
+            "bytes": 2031,
+            "device": 2049,
+            "inode": 19327461256,
+            "mtime_ns": 1791605194115508837,
+            "sha256": "6222a91e8fce7ba181123d28a501b8bf70d98128c6c3478ad4c49b45ec3a758a"
+          },
+          "progress.json": {
+            "bytes": 149,
+            "device": 2049,
+            "inode": 19327370209,
+            "mtime_ns": 1791605149374480870,
+            "sha256": "38ea61eb71a49df412108e4c3c9a58907e62063d697e55b20268f8912b328e71"
+          },
+          "remap_budget.csv": {
+            "bytes": 407,
+            "device": 2049,
+            "inode": 19327370239,
+            "mtime_ns": 1791605193975508749,
+            "sha256": "ddd1b2a7b11226d58131992ae83c5529f78bdeb8d25d96a07b8e5796919d73b9"
+          },
+          "run.log": {
+            "bytes": 145,
+            "device": 2049,
+            "inode": 19327370236,
+            "mtime_ns": 1791605193957508738,
+            "sha256": "886f20bcc2c384d0110e07e8dec2903140af742ea5473fae4efff1f3df94b65b"
+          },
+          "status.txt": {
+            "bytes": 18,
+            "device": 2049,
+            "inode": 19327461255,
+            "mtime_ns": 1791605193983508754,
+            "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+          },
+          "summary.csv": {
+            "bytes": 431,
+            "device": 2049,
+            "inode": 19327370238,
+            "mtime_ns": 1791605193950508734,
+            "sha256": "495c2eb0a952e407b3c6cafad9a1365718e03779508dd53d47ae48575d08c038"
+          }
+        },
+        "utc_finished": "2026-10-10T04:06:33.990250Z",
+        "utc_started": "2026-10-10T02:22:51.717996Z"
       }
     },
     "corrected_binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
@@ -270,9 +390,9 @@
   },
   "stability_check": {
     "comparison": "bytes, device, inode, size, mtime_ns, ctime_ns",
-    "first_read_utc": "2026-10-10T02:26:47.431858+00:00",
+    "first_read_utc": "2026-10-10T04:08:31.304683+00:00",
     "minimum_pause_seconds": 2,
-    "second_read_utc": "2026-10-10T02:26:49.457402+00:00",
-    "unchanged_files": 24
+    "second_read_utc": "2026-10-10T04:08:33.341053+00:00",
+    "unchanged_files": 36
   }
 }

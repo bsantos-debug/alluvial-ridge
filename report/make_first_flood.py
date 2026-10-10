@@ -638,79 +638,116 @@ def render_threshold(evidence):
                      tex(evidence['reason']) + '. No numerical threshold claim is rendered.}')
         return '\n'.join(lines) + '\n'
     comparison = evidence['comparison']
-    require(comparison['parameter_differences'] == {'tau_critical': [0.1, 0.05]},
+    names = ('baseline250', 'tau005', 'tau020')
+    require(comparison['format'] == 2 and comparison['baseline_case'] == names[0] and
+            set(comparison['cases']) == set(names) and
+            set(comparison['comparisons']) == set(names[1:]),
+            'unexpected three-case threshold comparison schema')
+    cases = [comparison['cases'][name] for name in names]
+    candidates = [comparison['comparisons'][name] for name in names[1:]]
+    thresholds = [case['parameters']['tau_critical'] for case in cases]
+    require(thresholds == [0.1, 0.05, 0.2] and
+            all(candidate['parameter_differences'] == {'tau_critical': [0.1, threshold]}
+                for candidate, threshold in zip(candidates, thresholds[1:])),
             'threshold parameters differ beyond critical deposition stress')
-    cases = [comparison['cases'][name] for name in ('baseline250', 'tau005')]
-    lines += [r'This comparison reduces the assumed critical deposition stress $\tau_c$',
-              r'from 0.1 to 0.05 Pa. The silt and clay settling rates contain the factor',
-              r'$\max(0,1-\tau_b/\tau_c)$; lowering $\tau_c$ suppresses their settling',
-              'at fixed bed shear stress and concentration. Sand settling has no',
-              'shear reduction. Both cases use the corrected executable, configuration',
+    lines += [r'This comparison varies the assumed critical deposition stress $\tau_c$',
+              r'from a 0.1 Pa baseline to 0.05 and 0.2 Pa. The silt and clay settling',
+              r'rates contain the factor $\max(0,1-\tau_b/\tau_c)$, where $\tau_b$',
+              r'is bed shear stress. At fixed shear stress and concentration, lowering',
+              r'$\tau_c$ suppresses settling; raising it enhances settling where the',
+              'shear reduction is active. Sand settling has no shear reduction.',
+              'All three cases use the corrected executable, configuration',
               '11, 250 m floodplain grid, 250 m initial channel spacing, CFL limit',
               '0.4, and one complete 20-day hydrograph. All other numerical parameters',
-              'agree. Both recorded processes exit successfully.',
-              '', r'\begin{center}\small', r'\begin{tabular}{lrrr}', r'\toprule',
-              r'Quantity & $\tau_c=0.1$ Pa & $\tau_c=0.05$ Pa & Change (\%) \\', r'\midrule']
-    for title, key in ((r'Day-12 connectivity $\alpha$ (m)', 'alpha'),
-                       (r'End-flood ridge height (m)', 'ridge_height'),
-                       (r'End-flood relative relief $\beta$', 'beta'),
-                       (r'Mean bankfull channel depth (m)', 'channel_depth'),
-                       (r'End-flood water storage (m$^3$)', 'water_storage')):
-        values = [case['summary'][key] for case in cases]
-        lines.append(title + ' & ' + ' & '.join('$' + number(v) + '$' for v in values) +
-                     ' & %+.5f' % (100 * (values[1] / values[0] - 1)) + r' \\')
-    deposited = [case['checkpoint']['deposited_mass_kg'] for case in cases]
-    lines.append('Deposited mineral mass (kg) & ' +
-                 ' & '.join('$' + number(v) + '$' for v in deposited) +
-                 ' & %+.5f' % (100 * (deposited[1] / deposited[0] - 1)) + r' \\')
-    common = comparison['same_grid_fields']['end']
-    water, deposit = (common['fields'][key] for key in ('water_depth', 'event_deposit'))
-    remap = cases[1]['remap']
-    maximum_residual = max(abs(cases[1]['signed_residuals_over_prescribed_input'][key])
-                           for key in ('post_water', 'post_suspension_plus_deposition', 'post_full_solid'))
+              'agree. All three recorded processes exit successfully.',
+              '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
+              r'\begin{tabular}{lrrr}', r'\toprule',
+              r'Quantity & $\tau_c=0.1$ Pa & $\tau_c=0.05$ Pa & $\tau_c=0.2$ Pa \\',
+              r'\midrule']
+    metrics = ((r'Day-12 connectivity $\alpha$ (m)', 'alpha'),
+               (r'End-flood ridge height (m)', 'ridge_height'),
+               (r'End-flood relative relief $\beta$', 'beta'),
+               (r'Mean bankfull depth (m)', 'channel_depth'),
+               (r'End-flood water storage (m$^3$)', 'water_storage'),
+               (r'Deposited mineral mass (kg)', 'deposited_mass'))
+    for title, key in metrics:
+        values = [case['checkpoint']['deposited_mass_kg'] if key == 'deposited_mass'
+                  else case['summary'][key] for case in cases]
+        lines.append(title + ' & ' + ' & '.join('$' + number(v) + '$' for v in values) + r' \\')
     lines += [r'\bottomrule\end{tabular}\end{center}',
-              'Percentage changes use the 0.1 Pa case as denominator. Connectivity',
+              r'\begin{center}\small', r'\begin{tabular}{lrr}', r'\toprule',
+              r'Percentage change from 0.1 Pa & $\tau_c=0.05$ Pa & $\tau_c=0.2$ Pa \\',
+              r'\midrule']
+    for title, key in metrics:
+        lines.append(title + ' & ' + ' & '.join('%+.5f' %
+                     candidate['threshold_relative_to_baseline_percent'][key]
+                     for candidate in candidates) + r' \\')
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'Changes are each candidate minus the 0.1 Pa baseline; percentages',
+              'use the baseline value as denominator. Connectivity',
               'is sampled on day 12; ridge height, relative relief, channel depth,',
               'and water storage are sampled on day 20 before migration/remapping.',
-              'Deposited mineral mass is the accumulated deposition-source ledger',
-              'in the checkpoint. It differs from the remaining event-deposit volume,',
-              'which includes pore space. Both day-12 inundated interface fractions',
+              'The post-remap checkpoint ledger records mineral mass added by',
+              'deposition; the raster stores remaining event-deposit thickness,',
+              'including pore space. All three day-12 inundated interface fractions',
               'equal one, so the connectivity difference is a mean-depth difference.',
-              '',
-              'The ridge-height metric increases by %.3f\\%% while total deposited' %
-              (100 * (cases[1]['summary']['ridge_height'] / cases[0]['summary']['ridge_height'] - 1)),
-              'mineral mass decreases by %.3f\\%%. Ridge relief and integrated' %
-              (100 * (1 - deposited[1] / deposited[0])),
-              'deposition therefore respond differently in this comparison. The',
-              'local settling factor alone does not determine the sign of the',
-              'coupled spatial response.',
-              '',
-              'The end-flood masks agree. Across all %.0f km$^2$ of floodplain,' %
-              (common['floodplain_area_m2'] / 1e6),
-              'including dry cells, water-depth differences have mean absolute value',
-              '%.8f m and maximum %.8f m. Event-deposit thickness differences have' %
-              (water['mean_absolute_difference_m'], water['maximum_absolute_difference_m']),
-              'mean absolute value %.8f m and maximum %.8f m.' %
-              (deposit['mean_absolute_difference_m'], deposit['maximum_absolute_difference_m']),
-              'The respective float32 storage bounds on the mean differences are',
-              '$%s$ m and $%s$ m. They exclude discretization, separate floating-point' %
-              (number(water['mean_difference_storage_bound_m']),
-               number(deposit['mean_difference_storage_bound_m'])),
-              'arithmetic error, and rounding of the tabulated values.',
-              '',
-              'The 0.05 Pa post-remap residuals are $%s$ m$^3$ water,' %
-              number(remap['post_water_residual']),
-              '$%s$ kg suspension plus deposition, and $%s$ kg total solids.' %
-              (number(remap['post_sediment_residual']), number(remap['post_solid_sediment_residual'])),
-              'The largest residual magnitude normalized by the corresponding',
-              'prescribed upstream input is $%s$; the denominators are $%s$ m$^3$' %
-              (number(maximum_residual), number(cases[1]['prescribed_inputs']['prescribed_water_input_m3'])),
-              'and $%s$ kg. They exclude recycling, outflow, and signed bed forcing.' %
-              number(cases[1]['prescribed_inputs']['prescribed_sediment_input_kg']),
-              'Both first remaps have zero captured or abandoned cells, bank mass,',
-              'recycled mass, cutoffs, and correction terms. Signed bed forcing',
-              'remains a separate ledger in the retained comparison.',
-              '',
+              '']
+    for threshold, candidate in zip(thresholds[1:], candidates):
+        changes = candidate['threshold_relative_to_baseline_percent']
+        lines += ['At %.2g Pa, ridge height changes by %+.3f\\%% and deposited' %
+                  (threshold, changes['ridge_height']),
+                  'mineral mass by %+.3f\\%% relative to the baseline.' % changes['deposited_mass']]
+    lines += ['Ridge relief and integrated deposition respond differently in these',
+              'calculations. The local settling factor alone does not determine the',
+              'sign of the coupled spatial response.', '',
+              'The channel/floodplain classification masks agree across all three',
+              'cases at peak and end flood. The field',
+              'comparisons below cover all %.0f km$^2$ of floodplain, including dry' %
+              (candidates[0]['same_grid_fields']['end']['floodplain_area_m2'] / 1e6),
+              'cells. Each difference is the candidate minus the baseline. The',
+              'last column bounds float32 storage error in the mean difference;',
+              'it excludes discretization, separate floating-point arithmetic error,',
+              'and rounding of the tabulated values. All entries are in metres.']
+    for threshold, candidate in zip(thresholds[1:], candidates):
+        lines += ['', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
+                  r'$\tau_c=%.2g$ Pa relative to 0.1 Pa\par\smallskip' % threshold,
+                  r'\begin{tabular}{llrrr}', r'\toprule',
+                  r'Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\',
+                  r'\midrule']
+        for phase, phase_title in (('peak', 'Day 12'), ('end', 'Day 20')):
+            for key, title in (('water_depth', 'Water depth'), ('event_deposit', 'Event deposit')):
+                field = candidate['same_grid_fields'][phase]['fields'][key]
+                values = [field[key] for key in ('mean_absolute_difference_m',
+                          'maximum_absolute_difference_m', 'mean_difference_storage_bound_m')]
+                lines.append(phase_title + ' & ' + title + ' & ' +
+                             ' & '.join('$' + number(value) + '$' for value in values) + r' \\')
+        lines += [r'\bottomrule\end{tabular}\end{center}']
+    lines += ['', 'Post-remap residuals retain their signs. The water denominator is',
+              'the prescribed upstream input of $%s$ m$^3$; both sediment denominators' %
+              number(cases[0]['prescribed_inputs']['prescribed_water_input_m3']),
+              'are the prescribed upstream mineral input of $%s$ kg.' %
+              number(cases[0]['prescribed_inputs']['prescribed_sediment_input_kg']),
+              'These common denominators exclude recycling, outflow, and signed bed',
+              'forcing; they are neither current storage nor net external input.',
+              '', r'\begin{center}\small\setlength{\tabcolsep}{4pt}',
+              r'\begin{tabular}{rlrr}', r'\toprule',
+              r'$\tau_c$ (Pa) & Inventory & Signed residual & Residual/input \\', r'\midrule']
+    for threshold, case in zip(thresholds, cases):
+        for title, raw, normalized in (
+                (r'Water (m$^3$)', 'post_water_residual', 'post_water'),
+                ('Suspension + deposition (kg)', 'post_sediment_residual', 'post_suspension_plus_deposition'),
+                ('Full solids (kg)', 'post_solid_sediment_residual', 'post_full_solid')):
+            lines.append(r'%.2g & %s & $%s$ & $%s$ \\' %
+                         (threshold, title, number(case['remap'][raw]),
+                          number(case['signed_residuals_over_prescribed_input'][normalized])))
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'All three first remaps have zero captured or abandoned cells, bank',
+              'mass, recycled mass, cutoffs, and water or mass correction terms.',
+              'The signed bed-forcing ledgers are %s kg for 0.1, 0.05, and 0.2 Pa,' %
+              ', '.join('$' + number(case['checkpoint']['bed_forcing_mass_kg']) + '$' for case in cases),
+              'respectively. This forcing contributes to solid-inventory change',
+              'independently of suspended transport and is subtracted in the',
+              'full-solid residual.', '',
               'This result quantifies sensitivity to an assumed deposition parameter.',
               'It does not constrain the appropriate physical threshold, numerical',
               'convergence, later bank recycling, 580-flood behavior, or agreement',
@@ -719,6 +756,8 @@ def render_threshold(evidence):
               r'\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/threshold.py}']
     require(all(case['summary']['interface_fraction'] == 1 for case in cases),
             'threshold comparison interface fractions changed')
+    require(all(case['prescribed_inputs'] == cases[0]['prescribed_inputs'] for case in cases),
+            'threshold comparison prescribed inputs differ')
     require(all(case['checkpoint'][key] == 0 for case in cases for key in
                 ('captured_floodplain_cells', 'abandoned_channel_cells', 'bank_mass_kg',
                  'recycled_mass_kg', 'cutoffs', 'water_correction_m3', 'mass_correction_kg')),

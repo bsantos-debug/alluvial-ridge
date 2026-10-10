@@ -123,7 +123,23 @@ first-flood assumption comparison, without a claim about later evolution.
 The driver automatically started `tau020` at 02:22:51.717996 UTC. PID 16284
 and start tick 54062286 were verified live at 02:24:05 UTC with matching
 recorded arguments and the corrected executable; `fine125` remained live.
-Four of the eight full first-flood sensitivity cases have now completed.
+The corrected `tau020` case completed at 2026-10-10 04:06:33.990250 UTC
+with exit 0. Its full checkpoint and exact day-12/day-20 fields passed
+finite-value, physical-inventory, and conservation checks. Only
+`tau_critical` differs from the baseline, from 0.1 to 0.2 Pa. Integrated
+mineral deposition increases by 46.1026%, while ridge height decreases by
+6.57286% and beta by 6.56210%. Both threshold perturbations therefore change
+the integrated mass and ridge-relief metrics in opposite directions; this
+does not identify a mechanism for their different spatial weighting.
+First-remap capture, abandonment, bank reservoir, recycling, cutoffs, and
+correction terms remain zero. The threshold comparison retains all three
+completed cases and treats each perturbation relative to the 0.1 Pa baseline.
+
+The driver started `concentration_half` at 04:06:34.128871 UTC. PID 97109
+and start tick 54684527 were verified live at 04:07:29 UTC, with matching
+recorded arguments and the corrected executable. Its sole numerical change
+is the concentration scale, from 0.001 to 0.0005; `fine125` remained live.
+Five of the eight full first-flood sensitivity cases have now completed.
 The requested scope remains all 31 production cases at 580 floods each and
 all eight sensitivity cases. Original runner outcomes are preserved; complete
 rebuild and manuscript-panel assessments remain pending.

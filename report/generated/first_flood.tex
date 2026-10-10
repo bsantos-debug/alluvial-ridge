@@ -204,57 +204,117 @@ The portable replay command is:
 \par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/time-step.py}
 
 \subsection{Completed first-flood deposition-threshold sensitivity}
-This comparison reduces the assumed critical deposition stress $\tau_c$
-from 0.1 to 0.05 Pa. The silt and clay settling rates contain the factor
-$\max(0,1-\tau_b/\tau_c)$; lowering $\tau_c$ suppresses their settling
-at fixed bed shear stress and concentration. Sand settling has no
-shear reduction. Both cases use the corrected executable, configuration
+This comparison varies the assumed critical deposition stress $\tau_c$
+from a 0.1 Pa baseline to 0.05 and 0.2 Pa. The silt and clay settling
+rates contain the factor $\max(0,1-\tau_b/\tau_c)$, where $\tau_b$
+is bed shear stress. At fixed shear stress and concentration, lowering
+$\tau_c$ suppresses settling; raising it enhances settling where the
+shear reduction is active. Sand settling has no shear reduction.
+All three cases use the corrected executable, configuration
 11, 250 m floodplain grid, 250 m initial channel spacing, CFL limit
 0.4, and one complete 20-day hydrograph. All other numerical parameters
-agree. Both recorded processes exit successfully.
+agree. All three recorded processes exit successfully.
 
-\begin{center}\small
+\begin{center}\small\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrr}
 \toprule
-Quantity & $\tau_c=0.1$ Pa & $\tau_c=0.05$ Pa & Change (\%) \\
+Quantity & $\tau_c=0.1$ Pa & $\tau_c=0.05$ Pa & $\tau_c=0.2$ Pa \\
 \midrule
-Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $8.8449\times10^{-1}$ & +0.00043 \\
-End-flood ridge height (m) & $1.31874\times10^{-2}$ & $1.41532\times10^{-2}$ & +7.32334 \\
-End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $1.76389\times10^{-3}$ & +7.31106 \\
-Mean bankfull channel depth (m) & $8.02294\times10^{0}$ & $8.02386\times10^{0}$ & +0.01145 \\
-End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $5.56111\times10^{8}$ & +0.04423 \\
-Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $1.80697\times10^{9}$ & -19.43183 \\
+Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $8.8449\times10^{-1}$ & $8.84476\times10^{-1}$ \\
+End-flood ridge height (m) & $1.31874\times10^{-2}$ & $1.41532\times10^{-2}$ & $1.23206\times10^{-2}$ \\
+End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $1.76389\times10^{-3}$ & $1.53585\times10^{-3}$ \\
+Mean bankfull depth (m) & $8.02294\times10^{0}$ & $8.02386\times10^{0}$ & $8.02202\times10^{0}$ \\
+End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $5.56111\times10^{8}$ & $5.55426\times10^{8}$ \\
+Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $1.80697\times10^{9}$ & $3.27677\times10^{9}$ \\
 \bottomrule\end{tabular}\end{center}
-Percentage changes use the 0.1 Pa case as denominator. Connectivity
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+Percentage change from 0.1 Pa & $\tau_c=0.05$ Pa & $\tau_c=0.2$ Pa \\
+\midrule
+Day-12 connectivity $\alpha$ (m) & +0.00043 & -0.00114 \\
+End-flood ridge height (m) & +7.32334 & -6.57286 \\
+End-flood relative relief $\beta$ & +7.31106 & -6.56210 \\
+Mean bankfull depth (m) & +0.01145 & -0.01151 \\
+End-flood water storage (m$^3$) & +0.04423 & -0.07885 \\
+Deposited mineral mass (kg) & -19.43183 & +46.10262 \\
+\bottomrule\end{tabular}\end{center}
+Changes are each candidate minus the 0.1 Pa baseline; percentages
+use the baseline value as denominator. Connectivity
 is sampled on day 12; ridge height, relative relief, channel depth,
 and water storage are sampled on day 20 before migration/remapping.
-Deposited mineral mass is the accumulated deposition-source ledger
-in the checkpoint. It differs from the remaining event-deposit volume,
-which includes pore space. Both day-12 inundated interface fractions
+The post-remap checkpoint ledger records mineral mass added by
+deposition; the raster stores remaining event-deposit thickness,
+including pore space. All three day-12 inundated interface fractions
 equal one, so the connectivity difference is a mean-depth difference.
 
-The ridge-height metric increases by 7.323\% while total deposited
-mineral mass decreases by 19.432\%. Ridge relief and integrated
-deposition therefore respond differently in this comparison. The
-local settling factor alone does not determine the sign of the
-coupled spatial response.
+At 0.05 Pa, ridge height changes by +7.323\% and deposited
+mineral mass by -19.432\% relative to the baseline.
+At 0.2 Pa, ridge height changes by -6.573\% and deposited
+mineral mass by +46.103\% relative to the baseline.
+Ridge relief and integrated deposition respond differently in these
+calculations. The local settling factor alone does not determine the
+sign of the coupled spatial response.
 
-The end-flood masks agree. Across all 3420 km$^2$ of floodplain,
-including dry cells, water-depth differences have mean absolute value
-0.00009540 m and maximum 0.00367419 m. Event-deposit thickness differences have
-mean absolute value 0.00011204 m and maximum 0.00822584 m.
-The respective float32 storage bounds on the mean differences are
-$9.58587\times10^{-9}$ m and $3.28866\times10^{-11}$ m. They exclude discretization, separate floating-point
-arithmetic error, and rounding of the tabulated values.
+The channel/floodplain classification masks agree across all three
+cases at peak and end flood. The field
+comparisons below cover all 3420 km$^2$ of floodplain, including dry
+cells. Each difference is the candidate minus the baseline. The
+last column bounds float32 storage error in the mean difference;
+it excludes discretization, separate floating-point arithmetic error,
+and rounding of the tabulated values. All entries are in metres.
 
-The 0.05 Pa post-remap residuals are $-5.13196\times10^{-5}$ m$^3$ water,
-$-6.3638\times10^{-1}$ kg suspension plus deposition, and $-3.44117\times10^{-1}$ kg total solids.
-The largest residual magnitude normalized by the corresponding
-prescribed upstream input is $1.16266\times10^{-11}$; the denominators are $1.512\times10^{10}$ m$^3$
-and $5.47346\times10^{10}$ kg. They exclude recycling, outflow, and signed bed forcing.
-Both first remaps have zero captured or abandoned cells, bank mass,
-recycled mass, cutoffs, and correction terms. Signed bed forcing
-remains a separate ledger in the retained comparison.
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+$\tau_c=0.05$ Pa relative to 0.1 Pa\par\smallskip
+\begin{tabular}{llrrr}
+\toprule
+Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\
+\midrule
+Day 12 & Water depth & $3.72141\times10^{-5}$ & $7.88608\times10^{-3}$ & $7.13658\times10^{-8}$ \\
+Day 12 & Event deposit & $3.70402\times10^{-5}$ & $8.43491\times10^{-3}$ & $1.93411\times10^{-11}$ \\
+Day 20 & Water depth & $9.53963\times10^{-5}$ & $3.67419\times10^{-3}$ & $9.58587\times10^{-9}$ \\
+Day 20 & Event deposit & $1.12036\times10^{-4}$ & $8.22584\times10^{-3}$ & $3.28866\times10^{-11}$ \\
+\bottomrule\end{tabular}\end{center}
+
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+$\tau_c=0.2$ Pa relative to 0.1 Pa\par\smallskip
+\begin{tabular}{llrrr}
+\toprule
+Phase & Field & Mean $|\Delta|$ & Max. $|\Delta|$ & Mean storage bound \\
+\midrule
+Day 12 & Water depth & $9.97063\times10^{-5}$ & $1.09373\times10^{-2}$ & $7.13673\times10^{-8}$ \\
+Day 12 & Event deposit & $9.61107\times10^{-5}$ & $1.19132\times10^{-2}$ & $2.37361\times10^{-11}$ \\
+Day 20 & Water depth & $1.60123\times10^{-4}$ & $3.18443\times10^{-3}$ & $9.57521\times10^{-9}$ \\
+Day 20 & Event deposit & $2.41958\times10^{-4}$ & $1.16961\times10^{-2}$ & $4.44829\times10^{-11}$ \\
+\bottomrule\end{tabular}\end{center}
+
+Post-remap residuals retain their signs. The water denominator is
+the prescribed upstream input of $1.512\times10^{10}$ m$^3$; both sediment denominators
+are the prescribed upstream mineral input of $5.47346\times10^{10}$ kg.
+These common denominators exclude recycling, outflow, and signed bed
+forcing; they are neither current storage nor net external input.
+
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{rlrr}
+\toprule
+$\tau_c$ (Pa) & Inventory & Signed residual & Residual/input \\
+\midrule
+0.1 & Water (m$^3$) & $-1.91927\times10^{-5}$ & $-1.26936\times10^{-15}$ \\
+0.1 & Suspension + deposition (kg) & $-7.54353\times10^{-1}$ & $-1.3782\times10^{-11}$ \\
+0.1 & Full solids (kg) & $-3.60248\times10^{-1}$ & $-6.58173\times10^{-12}$ \\
+0.05 & Water (m$^3$) & $-5.13196\times10^{-5}$ & $-3.39415\times10^{-15}$ \\
+0.05 & Suspension + deposition (kg) & $-6.3638\times10^{-1}$ & $-1.16266\times10^{-11}$ \\
+0.05 & Full solids (kg) & $-3.44117\times10^{-1}$ & $-6.28701\times10^{-12}$ \\
+0.2 & Water (m$^3$) & $-4.63724\times10^{-5}$ & $-3.06696\times10^{-15}$ \\
+0.2 & Suspension + deposition (kg) & $-1.09959\times10^{0}$ & $-2.00894\times10^{-11}$ \\
+0.2 & Full solids (kg) & $-3.61684\times10^{-1}$ & $-6.60797\times10^{-12}$ \\
+\bottomrule\end{tabular}\end{center}
+All three first remaps have zero captured or abandoned cells, bank
+mass, recycled mass, cutoffs, and water or mass correction terms.
+The signed bed-forcing ledgers are $1.76403\times10^{5}$, $1.76447\times10^{5}$, $1.76359\times10^{5}$ kg for 0.1, 0.05, and 0.2 Pa,
+respectively. This forcing contributes to solid-inventory change
+independently of suspended transport and is subtracted in the
+full-solid residual.
 
 This result quantifies sensitivity to an assumed deposition parameter.
 It does not constrain the appropriate physical threshold, numerical
