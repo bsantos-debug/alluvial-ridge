@@ -1,10 +1,13 @@
 # Finalization and publication checklist
 
-Status at 2026-10-10 00:26 UTC. All project files are under
+Status at 2026-10-10 00:46 UTC. All project files are under
 `/data/data0/brooke/alluvial-ridge`; the former path is a temporary alias.
-Rebuild 002 remains active with all 31 production processes live. Runs 19,
-20, and 21 have completed three floods; the other 28 have completed two.
-The corrected fine-grid and half-CFL sensitivity jobs remain live. The move
+Rebuild 002 remains active with all 31 production processes live. Eight cases
+have completed three floods; the other 23 have completed two. The corrected
+half-CFL sensitivity case completed with exit 0 and passed its artifact and
+full checkpoint/field checks. Fine125 and the newly started tau005 case remain
+live. Retain the [time-step comparison](first-flood-validation.md#completed-first-flood-time-step-comparison)
+with its first-flood scope. The move
 preserved all 43 frozen source hashes, process identities and open writable
 file handles; see the [relocation record](../validation/relocation-20261010/README.md).
 The full 580-flood calculation and manuscript figures remain pending.

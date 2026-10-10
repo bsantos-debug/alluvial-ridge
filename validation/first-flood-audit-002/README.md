@@ -20,6 +20,11 @@ continue. The scientific interpretation is in
 - `capture-provenance.json` binds the retained scripts, observations, and
   input archive to their SHA-256 digests. The report checks this manifest
   before displaying the archived observations.
+- `time-step.json` compares the completed corrected 250 m cases at CFL 0.4
+  and 0.2. `time-step-inputs.tar.xz` retains their 24 original process/output
+  files, bound by `time-step-capture.json`. This later capture preserves the
+  earlier archives and manifests unchanged. `time-step.py` verifies the
+  capture and recomputes the comparison without consulting live paths.
 
 The original production observation checked live PIDs, start times and
 executables. Those process identities describe that observation time. Later
@@ -60,6 +65,20 @@ remain available:
 ```sh
 python3 -B validation/first-flood-audit-002/two-resolution.py .
 ```
+
+The completed time-step comparison is portable and can be replayed entirely
+from its retained archive:
+
+```sh
+python3 -B validation/first-flood-audit-002/time-step.py
+```
+
+The command verifies the original process records and artifact hashes,
+requires the CFL limit to be the only parameter difference, and checks the
+recomputed result against `time-step.json`. The report performs the same
+verification before displaying the comparison. Percentages use the CFL 0.4
+case as denominator. These two limits establish first-flood sensitivity,
+without a temporal convergence order or a manuscript-panel assessment.
 
 `production-observation.py` is the retained live-observation procedure. It
 requires the first-flood checkpoints and matching live processes, and refuses

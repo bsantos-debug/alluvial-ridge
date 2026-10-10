@@ -1,0 +1,242 @@
+{
+  "archive": {
+    "bytes": 5132768,
+    "file": "time-step-inputs.tar.xz",
+    "member_sha256": {
+      "validation/runs/baseline250/channel_0001.csv": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533",
+      "validation/runs/baseline250/checkpoint.bin": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951",
+      "validation/runs/baseline250/fields_0001.bin": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180",
+      "validation/runs/baseline250/parameters.txt": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d",
+      "validation/runs/baseline250/peak_channel_0001.csv": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f",
+      "validation/runs/baseline250/peak_fields_0001.bin": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea",
+      "validation/runs/baseline250/process_status.json": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17",
+      "validation/runs/baseline250/progress.json": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f",
+      "validation/runs/baseline250/remap_budget.csv": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4",
+      "validation/runs/baseline250/run.log": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad",
+      "validation/runs/baseline250/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/baseline250/summary.csv": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d",
+      "validation/runs/time250_cfl02/channel_0001.csv": "91c3dc7e06df4207a8f2393c7066d009811762ecb9d0e4d378fc6c9f67fe3c6b",
+      "validation/runs/time250_cfl02/checkpoint.bin": "e9bc8a380a3dab214462b4355e148c12447b98dbb30c585af174a00390b5533d",
+      "validation/runs/time250_cfl02/fields_0001.bin": "1ca9e72d030adc6d8ef0b8ab71e5e612081980cc29e9588ec9ccbaf507a08732",
+      "validation/runs/time250_cfl02/parameters.txt": "1c63c3d618a4bc90c625e28ef30c73d7f4eb82d8979994ab24d56e8350be43fc",
+      "validation/runs/time250_cfl02/peak_channel_0001.csv": "deefdac17470a567df1b9d93b9ba4c823fc1fa0d8ea5ce6b0ecfbd8423ae73a8",
+      "validation/runs/time250_cfl02/peak_fields_0001.bin": "ca1d6a0947a30249cf1ea8d860e393537885ca0a3936f348f1663ba2a69bdbc7",
+      "validation/runs/time250_cfl02/process_status.json": "aa20967e1a816aff89c6ba4760732b394adf2ac135c74a53e04931a0b26052c2",
+      "validation/runs/time250_cfl02/progress.json": "4815429a48120ceb4a1c4551ea4ee77e4d223e8b25f1761b56755de52aa4af53",
+      "validation/runs/time250_cfl02/remap_budget.csv": "331f327ed462766567c12c227d28deb60440073998da0f0ea8affcf4510e5840",
+      "validation/runs/time250_cfl02/run.log": "7d5f6d960bec561f3a15074e7c9934485f7d336a54d0770b3983346304dc9a2a",
+      "validation/runs/time250_cfl02/status.txt": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c",
+      "validation/runs/time250_cfl02/summary.csv": "7f0ff2113e0f729ac09d8eea45e2ac55b696748e7289516935050f2051e043d4"
+    },
+    "members": 24,
+    "metadata": "Regular-file members only; sorted paths, mode0644, owner names/ids and timestamps normalized; original numerical bytes unchanged.",
+    "sha256": "c604bd946596c7e25d0d4558ef955911d486099a605632fde2f7e65e35db30a6"
+  },
+  "captured_utc": "2026-10-10T00:47:59.078345+00:00",
+  "format": 1,
+  "scope": "Original terminal corrected rebuild002 first-flood baseline and half-CFL artifacts; numerical bytes unchanged.",
+  "source_identity": {
+    "byte_order": "little",
+    "cases": {
+      "baseline250": {
+        "original_command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250"
+        ],
+        "process_pid": 3805343,
+        "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/baseline250",
+        "source_files": {
+          "channel_0001.csv": {
+            "bytes": 22070,
+            "device": 2049,
+            "inode": 27902168653,
+            "sha256": "0b7ae9527f9ae6d7789f04c1025b60c67f7d7857b42a5d4b19114557c2069533"
+          },
+          "checkpoint.bin": {
+            "bytes": 3115545,
+            "device": 2049,
+            "inode": 27902168654,
+            "sha256": "8ecb3c529f9a00cf5862a09908d55d657d225722a51ca05b238893faf045b951"
+          },
+          "fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 27902001309,
+            "sha256": "4de3bd3bc4da571c412f2d3c08537511ecfa3d6c81216783bee0d16bdebf6180"
+          },
+          "parameters.txt": {
+            "bytes": 1115,
+            "device": 2049,
+            "inode": 27902001284,
+            "sha256": "1fed94cfcd7644f2486cfcfda06c973c4239c8e25a9e9cb61141e04591827e4d"
+          },
+          "peak_channel_0001.csv": {
+            "bytes": 22072,
+            "device": 2049,
+            "inode": 27902120510,
+            "sha256": "051d8ddba6f83a7c468554a9cb173eef3ef9ae3462dc645b4e5a79f57671573f"
+          },
+          "peak_fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 27902001302,
+            "sha256": "4bc56e86e5d0bdd6f23d1569ed8f58e8c09c7f9b5f7d80986153cd002fb9ddea"
+          },
+          "process_status.json": {
+            "bytes": 2010,
+            "device": 2049,
+            "inode": 27902168656,
+            "sha256": "304ce4a924567b222a3c77c2086e9de1b6961f5496a01cca55b2ba92225cad17"
+          },
+          "progress.json": {
+            "bytes": 149,
+            "device": 2049,
+            "inode": 27902120503,
+            "sha256": "270dae2ff951997b4cb7da23b1e834a7aea564289cffa4524f29246dfa7a249f"
+          },
+          "remap_budget.csv": {
+            "bytes": 390,
+            "device": 2049,
+            "inode": 27902001286,
+            "sha256": "ab99c58aa7746ad208dd3c2de2a8510f32110a9cb1c30cd7aee7847c43513bb4"
+          },
+          "run.log": {
+            "bytes": 146,
+            "device": 2049,
+            "inode": 27902001282,
+            "sha256": "2cf9ecaaab3956c2f956a5f1d7a61f2a799f6e16dc46d0f24e3cc4addcfeacad"
+          },
+          "status.txt": {
+            "bytes": 18,
+            "device": 2049,
+            "inode": 27902168655,
+            "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+          },
+          "summary.csv": {
+            "bytes": 433,
+            "device": 2049,
+            "inode": 27902001285,
+            "sha256": "763ec936d901c79dff7ebdbba8cc4ccceb15dc6d16634ab223e783bef066ba0d"
+          }
+        },
+        "utc_finished": "2026-10-09T20:53:50.452840Z",
+        "utc_started": "2026-10-09T19:23:13.257099Z"
+      },
+      "time250_cfl02": {
+        "original_command": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/.bin/ridge-b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "1",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/time250_cfl02",
+          "--cfl",
+          "0.2"
+        ],
+        "process_pid": 3904559,
+        "resolved_source_case": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/validation/runs/time250_cfl02",
+        "source_files": {
+          "channel_0001.csv": {
+            "bytes": 22047,
+            "device": 2049,
+            "inode": 6442659545,
+            "sha256": "91c3dc7e06df4207a8f2393c7066d009811762ecb9d0e4d378fc6c9f67fe3c6b"
+          },
+          "checkpoint.bin": {
+            "bytes": 3115545,
+            "device": 2049,
+            "inode": 6442659547,
+            "sha256": "e9bc8a380a3dab214462b4355e148c12447b98dbb30c585af174a00390b5533d"
+          },
+          "fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 6442659544,
+            "sha256": "1ca9e72d030adc6d8ef0b8ab71e5e612081980cc29e9588ec9ccbaf507a08732"
+          },
+          "parameters.txt": {
+            "bytes": 1127,
+            "device": 2049,
+            "inode": 6442659537,
+            "sha256": "1c63c3d618a4bc90c625e28ef30c73d7f4eb82d8979994ab24d56e8350be43fc"
+          },
+          "peak_channel_0001.csv": {
+            "bytes": 22064,
+            "device": 2049,
+            "inode": 6442659534,
+            "sha256": "deefdac17470a567df1b9d93b9ba4c823fc1fa0d8ea5ce6b0ecfbd8423ae73a8"
+          },
+          "peak_fields_0001.bin": {
+            "bytes": 884776,
+            "device": 2049,
+            "inode": 6442659532,
+            "sha256": "ca1d6a0947a30249cf1ea8d860e393537885ca0a3936f348f1663ba2a69bdbc7"
+          },
+          "process_status.json": {
+            "bytes": 2039,
+            "device": 2049,
+            "inode": 6442659553,
+            "sha256": "aa20967e1a816aff89c6ba4760732b394adf2ac135c74a53e04931a0b26052c2"
+          },
+          "progress.json": {
+            "bytes": 150,
+            "device": 2049,
+            "inode": 6442659531,
+            "sha256": "4815429a48120ceb4a1c4551ea4ee77e4d223e8b25f1761b56755de52aa4af53"
+          },
+          "remap_budget.csv": {
+            "bytes": 407,
+            "device": 2049,
+            "inode": 6442659539,
+            "sha256": "331f327ed462766567c12c227d28deb60440073998da0f0ea8affcf4510e5840"
+          },
+          "run.log": {
+            "bytes": 145,
+            "device": 2049,
+            "inode": 6442659536,
+            "sha256": "7d5f6d960bec561f3a15074e7c9934485f7d336a54d0770b3983346304dc9a2a"
+          },
+          "status.txt": {
+            "bytes": 18,
+            "device": 2049,
+            "inode": 6442659550,
+            "sha256": "c211c9aced0b5b165a3581ed7cbddd546f712e4c9f504038152742dea444955c"
+          },
+          "summary.csv": {
+            "bytes": 432,
+            "device": 2049,
+            "inode": 6442659538,
+            "sha256": "7f0ff2113e0f729ac09d8eea45e2ac55b696748e7289516935050f2051e043d4"
+          }
+        },
+        "utc_finished": "2026-10-10T00:43:01.338165Z",
+        "utc_started": "2026-10-09T20:53:50.534114Z"
+      }
+    },
+    "corrected_binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "frozen_source_sha256": {
+      "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+      "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+      "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+      "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+      "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+    },
+    "pointer_and_size_t_bytes": 8,
+    "source_scope": "Paths and process IDs are historical identity evidence; replay never resolves or reads them.",
+    "validation_provenance_sha256": "66d040d7d9a77b6725efc3d1beaa1089ae6b82df072463ed6b80210401715a94"
+  }
+}

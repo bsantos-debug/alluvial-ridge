@@ -91,8 +91,21 @@ budget residuals therefore coexist with substantial sensitivity to raster
 geometry and resolution. The [two-resolution record](../validation/first-flood-audit-002/two-resolution.json)
 and [validation account](first-flood-validation.md) retain the method,
 denominators, field differences, and limits. This is first-flood sensitivity,
-not grid convergence or a manuscript-panel reproduction. The finer-grid and
-time-step results and later recycling require further assessment.
+not grid convergence or a manuscript-panel reproduction. The finer-grid
+results and later recycling require further assessment.
+
+The corrected half-CFL case completed at 2026-10-10 00:43:01 UTC with exit 0.
+Its terminal record agrees with the sensitivity driver manifest, and all 11
+artifact hashes passed verification. The full checkpoint and peak/end fields
+passed the finite-value and physical-inventory checks. Only the CFL parameter
+differs from the completed baseline (0.4 to 0.2). Alpha changes by −0.81785%,
+ridge height by +0.28975%, and end-flood water storage by −5.95097%. The
+[completed time-step comparison](first-flood-validation.md#completed-first-flood-time-step-comparison)
+retains the original inputs and a portable replay command. It establishes
+first-flood sensitivity, without a temporal convergence order. The driver
+started `tau005` automatically; PID 4128664 and start tick 53463257 were
+verified live with the corrected executable at 00:44:47 UTC. Fine125 and
+all 31 production calculations remain active.
 
 This version saves day-12 fields and post-remap budgets. Its automatic report
 also includes numeric refinement/assumption differences and production budget

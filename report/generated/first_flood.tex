@@ -96,8 +96,8 @@ and 24 completed sensitivity-input file hashes.
 It reads no live process or checkpoint. Artifact and generator
 identities are recorded in \path{report/generated/first_flood_evidence.json};
 the retained sources are in \path{validation/first-flood-audit-002}.
-Later conservation drift, bank recycling, finer-grid and time-step
-sensitivity, and long-term morphology require further assessment.
+Later conservation drift, bank recycling, finer-grid sensitivity,
+and long-term morphology require further assessment.
 
 \paragraph{Sensitivity to diagnostic definitions.}
 The published description does not fix all spatial averages in
@@ -148,3 +148,57 @@ do not select a preferred estimator and do not establish robustness
 of the late 20-flood or 200-flood manuscript statistics.
 \path{figures/first_flood_diagnostic_sensitivity.json} records the
 definitions, effective grid windows, bounds, and input identities.
+
+\subsection{Completed first-flood time-step sensitivity}
+A later completed case reduces the CFL limit from 0.4 to 0.2 while
+holding the corrected executable, configuration 11, 250 m floodplain
+grid, and 250 m initial channel spacing fixed. Both calculations
+complete the full 20-day hydrograph with exit code zero. The retained
+archive contains both original process records and all recorded
+outputs. Macrosteps increase from 125,765 to 250,265 and channel substeps from
+452,282 to 899,949; adaptive steps are not uniformly halved at every time.
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Quantity & CFL 0.4 & CFL 0.2 & Change (\%) \\
+\midrule
+Day-12 connectivity $\alpha$ (m) & $8.84486\times10^{-1}$ & $8.77252\times10^{-1}$ & -0.81785 \\
+End-flood ridge height (m) & $1.31874\times10^{-2}$ & $1.32257\times10^{-2}$ & +0.28975 \\
+End-flood relative relief $\beta$ & $1.64372\times10^{-3}$ & $1.64847\times10^{-3}$ & +0.28894 \\
+Mean bankfull channel depth (m) & $8.02294\times10^{0}$ & $8.02301\times10^{0}$ & +0.00081 \\
+End-flood water storage (m$^3$) & $5.55865\times10^{8}$ & $5.22785\times10^{8}$ & -5.95097 \\
+Deposited mineral mass (kg) & $2.24279\times10^{9}$ & $2.07035\times10^{9}$ & -7.68847 \\
+\bottomrule\end{tabular}\end{center}
+Percentage changes use the CFL 0.4 value as denominator. Connectivity
+is sampled on day 12; ridge height, relative relief, channel depth,
+and water storage are sampled on day 20 before migration/remapping.
+Deposited mineral mass is the accumulated source ledger retained in
+the post-remap checkpoint, not an integral of the remaining deposit.
+Both inundated interface fractions equal one, so the connectivity
+change is the change in mean floodplain depth.
+
+The end-flood masks agree. Over all 3420 km$^2$ of floodplain,
+including dry cells, water-depth differences have mean absolute value
+0.00941692 m and maximum 0.06339424 m. Event-deposit thickness differences have
+mean absolute value 0.00003672 m and maximum 0.00362724 m.
+The respective bounds from float32 storage on these mean differences
+are $9.25765\times10^{-9}$ m and $3.50178\times10^{-11}$ m; they exclude discretization and separate
+floating-point arithmetic error.
+
+The half-CFL post-remap residuals are $-1.71661\times10^{-5}$ m$^3$ water,
+$-1.46355\times10^{0}$ kg suspension plus deposition, and $-6.92458\times10^{-1}$ kg total solids.
+Normalized by prescribed upstream inputs of $1.512\times10^{10}$ m$^3$ and
+$5.47346\times10^{10}$ kg, their magnitudes are below $2.7\times10^{-11}$.
+These denominators exclude recycling, outflow, and signed bed forcing.
+Both first remaps have zero captured or abandoned cells, bank reservoir,
+recycled mass, cutoffs, and water or mass corrections. Signed bed
+forcing is retained as a separate ledger in the comparison.
+
+The distinct sensitivities of water storage and ridge height require
+both hydraulic and deposition quantities to be assessed. Two CFL
+limits do not determine a temporal convergence order or establish
+time-step independence. This first-flood comparison does not test
+later recycling, 580-flood evolution, or manuscript-panel agreement.
+The portable replay command is:
+\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/time-step.py}

@@ -5,6 +5,8 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import runpy
+import struct
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -511,8 +513,111 @@ def render(comparison, measured, figure):
               'It reads no live process or checkpoint. Artifact and generator',
               r'identities are recorded in \path{report/generated/first_flood_evidence.json};',
               r'the retained sources are in \path{validation/first-flood-audit-002}.',
-              'Later conservation drift, bank recycling, finer-grid and time-step',
-              'sensitivity, and long-term morphology require further assessment.']
+              'Later conservation drift, bank recycling, finer-grid sensitivity,',
+              'and long-term morphology require further assessment.']
+    return '\n'.join(lines) + '\n'
+
+
+def verify_time_step(folder):
+    method = folder / 'time-step.py'
+    comparison = runpy.run_path(str(method))['verify'](folder)
+    require(comparison == json.loads((folder / 'time-step.json').read_text()),
+            'saved time-step comparison differs from archived inputs')
+    return dict(status='verified', comparison=comparison,
+                files_sha256={name: sha(folder / name) for name in
+                              ('time-step.py', 'time-step.json', 'time-step-capture.json',
+                               'time-step-inputs.tar.xz')})
+
+
+def render_time_step(evidence):
+    lines = ['', r'\subsection{Completed first-flood time-step sensitivity}']
+    if evidence['status'] != 'verified':
+        lines.append(r'\pending{The retained time-step comparison could not be verified: ' +
+                     tex(evidence['reason']) + '. No numerical time-step claim is rendered.}')
+        return '\n'.join(lines) + '\n'
+    comparison = evidence['comparison']
+    names = ('baseline250', 'time250_cfl02')
+    cases = [comparison['cases'][name] for name in names]
+    require(comparison['parameter_differences'] == {'cfl': [0.4, 0.2]},
+            'time-step parameters differ beyond the CFL limit')
+    lines += ['A later completed case reduces the CFL limit from 0.4 to 0.2 while',
+              'holding the corrected executable, configuration 11, 250 m floodplain',
+              'grid, and 250 m initial channel spacing fixed. Both calculations',
+              'complete the full 20-day hydrograph with exit code zero. The retained',
+              'archive contains both original process records and all recorded',
+              'outputs. Macrosteps increase from %s to %s and channel substeps from' %
+              tuple(format(int(case['summary']['steps']), ',') for case in cases),
+              '%s to %s; adaptive steps are not uniformly halved at every time.' %
+              tuple(format(int(case['summary']['channel_steps']), ',') for case in cases),
+              '', r'\begin{center}\small', r'\begin{tabular}{lrrr}', r'\toprule',
+              r'Quantity & CFL 0.4 & CFL 0.2 & Change (\%) \\', r'\midrule']
+    for title, key in ((r'Day-12 connectivity $\alpha$ (m)', 'alpha'),
+                       (r'End-flood ridge height (m)', 'ridge_height'),
+                       (r'End-flood relative relief $\beta$', 'beta'),
+                       (r'Mean bankfull channel depth (m)', 'channel_depth'),
+                       (r'End-flood water storage (m$^3$)', 'water_storage')):
+        values = [case['summary'][key] for case in cases]
+        change = 100 * (values[1] / values[0] - 1)
+        lines.append(title + ' & ' + ' & '.join('$' + number(v) + '$' for v in values) +
+                     ' & %+.5f' % change + r' \\')
+    deposited = [case['checkpoint']['deposited_mass_kg'] for case in cases]
+    lines.append('Deposited mineral mass (kg) & ' +
+                 ' & '.join('$' + number(v) + '$' for v in deposited) +
+                 ' & %+.5f' % (100 * (deposited[1] / deposited[0] - 1)) + r' \\')
+    common = comparison['same_grid_fields']['end']
+    water, deposit = (common['fields'][key] for key in ('water_depth', 'event_deposit'))
+    remap = cases[1]['remap']
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'Percentage changes use the CFL 0.4 value as denominator. Connectivity',
+              'is sampled on day 12; ridge height, relative relief, channel depth,',
+              'and water storage are sampled on day 20 before migration/remapping.',
+              'Deposited mineral mass is the accumulated source ledger retained in',
+              'the post-remap checkpoint, not an integral of the remaining deposit.',
+              'Both inundated interface fractions equal one, so the connectivity',
+              'change is the change in mean floodplain depth.',
+              '',
+              'The end-flood masks agree. Over all %.0f km$^2$ of floodplain,' %
+              (common['floodplain_area_m2'] / 1e6),
+              'including dry cells, water-depth differences have mean absolute value',
+              '%.8f m and maximum %.8f m. Event-deposit thickness differences have' %
+              (water['mean_absolute_difference_m'], water['maximum_absolute_difference_m']),
+              'mean absolute value %.8f m and maximum %.8f m.' %
+              (deposit['mean_absolute_difference_m'], deposit['maximum_absolute_difference_m']),
+              'The respective bounds from float32 storage on these mean differences',
+              'are $%s$ m and $%s$ m; they exclude discretization and separate' %
+              (number(water['mean_difference_storage_bound_m']),
+               number(deposit['mean_difference_storage_bound_m'])),
+              'floating-point arithmetic error.',
+              '',
+              'The half-CFL post-remap residuals are $%s$ m$^3$ water,' %
+              number(remap['post_water_residual']),
+              '$%s$ kg suspension plus deposition, and $%s$ kg total solids.' %
+              (number(remap['post_sediment_residual']), number(remap['post_solid_sediment_residual'])),
+              'Normalized by prescribed upstream inputs of $%s$ m$^3$ and' %
+              number(cases[1]['prescribed_inputs']['prescribed_water_input_m3']),
+              '$%s$ kg, their magnitudes are below $2.7\\times10^{-11}$.' %
+              number(cases[1]['prescribed_inputs']['prescribed_sediment_input_kg']),
+              'These denominators exclude recycling, outflow, and signed bed forcing.',
+              'Both first remaps have zero captured or abandoned cells, bank reservoir,',
+              'recycled mass, cutoffs, and water or mass corrections. Signed bed',
+              'forcing is retained as a separate ledger in the comparison.',
+              '',
+              'The distinct sensitivities of water storage and ridge height require',
+              'both hydraulic and deposition quantities to be assessed. Two CFL',
+              'limits do not determine a temporal convergence order or establish',
+              'time-step independence. This first-flood comparison does not test',
+              'later recycling, 580-flood evolution, or manuscript-panel agreement.',
+              r'The portable replay command is:',
+              r'\par\noindent\texttt{python3 -B}\ \path{validation/first-flood-audit-002/time-step.py}']
+    require(all(case['summary']['interface_fraction'] == 1 for case in cases),
+            'time-step inundated interface fractions changed')
+    require(all(case['checkpoint'][key] == 0 for case in cases for key in
+                ('captured_floodplain_cells', 'abandoned_channel_cells', 'bank_mass_kg',
+                 'recycled_mass_kg', 'cutoffs', 'water_correction_m3', 'mass_correction_kg')),
+            'time-step first-remap activity changed')
+    require(all(abs(cases[1]['signed_residuals_over_prescribed_input'][key]) < 2.7e-11
+                for key in ('post_water', 'post_suspension_plus_deposition', 'post_full_solid')),
+            'time-step normalized residual bound changed')
     return '\n'.join(lines) + '\n'
 
 
@@ -548,6 +653,17 @@ def main():
             definitions_tex = render_definitions(definitions)
         evidence['diagnostic_definitions'] = {key: value for key, value in definitions.items() if key != 'cases'}
         content += definitions_tex
+        try:
+            time_step = verify_time_step(args.archive_root)
+            time_step_tex = render_time_step(time_step)
+        except (OSError, ValueError, KeyError, TypeError, IndexError, AssertionError,
+                RuntimeError, ZeroDivisionError, struct.error, tarfile.TarError) as error:
+            reason = ('Missing retained file: ' + Path(error.filename).name
+                      if isinstance(error, FileNotFoundError) else str(error))
+            time_step = dict(status='pending', reason=reason)
+            time_step_tex = render_time_step(time_step)
+        evidence['time_step'] = time_step
+        content += time_step_tex
         evidence.update(status='verified historical observations', measurements=measured,
                         scope='first flood only; no manuscript-panel assessment')
     except (OSError, ValueError, KeyError, TypeError, tarfile.TarError) as error:

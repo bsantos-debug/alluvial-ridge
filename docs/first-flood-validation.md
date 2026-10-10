@@ -1,6 +1,7 @@
 # Full first-flood validation: corrected rebuild 002
 
-The corrected 250 m and 500 m sensitivity cases have completed one full flood.
+The corrected 250 m, 500 m, and 250 m half-CFL sensitivity cases have completed
+one full flood.
 All 31 production cases also completed their first flood and remained active
 in flood 2 at the captured observation on 2026-10-09 at 21:39:16 UTC. These
 results extend the earlier coarse-grid audit preserved below. They establish
@@ -91,7 +92,7 @@ Both water and mass correction ledgers are zero.
 
 Two resolutions do not determine a convergence order. The CFL-controlled
 time steps change with floodplain spacing, while channel spacing is held
-fixed; the 125 m and time-step cases require separate assessment. Neither
+fixed; the 125 m case remains active. The time-step comparison follows below. Neither
 first-flood case tests recycling through a subsequent complete hydrograph.
 Run 11 at flood 1 also supplies none of the Figure 2 configurations and
 sampling times. Its ridge height is a longitudinal-mean estimator used for
@@ -99,6 +100,61 @@ beta, whereas Figure 2 shows individual central cross-sections at floods
 50, 225, 400, and 580. The profile area, spread, width, and flank definitions
 in [comparison.md](comparison.md) cannot turn these early diagnostics into a
 late-time profile comparison.
+
+## Completed first-flood time-step comparison
+
+The corrected `time250_cfl02` process completed at 2026-10-10 00:43:01 UTC
+with exit code 0. Its parameters differ from `baseline250` only in the CFL
+limit, reduced from 0.4 to 0.2. Both use the same corrected executable, 250 m
+floodplain grid, 250 m initial channel spacing, and full 20-day hydrograph.
+Macrosteps increase from 125,765 to 250,265; channel substeps increase from
+452,282 to 899,949. The adaptive steps are not uniformly halved at every time.
+
+The [retained comparison](../validation/first-flood-audit-002/time-step.json)
+and [input archive](../validation/first-flood-audit-002/time-step-inputs.tar.xz)
+preserve both completed process records and every recorded artifact. Replay
+the numerical comparison directly from the archive:
+
+```sh
+python3 -B validation/first-flood-audit-002/time-step.py
+```
+
+Percentage changes use `100*(CFL0.2/CFL0.4 - 1)`. Alpha is the day-12 value;
+ridge height, beta, channel depth, and water storage are measured at day 20
+before migration/remapping. Deposited mass is the accumulated mineral source
+ledger retained in the post-remap checkpoint.
+
+| Quantity | CFL 0.4 | CFL 0.2 | Change (%) |
+|---|---:|---:|---:|
+| Alpha (m) | 0.884485917 | 0.877252155 | -0.81785 |
+| Ridge height (m) | 0.0131874394 | 0.0132256502 | +0.28975 |
+| Beta | 0.00164371587 | 0.00164846526 | +0.28894 |
+| Mean channel bankfull depth (m) | 8.02294344 | 8.02300818 | +0.00080690 |
+| Total water storage (m³) | 5.55864786e8 | 5.22785461e8 | -5.95097 |
+| Deposited mineral mass (kg) | 2.24278687e9 | 2.07035092e9 | -7.68847 |
+
+Both day-12 inundated interface fractions equal one, so the alpha change is
+the change in mean floodplain depth. The saved end-flood fields have identical
+channel masks. Over all 3420 km² of floodplain, including dry cells, water
+depth has mean absolute difference 0.00941692 m and maximum difference
+0.0633942 m. Event-deposit thickness has mean absolute difference
+0.0000367180 m and maximum difference 0.00362724 m. The retained analysis
+also includes the day-12 fields and floating-point storage bounds.
+
+The half-CFL post-remap residuals are −1.71661e-5 m³ water, −1.46355 kg
+suspension plus deposition, and −0.692458 kg total solids. Their magnitudes,
+normalized by prescribed upstream inputs of 1.512e10 m³ and 5.47345904e10 kg,
+are below 2.7e-11. These small conservation residuals coexist with a 5.95%
+change in end-flood water storage and a 7.69% change in deposited mass.
+Both first remaps have zero captured or
+abandoned cells, bank reservoir, recycled mass, cutoffs, and correction terms.
+The checkpoint retains signed bed forcing separately: 176,403.115 and
+176,406.197 kg, respectively, despite the zero prescribed aggradation rate.
+The pre-remap summaries precede this first forcing update and report zero.
+
+Two CFL limits do not determine a temporal convergence order or establish
+time-step independence. This completed first-flood comparison does not test
+later bank recycling, 580-flood evolution, or agreement with a manuscript panel.
 
 ## Diagnostic-definition sensitivity
 
