@@ -98,3 +98,12 @@ replay reconstructs water and suspended-sediment inventories and reports
 signed bed and bank inventories. Only one native endpoint is retained there;
 initial water and full-solid references were not independently regenerated,
 so it does not provide the paired temporal closure calculated above.
+
+The later [initial-reference extension](run29-initial-reference/README.md)
+independently reconstructs the fresh-start geometry and inventories without
+changing that endpoint archive. Its source-order flood-19 full-solid residual
+is `-8.367441058158875 kg`, numerically equal to the retained ledger; a
+compensated calculation differs from the ledger by `-0.0032950639724731445 kg`.
+These are diagnostics using recorded external flux, forcing, recycling and
+correction ledgers. Full-solid acceptance remains unassessed; no tolerance
+was fitted, and historical compiled-model bit identity is not claimed.

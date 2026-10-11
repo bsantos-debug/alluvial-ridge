@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the archived case-30 flood-6/7 bank-recycling comparison."""
+"""Render retained production recycling and initial-inventory diagnostics."""
 import argparse
 import hashlib
 import json
@@ -12,6 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 FILES = ('replay.py', 'replay.json',
          'flood6/run30-inventory-capture.json', 'flood6/run30-inventory-inputs.tar.xz',
          'flood7/run30-inventory-capture.json', 'flood7/run30-inventory-inputs.tar.xz')
+INITIAL_FILES = ('replay.py', 'replay.json', 'capture.json', 'compile-provenance.json',
+                 'physics.txt', 'runs.csv', 'peak-channel-initial-geometry.csv',
+                 'rng-witness.cpp', 'rng-witness.csv', 'rng-provenance.json')
 
 
 def sha(path):
@@ -102,6 +105,101 @@ def render(data):
     return '\n'.join(lines) + '\n'
 
 
+def render_initial(data):
+    initial = data['initial_inventories']['source_order']
+    geometry = data['initial_geometry']
+    ordered = data['budget_diagnostics']['source_order']
+    compensated = data['budget_diagnostics']['compensated']
+    lines = [r'\subsection{Reconstructed initial inventory at production flood 19}',
+             'A separate replay reconstructs the initial water and signed bed inventories',
+             r'for case 29 ($A=0.012$ m per flood, $C=0.0003$, $E=0.5$, 250 m grid).',
+             'The retained command, configuration and compiler provenance establish a',
+             'fresh start. An independent integer implementation of the seeded random',
+             'generator matches all 574 words and 287 doubles from a retained GNU 8',
+             'standard-library witness. Reconstructed coordinates, prescribed channel',
+             'bed and control areas match all 1156 tokens in the first-peak geometry',
+             'file at its 12-significant-digit precision. The evolved peak water',
+             'depth and velocity are excluded from that comparison.',
+             '',
+             r'The initial hydraulic depth is $%s$ m; the specified 8 m is bed incision.' %
+             number(geometry['initial_water_depth_m'], 9),
+             r'Integration over %d channel control areas gives $W_0=%s$ m$^3$.' %
+             (geometry['channel_nodes'], number(initial['water_m3'], 12)),
+             r'The signed raster-bed inventory relative to the unincised plane is',
+             r'$T_0=%s$ kg. Initial suspension, bank reservoirs and cumulative' %
+             number(initial['total_solid_kg'], 12),
+             'exchange ledgers are zero. Mapped channel raster cells contribute bed',
+             'mass, while their interpolated water states are excluded from storage.',
+             '',
+             r'Using the preceding notation and $T=S+M+K$, the endpoint residuals are',
+             r'\begin{align*}',
+             r' r_W &= W_{19}-W_0-N_W-C_W,\\',
+             r' r_{S+D} &= S_{19}+D_{19}-N_S-C_S,\\',
+             r' r_T &= T_{19}-T_0+R-F-N_S-C_S.',
+             r'\end{align*}',
+             'The external flux, signed forcing, recycling and correction terms are',
+             'recorded ledgers; boundary exchanges are not independently reintegrated.',
+             r'The table compares the reconstructed residual $r$ with the recorded',
+             r'post-remap residual $e$. Ordered calculations follow the source additions;',
+             'compensated calculations sum the same inventory and budget terms separately.',
+             r'\begin{center}\small', r'\begin{tabular}{lrrr}', r'\toprule',
+             r'Inventory & Ordered $r$ & Ordered $r-e$ & Compensated $r-e$ \\',
+             r'\midrule']
+    for label, key in ((r'Water (m$^3$)', 'water'),
+                       ('Suspension + deposition (kg)', 'suspension'),
+                       ('Full solids (kg)', 'full_solid')):
+        lines.append(r'%s & $%s$ & $%s$ & $%s$ \\' %
+                     (label, number(ordered[key]['residual']),
+                      number(ordered[key]['reconstruction_minus_recorded']),
+                      number(compensated[key]['reconstruction_minus_recorded'])))
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              'Ordered water and full-solid residuals agree numerically with the retained',
+              'ledger in this replay. The compensated full-solid residual is',
+              r'$%s$ kg, with a discrepancy of $%s$ kg, or $%s$ of the' %
+              (number(compensated['full_solid']['residual']),
+               number(compensated['full_solid']['reconstruction_minus_recorded']),
+               number(compensated['full_solid']['normalized_reconstruction_minus_recorded'])),
+              'prescribed sediment input over 19 floods. Full-solid acceptance remains',
+              'unassessed: no numerical threshold is assigned. The existing strict',
+              r'$10^{-3}$ m$^3$ water-storage and $10^{-3}$ kg suspension guards',
+              'belong to the original endpoint replay and remain unchanged.',
+              '',
+              'Rounded geometry and the new random-generator witness do not establish',
+              'historical compiled-model bit identity. This endpoint calculation does',
+              'not establish convergence or manuscript-panel agreement. The original',
+              'flood-19 archive remains unchanged; the extension and its regenerated',
+              r'results are bound in \path{report/generated/initial_reference_evidence.json}.']
+    return '\n'.join(lines) + '\n'
+
+
+def initial_archive(folder, output):
+    evidence = dict(status='pending', archive=str(folder.resolve().relative_to(ROOT)),
+                    generator_sha256=sha(Path(__file__)), files_sha256={},
+                    scope='case 29 initial inventory and flood-19 budget diagnostics; full-solid acceptance unassessed')
+    try:
+        evidence['files_sha256'] = {name: sha(folder / name) for name in INITIAL_FILES}
+        data = runpy.run_path(str(folder / 'replay.py'))['analyze'](folder)
+        if data != json.loads((folder / 'replay.json').read_text()):
+            raise ValueError('saved initial reconstruction differs from replay of retained inputs')
+        if any(sha(folder / name) != digest for name, digest in evidence['files_sha256'].items()):
+            raise ValueError('retained initial-reference input changed during replay')
+        content = render_initial(data)
+        evidence.update(status='verified initial reconstruction with budget diagnostics', comparison=data)
+    except (OSError, ValueError, KeyError, TypeError, IndexError, AssertionError, SyntaxError,
+            RuntimeError, ZeroDivisionError, struct.error, tarfile.TarError) as error:
+        reason = ('Missing retained file: ' + Path(error.filename).name
+                  if isinstance(error, FileNotFoundError) else str(error))
+        evidence['reason'] = reason
+        content = (r'\subsection{Reconstructed initial inventory at production flood 19}' + '\n' +
+                   r'\pending{The retained initial reconstruction could not be verified: ' +
+                   tex(reason) + '. No numerical claim is rendered from this archive.}\n')
+    (output / 'initial_reference.tex').write_text(content)
+    evidence['rendered_tex_sha256'] = sha(output / 'initial_reference.tex')
+    (output / 'initial_reference_evidence.json').write_text(
+        json.dumps(evidence, indent=2, sort_keys=True, allow_nan=False) + '\n')
+    return evidence['status']
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive-root', type=Path, default=ROOT / 'validation/production-recycling-002')
@@ -135,6 +233,7 @@ def main():
     (args.output / 'recycling_evidence.json').write_text(
         json.dumps(evidence, indent=2, sort_keys=True, allow_nan=False) + '\n')
     print(evidence['status'])
+    print(initial_archive(args.archive_root / 'run29-initial-reference', args.output))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,52 @@
+{
+  "compile_command": [
+    "/usr/bin/g++",
+    "-O3",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "/data/data0/brooke/alluvial-ridge/validation/production-recycling-002/run29-initial-reference/rng-witness.cpp",
+    "-o",
+    "/data/data0/brooke/alluvial-ridge/tmp/run29-initial-reference-002/rng-witness"
+  ],
+  "compile_exit_code": 0,
+  "compile_stderr": "",
+  "compile_stdout": "",
+  "compiler": "/usr/bin/g++",
+  "compiler_sha256": "d509f3862b3e81e89ad624d59985e57b0b65e4b9ced1b02a474c4f44e5dee4b7",
+  "compiler_version": "g++ (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28)\nCopyright (C) 2018 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "compiler_version_stderr": "",
+  "completed_utc": "2026-10-11T12:10:30.685382+00:00",
+  "distribution_count": 287,
+  "executable_sha256": "a80d153cd2b438094c348b6c812c35636c86d79709014e112de398ac6c8aa656",
+  "format": 1,
+  "gnu_headers": {
+    "/usr/include/c++/8/bits/random.h": {
+      "contents_copied": false,
+      "relevant_lines": "154-181,1524-1528,1813-1823",
+      "sha256": "a27c4c3105aa290fbfa7f93971befb65f1f11ab4a2f1c06bf8081d934abed99f",
+      "size_bytes": 175250
+    },
+    "/usr/include/c++/8/bits/random.tcc": {
+      "contents_copied": false,
+      "relevant_lines": "315-342,395-425,451-469,3313-3347",
+      "sha256": "78a5b4b829fa14a5272ffbf46c4527abc11a127687da949a8164ae522be85d51",
+      "size_bytes": 105590
+    }
+  },
+  "original_compile_provenance_sha256": "be12cea8677558313e6327eef3c8f2770103631e3c7ca4ec4bd010a679f4a1d6",
+  "output_bytes": 19080,
+  "output_sha256": "637535884306525f6cffece468512f23f221c46dbab46f79cd23668d791b0966",
+  "raw_word_count": 574,
+  "run_command": [
+    "/data/data0/brooke/alluvial-ridge/tmp/run29-initial-reference-002/rng-witness"
+  ],
+  "run_exit_code": 0,
+  "run_stderr": "",
+  "runtime_role": "Header hashes record observed GNU8 source. Offline replay uses an independent Python translation and this retained output; it never compiles or executes the witness.",
+  "scope": "New standard-library RNG witness only; no model headers, model initialization or PDE calls.",
+  "seed": 2018,
+  "source_sha256": "2de20f0218c99aa82cd5772bbd9875d259693acda3d6075d790082f23c2e8e1b",
+  "started_utc": "2026-10-11T12:10:29.453068+00:00"
+}

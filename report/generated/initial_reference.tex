@@ -1,0 +1,51 @@
+\subsection{Reconstructed initial inventory at production flood 19}
+A separate replay reconstructs the initial water and signed bed inventories
+for case 29 ($A=0.012$ m per flood, $C=0.0003$, $E=0.5$, 250 m grid).
+The retained command, configuration and compiler provenance establish a
+fresh start. An independent integer implementation of the seeded random
+generator matches all 574 words and 287 doubles from a retained GNU 8
+standard-library witness. Reconstructed coordinates, prescribed channel
+bed and control areas match all 1156 tokens in the first-peak geometry
+file at its 12-significant-digit precision. The evolved peak water
+depth and velocity are excluded from that comparison.
+
+The initial hydraulic depth is $4.3564085\times10^{0}$ m; the specified 8 m is bed incision.
+Integration over 289 channel control areas gives $W_0=1.56892526499\times10^{8}$ m$^3$.
+The signed raster-bed inventory relative to the unincised plane is
+$T_0=-4.57921872591\times10^{11}$ kg. Initial suspension, bank reservoirs and cumulative
+exchange ledgers are zero. Mapped channel raster cells contribute bed
+mass, while their interpolated water states are excluded from storage.
+
+Using the preceding notation and $T=S+M+K$, the endpoint residuals are
+\begin{align*}
+ r_W &= W_{19}-W_0-N_W-C_W,\\
+ r_{S+D} &= S_{19}+D_{19}-N_S-C_S,\\
+ r_T &= T_{19}-T_0+R-F-N_S-C_S.
+\end{align*}
+The external flux, signed forcing, recycling and correction terms are
+recorded ledgers; boundary exchanges are not independently reintegrated.
+The table compares the reconstructed residual $r$ with the recorded
+post-remap residual $e$. Ordered calculations follow the source additions;
+compensated calculations sum the same inventory and budget terms separately.
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Inventory & Ordered $r$ & Ordered $r-e$ & Compensated $r-e$ \\
+\midrule
+Water (m$^3$) & $2.57015\times10^{-4}$ & $0$ & $5.06639\times10^{-7}$ \\
+Suspension + deposition (kg) & $-5.0261\times10^{1}$ & $9.31323\times10^{-8}$ & $-4.92088\times10^{-7}$ \\
+Full solids (kg) & $-8.36744\times10^{0}$ & $0$ & $-3.29506\times10^{-3}$ \\
+\bottomrule\end{tabular}\end{center}
+Ordered water and full-solid residuals agree numerically with the retained
+ledger in this replay. The compensated full-solid residual is
+$-8.37074\times10^{0}$ kg, with a discrepancy of $-3.29506\times10^{-3}$ kg, or $-3.16846\times10^{-14}$ of the
+prescribed sediment input over 19 floods. Full-solid acceptance remains
+unassessed: no numerical threshold is assigned. The existing strict
+$10^{-3}$ m$^3$ water-storage and $10^{-3}$ kg suspension guards
+belong to the original endpoint replay and remain unchanged.
+
+Rounded geometry and the new random-generator witness do not establish
+historical compiled-model bit identity. This endpoint calculation does
+not establish convergence or manuscript-panel agreement. The original
+flood-19 archive remains unchanged; the extension and its regenerated
+results are bound in \path{report/generated/initial_reference_evidence.json}.

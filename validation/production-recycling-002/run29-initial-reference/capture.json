@@ -1,0 +1,104 @@
+{
+  "captured_utc": "2026-10-11T12:11:34.275608+00:00",
+  "case": 29,
+  "endpoint_files": {
+    "capture.json": {
+      "sha256": "e41539cb8ef637c4191847442ce92c17c4aef47c17bbe13bf6a314c1748f6ee6",
+      "size_bytes": 5972
+    },
+    "inputs.tar.xz": {
+      "sha256": "496afe873e715c04633b304c0e69e0d364ea9ee98874871f87067fd604c66534",
+      "size_bytes": 2103992
+    },
+    "replay.json": {
+      "sha256": "b1a700205f9df27944e7682e95a0f7a54d30778375b77e4a795169e751f740df",
+      "size_bytes": 14630
+    },
+    "replay.py": {
+      "sha256": "cefeafb805e6ccb21c146f1cb3fffab1b4b465074b4908be12164fd195e07fbb",
+      "size_bytes": 23399
+    }
+  },
+  "endpoint_flood": 19,
+  "endpoint_folder": "run29-flood19",
+  "files": {
+    "compile-provenance.json": {
+      "sha256": "be12cea8677558313e6327eef3c8f2770103631e3c7ca4ec4bd010a679f4a1d6",
+      "size_bytes": 2393
+    },
+    "peak-channel-initial-geometry.csv": {
+      "sha256": "bdcdeb29a104ac5d5ab2af39c5f9455fbbff3b990d9b59a76467558df37c84c6",
+      "size_bytes": 22065
+    },
+    "physics.txt": {
+      "sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+      "size_bytes": 359
+    },
+    "rng-provenance.json": {
+      "sha256": "e7b45ddf814efafcd1bb2f36d73cf01cf29b0a96dca689e615e32db8b507f2f3",
+      "size_bytes": 2399
+    },
+    "rng-witness.cpp": {
+      "sha256": "2de20f0218c99aa82cd5772bbd9875d259693acda3d6075d790082f23c2e8e1b",
+      "size_bytes": 640
+    },
+    "rng-witness.csv": {
+      "sha256": "637535884306525f6cffece468512f23f221c46dbab46f79cd23668d791b0966",
+      "size_bytes": 19080
+    },
+    "runs.csv": {
+      "sha256": "3e94421b556e08e8f8b4843974787f1f370393ac1f454c565a2bd03db6952a32",
+      "size_bytes": 791
+    }
+  },
+  "format": 1,
+  "gnu_header_contents_copied": false,
+  "historical_paths_are_provenance_only": true,
+  "original_file_observations": {
+    "compile-provenance.json": {
+      "metadata": [
+        2049,
+        4579499801,
+        2393,
+        1791573772582657727
+      ],
+      "original_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/provenance.json",
+      "same_as_retained": true,
+      "sha256": "be12cea8677558313e6327eef3c8f2770103631e3c7ca4ec4bd010a679f4a1d6"
+    },
+    "peak-channel-initial-geometry.csv": {
+      "metadata": [
+        2049,
+        27902120511,
+        22065,
+        1791577494516467636
+      ],
+      "original_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run29/peak_channel_0001.csv",
+      "same_as_retained": true,
+      "sha256": "bdcdeb29a104ac5d5ab2af39c5f9455fbbff3b990d9b59a76467558df37c84c6"
+    },
+    "physics.txt": {
+      "metadata": [
+        2049,
+        4579499796,
+        359,
+        1791573762914651203
+      ],
+      "original_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "same_as_retained": true,
+      "sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99"
+    },
+    "runs.csv": {
+      "metadata": [
+        2049,
+        4579499797,
+        791,
+        1791573762914651203
+      ],
+      "original_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "same_as_retained": true,
+      "sha256": "3e94421b556e08e8f8b4843974787f1f370393ac1f454c565a2bd03db6952a32"
+    }
+  },
+  "scope": "Independent initialization reconstruction with a rounded first-peak geometry witness and a new standard-library-only RNG witness; the retained flood19 endpoint remains unchanged."
+}

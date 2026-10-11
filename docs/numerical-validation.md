@@ -201,3 +201,24 @@ fitted acceptance threshold or compiled bit-identity claim. Initial
 inventory references cancel in these temporal differences. This is a
 single production interval, not evidence of long-term convergence or
 manuscript-panel agreement.
+
+The [case-29 initial-reference replay](../validation/production-recycling-002/run29-initial-reference/README.md)
+reconstructs fresh-start water and signed bed inventories from the frozen
+configuration, constructor and seeded geometry. All 574 raw random words and
+287 distribution doubles match a retained GNU 8 standard-library witness;
+all 1,156 geometry tokens match the first-peak file at its printed precision.
+Source-order initial water is `156892526.49865156 m3`, and initial signed bed
+mass is `-457921872591.4135 kg`. Initial hydraulic depth is about 4.3564 m;
+the specified 8 m describes bed incision.
+
+At flood 19, the source-order full-solid residual is `-8.367441058158875 kg`,
+numerically equal to the recorded post-remap residual. Compensated inventory
+and budget sums give `-8.370736122131348 kg`, a discrepancy of
+`-0.0032950639724731445 kg`, or `-3.16846e-14` of the prescribed sediment input
+over 19 floods. The calculation uses recorded external flux, signed forcing,
+recycling and correction ledgers; it does not independently reintegrate
+boundary exchanges. Full-solid acceptance remains unassessed, with no new
+threshold. Rounded geometry agreement and the random-generator witness do
+not establish historical compiled-model bit identity or convergence. The
+original flood-19 capsule and its strict water-storage/suspension guards
+remain unchanged.
