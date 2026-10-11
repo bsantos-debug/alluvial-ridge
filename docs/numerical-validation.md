@@ -222,3 +222,28 @@ threshold. Rounded geometry agreement and the random-generator witness do
 not establish historical compiled-model bit identity or convergence. The
 original flood-19 capsule and its strict water-storage/suspension guards
 remain unchanged.
+
+The [case-26 flood-14 replay](../validation/production-recycling-002/run26-flood14/README.md)
+adds a later native-inventory check for `A=0.036`, `C=0.003`, `E=1` and
+sand/silt/clay fractions `[0.05, 0.20, 0.75]`. Its retained bank inventory is
+`8.88909697492e8 kg`, and recorded cumulative recycling is `8.91017993859e9 kg`.
+The checkpoint, complete history prefixes, original process/configuration and
+reused frozen sources are bound by hashes. The fresh-start initializer has
+the same dependency tokens as case 29, and its reconstructed initial
+inventories agree exactly. All 1,156 case-26 first-peak geometry tokens match
+at printed precision. No initial reference is inferred from the evolved
+flood-14 checkpoint.
+
+Reaggregated water differs from the recorded post-remap inventory by
+`-1.5497207641601562e-6 m3`; the suspension-plus-deposition residual differs
+from its ledger by `-1.3122334507897904e-6 kg`. Both satisfy the inherited
+strict `0.001 m3` and `0.001 kg` reconciliation guards, which do not constrain
+the absolute budget residual. The source-order full-solid residual is
+`-6.115790367126465 kg`, equal to its recorded value. Compensated sums give
+`-6.110848426818848 kg`, a difference of `0.0049419403076171875 kg`, or
+`6.44923e-15` of prescribed sediment input over 14 floods. Full-solid
+acceptance remains unassessed. This calculation uses recorded exchanges and
+does not independently reintegrate boundary fluxes, recover event history,
+or establish convergence or manuscript-panel agreement. The replay reuses
+ten explicitly pinned sibling files; its README lists the complete retained
+dependency set and an offline command.

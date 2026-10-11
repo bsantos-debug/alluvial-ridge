@@ -1,0 +1,38 @@
+\subsection{Later fine-sediment inventory check}
+A retained flood-14 checkpoint for case 26 ($A=0.036$ m per flood,
+$C=0.003$, $E=1$, 250 m grid) extends the inventory check to a later
+state with sand, silt and clay fractions of 0.05, 0.20 and 0.75.
+The bank reservoir contains $8.8891\times10^{8}$ kg, and cumulative recorded recycling
+is $8.91018\times10^{9}$ kg. The replay integrates the retained native arrays and
+reconstructs the initial water and signed bed inventories from the
+fresh-start inputs. All initialization dependencies match case 29;
+the different sediment fractions act on zero initial suspension and
+bank inventories. The reconstructed initial geometry also matches
+the case-26 first-peak coordinates, bed and areas at printed precision.
+
+Applying the preceding budget definitions at flood 14 gives the
+following residuals. Boundary exchanges, deposition, signed forcing,
+recycling and correction terms remain recorded quantities.
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Inventory & Ordered $r$ & Ordered $r-e$ & Compensated $r-e$ \\
+\midrule
+Water (m$^3$) & $1.73211\times10^{-4}$ & $-5.42101\times10^{-20}$ & $-1.63913\times10^{-6}$ \\
+Suspension + deposition (kg) & $-3.42157\times10^{2}$ & $-3.58559\times10^{-7}$ & $-1.66567\times10^{-6}$ \\
+Full solids (kg) & $-6.11579\times10^{0}$ & $0$ & $4.94194\times10^{-3}$ \\
+\bottomrule\end{tabular}\end{center}
+Native water storage differs from its recorded inventory by $-1.54972\times10^{-6}$ m$^3$;
+the suspension-plus-deposition residual differs from its ledger by $-1.31223\times10^{-6}$ kg.
+Both satisfy the inherited strict $10^{-3}$ m$^3$ and $10^{-3}$ kg
+reconciliation guards. These guards constrain the discrepancy between
+inventories and ledgers, not the absolute budget residual. The table
+also distinguishes source-order and compensated budget arithmetic.
+
+The compensated full-solid discrepancy is $6.44923\times10^{-15}$ of prescribed sediment
+input over 14 floods. Full-solid acceptance remains unassessed, with
+no new threshold. Boundary fluxes are not independently reintegrated,
+and this single endpoint establishes neither event history, convergence,
+compiled-model bit identity nor manuscript-panel agreement. Retained
+bytes, reused pure functions and regenerated results are bound in
+\path{report/generated/fine_inventory_evidence.json}.

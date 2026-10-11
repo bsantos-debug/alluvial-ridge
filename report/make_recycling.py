@@ -15,6 +15,10 @@ FILES = ('replay.py', 'replay.json',
 INITIAL_FILES = ('replay.py', 'replay.json', 'capture.json', 'compile-provenance.json',
                  'physics.txt', 'runs.csv', 'peak-channel-initial-geometry.csv',
                  'rng-witness.cpp', 'rng-witness.csv', 'rng-provenance.json')
+FINE_FILES = ('replay.py', 'replay.json', 'capture.json', 'capture-observation.json') + tuple(
+    'inputs/' + name for name in ('accepted.json', 'checkpoint.bin', 'comparison.json',
+        'observer-seed.json', 'parameters.txt', 'peak_channel_0001.csv', 'prior-scalar.json',
+        'process_status.json', 'remap_budget.csv', 'scalar.json', 'summary.csv'))
 
 
 def sha(path):
@@ -200,6 +204,86 @@ def initial_archive(folder, output):
     return evidence['status']
 
 
+def render_fine(data):
+    native = data['native']
+    ordered = data['budget_diagnostics']['source_order']
+    compensated = data['budget_diagnostics']['compensated']
+    lines = [r'\subsection{Later fine-sediment inventory check}',
+             r'A retained flood-14 checkpoint for case 26 ($A=0.036$ m per flood,',
+             r'$C=0.003$, $E=1$, 250 m grid) extends the inventory check to a later',
+             'state with sand, silt and clay fractions of 0.05, 0.20 and 0.75.',
+             r'The bank reservoir contains $%s$ kg, and cumulative recorded recycling' %
+             number(native['bank_compensated_total_kg']),
+             r'is $%s$ kg. The replay integrates the retained native arrays and' %
+             number(data['checkpoint']['recycled']),
+             'reconstructs the initial water and signed bed inventories from the',
+             'fresh-start inputs. All initialization dependencies match case 29;',
+             'the different sediment fractions act on zero initial suspension and',
+             'bank inventories. The reconstructed initial geometry also matches',
+             'the case-26 first-peak coordinates, bed and areas at printed precision.',
+             '',
+             'Applying the preceding budget definitions at flood 14 gives the',
+             'following residuals. Boundary exchanges, deposition, signed forcing,',
+             'recycling and correction terms remain recorded quantities.',
+             r'\begin{center}\small', r'\begin{tabular}{lrrr}', r'\toprule',
+             r'Inventory & Ordered $r$ & Ordered $r-e$ & Compensated $r-e$ \\',
+             r'\midrule']
+    for label, key in ((r'Water (m$^3$)', 'water'),
+                       ('Suspension + deposition (kg)', 'suspension'),
+                       ('Full solids (kg)', 'full_solid')):
+        lines.append(r'%s & $%s$ & $%s$ & $%s$ \\' %
+                     (label, number(ordered[key]['residual']),
+                      number(ordered[key]['reconstruction_minus_recorded']),
+                      number(compensated[key]['reconstruction_minus_recorded'])))
+    lines += [r'\bottomrule\end{tabular}\end{center}',
+              r'Native water storage differs from its recorded inventory by $%s$ m$^3$;' %
+              number(native['water_storage_minus_post_ledger_m3']),
+              r'the suspension-plus-deposition residual differs from its ledger by $%s$ kg.' %
+              number(native['independent_suspension_residual_minus_ledger_kg']),
+              r'Both satisfy the inherited strict $10^{-3}$ m$^3$ and $10^{-3}$ kg',
+              'reconciliation guards. These guards constrain the discrepancy between',
+              'inventories and ledgers, not the absolute budget residual. The table',
+              'also distinguishes source-order and compensated budget arithmetic.',
+              '',
+              r'The compensated full-solid discrepancy is $%s$ of prescribed sediment' %
+              number(compensated['full_solid']['normalized_reconstruction_minus_recorded']),
+              'input over 14 floods. Full-solid acceptance remains unassessed, with',
+              'no new threshold. Boundary fluxes are not independently reintegrated,',
+              'and this single endpoint establishes neither event history, convergence,',
+              'compiled-model bit identity nor manuscript-panel agreement. Retained',
+              'bytes, reused pure functions and regenerated results are bound in',
+              r'\path{report/generated/fine_inventory_evidence.json}.']
+    return '\n'.join(lines) + '\n'
+
+
+def fine_archive(folder, output):
+    evidence = dict(status='pending', archive=str(folder.resolve().relative_to(ROOT)),
+                    generator_sha256=sha(Path(__file__)), files_sha256={},
+                    scope='case 26 flood-14 native inventories and reconstructed initial references; full-solid acceptance unassessed')
+    try:
+        evidence['files_sha256'] = {name: sha(folder / name) for name in FINE_FILES}
+        data = runpy.run_path(str(folder / 'replay.py'))['analyze'](folder)
+        if data != json.loads((folder / 'replay.json').read_text()):
+            raise ValueError('saved fine-sediment reconstruction differs from retained-input replay')
+        if any(sha(folder / name) != digest for name, digest in evidence['files_sha256'].items()):
+            raise ValueError('retained fine-sediment input changed during replay')
+        content = render_fine(data)
+        evidence.update(status='verified later fine-sediment inventory reconciliation', comparison=data)
+    except (OSError, ValueError, KeyError, TypeError, IndexError, AssertionError, SyntaxError,
+            RuntimeError, ZeroDivisionError, struct.error, tarfile.TarError) as error:
+        reason = ('Missing retained file: ' + Path(error.filename).name
+                  if isinstance(error, FileNotFoundError) else str(error))
+        evidence['reason'] = reason
+        content = (r'\subsection{Later fine-sediment inventory check}' + '\n' +
+                   r'\pending{The retained fine-sediment reconstruction could not be verified: ' +
+                   tex(reason) + '. No numerical claim is rendered from this archive.}\n')
+    (output / 'fine_inventory.tex').write_text(content)
+    evidence['rendered_tex_sha256'] = sha(output / 'fine_inventory.tex')
+    (output / 'fine_inventory_evidence.json').write_text(
+        json.dumps(evidence, indent=2, sort_keys=True, allow_nan=False) + '\n')
+    return evidence['status']
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive-root', type=Path, default=ROOT / 'validation/production-recycling-002')
@@ -234,6 +318,7 @@ def main():
         json.dumps(evidence, indent=2, sort_keys=True, allow_nan=False) + '\n')
     print(evidence['status'])
     print(initial_archive(args.archive_root / 'run29-initial-reference', args.output))
+    print(fine_archive(args.archive_root / 'run26-flood14', args.output))
 
 
 if __name__ == '__main__':

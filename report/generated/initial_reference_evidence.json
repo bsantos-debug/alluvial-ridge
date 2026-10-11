@@ -433,7 +433,7 @@
     "rng-witness.csv": "637535884306525f6cffece468512f23f221c46dbab46f79cd23668d791b0966",
     "runs.csv": "3e94421b556e08e8f8b4843974787f1f370393ac1f454c565a2bd03db6952a32"
   },
-  "generator_sha256": "4d7ba54d7ef30c333118c98ea72ecd4abdd45dd760a1a9a8a86f5480834615f8",
+  "generator_sha256": "4062c9fe7f959d790bce54123a8fa683651c13348822435ad8ee6e9d1bf4b3c7",
   "rendered_tex_sha256": "63e7f5182bc8754af42d7e2e1af9f70c3694ae921a6d63731f436b6c472b0503",
   "scope": "case 29 initial inventory and flood-19 budget diagnostics; full-solid acceptance unassessed",
   "status": "verified initial reconstruction with budget diagnostics"

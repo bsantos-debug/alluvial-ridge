@@ -1,0 +1,179 @@
+{
+  "captured_utc": "2026-10-11T15:15:07.830328+00:00",
+  "case": 26,
+  "cpu_ticks_delta": 204,
+  "files": {
+    "accepted.json": {
+      "sha256": "0a052cfa33ced9b29f055d83a6bdaf0570e785edebb528a0e66345d8ba80a2a7",
+      "source_metadata": {
+        "bytes": 1219,
+        "ctime_ns": 1791716801168771796,
+        "device": 2049,
+        "inode": 6442744506,
+        "mtime_ns": 1791716801113771763
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/continuous-observer-002/run26-flood14-accepted.json"
+    },
+    "checkpoint.bin": {
+      "sha256": "7e42968dfc38ffb9f968c2ed9eae5abae836a06018147306e3eb7bd106e0c379",
+      "source_metadata": {
+        "bytes": 3115564,
+        "ctime_ns": 1791716793720767239,
+        "device": 2049,
+        "inode": 19327450936,
+        "mtime_ns": 1791716793720767239
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26/checkpoint.bin"
+    },
+    "comparison.json": {
+      "sha256": "e18e974693c7a3db298507dde88418ea05f96cd49a08fb3ebe2948ff7fe13250",
+      "source_metadata": {
+        "bytes": 20790,
+        "ctime_ns": 1791716801112771762,
+        "device": 2049,
+        "inode": 6442744505,
+        "mtime_ns": 1791716801057771728
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/continuous-observer-002/run26-flood14-comparison.json"
+    },
+    "observer-seed.json": {
+      "sha256": "bdbe219c973a193cbb597d4bfe95bf44dabe0d9c3bdea6a9b21f8c00edc9a280",
+      "source_metadata": {
+        "bytes": 53647,
+        "ctime_ns": 1791710423664819729,
+        "device": 2049,
+        "inode": 6442711396,
+        "mtime_ns": 1791710423664819729
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/continuous-observer-002/seed-20261011T092009Z.json"
+    },
+    "parameters.txt": {
+      "sha256": "cb03bd8c71b27725f6e436b085db70b1bc44a2c68d2231ba9adcad3e60a89158",
+      "source_metadata": {
+        "bytes": 1031,
+        "ctime_ns": 1791573798316675092,
+        "device": 2049,
+        "inode": 19327353001,
+        "mtime_ns": 1791573798316675092
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26/parameters.txt"
+    },
+    "peak_channel_0001.csv": {
+      "sha256": "5c90eb8f3a8218a1b57a2cebee2da7af9cc1d865b3dabc5ef019c240fd1d324c",
+      "source_metadata": {
+        "bytes": 22072,
+        "ctime_ns": 1791576741833552582,
+        "device": 2049,
+        "inode": 19327370203,
+        "mtime_ns": 1791576741833552582
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26/peak_channel_0001.csv"
+    },
+    "prior-scalar.json": {
+      "sha256": "6a39e493f6155dde70f1735c9075b80a9185b813c14820f7248088d5b88e2ea1",
+      "source_metadata": {
+        "bytes": 4605,
+        "ctime_ns": 1791699344732058102,
+        "device": 2049,
+        "inode": 27902199587,
+        "mtime_ns": 1791699344732058102
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/completed-flood-audit-002/run26-flood13.json"
+    },
+    "process_status.json": {
+      "sha256": "6f2688abcfbea63720acc4622dbaac9c57aa57a9c1d5af49fae2524e4cfffe0c",
+      "source_metadata": {
+        "bytes": 1602,
+        "ctime_ns": 1791573798178674999,
+        "device": 2049,
+        "inode": 19327353000,
+        "mtime_ns": 1791573798178674999
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26/process_status.json"
+    },
+    "remap_budget.csv": {
+      "sha256": "42109d398c85d7fc4eed9253e77d4c4308ea00be8898b400eb67d5b02b82e8e5",
+      "source_metadata": {
+        "bytes": 2808,
+        "ctime_ns": 1791716800999771693,
+        "device": 2049,
+        "inode": 6442744503,
+        "mtime_ns": 1791716800943771659
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/continuous-observer-002/attempts/run26-flood14/remap_budget.csv"
+    },
+    "scalar.json": {
+      "sha256": "d0be741112bc3134e4d881d5b6d4162d2ea1a23c80a5d83e3668198f7600b52a",
+      "source_metadata": {
+        "bytes": 4587,
+        "ctime_ns": 1791716801055771727,
+        "device": 2049,
+        "inode": 6442744504,
+        "mtime_ns": 1791716800999771693
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/continuous-observer-002/run26-flood14.json"
+    },
+    "summary.csv": {
+      "sha256": "903b39285b1c0621849621ec26b062c624ba1e6da8181316e42505afe56e9309",
+      "source_metadata": {
+        "bytes": 3215,
+        "ctime_ns": 1791716800943771659,
+        "device": 2049,
+        "inode": 6442744502,
+        "mtime_ns": 1791716800888771625
+      },
+      "source_path": "/data/data0/brooke/alluvial-ridge/tmp/continuous-observer-002/attempts/run26-flood14/summary.csv"
+    }
+  },
+  "flood": 14,
+  "format": 1,
+  "identity_after": {
+    "argv": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--run",
+      "26",
+      "--floods",
+      "580",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+    ],
+    "cpu_ticks": 14950076,
+    "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+    "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+    "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "parent": 3805340,
+    "pid": 3805586,
+    "start_ticks": 51544923,
+    "state": "R"
+  },
+  "identity_before": {
+    "argv": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--run",
+      "26",
+      "--floods",
+      "580",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+    ],
+    "cpu_ticks": 14949872,
+    "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+    "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+    "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "parent": 3805340,
+    "pid": 3805586,
+    "start_ticks": 51544923,
+    "state": "R"
+  },
+  "scope": "Exact stable completed case26/flood14 checkpoint and accepted scalar/history evidence; model remains live. Capture checks header/signature/hash, not native inventories.",
+  "stable_seconds": 2,
+  "started_utc": "2026-10-11T15:15:05.573394+00:00"
+}

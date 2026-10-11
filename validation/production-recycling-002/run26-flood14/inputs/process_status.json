@@ -1,0 +1,47 @@
+{
+  "run": 26,
+  "configuration": {
+    "run": "26",
+    "A_m_per_flood": "0.036",
+    "C": "0.003",
+    "E": "1",
+    "load": "fine"
+  },
+  "state": "running",
+  "attempts": [],
+  "pid": 3805586,
+  "process_start_ticks": "51544923",
+  "command": [
+    "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+    "--config",
+    "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+    "--runs",
+    "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+    "--run",
+    "26",
+    "--floods",
+    "580",
+    "--out",
+    "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+  ],
+  "current_attempt": {
+    "utc_start": "2026-10-09T19:23:18.066110Z",
+    "state": "running",
+    "requested_floods": 580,
+    "command": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--run",
+      "26",
+      "--floods",
+      "580",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+    ],
+    "pid": 3805586,
+    "process_start_ticks": "51544923"
+  }
+}

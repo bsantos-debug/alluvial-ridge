@@ -1,0 +1,690 @@
+{
+  "bed_arithmetic": {
+    "decoder_compensated_left_to_right_products_kg": -411157450996.6495,
+    "decoder_minus_grouped_compensated_kg": 0.0,
+    "explanation": "Decoder left-to-right products, grouped-density products and summation order are distinct Python diagnostics; no compiled C++ bit identity is asserted.",
+    "grouped_density_compensated_kg": -411157450996.6495,
+    "grouped_density_sequential_kg": -411157450996.65466
+  },
+  "budget_diagnostics": {
+    "compensated": {
+      "full_solid": {
+        "normalized_reconstruction_minus_recorded": 6.4492258688410506e-15,
+        "normalized_residual": -7.974649490213864e-12,
+        "prescribed_input": 766284265448.6332,
+        "reconstruction_minus_recorded": 0.0049419403076171875,
+        "recorded_post_remap_residual": -6.115790367126465,
+        "residual": -6.110848426818848,
+        "unit": "kg"
+      },
+      "full_solid_acceptance": "unassessed; no full-solid pass threshold",
+      "suspension": {
+        "normalized_reconstruction_minus_recorded": -2.1736977293683193e-18,
+        "normalized_residual": -4.4651445091826303e-10,
+        "prescribed_input": 766284265448.6332,
+        "reconstruction_minus_recorded": -1.6656703678563645e-06,
+        "recorded_post_remap_residual": -342.1569963684306,
+        "residual": -342.156998034101,
+        "unit": "kg"
+      },
+      "water": {
+        "normalized_reconstruction_minus_recorded": -7.743422767022376e-18,
+        "normalized_residual": 8.105251794499335e-16,
+        "prescribed_input": 211680000000.0,
+        "reconstruction_minus_recorded": -1.6391277313232964e-06,
+        "recorded_post_remap_residual": 0.0001732110977172852,
+        "residual": 0.00017157196998596191,
+        "unit": "m3"
+      }
+    },
+    "source_order": {
+      "full_solid": {
+        "normalized_reconstruction_minus_recorded": 0.0,
+        "normalized_residual": -7.981098716082705e-12,
+        "prescribed_input": 766284265448.6332,
+        "reconstruction_minus_recorded": 0.0,
+        "recorded_post_remap_residual": -6.115790367126465,
+        "residual": -6.115790367126465,
+        "unit": "kg"
+      },
+      "full_solid_acceptance": "unassessed; no full-solid pass threshold",
+      "suspension": {
+        "normalized_reconstruction_minus_recorded": -4.679192181684903e-19,
+        "normalized_residual": -4.465144492124845e-10,
+        "prescribed_input": 766284265448.6332,
+        "reconstruction_minus_recorded": -3.5855913438354037e-07,
+        "recorded_post_remap_residual": -342.1569963684306,
+        "residual": -342.15699672698975,
+        "unit": "kg"
+      },
+      "water": {
+        "normalized_reconstruction_minus_recorded": -2.5609461746161763e-31,
+        "normalized_residual": 8.182686022169556e-16,
+        "prescribed_input": 211680000000.0,
+        "reconstruction_minus_recorded": -5.421010862427522e-20,
+        "recorded_post_remap_residual": 0.0001732110977172852,
+        "residual": 0.00017321109771728516,
+        "unit": "m3"
+      }
+    }
+  },
+  "case": 26,
+  "channel_geometry": {
+    "area_identity_error_m2": 0.0,
+    "control_area_max_m2": 124593.28670537616,
+    "control_area_min_m2": 62296.643352196494,
+    "control_area_sum_m2": 36007459.25387144
+  },
+  "checkpoint": {
+    "bank": [
+      44445484.8745795,
+      177781939.498318,
+      666682273.1186421
+    ],
+    "channel_steps": 7105024,
+    "clock": 24192000.0,
+    "cutoffs": 0,
+    "deposited": 27751985977.01464,
+    "flood": 14,
+    "format": "ridge-checkpoint-v2",
+    "header_finite": true,
+    "mass_correction": 0.0,
+    "net_external_sediment": [
+      19039599037.538303,
+      3684811077.7296276,
+      6532845460.85418
+    ],
+    "net_external_water": 429347437.7126619,
+    "nodes": 290,
+    "payload_length_exact": true,
+    "recycled": 8910179938.592451,
+    "required_scalar_inventories_nonnegative": true,
+    "signature_values_checked": 31,
+    "signed_bed_forcing": 28811524917.78712,
+    "size_bytes": 3115564,
+    "steps": 2696772,
+    "water_correction": 0.0
+  },
+  "checkpoint_signature": "ridge-checkpoint-v2 72000 48000 250 500 0.0001 8 1728000 2500 15000 55 10 0.035999999999999997 0.0030000000000000001 1 400 5 0.40000000000000002 120 0.40000000000000002 2650 0.10000000000000001 0.00020000000000000001 0.00020000000000000001 1.9999999999999999e-06 1 0.001 2018 26 1 1 1",
+  "checkpoint_signature_values_checked": 31,
+  "class_fractions": [
+    0.05,
+    0.2,
+    0.75
+  ],
+  "current_mask": {
+    "event_counts_assessed": false,
+    "floodplain_cells": 54720,
+    "mapped_cells": 576
+  },
+  "effective_fresh_start": {
+    "argv_resume_present": false,
+    "command": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--run",
+      "26",
+      "--floods",
+      "580",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+    ],
+    "config_resume_present": false,
+    "effective_options": {
+      "--cfl": "0.4",
+      "--channel-chezy": "55",
+      "--channel-width": "500",
+      "--clay-d": "0.000002",
+      "--concentration-scale": "0.001",
+      "--config": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--diffusion-scale": "1",
+      "--duration": "1728000",
+      "--dx": "250",
+      "--floodplain-chezy": "10",
+      "--floods": "580",
+      "--initial-depth": "8",
+      "--length": "72000",
+      "--max-dt": "120",
+      "--migration": "1",
+      "--migration-scale": "400",
+      "--out": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26",
+      "--perturbation": "5",
+      "--porosity": "0.4",
+      "--qmax": "15000",
+      "--qmin": "2500",
+      "--run": "26",
+      "--runs": "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--sand-d": "0.0002",
+      "--seed": "2018",
+      "--silt-ws": "0.0002",
+      "--tau-critical": "0.1",
+      "--viscosity": "1",
+      "--width": "48000"
+    },
+    "effective_resume": false,
+    "original_compile_provenance_sha256": "be12cea8677558313e6327eef3c8f2770103631e3c7ca4ec4bd010a679f4a1d6",
+    "parameters": {
+      "A": 0.036,
+      "C": 0.003,
+      "E": 1.0,
+      "cfl": 0.4,
+      "channel_chezy": 55.0,
+      "channel_width": 500.0,
+      "clay_d": 2e-06,
+      "concentration_scale": 0.001,
+      "diffusion_scale": 1.0,
+      "duration": 1728000.0,
+      "dx": 250.0,
+      "fine": 1.0,
+      "floodplain_chezy": 10.0,
+      "floods": 580.0,
+      "initial_depth": 8.0,
+      "length": 72000.0,
+      "max_dt": 120.0,
+      "migration": 1.0,
+      "migration_scale": 400.0,
+      "perturbation": 5.0,
+      "porosity": 0.4,
+      "qmax": 15000.0,
+      "qmin": 2500.0,
+      "rho_s": 2650.0,
+      "run": 26.0,
+      "sand_d": 0.0002,
+      "seed": 2018.0,
+      "silt_ws": 0.0002,
+      "slope": 0.0001,
+      "tau_critical": 0.1,
+      "viscosity": 1.0,
+      "width": 48000.0
+    },
+    "run_row": {
+      "A_m_per_flood": "0.036",
+      "C": "0.003",
+      "E": "1",
+      "load": "fine",
+      "run": "26"
+    },
+    "source": "Frozen main.cpp:6-31,54-57; model.hpp:18-24. Suite orchestration resume is not a model option."
+  },
+  "endpoint_inventories": {
+    "compensated": {
+      "bank_classes_kg": [
+        44445484.8745795,
+        177781939.498318,
+        666682273.1186421
+      ],
+      "suspended_classes_kg": [
+        2377194.538884465,
+        300117058.9647909,
+        1202775003.4467971
+      ],
+      "total_solid_kg": -408763272042.20746,
+      "water_m3": 586239964.2114851
+    },
+    "source_order": {
+      "bank_classes_kg": [
+        44445484.8745795,
+        177781939.498318,
+        666682273.1186421
+      ],
+      "suspended_classes_kg": [
+        2377194.5388844656,
+        300117058.96479017,
+        1202775003.4467983
+      ],
+      "total_solid_kg": -408763272042.2125,
+      "water_m3": 586239964.2114867
+    }
+  },
+  "execution": {
+    "archived_top_level_modules_executed": 0,
+    "auditor_or_model_invocations": 0,
+    "historical_paths_opened": 0,
+    "live_files_read": 0,
+    "rng_executable_invocations": 0
+  },
+  "existing_reconciliation_guards": {
+    "absolute_suspension_kg": 0.001,
+    "absolute_water_m3": 0.001,
+    "full_solid_guard": null,
+    "source": "run29-flood19/inputs.tar.xz:guard-source.py:77-80",
+    "source_sha256": "035304ef672a640e3c3053a16e137dbb19c8844471c1e8da6adbdcec2c579039",
+    "strict_less_than": true,
+    "suspension_pass": true,
+    "water_pass": true
+  },
+  "flood": 14,
+  "format": 1,
+  "geometry_witness": {
+    "all_12_significant_digit_tokens_match": true,
+    "columns": [
+      "x",
+      "y",
+      "bed",
+      "control_area"
+    ],
+    "decimal_tokens_checked": 1156,
+    "difference_units": {
+      "bed": "m",
+      "control_area": "m2",
+      "x": "m",
+      "y": "m"
+    },
+    "excluded_evolved_columns": [
+      "water_depth",
+      "velocity"
+    ],
+    "max_abs_reconstructed_minus_printed": {
+      "bed": 4.935829522878521e-12,
+      "control_area": 4.97224391438067e-07,
+      "x": 0.0,
+      "y": 4.985122359357774e-08
+    },
+    "method": "format(reconstructed_value, '.12g') equals each retained CSV token exactly",
+    "nodes": 289,
+    "scope": "First-flood peak precedes first remap. Rounded geometry agrees; no historical native-double bit identity or initial-depth inference from evolved peak water is claimed.",
+    "sha256": "5c90eb8f3a8218a1b57a2cebee2da7af9cc1d865b3dabc5ef019c240fd1d324c"
+  },
+  "historical_identity": {
+    "argv": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--run",
+      "26",
+      "--floods",
+      "580",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+    ],
+    "argv_exact": true,
+    "cpu_ticks": 13476513,
+    "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+    "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+    "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "parent": 3805340,
+    "pid": 3805586,
+    "start_ticks": 51544923,
+    "state": "R"
+  },
+  "initial_geometry": {
+    "channel_area_m2": 36014190.73178094,
+    "equilibrium_water_depth_m": 4.356408496504154,
+    "length_m": 72028.38146356188,
+    "mapped_cells": 576,
+    "nodes": 289,
+    "nx": 288,
+    "ny": 192
+  },
+  "initial_inventories": {
+    "compensated": {
+      "bank_classes_kg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "deposited_mass_kg": 0.0,
+      "mass_correction_kg": 0.0,
+      "net_external_sediment_classes_kg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "net_external_water_m3": 0.0,
+      "recycled_mass_kg": 0.0,
+      "signed_bed_forcing_kg": 0.0,
+      "signed_bed_kg": -457921872591.4134,
+      "suspended_classes_kg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "total_solid_kg": -457921872591.4134,
+      "water_correction_m3": 0.0,
+      "water_m3": 156892526.49865165
+    },
+    "source_order": {
+      "bank_classes_kg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "deposited_mass_kg": 0.0,
+      "mass_correction_kg": 0.0,
+      "net_external_sediment_classes_kg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "net_external_water_m3": 0.0,
+      "recycled_mass_kg": 0.0,
+      "signed_bed_forcing_kg": 0.0,
+      "signed_bed_kg": -457921872591.4135,
+      "suspended_classes_kg": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "total_solid_kg": -457921872591.4135,
+      "water_correction_m3": 0.0,
+      "water_m3": 156892526.49865156
+    }
+  },
+  "initializer_equivalence": {
+    "dependency_tokens": {
+      "channel_chezy": "55",
+      "channel_width": "500",
+      "dx": "250",
+      "initial_depth": "8",
+      "length": "72000",
+      "perturbation": "5",
+      "porosity": "0.40000000000000002",
+      "qmin": "2500",
+      "rho_s": "2650",
+      "seed": "2018",
+      "slope": "0.0001",
+      "width": "48000"
+    },
+    "exact_token_match_with_retained_case29": true,
+    "explanation": "All geometry/water/solid initializer dependencies match. A enters geometry as 0*A; C, E, fine and run do not enter the zero-sediment initial inventories. Equality is reconstructed Python arithmetic, not compiled-model bit identity.",
+    "source": "model.hpp initialization/geometry/storage/total_sediment_inventory; main.cpp fresh-start path",
+    "zero_A_term_equal": true
+  },
+  "native": {
+    "bank_classes_kg": [
+      44445484.8745795,
+      177781939.498318,
+      666682273.1186421
+    ],
+    "bank_compensated_total_kg": 888909697.4915396,
+    "bank_fraction_differences": [
+      2.831068712794149e-15,
+      1.1324274851176597e-14,
+      -1.4210854715202004e-14
+    ],
+    "compensated_storage_water_m3_then_suspended_classes_kg": [
+      586239964.2114851,
+      2377194.538884465,
+      300117058.9647909,
+      1202775003.4467971
+    ],
+    "independent_suspension_residual_minus_ledger_kg": -1.3122334507897904e-06,
+    "signed_bed_inventory_relative_to_initial_plane_compensated_kg": -411157450996.6495,
+    "signed_total_solid_inventory_compensated_kg": -408763272042.20746,
+    "signed_total_solid_inventory_source_order_python_kg": -408763272042.2125,
+    "source_order_storage_water_m3_then_suspended_classes_kg": [
+      586239964.2114867,
+      2377194.5388844656,
+      300117058.96479017,
+      1202775003.4467983
+    ],
+    "suspension_plus_deposition_residual_compensated_kg": -342.15699768066406,
+    "water_storage_minus_post_ledger_m3": -1.5497207641601562e-06
+  },
+  "parameter_tokens": {
+    "A": "0.035999999999999997",
+    "C": "0.0030000000000000001",
+    "E": "1",
+    "concentration_scale": "0.001",
+    "fine": "1"
+  },
+  "physical_minima": {
+    "channel_clay": 0.8716941038507615,
+    "channel_sand": 0.0420465605366973,
+    "channel_silt": 0.23245175579934793,
+    "channel_water_depth": 2.9988132264185663,
+    "raster_clay": 0.0,
+    "raster_sand": 0.0,
+    "raster_silt": 0.0,
+    "raster_water_depth": 2.2580171612158285e-11
+  },
+  "provenance": {
+    "capture_sha256": "285b6d5017c381c42cef2a9f2bffefeae924b9b985278962996ae436e0abb66d",
+    "captured_utc": "2026-10-11T15:15:07.830328+00:00",
+    "dependencies": {
+      "../run29-flood19/capture.json": {
+        "sha256": "e41539cb8ef637c4191847442ce92c17c4aef47c17bbe13bf6a314c1748f6ee6",
+        "size_bytes": 5972
+      },
+      "../run29-flood19/inputs.tar.xz": {
+        "sha256": "496afe873e715c04633b304c0e69e0d364ea9ee98874871f87067fd604c66534",
+        "size_bytes": 2103992
+      },
+      "../run29-initial-reference/compile-provenance.json": {
+        "sha256": "be12cea8677558313e6327eef3c8f2770103631e3c7ca4ec4bd010a679f4a1d6",
+        "size_bytes": 2393
+      },
+      "../run29-initial-reference/physics.txt": {
+        "sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
+        "size_bytes": 359
+      },
+      "../run29-initial-reference/replay.json": {
+        "sha256": "d500c6fa7aa77d8e78b845f5413e7a8d3ceae8c85c82b10012366911ca40ce3d",
+        "size_bytes": 16046
+      },
+      "../run29-initial-reference/replay.py": {
+        "sha256": "b1136088ca9e6e86f71cb02ca36bbc55d50562002049c4cd15a2198da4418a81",
+        "size_bytes": 22331
+      },
+      "../run29-initial-reference/rng-provenance.json": {
+        "sha256": "e7b45ddf814efafcd1bb2f36d73cf01cf29b0a96dca689e615e32db8b507f2f3",
+        "size_bytes": 2399
+      },
+      "../run29-initial-reference/rng-witness.cpp": {
+        "sha256": "2de20f0218c99aa82cd5772bbd9875d259693acda3d6075d790082f23c2e8e1b",
+        "size_bytes": 640
+      },
+      "../run29-initial-reference/rng-witness.csv": {
+        "sha256": "637535884306525f6cffece468512f23f221c46dbab46f79cd23668d791b0966",
+        "size_bytes": 19080
+      },
+      "../run29-initial-reference/runs.csv": {
+        "sha256": "3e94421b556e08e8f8b4843974787f1f370393ac1f454c565a2bd03db6952a32",
+        "size_bytes": 791
+      }
+    },
+    "files": {
+      "capture-observation.json": {
+        "sha256": "be9f4026cf07716638e87a4f87ea62b3fd5a7022a5937bf17e7531bb8cbab819",
+        "size_bytes": 7093
+      },
+      "inputs/accepted.json": {
+        "sha256": "0a052cfa33ced9b29f055d83a6bdaf0570e785edebb528a0e66345d8ba80a2a7",
+        "size_bytes": 1219
+      },
+      "inputs/checkpoint.bin": {
+        "sha256": "7e42968dfc38ffb9f968c2ed9eae5abae836a06018147306e3eb7bd106e0c379",
+        "size_bytes": 3115564
+      },
+      "inputs/comparison.json": {
+        "sha256": "e18e974693c7a3db298507dde88418ea05f96cd49a08fb3ebe2948ff7fe13250",
+        "size_bytes": 20790
+      },
+      "inputs/observer-seed.json": {
+        "sha256": "bdbe219c973a193cbb597d4bfe95bf44dabe0d9c3bdea6a9b21f8c00edc9a280",
+        "size_bytes": 53647
+      },
+      "inputs/parameters.txt": {
+        "sha256": "cb03bd8c71b27725f6e436b085db70b1bc44a2c68d2231ba9adcad3e60a89158",
+        "size_bytes": 1031
+      },
+      "inputs/peak_channel_0001.csv": {
+        "sha256": "5c90eb8f3a8218a1b57a2cebee2da7af9cc1d865b3dabc5ef019c240fd1d324c",
+        "size_bytes": 22072
+      },
+      "inputs/prior-scalar.json": {
+        "sha256": "6a39e493f6155dde70f1735c9075b80a9185b813c14820f7248088d5b88e2ea1",
+        "size_bytes": 4605
+      },
+      "inputs/process_status.json": {
+        "sha256": "6f2688abcfbea63720acc4622dbaac9c57aa57a9c1d5af49fae2524e4cfffe0c",
+        "size_bytes": 1602
+      },
+      "inputs/remap_budget.csv": {
+        "sha256": "42109d398c85d7fc4eed9253e77d4c4308ea00be8898b400eb67d5b02b82e8e5",
+        "size_bytes": 2808
+      },
+      "inputs/scalar.json": {
+        "sha256": "d0be741112bc3134e4d881d5b6d4162d2ea1a23c80a5d83e3668198f7600b52a",
+        "size_bytes": 4587
+      },
+      "inputs/summary.csv": {
+        "sha256": "903b39285b1c0621849621ec26b062c624ba1e6da8181316e42505afe56e9309",
+        "size_bytes": 3215
+      }
+    },
+    "replay_source_sha256": "4c562d6bbb8ebd1f681c4819e6491b6e211d3dd3f4ed32c80a1905ef35a62b87",
+    "reused_archive_members": {
+      "decoder-source.py": {
+        "sha256": "d6dc1e7833783c09039d7ce41854ac51de3642c6cfd046298dc5c2b35b1f31fd",
+        "size_bytes": 18424
+      },
+      "guard-source.py": {
+        "sha256": "035304ef672a640e3c3053a16e137dbb19c8844471c1e8da6adbdcec2c579039",
+        "size_bytes": 5709
+      },
+      "inputs/parameters.txt": {
+        "sha256": "b2152d0382a5c8c009032db24ffc4aec535e0dfb331f4bbbcab8ba711076b724",
+        "size_bytes": 1019
+      },
+      "inventory-helper-source.py": {
+        "sha256": "c9bee19b0d821c466809e84081fd46a3215c89b35f9cc98af3f838733a10e987",
+        "size_bytes": 22573
+      },
+      "ridge": {
+        "sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "size_bytes": 313200
+      },
+      "src/finite_volume.hpp": {
+        "sha256": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+        "size_bytes": 2188
+      },
+      "src/main.cpp": {
+        "sha256": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+        "size_bytes": 10938
+      },
+      "src/migration.hpp": {
+        "sha256": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+        "size_bytes": 9769
+      },
+      "src/model.hpp": {
+        "sha256": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+        "size_bytes": 30924
+      },
+      "src/sediment.hpp": {
+        "sha256": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2",
+        "size_bytes": 4323
+      }
+    },
+    "reused_pure_functions": [
+      "mt19937_words",
+      "noise_values",
+      "initial_state",
+      "ordered",
+      "geometry_witness",
+      "budgets",
+      "decode_arrays",
+      "sequential_sum",
+      "source_order_inventory"
+    ]
+  },
+  "recorded_flux_ledgers": {
+    "deposited": 27751985977.01464,
+    "mass_correction": 0.0,
+    "net_external_sediment": [
+      19039599037.538303,
+      3684811077.7296276,
+      6532845460.85418
+    ],
+    "net_external_water": 429347437.7126619,
+    "recycled": 8910179938.592451,
+    "signed_bed_forcing": 28811524917.78712,
+    "water_correction": 0.0
+  },
+  "rng_verification": {
+    "cpp_witness_output_sha256": "637535884306525f6cffece468512f23f221c46dbab46f79cd23668d791b0966",
+    "cpp_witness_source_sha256": "2de20f0218c99aa82cd5772bbd9875d259693acda3d6075d790082f23c2e8e1b",
+    "distribution_doubles_checked": 287,
+    "distribution_doubles_exact": true,
+    "gnu_headers": {
+      "/usr/include/c++/8/bits/random.h": {
+        "contents_copied": false,
+        "relevant_lines": "154-181,1524-1528,1813-1823",
+        "sha256": "a27c4c3105aa290fbfa7f93971befb65f1f11ab4a2f1c06bf8081d934abed99f",
+        "size_bytes": 175250
+      },
+      "/usr/include/c++/8/bits/random.tcc": {
+        "contents_copied": false,
+        "relevant_lines": "315-342,395-425,451-469,3313-3347",
+        "sha256": "78a5b4b829fa14a5272ffbf46c4527abc11a127687da949a8164ae522be85d51",
+        "size_bytes": 105590
+      }
+    },
+    "raw_words_checked": 574,
+    "raw_words_exact": true,
+    "scope": "Exact comparison with the retained new GNU8 RNG-only witness; not compiled-model bit identity."
+  },
+  "scalar_reference": {
+    "last_scalar_identity_errors": {
+      "sediment": -2.9251623345814156e-10,
+      "solid": -2.637001728089672e-12,
+      "water": 2.8519938147231194e-16
+    },
+    "max_abs_scalar_identity_errors": {
+      "sediment": 2.9251623345814156e-10,
+      "solid": 4.844125101044483e-12,
+      "water": 4.765610649160035e-16
+    },
+    "post_normalized_residuals": {
+      "full_solid": -7.981098716082705e-12,
+      "suspension_plus_deposition": -4.465144487445653e-10,
+      "water": 8.182686022169559e-16
+    },
+    "prescribed_hydrographs": {
+      "count": 14,
+      "sediment": 766284265448.6332,
+      "simpson_intervals": 20000,
+      "water": 211680000000.0
+    },
+    "remap": {
+      "clay_transfer_residual": -3.099441528320312e-06,
+      "flood": 14.0,
+      "post_sediment_residual": -342.1569963684306,
+      "post_solid_sediment_residual": -6.115790367126465,
+      "post_water_residual": 0.0001732110977172852,
+      "post_water_storage": 586239964.2114867,
+      "sand_transfer_residual": 9.313225746154785e-10,
+      "silt_transfer_residual": -3.576278686523438e-07,
+      "solid_transfer_residual": 0.000102996826171875,
+      "water_transfer_residual": 0.0
+    },
+    "summary": {
+      "alpha": 0.935738677938,
+      "bank_mass": 220.905209078,
+      "bed_forcing_mass": 26754881136.3,
+      "beta": 0.0225591550989,
+      "channel_depth": 7.67898526333,
+      "channel_steps": 7105024.0,
+      "cutoffs": 0.0,
+      "flood": 14.0,
+      "interface_fraction": 1.0,
+      "mean_water": 0.935738677938,
+      "recycled_mass": 8910179938.59,
+      "ridge_height": 0.173231419558,
+      "sediment_residual": -342.156992912,
+      "sinuosity": 1.0001857301,
+      "solid_sediment_residual": -6.11589336395,
+      "steps": 2696772.0,
+      "wall_seconds": 142995.295934,
+      "water_residual": 0.000173211097717,
+      "water_storage": 586239964.211
+    }
+  },
+  "scope": "One retained post-remap case26/flood14 endpoint at C=.003, fine=1. Initial inventories are reconstructed from actual fresh-start inputs and the retained GNU8/MT19937 witness, never inferred from this evolved checkpoint. Current native arrays and initial references are independently reaggregated; boundary, deposition, forcing, recycling and correction ledgers and prescribed-input normalizers remain recorded quantities. Existing water/suspension reconciliation guards apply; full-solid acceptance is unassessed. No intermediate arrays, event counts, causal comparison, convergence, compiled-model bit identity or full580 completion is established.",
+  "status": "verified_native_inventory_and_independent_initial_reference"
+}
