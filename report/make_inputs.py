@@ -389,6 +389,10 @@ for row in panels:
                 lines.append(r"\textbf{" + tex(field.replace("_", " ").capitalize())
                              + r":}\par {\small\texttt{" + value + "}}\\par\n\n")
                 continue
+            if field == "data_source_files":
+                lines.append(r"\textbf{Data source files:}\par {\small\raggedright "
+                             + formatted + "\\par}\n\n")
+                continue
             lines.append(r"\textbf{" + tex(field.replace("_", " ").capitalize()) + ":} " + formatted + "\n\n")
 (OUT / "panels.tex").write_text("".join(lines).rstrip() + "\n")
 

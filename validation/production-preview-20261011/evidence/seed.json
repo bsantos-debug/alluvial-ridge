@@ -1,0 +1,1319 @@
+{
+  "auditor_sha256": "2389afcc8ba31c71a4874ce372ba4e38342767401cdd6e2d5c9280a156e6c42b",
+  "binary_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+  "cases": {
+    "1": {
+      "fractions": [
+        0.05,
+        0.2,
+        0.75
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "1",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run01"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805532,
+        "start_ticks": 51544686
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "3.0000000000000001e-05",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "1"
+      },
+      "parameters_sha256": "6742418008d2bc8d68d203c1da08ac6fd0f8f7a9d02c1e10a03fabc38262e316",
+      "prior": {
+        "flood": 12,
+        "path": "tmp/completed-flood-audit-002/run1-flood12.json",
+        "sha256": "d2c1fee6d3c3c7fec75bf3b299d2dbeb9e7e543205a49b0b8a366e39c36097f4"
+      },
+      "process_status_sha256": "f9c63320e69a2759b40353141aaf1f52be6949ee02caa4d4668682bcbd3af987"
+    },
+    "2": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "2",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run02"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805533,
+        "start_ticks": 51544687
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "3.0000000000000001e-05",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "84ffe69736a2a350ec7badfa7519551ff7811be1f4edd5d3201ec2ec4af6bb65",
+      "prior": {
+        "flood": 12,
+        "path": "tmp/completed-flood-audit-002/run2-flood12.json",
+        "sha256": "6bd8681b0e48a6a8d12da805e89177af88db1b702263d939c7c3de89e5d04798"
+      },
+      "process_status_sha256": "b9cf9edd3c0f6863ca671e9223d2fb3d5a4b7a7b180d309cd04530841be140c1"
+    },
+    "3": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "3",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run03"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805534,
+        "start_ticks": 51544688
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "e664a16850f67565936fa11f918acae789a358bb6d5d9a2bfea0d68480ef6d15",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run3-flood13.json",
+        "sha256": "2e85c48fedfc6d986f6d2be7816d1ab504bcbc1cc7b41f03d2553303bf3d09b5"
+      },
+      "process_status_sha256": "3f91f7cbad3f56e462cffe98acded8e1a9cbfa62c1ee758a397ef07c5dcc042a"
+    },
+    "4": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "4",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run04"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805535,
+        "start_ticks": 51544698
+      },
+      "parameter_tokens": {
+        "A": "0.0040000000000000001",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "3d288cd494dd721d45521b745ff39039b599496751d2c0a38c2fd6769684476f",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run4-flood13.json",
+        "sha256": "1c10f64a38da3d290d53a50562134223e33c125e1aea2bd63c03ab55b06c054c"
+      },
+      "process_status_sha256": "7244a335a90632249d114dc68355077ce7ba9f3a884b60f78304407bbbce922f"
+    },
+    "5": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "5",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run05"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805537,
+        "start_ticks": 51544708
+      },
+      "parameter_tokens": {
+        "A": "0.0080000000000000002",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "9d380d117ea894768028805cfe0555e5a6fc3bbfa67802513463efa2f10ab976",
+      "prior": {
+        "flood": 12,
+        "path": "tmp/completed-flood-audit-002/run5-flood12.json",
+        "sha256": "407be6d5357f561e9fa73b98b4f166592d8f9144ad84a32500c0c0c3ea7bb27f"
+      },
+      "process_status_sha256": "b7ac8388b78181818cb243d9b5db2c088cd2f185690b4e5887d77526d7a5bb42"
+    },
+    "6": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "6",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run06"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805539,
+        "start_ticks": 51544719
+      },
+      "parameter_tokens": {
+        "A": "0.012",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "9372931776f8a0ecc6e305577047d2ab891c1d4e5cee0afb7ed404483454f01c",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run6-flood13.json",
+        "sha256": "3c4ac3194ac8f9742d2a216f310dbf4a22389d071634963126ecb8bc6f57e55f"
+      },
+      "process_status_sha256": "951d50566f50f7d98374cb4defeef580ca6944377bb468e6fa0a94143a17ea91"
+    },
+    "7": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "7",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run07"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805541,
+        "start_ticks": 51544729
+      },
+      "parameter_tokens": {
+        "A": "0.017999999999999999",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "8cf265443f1f54ec6464cbbbd2322bdfff5bc7a17aa9e1f5e0b1ae69af812028",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run7-flood13.json",
+        "sha256": "f400292f1b192e830252c86620a252e2af43a0695ff4243f5241328a14b6967f"
+      },
+      "process_status_sha256": "8341d9c7127276a083b2b9b30a17692ade7b73671347515cc002edc4cfe9d8cf"
+    },
+    "8": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "8",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run08"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805543,
+        "start_ticks": 51544740
+      },
+      "parameter_tokens": {
+        "A": "0.025999999999999999",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "064698195cde91609940182c2a586fb0e76af10c2452aba28cb2b793416ac8cb",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run8-flood13.json",
+        "sha256": "434aa0c9eaba3ff0b1657d1a065f54e94e8907ba0c40adb298cbdf2e8ff65e20"
+      },
+      "process_status_sha256": "9b2141da4aed92a8462549b92a11ad357bd4fda6409f6fc29c408ff022478d2c"
+    },
+    "9": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "9",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run09"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805546,
+        "start_ticks": 51544750
+      },
+      "parameter_tokens": {
+        "A": "0.031",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "1a44ae4049edfac85c2a9720853567b44598c91027163eb4eb2bd4688931d0c2",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run9-flood13.json",
+        "sha256": "3dd12c639c64e73cfd62467dd5a4c96b448bdfe993a0054838933baa6c5114d8"
+      },
+      "process_status_sha256": "baaf92b5316527ab1ada32a055b28b8e4eb26b0510eea63f88d791d4610a19b7"
+    },
+    "10": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "10",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run10"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805547,
+        "start_ticks": 51544759
+      },
+      "parameter_tokens": {
+        "A": "0.035999999999999997",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "c0c8fb4a161a649f38058bd4ce4b7a91668aa86137075a704afaab0dc6026d1b",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run10-flood13.json",
+        "sha256": "8b749f8fb7508428f0a1be98cc59e16012a905cb6944bcbbc65772a34b70462e"
+      },
+      "process_status_sha256": "07a16ab2176f19fb9427c0651689fa59f4582519802dd6c3f88124c23ea8956b"
+    },
+    "11": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "11",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run11"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805550,
+        "start_ticks": 51544770
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run11-flood13.json",
+        "sha256": "3c70b5faf69bff4042e8ea0b364d0a52b4da38efc8a04d193181ef3fe52b6821"
+      },
+      "process_status_sha256": "1aabe4b49eb9b6b16e6ea9bd61db7eecfb52f9150988e329878305b86fa003be"
+    },
+    "12": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "12",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run12"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805552,
+        "start_ticks": 51544782
+      },
+      "parameter_tokens": {
+        "A": "0.0040000000000000001",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "0cf740d294f93186f311d7f62f5d39b989f4b72303577b6b722fbfb4d4cb6f49",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run12-flood13.json",
+        "sha256": "e8ac8f2c1b6cc851599f1090bfccbce6e35d4484817e5835f07865fa0a551c6c"
+      },
+      "process_status_sha256": "05134c1ec59cc51d161c02fd915cf0c3474773384706eb3929b425f8e9a9b788"
+    },
+    "13": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "13",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run13"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805554,
+        "start_ticks": 51544792
+      },
+      "parameter_tokens": {
+        "A": "0.0080000000000000002",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "93c1c6a9da1455939e75ddbab2c8a0cf1e37cabe6619dcd6e9cec6494f122bcb",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run13-flood13.json",
+        "sha256": "df5cdfd19fac3c8b2fecfbd79906d978b82a03407118969df75d990bc65ef37f"
+      },
+      "process_status_sha256": "b2943ecd4a1d0d66743589fb6f18521cbe34af268a9fb89815bc7682b442282b"
+    },
+    "14": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "14",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run14"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805558,
+        "start_ticks": 51544805
+      },
+      "parameter_tokens": {
+        "A": "0.012",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "7a9a9626a00b850b6f9fc087896899bec3581baf31438f00bf6bf90e3fed49c9",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run14-flood13.json",
+        "sha256": "82138de2d9d1390fd94ff0c5fb70aadd79a0143f4f87912c01720e4dedd94525"
+      },
+      "process_status_sha256": "12628a239909803aaf3b44b5e9f930ceee103aa2280ae23f29596107c9362941"
+    },
+    "15": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "15",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run15"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805556,
+        "start_ticks": 51544801
+      },
+      "parameter_tokens": {
+        "A": "0.017999999999999999",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "c8d20233f14247f3e800abc3634396eda5f4513ee14783905e8e00ce67a98cc9",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run15-flood13.json",
+        "sha256": "2b3424c0c00153eed109e514ad28d5a966c50a054861f63871bea8927667d73b"
+      },
+      "process_status_sha256": "8e936a40932cdeee59c6e3851f764024e442c9bcbb2362ebd6ee6e72dacbd688"
+    },
+    "16": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "16",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run16"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805562,
+        "start_ticks": 51544812
+      },
+      "parameter_tokens": {
+        "A": "0.025999999999999999",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "1aca2e2726c93edf014e7c84a72e180e7ab0bd1801cf71efcea515c9a814f878",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run16-flood13.json",
+        "sha256": "73ffe17b8b456d38bf5b6f876470e918906db27298c8598b47b9c10ea90442be"
+      },
+      "process_status_sha256": "e176dfa31fa9124749df4d37e570f05f12dd42c8cdfcd57e72cc31306a76ca2f"
+    },
+    "17": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "17",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run17"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805565,
+        "start_ticks": 51544820
+      },
+      "parameter_tokens": {
+        "A": "0.035999999999999997",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "d61bb7ec5d71134fe13902995bd5811a29dd25659e36f764e14de25068fa85cc",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run17-flood13.json",
+        "sha256": "a8ef7c9136c4b85770dfa15607d005d611cc4d5d050485d0cef776472bb9740a"
+      },
+      "process_status_sha256": "70368d7088db2a18a03801c3d7e2f29af0d044e2f030310bc0dcce88518deef6"
+    },
+    "18": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "18",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run18"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805568,
+        "start_ticks": 51544834
+      },
+      "parameter_tokens": {
+        "A": "0.0040000000000000001",
+        "C": "0.01",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "9e15ff4d24b0124ecd587b51cfc456a5d270a88e39935b11970550e8c1602cb7",
+      "prior": {
+        "flood": 14,
+        "path": "tmp/completed-flood-audit-002/run18-flood14.json",
+        "sha256": "339e66fd6456b98c5b4a1520f97d46e44265393227ac7fe4d0529389147af8d1"
+      },
+      "process_status_sha256": "b624b443be6c178897205a298f3f7f4bdc2f21e389419df67d2b890fc87eaca4"
+    },
+    "19": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "19",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run19"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805571,
+        "start_ticks": 51544844
+      },
+      "parameter_tokens": {
+        "A": "0.012",
+        "C": "0.01",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "39e36272fe5a360a10a37b729684f91deaa6c7264524a0edc7115d390253238f",
+      "prior": {
+        "flood": 14,
+        "path": "tmp/completed-flood-audit-002/run19-flood14.json",
+        "sha256": "858c1efa19659e094d2834c2a35a7a011a16a719fcf2bb1930c6769318ad59cd"
+      },
+      "process_status_sha256": "0e9277b33c22ea623011992d798e99bbdadcc88845af8788f3e50e57de22d315"
+    },
+    "20": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "20",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run20"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805572,
+        "start_ticks": 51544851
+      },
+      "parameter_tokens": {
+        "A": "0.017999999999999999",
+        "C": "0.01",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "c8b47d61fd6ef913f141d4e008c5676b383d19576bdb5f6553ac57f56fbd5b1a",
+      "prior": {
+        "flood": 14,
+        "path": "tmp/completed-flood-audit-002/run20-flood14.json",
+        "sha256": "951bb797f4e2e5053790f2bca66fbf2e89ecc8dcc97ea81e2d74b6e82b0f5560"
+      },
+      "process_status_sha256": "a0997861240118448649a930ffa3078b09cda77663f5b848b2690994a393a1be"
+    },
+    "21": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "21",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run21"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805575,
+        "start_ticks": 51544873
+      },
+      "parameter_tokens": {
+        "A": "0.025999999999999999",
+        "C": "0.01",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "a7e51ef25bcf82f63481564b73efadc4349b46e0250f820d4778366ce1983051",
+      "prior": {
+        "flood": 14,
+        "path": "tmp/completed-flood-audit-002/run21-flood14.json",
+        "sha256": "1853473cd0e40dc20c356855c30b5c24e7c510f71dc002ad13cd9f43909cc73c"
+      },
+      "process_status_sha256": "4941102392a1e24a90614d57e1ad9527333b603bf17baa285e9bc4a0c71f66a5"
+    },
+    "22": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "22",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run22"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805576,
+        "start_ticks": 51544882
+      },
+      "parameter_tokens": {
+        "A": "0.035999999999999997",
+        "C": "0.01",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "382a280f169795a03f5240ad17fa5e9403f4c876ac41493f8ed0f640359ce1a5",
+      "prior": {
+        "flood": 14,
+        "path": "tmp/completed-flood-audit-002/run22-flood14.json",
+        "sha256": "7fe3835dbc0f054552c2b1585ca5c7e3d81f46929e440cf6001991891698fe2a"
+      },
+      "process_status_sha256": "612329bdae8e7173dabaf0e82b37e1146a5657887167bf81ee5f63aef139c3e2"
+    },
+    "23": {
+      "fractions": [
+        0.05,
+        0.2,
+        0.75
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "23",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run23"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805578,
+        "start_ticks": 51544891
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "1"
+      },
+      "parameters_sha256": "a1956d4c21cb9ada835181b49b5dbf98ea2ea1d9e929501991fcfe648e573a29",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run23-flood13.json",
+        "sha256": "818747bf60c7692fb1dfc1aae5f89b809143885ff77383d0269c7f991bb04320"
+      },
+      "process_status_sha256": "fc5789d2f4d175c0b5c2c8d6dd0d62bfc34d20860116d750eb7694f50d9d9a71"
+    },
+    "24": {
+      "fractions": [
+        0.05,
+        0.2,
+        0.75
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "24",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run24"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805581,
+        "start_ticks": 51544905
+      },
+      "parameter_tokens": {
+        "A": "0.0080000000000000002",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "1"
+      },
+      "parameters_sha256": "8e2f235da0d7dcf935b77b28b40f8f26be909c113be281201dd094767165369c",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run24-flood13.json",
+        "sha256": "37908fbca09b902b383f3700c7f4844f957e11e5c6d3a452f37807447b497362"
+      },
+      "process_status_sha256": "b5fcfac003ce5ec9eb0dedd4b0270fae6e00c95d7fab769934cc87c36c1920a7"
+    },
+    "25": {
+      "fractions": [
+        0.05,
+        0.2,
+        0.75
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "25",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run25"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805583,
+        "start_ticks": 51544914
+      },
+      "parameter_tokens": {
+        "A": "0.017999999999999999",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "1"
+      },
+      "parameters_sha256": "5c05a2559add4a64f63a8171b7b2269128169f4f29567db7b4f565d2cf8ae4b8",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run25-flood13.json",
+        "sha256": "332acaf5ca36f0d003422e571220cb9ae100de954fb3d148cf5e8bf1162cf25e"
+      },
+      "process_status_sha256": "cd8ad5f0047ba1412ed9dfb85ba830e0e2910ee346333edf199cb7a0b2351ec0"
+    },
+    "26": {
+      "fractions": [
+        0.05,
+        0.2,
+        0.75
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "26",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run26"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805586,
+        "start_ticks": 51544923
+      },
+      "parameter_tokens": {
+        "A": "0.035999999999999997",
+        "C": "0.0030000000000000001",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "1"
+      },
+      "parameters_sha256": "cb03bd8c71b27725f6e436b085db70b1bc44a2c68d2231ba9adcad3e60a89158",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run26-flood13.json",
+        "sha256": "6a39e493f6155dde70f1735c9075b80a9185b813c14820f7248088d5b88e2ea1"
+      },
+      "process_status_sha256": "6f2688abcfbea63720acc4622dbaac9c57aa57a9c1d5af49fae2524e4cfffe0c"
+    },
+    "27": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "27",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run27"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805588,
+        "start_ticks": 51544935
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "0.00029999999999999997",
+        "E": "0.5",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "1fe0437ee650bcd1da75c507564e7a1ffc335f840f6cd7991641515ab4f79616",
+      "prior": {
+        "flood": 19,
+        "path": "tmp/completed-flood-audit-002/run27-flood19.json",
+        "sha256": "d6b35fa96380ea2019691e13aa32f01a4cc8b6c3c23084f1ef4319913d2fc347"
+      },
+      "process_status_sha256": "8162847f8ee14dee1e290cc10248ea8fa888eae177bf1f0c75be37159f6eacdf"
+    },
+    "28": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "28",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run28"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805590,
+        "start_ticks": 51544950
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "0.00029999999999999997",
+        "E": "1.5",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "7c13c92fde45e7f0818feb091ee3e1f8e21e216bc35eb354470605ec43593670",
+      "prior": {
+        "flood": 11,
+        "path": "tmp/completed-flood-audit-002/run28-flood11.json",
+        "sha256": "b118a6e2115527ccc09cdc64e6f097b13c21a45be643cfa6b1d1cc33b2cb80c1"
+      },
+      "process_status_sha256": "716018c74d85c54a2ca163804e079a2152837a28856113ba4f6d246d609595a0"
+    },
+    "29": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "29",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run29"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805592,
+        "start_ticks": 51544957
+      },
+      "parameter_tokens": {
+        "A": "0.012",
+        "C": "0.00029999999999999997",
+        "E": "0.5",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "b2152d0382a5c8c009032db24ffc4aec535e0dfb331f4bbbcab8ba711076b724",
+      "prior": {
+        "flood": 18,
+        "path": "tmp/completed-flood-audit-002/run29-flood18.json",
+        "sha256": "21d9b33a86d9ed5ea1091a77788f7a8102fbdd3275480ede61b1301db3cf40e7"
+      },
+      "process_status_sha256": "650916687250621549e9dff966c79e8c5c47ca3c8289d867db20bd219ee8b0f2"
+    },
+    "30": {
+      "fractions": [
+        0.05,
+        0.75,
+        0.2
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "30",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run30"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805593,
+        "start_ticks": 51544961
+      },
+      "parameter_tokens": {
+        "A": "0.012",
+        "C": "0.00029999999999999997",
+        "E": "1.5",
+        "concentration_scale": "0.001",
+        "fine": "0"
+      },
+      "parameters_sha256": "7eb432fc51585aa80eae480852f10916469c58a653fe8eab8ce86cd691610584",
+      "prior": {
+        "flood": 11,
+        "path": "tmp/completed-flood-audit-002/run30-flood11.json",
+        "sha256": "2e551749e6f720b02ebcc6ad890ac632afcbddbe621ffecb60dda94ab7a33436"
+      },
+      "process_status_sha256": "6ca9cf39b2e5f0876264958b17096750f153530561d90f2c37787edb21311370"
+    },
+    "31": {
+      "fractions": [
+        0.05,
+        0.2,
+        0.75
+      ],
+      "identity": {
+        "argv": [
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+          "--config",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+          "--runs",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+          "--run",
+          "31",
+          "--floods",
+          "580",
+          "--out",
+          "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run31"
+        ],
+        "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+        "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+        "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+        "parent": 3805340,
+        "pid": 3805595,
+        "start_ticks": 51544969
+      },
+      "parameter_tokens": {
+        "A": "0",
+        "C": "0.00029999999999999997",
+        "E": "1",
+        "concentration_scale": "0.001",
+        "fine": "1"
+      },
+      "parameters_sha256": "a800eaa2c6d42203e98adcd4665127b9cd56cb27f5105715694875cabf549ea7",
+      "prior": {
+        "flood": 13,
+        "path": "tmp/completed-flood-audit-002/run31-flood13.json",
+        "sha256": "dbbc0cb0b977daf00cc846ccb5566afcbc585caf8b9f225e9dc93eee6f0ca65d"
+      },
+      "process_status_sha256": "ed89448293fad8204f626f3b8f16a3216a59e78667fb6d04804119496ebb2875"
+    }
+  },
+  "format": 1,
+  "frozen_source_sha256": {
+    "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+    "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+    "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+    "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+    "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+  },
+  "helper_sha256": "7e304445cbc8fab0c6eb9068328d3707a9f47906ca21371c5f5b258fd0427073",
+  "monitor_sha256": "58db9fef262a5f82bc9fde631e7a56759268c35c42e69020d08cd6c40d32b5ec",
+  "project_root": "/data/data0/brooke/alluvial-ridge"
+}

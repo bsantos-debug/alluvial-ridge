@@ -235,6 +235,7 @@ timing and its component-only scope explicit when reporting validation.
 | Corrected first-flood audit | Complete versioned `validation/first-flood-audit-002/`, including methods, observations, capture manifest, and both archives of the original first-flood input bytes. |
 | Later migration component check | `validation/migration-linear/`, `tests/migration_linear.cpp`, and `docs/migration.md`; separate from frozen launch checks and coupled sensitivity. |
 | Live relocation evidence | `validation/relocation-20261010/`; filesystem and process continuity records, separate from terminal numerical checks. |
+| Early production preview | Versioned `validation/production-preview-20261011/`; audited CSV prefixes, provenance and the historical 41-value partial Figure 3B. Final panels use the full terminal production histories. |
 | Figures and derived comparisons | Final workspace `figures/`, manifests, metric/section tables and optional helper records. |
 | Final report and execution records | Final workspace `report/main.tex`, required `report/generated/` inputs, `report/report.pdf`, original 002 manifest/PDF, and separate postprocess manifest. |
 | Rejected-attempt record | Clearly separated 001 reason, manifest, frozen sources and logs; never mixed into canonical data folders. |

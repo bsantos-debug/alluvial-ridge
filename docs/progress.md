@@ -17,6 +17,21 @@ original request is copied into `docs/user-request.txt`.
 
 ## Active corrected clean rebuild
 
+On 2026-10-11 at 09:33:50 UTC, an
+[interim production snapshot](../validation/production-preview-20261011/README.md)
+retained the exact audited CSV prefixes and parameters of all 31 original
+cases, with 414 completed-flood rows. The unchanged plotting script generated
+the first partial manuscript panel from these saved outputs: Figure 3B has
+41 finite alpha values across runs 7, 15 and 20, through floods 13, 13 and 15.
+The full target remains 580 floods per run. The strict plot check exited 2
+because none of the 13 panels has complete requested data; the strict comparison
+check also exited 2: none of its 29 comparisons had the required records.
+The provisional report includes the partial Figure 3B and explicit missing
+statuses for the other panels. This rendering does not complete the clean
+rebuild or establish agreement with the publication. The retained manifest
+binds every copied input to its selected audit and the original process identity.
+All 31 production processes continued running; no model or frozen input changed.
+
 Started 2026-10-09 19:22:42 UTC from revision `e8656f4` using:
 
 ```sh

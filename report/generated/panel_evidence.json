@@ -1,17 +1,25 @@
 {
   "1A": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "0b08be2a1f3b964ac536e2451eaab706494839267dd65ba10c34ab275036ae64",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure1.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "23386b31a977a527932ad4a99b5b5135ec7529403103d1cef530090a97d12b86",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run11/parameters.txt": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+        "validation/production-preview-20261011/data/run11/summary.csv": "87a73268f6c38ef33c27f2846f7adf6d7ae1d51b32f7c68260b8ed1379fec9e2"
+      },
       "panel": "1A",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 61 snapshot missing",
+        "panel": "1A",
+        "source_files": "validation/production-preview-20261011/data/run11/parameters.txt;validation/production-preview-20261011/data/run11/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
@@ -29,30 +37,30 @@
         }
       }
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure1.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "1B": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "0f7cee7d9deee3eb05f58f20408b9b81792a4657baad178dd25d4f74b2d977df",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure1.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "23386b31a977a527932ad4a99b5b5135ec7529403103d1cef530090a97d12b86",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run11/parameters.txt": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+        "validation/production-preview-20261011/data/run11/summary.csv": "87a73268f6c38ef33c27f2846f7adf6d7ae1d51b32f7c68260b8ed1379fec9e2"
+      },
       "panel": "1B",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 251 snapshot missing",
+        "panel": "1B",
+        "source_files": "validation/production-preview-20261011/data/run11/parameters.txt;validation/production-preview-20261011/data/run11/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
@@ -70,30 +78,30 @@
         }
       }
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure1.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "1C": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "f4b00e49b8e5a09f34d6f3dc6db4c0754c1fc45e21b00f14aa195870a0a448a4",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure1.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "23386b31a977a527932ad4a99b5b5135ec7529403103d1cef530090a97d12b86",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run11/parameters.txt": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+        "validation/production-preview-20261011/data/run11/summary.csv": "87a73268f6c38ef33c27f2846f7adf6d7ae1d51b32f7c68260b8ed1379fec9e2"
+      },
       "panel": "1C",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 501 snapshot missing",
+        "panel": "1C",
+        "source_files": "validation/production-preview-20261011/data/run11/parameters.txt;validation/production-preview-20261011/data/run11/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
@@ -111,30 +119,30 @@
         }
       }
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure1.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "1D": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "b5ae88b6d93ade8bc428b4ef7f5355745040e830c7c3b0fd5ace1c5316c831ac",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure1.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "23386b31a977a527932ad4a99b5b5135ec7529403103d1cef530090a97d12b86",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run11/parameters.txt": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+        "validation/production-preview-20261011/data/run11/summary.csv": "87a73268f6c38ef33c27f2846f7adf6d7ae1d51b32f7c68260b8ed1379fec9e2"
+      },
       "panel": "1D",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 562 snapshot missing",
+        "panel": "1D",
+        "source_files": "validation/production-preview-20261011/data/run11/parameters.txt;validation/production-preview-20261011/data/run11/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
@@ -152,30 +160,30 @@
         }
       }
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure1.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "1E": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "81fd0bc614cb0c88146ebe3eefe030a2b6da899e686214d5fc9a7b702126861f",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure1.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "23386b31a977a527932ad4a99b5b5135ec7529403103d1cef530090a97d12b86",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run17/parameters.txt": "d61bb7ec5d71134fe13902995bd5811a29dd25659e36f764e14de25068fa85cc",
+        "validation/production-preview-20261011/data/run17/summary.csv": "7458d020ce75a9ddc216e11cc01be17ff2053263d65ac360816301323974c3ba"
+      },
       "panel": "1E",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 562 snapshot missing",
+        "panel": "1E",
+        "source_files": "validation/production-preview-20261011/data/run17/parameters.txt;validation/production-preview-20261011/data/run17/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
@@ -193,30 +201,30 @@
         }
       }
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure1.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "1F": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "2d00650de81a521d650eb9b90b380eed414f89ea22c417c46190693162a508a2",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure1.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "23386b31a977a527932ad4a99b5b5135ec7529403103d1cef530090a97d12b86",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run03/parameters.txt": "e664a16850f67565936fa11f918acae789a358bb6d5d9a2bfea0d68480ef6d15",
+        "validation/production-preview-20261011/data/run03/summary.csv": "8d215f77a066b74f3ddde96258d14d0303f0b932a0ba9a173f48a874374f9d0a"
+      },
       "panel": "1F",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 562 snapshot missing",
+        "panel": "1F",
+        "source_files": "validation/production-preview-20261011/data/run03/parameters.txt;validation/production-preview-20261011/data/run03/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
@@ -234,225 +242,341 @@
         }
       }
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure1.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "2A": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "926bb0728c6c340fbd46dbcb332c244701875cb4b38492867768e2d5b173a5da",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure2.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "65e0d3ed8c81da9e3b6682ee0e1659b18dd2c3eabfe9805f39c1b298a5b06aa3",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run22/parameters.txt": "382a280f169795a03f5240ad17fa5e9403f4c876ac41493f8ed0f640359ce1a5",
+        "validation/production-preview-20261011/data/run22/summary.csv": "74477dd650b2ae350793cab75e00a6e57e1f525627bd7a0d4597ce096f388616"
+      },
       "panel": "2A",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 50 snapshot missing; requested flood 225 snapshot missing; requested flood 400 snapshot missing; requested flood 580 snapshot missing",
+        "panel": "2A",
+        "source_files": "validation/production-preview-20261011/data/run22/parameters.txt;validation/production-preview-20261011/data/run22/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure2.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "2B": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "0644028be46eee1b5eac5c2652dbdd563628f491dba7fc88721856638fb57756",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure2.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "65e0d3ed8c81da9e3b6682ee0e1659b18dd2c3eabfe9805f39c1b298a5b06aa3",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run10/parameters.txt": "c0c8fb4a161a649f38058bd4ce4b7a91668aa86137075a704afaab0dc6026d1b",
+        "validation/production-preview-20261011/data/run10/summary.csv": "99e7da9e207bea0d6a5d2d28979b103a4cda6b7f3c42d6c57263470c0e11c797"
+      },
       "panel": "2B",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 50 snapshot missing; requested flood 225 snapshot missing; requested flood 400 snapshot missing; requested flood 580 snapshot missing",
+        "panel": "2B",
+        "source_files": "validation/production-preview-20261011/data/run10/parameters.txt;validation/production-preview-20261011/data/run10/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure2.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "2C": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "e7fb008e3bbbada1823c87c7d487c022c79224840e2f4e2c9ea7a51084bae15f",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure2.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "65e0d3ed8c81da9e3b6682ee0e1659b18dd2c3eabfe9805f39c1b298a5b06aa3",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run03/parameters.txt": "e664a16850f67565936fa11f918acae789a358bb6d5d9a2bfea0d68480ef6d15",
+        "validation/production-preview-20261011/data/run03/summary.csv": "8d215f77a066b74f3ddde96258d14d0303f0b932a0ba9a173f48a874374f9d0a"
+      },
       "panel": "2C",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 50 snapshot missing; requested flood 225 snapshot missing; requested flood 400 snapshot missing; requested flood 580 snapshot missing",
+        "panel": "2C",
+        "source_files": "validation/production-preview-20261011/data/run03/parameters.txt;validation/production-preview-20261011/data/run03/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure2.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "2D": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "a80797a8d293c1e44a920b0a15ba0f72d8f340619143fb1dbd49160e0d09d291",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure2.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "65e0d3ed8c81da9e3b6682ee0e1659b18dd2c3eabfe9805f39c1b298a5b06aa3",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run15/parameters.txt": "c8d20233f14247f3e800abc3634396eda5f4513ee14783905e8e00ce67a98cc9",
+        "validation/production-preview-20261011/data/run15/summary.csv": "7a4bda54c2242d17f5078b5a967eb7d9847722a6b5beab3e9f976b982ef02412"
+      },
       "panel": "2D",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "requested flood 50 snapshot missing; requested flood 225 snapshot missing; requested flood 400 snapshot missing; requested flood 580 snapshot missing",
+        "panel": "2D",
+        "source_files": "validation/production-preview-20261011/data/run15/parameters.txt;validation/production-preview-20261011/data/run15/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure2.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "3A": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "94321bda0977f8775d02a0a6e4caee430e992f2c3e0afa038c053f659fb6bca5",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure3.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "ccb0cf9825dd9f6d1cdc5b775e4cb5e1ca8c32354e19f7c023b44232232eae3c",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run01/parameters.txt": "6742418008d2bc8d68d203c1da08ac6fd0f8f7a9d02c1e10a03fabc38262e316",
+        "validation/production-preview-20261011/data/run01/summary.csv": "cb4eaf6ceb1b03c8e186ddb617a6fdc2450f1f89e5198018324506d5157de0ec",
+        "validation/production-preview-20261011/data/run02/parameters.txt": "84ffe69736a2a350ec7badfa7519551ff7811be1f4edd5d3201ec2ec4af6bb65",
+        "validation/production-preview-20261011/data/run02/summary.csv": "bff41a8a48ac7d7dcb46978716258841fc1c014ed05fabc6e1ed95d0f2abf3b7",
+        "validation/production-preview-20261011/data/run03/parameters.txt": "e664a16850f67565936fa11f918acae789a358bb6d5d9a2bfea0d68480ef6d15",
+        "validation/production-preview-20261011/data/run03/summary.csv": "8d215f77a066b74f3ddde96258d14d0303f0b932a0ba9a173f48a874374f9d0a",
+        "validation/production-preview-20261011/data/run04/parameters.txt": "3d288cd494dd721d45521b745ff39039b599496751d2c0a38c2fd6769684476f",
+        "validation/production-preview-20261011/data/run04/summary.csv": "3ea98661cf958e795beb90885c4241cd016c5f2333c6e4d51c158524fed786be",
+        "validation/production-preview-20261011/data/run05/parameters.txt": "9d380d117ea894768028805cfe0555e5a6fc3bbfa67802513463efa2f10ab976",
+        "validation/production-preview-20261011/data/run05/summary.csv": "2ff71df3f0746de2b2adcf7d1a6360bbd45656fb005f004d6ee358869e46000a",
+        "validation/production-preview-20261011/data/run06/parameters.txt": "9372931776f8a0ecc6e305577047d2ab891c1d4e5cee0afb7ed404483454f01c",
+        "validation/production-preview-20261011/data/run06/summary.csv": "8f8f761391c60657cb9e210d27b2304fe2dad6a237b02c99b38fcf1d496b99a1",
+        "validation/production-preview-20261011/data/run07/parameters.txt": "8cf265443f1f54ec6464cbbbd2322bdfff5bc7a17aa9e1f5e0b1ae69af812028",
+        "validation/production-preview-20261011/data/run07/summary.csv": "eebb36a7f8914753afdc1a2a7e8ff343ad8ad716cb1c698ec0c32430548b6783",
+        "validation/production-preview-20261011/data/run08/parameters.txt": "064698195cde91609940182c2a586fb0e76af10c2452aba28cb2b793416ac8cb",
+        "validation/production-preview-20261011/data/run08/summary.csv": "2ca15eeb851535d2881ae8df91f188344558d42f7a1d39c3b08374d839d26267",
+        "validation/production-preview-20261011/data/run09/parameters.txt": "1a44ae4049edfac85c2a9720853567b44598c91027163eb4eb2bd4688931d0c2",
+        "validation/production-preview-20261011/data/run09/summary.csv": "b7e7ae610d3cc697cdc1b97eccb033ce2f593735f02efce98b89bb1b538032ee",
+        "validation/production-preview-20261011/data/run10/parameters.txt": "c0c8fb4a161a649f38058bd4ce4b7a91668aa86137075a704afaab0dc6026d1b",
+        "validation/production-preview-20261011/data/run10/summary.csv": "99e7da9e207bea0d6a5d2d28979b103a4cda6b7f3c42d6c57263470c0e11c797",
+        "validation/production-preview-20261011/data/run11/parameters.txt": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+        "validation/production-preview-20261011/data/run11/summary.csv": "87a73268f6c38ef33c27f2846f7adf6d7ae1d51b32f7c68260b8ed1379fec9e2",
+        "validation/production-preview-20261011/data/run12/parameters.txt": "0cf740d294f93186f311d7f62f5d39b989f4b72303577b6b722fbfb4d4cb6f49",
+        "validation/production-preview-20261011/data/run12/summary.csv": "3534c6d386270030fecab683eb89a8d1c2ca9909b21c04d989ffc707e802a330",
+        "validation/production-preview-20261011/data/run13/parameters.txt": "93c1c6a9da1455939e75ddbab2c8a0cf1e37cabe6619dcd6e9cec6494f122bcb",
+        "validation/production-preview-20261011/data/run13/summary.csv": "f5c27b0e02d2787c1d2391a3aec571dff28949f9043b7d0b320691b0df849c8e",
+        "validation/production-preview-20261011/data/run14/parameters.txt": "7a9a9626a00b850b6f9fc087896899bec3581baf31438f00bf6bf90e3fed49c9",
+        "validation/production-preview-20261011/data/run14/summary.csv": "b894b7824861db65481a1e54e5c7c8c6eb12123a0560b3c585771bd0f25ed256",
+        "validation/production-preview-20261011/data/run15/parameters.txt": "c8d20233f14247f3e800abc3634396eda5f4513ee14783905e8e00ce67a98cc9",
+        "validation/production-preview-20261011/data/run15/summary.csv": "7a4bda54c2242d17f5078b5a967eb7d9847722a6b5beab3e9f976b982ef02412",
+        "validation/production-preview-20261011/data/run16/parameters.txt": "1aca2e2726c93edf014e7c84a72e180e7ab0bd1801cf71efcea515c9a814f878",
+        "validation/production-preview-20261011/data/run16/summary.csv": "1566c32ac8903dd56a427fdd7686f0cadf9aade277cb7d8a9c855eb39d8ecced",
+        "validation/production-preview-20261011/data/run17/parameters.txt": "d61bb7ec5d71134fe13902995bd5811a29dd25659e36f764e14de25068fa85cc",
+        "validation/production-preview-20261011/data/run17/summary.csv": "7458d020ce75a9ddc216e11cc01be17ff2053263d65ac360816301323974c3ba",
+        "validation/production-preview-20261011/data/run18/parameters.txt": "9e15ff4d24b0124ecd587b51cfc456a5d270a88e39935b11970550e8c1602cb7",
+        "validation/production-preview-20261011/data/run18/summary.csv": "0616219840a28c7005c26f8c735acc34cd6b0868fb8eff16b41f40a65aa3169b",
+        "validation/production-preview-20261011/data/run19/parameters.txt": "39e36272fe5a360a10a37b729684f91deaa6c7264524a0edc7115d390253238f",
+        "validation/production-preview-20261011/data/run19/summary.csv": "475271e797332f291db6d8e97e6e76c20eb3cf6a5631012f4ded69d84276bdc5",
+        "validation/production-preview-20261011/data/run20/parameters.txt": "c8b47d61fd6ef913f141d4e008c5676b383d19576bdb5f6553ac57f56fbd5b1a",
+        "validation/production-preview-20261011/data/run20/summary.csv": "39381ff9ac581604fb0704d53d0817da231bcc5c1d63299f5c29073a4451651a",
+        "validation/production-preview-20261011/data/run21/parameters.txt": "a7e51ef25bcf82f63481564b73efadc4349b46e0250f820d4778366ce1983051",
+        "validation/production-preview-20261011/data/run21/summary.csv": "417f96fd993029794ac628356f426697a717ea712404f0707cd9a045648bf8c3",
+        "validation/production-preview-20261011/data/run22/parameters.txt": "382a280f169795a03f5240ad17fa5e9403f4c876ac41493f8ed0f640359ce1a5",
+        "validation/production-preview-20261011/data/run22/summary.csv": "74477dd650b2ae350793cab75e00a6e57e1f525627bd7a0d4597ce096f388616",
+        "validation/production-preview-20261011/data/run23/parameters.txt": "a1956d4c21cb9ada835181b49b5dbf98ea2ea1d9e929501991fcfe648e573a29",
+        "validation/production-preview-20261011/data/run23/summary.csv": "0cf71f109f8bad7e58215319f2e7949eb0c63b32caf19255716116c0b350a60e",
+        "validation/production-preview-20261011/data/run24/parameters.txt": "8e2f235da0d7dcf935b77b28b40f8f26be909c113be281201dd094767165369c",
+        "validation/production-preview-20261011/data/run24/summary.csv": "55e8995e81b23331d77f396f159e2a2b9ccfca25e1aff42e519b27970ddd40a6",
+        "validation/production-preview-20261011/data/run25/parameters.txt": "5c05a2559add4a64f63a8171b7b2269128169f4f29567db7b4f565d2cf8ae4b8",
+        "validation/production-preview-20261011/data/run25/summary.csv": "8cf4e0e3588a8ef1a2d55cb1cb6253c8a754b64bd6a4e87e4bfbf890404148c0",
+        "validation/production-preview-20261011/data/run26/parameters.txt": "cb03bd8c71b27725f6e436b085db70b1bc44a2c68d2231ba9adcad3e60a89158",
+        "validation/production-preview-20261011/data/run26/summary.csv": "aeee8a537626a886ab2f5953fe07c04484037163af6bc4f45256a415cce9abef",
+        "validation/production-preview-20261011/data/run27/parameters.txt": "1fe0437ee650bcd1da75c507564e7a1ffc335f840f6cd7991641515ab4f79616",
+        "validation/production-preview-20261011/data/run27/summary.csv": "9b34a9ea9141b54080861dad636e2220e665b9250fbdca3eb8cf53b038f74ef7",
+        "validation/production-preview-20261011/data/run28/parameters.txt": "7c13c92fde45e7f0818feb091ee3e1f8e21e216bc35eb354470605ec43593670",
+        "validation/production-preview-20261011/data/run28/summary.csv": "065999a297bc7604214da31524b21c5d2ed51e9df77e9925bde9eaf8387f0ed8",
+        "validation/production-preview-20261011/data/run29/parameters.txt": "b2152d0382a5c8c009032db24ffc4aec535e0dfb331f4bbbcab8ba711076b724",
+        "validation/production-preview-20261011/data/run29/summary.csv": "db25f3fdcd7e1ab585eb5b49954d588ca071b77daa10cce7a42273d9cfe8b736",
+        "validation/production-preview-20261011/data/run30/parameters.txt": "7eb432fc51585aa80eae480852f10916469c58a653fe8eab8ce86cd691610584",
+        "validation/production-preview-20261011/data/run30/summary.csv": "918da752fb7ab0991145dd5238e122fee39921b3f364ef6c25b7763f04e27a24",
+        "validation/production-preview-20261011/data/run31/parameters.txt": "a800eaa2c6d42203e98adcd4665127b9cd56cb27f5105715694875cabf549ea7",
+        "validation/production-preview-20261011/data/run31/summary.csv": "70588fb800585448c0ab7032cc1f3e41cb8ed8a74fdd96677fd95b5d27732579"
+      },
       "panel": "3A",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "0/31 complete finite required windows; missing floods and nonfinite values are not filled. See metrics.csv.",
+        "panel": "3A",
+        "source_files": "validation/production-preview-20261011/data/run01/parameters.txt;validation/production-preview-20261011/data/run01/summary.csv;validation/production-preview-20261011/data/run02/parameters.txt;validation/production-preview-20261011/data/run02/summary.csv;validation/production-preview-20261011/data/run03/parameters.txt;validation/production-preview-20261011/data/run03/summary.csv;validation/production-preview-20261011/data/run04/parameters.txt;validation/production-preview-20261011/data/run04/summary.csv;validation/production-preview-20261011/data/run05/parameters.txt;validation/production-preview-20261011/data/run05/summary.csv;validation/production-preview-20261011/data/run06/parameters.txt;validation/production-preview-20261011/data/run06/summary.csv;validation/production-preview-20261011/data/run07/parameters.txt;validation/production-preview-20261011/data/run07/summary.csv;validation/production-preview-20261011/data/run08/parameters.txt;validation/production-preview-20261011/data/run08/summary.csv;validation/production-preview-20261011/data/run09/parameters.txt;validation/production-preview-20261011/data/run09/summary.csv;validation/production-preview-20261011/data/run10/parameters.txt;validation/production-preview-20261011/data/run10/summary.csv;validation/production-preview-20261011/data/run11/parameters.txt;validation/production-preview-20261011/data/run11/summary.csv;validation/production-preview-20261011/data/run12/parameters.txt;validation/production-preview-20261011/data/run12/summary.csv;validation/production-preview-20261011/data/run13/parameters.txt;validation/production-preview-20261011/data/run13/summary.csv;validation/production-preview-20261011/data/run14/parameters.txt;validation/production-preview-20261011/data/run14/summary.csv;validation/production-preview-20261011/data/run15/parameters.txt;validation/production-preview-20261011/data/run15/summary.csv;validation/production-preview-20261011/data/run16/parameters.txt;validation/production-preview-20261011/data/run16/summary.csv;validation/production-preview-20261011/data/run17/parameters.txt;validation/production-preview-20261011/data/run17/summary.csv;validation/production-preview-20261011/data/run18/parameters.txt;validation/production-preview-20261011/data/run18/summary.csv;validation/production-preview-20261011/data/run19/parameters.txt;validation/production-preview-20261011/data/run19/summary.csv;validation/production-preview-20261011/data/run20/parameters.txt;validation/production-preview-20261011/data/run20/summary.csv;validation/production-preview-20261011/data/run21/parameters.txt;validation/production-preview-20261011/data/run21/summary.csv;validation/production-preview-20261011/data/run22/parameters.txt;validation/production-preview-20261011/data/run22/summary.csv;validation/production-preview-20261011/data/run23/parameters.txt;validation/production-preview-20261011/data/run23/summary.csv;validation/production-preview-20261011/data/run24/parameters.txt;validation/production-preview-20261011/data/run24/summary.csv;validation/production-preview-20261011/data/run25/parameters.txt;validation/production-preview-20261011/data/run25/summary.csv;validation/production-preview-20261011/data/run26/parameters.txt;validation/production-preview-20261011/data/run26/summary.csv;validation/production-preview-20261011/data/run27/parameters.txt;validation/production-preview-20261011/data/run27/summary.csv;validation/production-preview-20261011/data/run28/parameters.txt;validation/production-preview-20261011/data/run28/summary.csv;validation/production-preview-20261011/data/run29/parameters.txt;validation/production-preview-20261011/data/run29/summary.csv;validation/production-preview-20261011/data/run30/parameters.txt;validation/production-preview-20261011/data/run30/summary.csv;validation/production-preview-20261011/data/run31/parameters.txt;validation/production-preview-20261011/data/run31/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure3.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "3B": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "ce705eea427369763b5591b0116236cf95fc19f74aea234c6fc0cef5355c30d4",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure3.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "ccb0cf9825dd9f6d1cdc5b775e4cb5e1ca8c32354e19f7c023b44232232eae3c",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run07/parameters.txt": "8cf265443f1f54ec6464cbbbd2322bdfff5bc7a17aa9e1f5e0b1ae69af812028",
+        "validation/production-preview-20261011/data/run07/summary.csv": "eebb36a7f8914753afdc1a2a7e8ff343ad8ad716cb1c698ec0c32430548b6783",
+        "validation/production-preview-20261011/data/run15/parameters.txt": "c8d20233f14247f3e800abc3634396eda5f4513ee14783905e8e00ce67a98cc9",
+        "validation/production-preview-20261011/data/run15/summary.csv": "7a4bda54c2242d17f5078b5a967eb7d9847722a6b5beab3e9f976b982ef02412",
+        "validation/production-preview-20261011/data/run20/parameters.txt": "c8b47d61fd6ef913f141d4e008c5676b383d19576bdb5f6553ac57f56fbd5b1a",
+        "validation/production-preview-20261011/data/run20/summary.csv": "39381ff9ac581604fb0704d53d0817da231bcc5c1d63299f5c29073a4451651a"
+      },
       "panel": "3B",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "partial requested data",
+        "notes": "41/1740 finite alpha values. Missing/undefined values create gaps; logarithmic vertical axis.",
+        "panel": "3B",
+        "source_files": "validation/production-preview-20261011/data/run07/parameters.txt;validation/production-preview-20261011/data/run07/summary.csv;validation/production-preview-20261011/data/run15/parameters.txt;validation/production-preview-20261011/data/run15/summary.csv;validation/production-preview-20261011/data/run20/parameters.txt;validation/production-preview-20261011/data/run20/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure3.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   },
   "3C": {
     "assessment_fingerprint_matches": false,
-    "current_fingerprint": null,
+    "current_fingerprint": "28a9e7b9353a31fb4e96ed9885b69464aedfb9543a3a582bda60691e23635df9",
     "evidence": {
-      "comparison_json_sha256": "b800c9136a3891b6529be5e9c2c37e17182487c73bd9dadd6ce9ae8c83cd03b2",
+      "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
       "figure": "figures/figure3.pdf",
-      "figure_sha256": null,
+      "figure_sha256": "ccb0cf9825dd9f6d1cdc5b775e4cb5e1ca8c32354e19f7c023b44232232eae3c",
       "format": "panel-assessment-v2",
-      "numerical_source_sha256": {},
+      "numerical_source_sha256": {
+        "validation/production-preview-20261011/data/run01/parameters.txt": "6742418008d2bc8d68d203c1da08ac6fd0f8f7a9d02c1e10a03fabc38262e316",
+        "validation/production-preview-20261011/data/run01/summary.csv": "cb4eaf6ceb1b03c8e186ddb617a6fdc2450f1f89e5198018324506d5157de0ec",
+        "validation/production-preview-20261011/data/run02/parameters.txt": "84ffe69736a2a350ec7badfa7519551ff7811be1f4edd5d3201ec2ec4af6bb65",
+        "validation/production-preview-20261011/data/run02/summary.csv": "bff41a8a48ac7d7dcb46978716258841fc1c014ed05fabc6e1ed95d0f2abf3b7",
+        "validation/production-preview-20261011/data/run03/parameters.txt": "e664a16850f67565936fa11f918acae789a358bb6d5d9a2bfea0d68480ef6d15",
+        "validation/production-preview-20261011/data/run03/summary.csv": "8d215f77a066b74f3ddde96258d14d0303f0b932a0ba9a173f48a874374f9d0a",
+        "validation/production-preview-20261011/data/run04/parameters.txt": "3d288cd494dd721d45521b745ff39039b599496751d2c0a38c2fd6769684476f",
+        "validation/production-preview-20261011/data/run04/summary.csv": "3ea98661cf958e795beb90885c4241cd016c5f2333c6e4d51c158524fed786be",
+        "validation/production-preview-20261011/data/run05/parameters.txt": "9d380d117ea894768028805cfe0555e5a6fc3bbfa67802513463efa2f10ab976",
+        "validation/production-preview-20261011/data/run05/summary.csv": "2ff71df3f0746de2b2adcf7d1a6360bbd45656fb005f004d6ee358869e46000a",
+        "validation/production-preview-20261011/data/run06/parameters.txt": "9372931776f8a0ecc6e305577047d2ab891c1d4e5cee0afb7ed404483454f01c",
+        "validation/production-preview-20261011/data/run06/summary.csv": "8f8f761391c60657cb9e210d27b2304fe2dad6a237b02c99b38fcf1d496b99a1",
+        "validation/production-preview-20261011/data/run07/parameters.txt": "8cf265443f1f54ec6464cbbbd2322bdfff5bc7a17aa9e1f5e0b1ae69af812028",
+        "validation/production-preview-20261011/data/run07/summary.csv": "eebb36a7f8914753afdc1a2a7e8ff343ad8ad716cb1c698ec0c32430548b6783",
+        "validation/production-preview-20261011/data/run08/parameters.txt": "064698195cde91609940182c2a586fb0e76af10c2452aba28cb2b793416ac8cb",
+        "validation/production-preview-20261011/data/run08/summary.csv": "2ca15eeb851535d2881ae8df91f188344558d42f7a1d39c3b08374d839d26267",
+        "validation/production-preview-20261011/data/run09/parameters.txt": "1a44ae4049edfac85c2a9720853567b44598c91027163eb4eb2bd4688931d0c2",
+        "validation/production-preview-20261011/data/run09/summary.csv": "b7e7ae610d3cc697cdc1b97eccb033ce2f593735f02efce98b89bb1b538032ee",
+        "validation/production-preview-20261011/data/run10/parameters.txt": "c0c8fb4a161a649f38058bd4ce4b7a91668aa86137075a704afaab0dc6026d1b",
+        "validation/production-preview-20261011/data/run10/summary.csv": "99e7da9e207bea0d6a5d2d28979b103a4cda6b7f3c42d6c57263470c0e11c797",
+        "validation/production-preview-20261011/data/run11/parameters.txt": "63890a3fcb427282329c28e5ab59983e03cc55bc4bb2d1d0ffa915fd5ecc38e9",
+        "validation/production-preview-20261011/data/run11/summary.csv": "87a73268f6c38ef33c27f2846f7adf6d7ae1d51b32f7c68260b8ed1379fec9e2",
+        "validation/production-preview-20261011/data/run12/parameters.txt": "0cf740d294f93186f311d7f62f5d39b989f4b72303577b6b722fbfb4d4cb6f49",
+        "validation/production-preview-20261011/data/run12/summary.csv": "3534c6d386270030fecab683eb89a8d1c2ca9909b21c04d989ffc707e802a330",
+        "validation/production-preview-20261011/data/run13/parameters.txt": "93c1c6a9da1455939e75ddbab2c8a0cf1e37cabe6619dcd6e9cec6494f122bcb",
+        "validation/production-preview-20261011/data/run13/summary.csv": "f5c27b0e02d2787c1d2391a3aec571dff28949f9043b7d0b320691b0df849c8e",
+        "validation/production-preview-20261011/data/run14/parameters.txt": "7a9a9626a00b850b6f9fc087896899bec3581baf31438f00bf6bf90e3fed49c9",
+        "validation/production-preview-20261011/data/run14/summary.csv": "b894b7824861db65481a1e54e5c7c8c6eb12123a0560b3c585771bd0f25ed256",
+        "validation/production-preview-20261011/data/run15/parameters.txt": "c8d20233f14247f3e800abc3634396eda5f4513ee14783905e8e00ce67a98cc9",
+        "validation/production-preview-20261011/data/run15/summary.csv": "7a4bda54c2242d17f5078b5a967eb7d9847722a6b5beab3e9f976b982ef02412",
+        "validation/production-preview-20261011/data/run16/parameters.txt": "1aca2e2726c93edf014e7c84a72e180e7ab0bd1801cf71efcea515c9a814f878",
+        "validation/production-preview-20261011/data/run16/summary.csv": "1566c32ac8903dd56a427fdd7686f0cadf9aade277cb7d8a9c855eb39d8ecced",
+        "validation/production-preview-20261011/data/run17/parameters.txt": "d61bb7ec5d71134fe13902995bd5811a29dd25659e36f764e14de25068fa85cc",
+        "validation/production-preview-20261011/data/run17/summary.csv": "7458d020ce75a9ddc216e11cc01be17ff2053263d65ac360816301323974c3ba",
+        "validation/production-preview-20261011/data/run18/parameters.txt": "9e15ff4d24b0124ecd587b51cfc456a5d270a88e39935b11970550e8c1602cb7",
+        "validation/production-preview-20261011/data/run18/summary.csv": "0616219840a28c7005c26f8c735acc34cd6b0868fb8eff16b41f40a65aa3169b",
+        "validation/production-preview-20261011/data/run19/parameters.txt": "39e36272fe5a360a10a37b729684f91deaa6c7264524a0edc7115d390253238f",
+        "validation/production-preview-20261011/data/run19/summary.csv": "475271e797332f291db6d8e97e6e76c20eb3cf6a5631012f4ded69d84276bdc5",
+        "validation/production-preview-20261011/data/run20/parameters.txt": "c8b47d61fd6ef913f141d4e008c5676b383d19576bdb5f6553ac57f56fbd5b1a",
+        "validation/production-preview-20261011/data/run20/summary.csv": "39381ff9ac581604fb0704d53d0817da231bcc5c1d63299f5c29073a4451651a",
+        "validation/production-preview-20261011/data/run21/parameters.txt": "a7e51ef25bcf82f63481564b73efadc4349b46e0250f820d4778366ce1983051",
+        "validation/production-preview-20261011/data/run21/summary.csv": "417f96fd993029794ac628356f426697a717ea712404f0707cd9a045648bf8c3",
+        "validation/production-preview-20261011/data/run22/parameters.txt": "382a280f169795a03f5240ad17fa5e9403f4c876ac41493f8ed0f640359ce1a5",
+        "validation/production-preview-20261011/data/run22/summary.csv": "74477dd650b2ae350793cab75e00a6e57e1f525627bd7a0d4597ce096f388616",
+        "validation/production-preview-20261011/data/run23/parameters.txt": "a1956d4c21cb9ada835181b49b5dbf98ea2ea1d9e929501991fcfe648e573a29",
+        "validation/production-preview-20261011/data/run23/summary.csv": "0cf71f109f8bad7e58215319f2e7949eb0c63b32caf19255716116c0b350a60e",
+        "validation/production-preview-20261011/data/run24/parameters.txt": "8e2f235da0d7dcf935b77b28b40f8f26be909c113be281201dd094767165369c",
+        "validation/production-preview-20261011/data/run24/summary.csv": "55e8995e81b23331d77f396f159e2a2b9ccfca25e1aff42e519b27970ddd40a6",
+        "validation/production-preview-20261011/data/run25/parameters.txt": "5c05a2559add4a64f63a8171b7b2269128169f4f29567db7b4f565d2cf8ae4b8",
+        "validation/production-preview-20261011/data/run25/summary.csv": "8cf4e0e3588a8ef1a2d55cb1cb6253c8a754b64bd6a4e87e4bfbf890404148c0",
+        "validation/production-preview-20261011/data/run26/parameters.txt": "cb03bd8c71b27725f6e436b085db70b1bc44a2c68d2231ba9adcad3e60a89158",
+        "validation/production-preview-20261011/data/run26/summary.csv": "aeee8a537626a886ab2f5953fe07c04484037163af6bc4f45256a415cce9abef",
+        "validation/production-preview-20261011/data/run27/parameters.txt": "1fe0437ee650bcd1da75c507564e7a1ffc335f840f6cd7991641515ab4f79616",
+        "validation/production-preview-20261011/data/run27/summary.csv": "9b34a9ea9141b54080861dad636e2220e665b9250fbdca3eb8cf53b038f74ef7",
+        "validation/production-preview-20261011/data/run28/parameters.txt": "7c13c92fde45e7f0818feb091ee3e1f8e21e216bc35eb354470605ec43593670",
+        "validation/production-preview-20261011/data/run28/summary.csv": "065999a297bc7604214da31524b21c5d2ed51e9df77e9925bde9eaf8387f0ed8",
+        "validation/production-preview-20261011/data/run29/parameters.txt": "b2152d0382a5c8c009032db24ffc4aec535e0dfb331f4bbbcab8ba711076b724",
+        "validation/production-preview-20261011/data/run29/summary.csv": "db25f3fdcd7e1ab585eb5b49954d588ca071b77daa10cce7a42273d9cfe8b736",
+        "validation/production-preview-20261011/data/run30/parameters.txt": "7eb432fc51585aa80eae480852f10916469c58a653fe8eab8ce86cd691610584",
+        "validation/production-preview-20261011/data/run30/summary.csv": "918da752fb7ab0991145dd5238e122fee39921b3f364ef6c25b7763f04e27a24",
+        "validation/production-preview-20261011/data/run31/parameters.txt": "a800eaa2c6d42203e98adcd4665127b9cd56cb27f5105715694875cabf549ea7",
+        "validation/production-preview-20261011/data/run31/summary.csv": "70588fb800585448c0ab7032cc1f3e41cb8ed8a74fdd96677fd95b5d27732579"
+      },
       "panel": "3C",
-      "panel_status": {},
+      "panel_status": {
+        "data_status": "no requested numerical data",
+        "notes": "0/31 complete finite required windows; missing floods and nonfinite values are not filled. See metrics.csv.",
+        "panel": "3C",
+        "source_files": "validation/production-preview-20261011/data/run01/parameters.txt;validation/production-preview-20261011/data/run01/summary.csv;validation/production-preview-20261011/data/run02/parameters.txt;validation/production-preview-20261011/data/run02/summary.csv;validation/production-preview-20261011/data/run03/parameters.txt;validation/production-preview-20261011/data/run03/summary.csv;validation/production-preview-20261011/data/run04/parameters.txt;validation/production-preview-20261011/data/run04/summary.csv;validation/production-preview-20261011/data/run05/parameters.txt;validation/production-preview-20261011/data/run05/summary.csv;validation/production-preview-20261011/data/run06/parameters.txt;validation/production-preview-20261011/data/run06/summary.csv;validation/production-preview-20261011/data/run07/parameters.txt;validation/production-preview-20261011/data/run07/summary.csv;validation/production-preview-20261011/data/run08/parameters.txt;validation/production-preview-20261011/data/run08/summary.csv;validation/production-preview-20261011/data/run09/parameters.txt;validation/production-preview-20261011/data/run09/summary.csv;validation/production-preview-20261011/data/run10/parameters.txt;validation/production-preview-20261011/data/run10/summary.csv;validation/production-preview-20261011/data/run11/parameters.txt;validation/production-preview-20261011/data/run11/summary.csv;validation/production-preview-20261011/data/run12/parameters.txt;validation/production-preview-20261011/data/run12/summary.csv;validation/production-preview-20261011/data/run13/parameters.txt;validation/production-preview-20261011/data/run13/summary.csv;validation/production-preview-20261011/data/run14/parameters.txt;validation/production-preview-20261011/data/run14/summary.csv;validation/production-preview-20261011/data/run15/parameters.txt;validation/production-preview-20261011/data/run15/summary.csv;validation/production-preview-20261011/data/run16/parameters.txt;validation/production-preview-20261011/data/run16/summary.csv;validation/production-preview-20261011/data/run17/parameters.txt;validation/production-preview-20261011/data/run17/summary.csv;validation/production-preview-20261011/data/run18/parameters.txt;validation/production-preview-20261011/data/run18/summary.csv;validation/production-preview-20261011/data/run19/parameters.txt;validation/production-preview-20261011/data/run19/summary.csv;validation/production-preview-20261011/data/run20/parameters.txt;validation/production-preview-20261011/data/run20/summary.csv;validation/production-preview-20261011/data/run21/parameters.txt;validation/production-preview-20261011/data/run21/summary.csv;validation/production-preview-20261011/data/run22/parameters.txt;validation/production-preview-20261011/data/run22/summary.csv;validation/production-preview-20261011/data/run23/parameters.txt;validation/production-preview-20261011/data/run23/summary.csv;validation/production-preview-20261011/data/run24/parameters.txt;validation/production-preview-20261011/data/run24/summary.csv;validation/production-preview-20261011/data/run25/parameters.txt;validation/production-preview-20261011/data/run25/summary.csv;validation/production-preview-20261011/data/run26/parameters.txt;validation/production-preview-20261011/data/run26/summary.csv;validation/production-preview-20261011/data/run27/parameters.txt;validation/production-preview-20261011/data/run27/summary.csv;validation/production-preview-20261011/data/run28/parameters.txt;validation/production-preview-20261011/data/run28/summary.csv;validation/production-preview-20261011/data/run29/parameters.txt;validation/production-preview-20261011/data/run29/summary.csv;validation/production-preview-20261011/data/run30/parameters.txt;validation/production-preview-20261011/data/run30/summary.csv;validation/production-preview-20261011/data/run31/parameters.txt;validation/production-preview-20261011/data/run31/summary.csv"
+      },
       "physics_reference_sha256": "aca76fa2ffd2a022be5838a15ae33242ba3ee55c018170e0508cb5b7697bce99",
-      "plot_manifest_sha256": null,
+      "plot_manifest_sha256": "4128465e6e6f55ac6dcb57308def4fa6c12fa90e59708a937e8ccca70eeae33a",
       "processor_sha256": {
         "scripts/compare.py": "8fdac39ecee7bda88a60d30f74e513cd52c420776b106fd58060cc45ea31c415",
         "scripts/plot.py": "aedf98c1cef8ccf84300ca8d293cf26375a1b5bd8380c32fb6484142a0e2cd24"
       },
       "spatial_diagnostics": {}
     },
-    "problems": [
-      "plot input hashes unavailable",
-      "no numerical source files recorded",
-      "plot processor/configuration hash missing or changed: scripts/plot.py",
-      "plot processor/configuration hash missing or changed: config/runs.csv",
-      "comparison processor hash missing or changed",
-      "comparison input missing or changed: scripts/compare.py",
-      "generated figure missing: figures/figure3.pdf"
-    ],
+    "problems": [],
     "recorded_fingerprint": ""
   }
 }

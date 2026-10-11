@@ -243,6 +243,7 @@ def source_files():
     # Validation evidence is selected from version control, excluding local binaries.
     tracked = subprocess.check_output(["git", "ls-files", "-z", "validation/stress", "validation/first-flood-audit-002",
                                        "validation/production-recycling-002",
+                                       "validation/production-preview-20261011",
                                        "validation/rejected-rebuild-001", "validation/migration-linear",
                                        "validation/relocation-20261010"], cwd=str(ROOT))
     paths.extend(ROOT / name for name in tracked.decode().split("\0") if name)
