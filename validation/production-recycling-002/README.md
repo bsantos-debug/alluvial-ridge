@@ -89,3 +89,12 @@ caused by accumulation order account for nearly all of the approximately
 compiled C++, and no acceptance threshold was adjusted to suppress the
 discrepancy. Neither arithmetic agreement nor small budget residuals
 establish discretization accuracy or agreement with the publication.
+
+## Additional retained endpoint
+
+The [case-29 flood-19 archive](run29-flood19/README.md) preserves a separate
+native-array check after that run first records bank recycling. Its offline
+replay reconstructs water and suspended-sediment inventories and reports
+signed bed and bank inventories. Only one native endpoint is retained there;
+initial water and full-solid references were not independently regenerated,
+so it does not provide the paired temporal closure calculated above.

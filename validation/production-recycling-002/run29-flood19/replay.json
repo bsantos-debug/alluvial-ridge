@@ -1,0 +1,334 @@
+{
+  "bed_arithmetic": {
+    "decoder_compensated_left_to_right_products_kg": -442776261907.8018,
+    "decoder_minus_grouped_compensated_kg": 6.103515625e-05,
+    "explanation": "The unchanged decoder multiplies each bed term by rho_s, (1-porosity), dx, dx left-to-right. The original observation and source-order helper first group those density factors. Product grouping and summation order are distinct diagnostics; Python does not assert compiled C++ bit identity.",
+    "grouped_density_compensated_kg": -442776261907.8019,
+    "grouped_density_sequential_kg": -442776261907.79865
+  },
+  "case": 29,
+  "channel_geometry": {
+    "control_area_max_m2": 124582.58905121693,
+    "control_area_min_m2": 62291.29452503515,
+    "control_area_sum_m2": 36004368.05809605,
+    "length_m": 72008.7361161921
+  },
+  "checkpoint": {
+    "bank": [
+      79854747.77379802,
+      1197821216.6069517,
+      319418991.0951921
+    ],
+    "channel_steps": 8788419,
+    "clock": 32832000.0,
+    "cutoffs": 0,
+    "deposited": 4508012960.368692,
+    "flood": 19,
+    "format": "ridge-checkpoint-v2",
+    "header_finite": true,
+    "mass_correction": 0.0,
+    "net_external_sediment": [
+      2316118076.25339,
+      2082643332.1699326,
+      256518689.64671147
+    ],
+    "net_external_water": 392053316.5244867,
+    "nodes": 290,
+    "payload_length_exact": true,
+    "recycled": 794808522.3882226,
+    "required_scalar_inventories_nonnegative": true,
+    "signature_values_checked": 31,
+    "signed_bed_forcing": 13029501159.216696,
+    "size_bytes": 3115552,
+    "steps": 2668931,
+    "water_correction": 0.0
+  },
+  "checkpoint_signature": "ridge-checkpoint-v2 72000 48000 250 500 0.0001 8 1728000 2500 15000 55 10 0.012 0.00029999999999999997 0.5 400 5 0.40000000000000002 120 0.40000000000000002 2650 0.10000000000000001 0.00020000000000000001 0.00020000000000000001 1.9999999999999999e-06 1 0.001 2018 29 0 1 1",
+  "checkpoint_signature_values_checked": 31,
+  "class_fractions": [
+    0.05,
+    0.75,
+    0.2
+  ],
+  "current_mask": {
+    "event_counts_assessed": false,
+    "floodplain_cells": 54720,
+    "mapped_cells": 576
+  },
+  "execution": {
+    "archived_executable_invocations": 0,
+    "archived_top_level_modules_executed": 0,
+    "auditor_or_model_invocations": 0,
+    "live_files_read": 0
+  },
+  "existing_reconciliation_guards": {
+    "absolute_suspension_kg": 0.001,
+    "absolute_water_m3": 0.001,
+    "full_solid_guard": null,
+    "source": "guard-source.py:77-80",
+    "source_sha256": "035304ef672a640e3c3053a16e137dbb19c8844471c1e8da6adbdcec2c579039",
+    "strict_less_than": true,
+    "suspension_pass": true,
+    "water_pass": true
+  },
+  "flood": 19,
+  "format": 1,
+  "historical_identity": {
+    "argv": [
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+      "--config",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/physics.txt",
+      "--runs",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/runs.csv",
+      "--run",
+      "29",
+      "--floods",
+      "580",
+      "--out",
+      "/data/data0/dominik-scratch/Shared/brnisant/alluvial-ridge/tmp/full-rebuild-002/workspace/data/run29"
+    ],
+    "argv_exact": true,
+    "cpu_ticks": 13063078,
+    "cwd": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace",
+    "exe": "/data/data0/brooke/alluvial-ridge/tmp/full-rebuild-002/workspace/data/_inputs/ridge",
+    "exe_sha256": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+    "parent": 3805340,
+    "pid": 3805592,
+    "start_ticks": 51544957,
+    "state": "R"
+  },
+  "native": {
+    "bank_classes_kg": [
+      79854747.77379802,
+      1197821216.6069517,
+      319418991.0951921
+    ],
+    "bank_compensated_total_kg": 1597094955.475942,
+    "bank_fraction_differences": [
+      5.759281940243e-16,
+      -2.9976021664879227e-15,
+      2.3037127760972e-15
+    ],
+    "bank_ordinary_total_kg": 1597094955.4759417,
+    "compensated_channel_storage": [
+      166040383.23835796,
+      288455.52049569646,
+      5392913.850691784,
+      1594213.6944780813
+    ],
+    "compensated_floodplain_storage": [
+      382905459.78503793,
+      1278.0675235736435,
+      108777801.7550991,
+      31212424.55205885
+    ],
+    "compensated_minus_source_order_total_solid_kg": -0.003173828125,
+    "compensated_storage_water_m3_then_suspended_classes_kg": [
+      548945843.0233959,
+      289733.5880192701,
+      114170715.60579088,
+      32806638.246536933
+    ],
+    "corrections": {
+      "mass": 0.0,
+      "water": 0.0
+    },
+    "cumulative_recycled_kg": 794808522.3882226,
+    "implied_initial_total_solid_kg": -457921872591.4166,
+    "implied_initial_water_m3": 156892526.49865216,
+    "independent_suspension_plus_deposition_residual_normalized": -4.832986787390521e-10,
+    "independent_suspension_residual_minus_ledger_kg": -9.797513484954834e-07,
+    "recorded_suspension_plus_deposition_residual_kg": -50.2609939314425,
+    "signed_bed_forcing_kg": 13029501159.216696,
+    "signed_bed_inventory_relative_to_initial_plane_compensated_kg": -442776261907.8019,
+    "signed_bed_inventory_sequential_sum_kg": -442776261907.79865,
+    "signed_total_solid_inventory_compensated_kg": -441031899864.8856,
+    "signed_total_solid_inventory_source_order_python_kg": -441031899864.88245,
+    "source_order_storage_water_m3_then_suspended_classes_kg": [
+      548945843.0233953,
+      289733.5880192702,
+      114170715.60579105,
+      32806638.246537056
+    ],
+    "source_order_suspension_residual_minus_ledger_kg": 9.313225746154785e-08,
+    "source_order_water_minus_post_ledger_m3": 0.0,
+    "suspension_plus_deposition_residual_compensated_kg": -50.26099491119385,
+    "suspension_plus_deposition_residual_source_order_python_kg": -50.26099383831024,
+    "suspension_reconciliation_normalized": -9.421073599066651e-18,
+    "water_reconciliation_normalized": 2.0747927031255437e-18,
+    "water_storage_minus_post_ledger_m3": 5.960464477539062e-07
+  },
+  "original_observation_reproduction": {
+    "channel_control_areas": true,
+    "current_mask_counts": true,
+    "exact_numeric_fields": [
+      "bank_classes_kg",
+      "bank_compensated_total_kg",
+      "bank_fraction_differences",
+      "bank_ordinary_total_kg",
+      "compensated_channel_storage",
+      "compensated_floodplain_storage",
+      "compensated_minus_source_order_total_solid_kg",
+      "compensated_storage_water_m3_then_suspended_classes_kg",
+      "corrections",
+      "cumulative_recycled_kg",
+      "implied_initial_total_solid_kg",
+      "implied_initial_water_m3",
+      "independent_suspension_plus_deposition_residual_normalized",
+      "independent_suspension_residual_minus_ledger_kg",
+      "recorded_suspension_plus_deposition_residual_kg",
+      "signed_bed_forcing_kg",
+      "signed_bed_inventory_relative_to_initial_plane_compensated_kg",
+      "signed_bed_inventory_sequential_sum_kg",
+      "signed_total_solid_inventory_compensated_kg",
+      "signed_total_solid_inventory_source_order_python_kg",
+      "source_order_storage_water_m3_then_suspended_classes_kg",
+      "source_order_suspension_residual_minus_ledger_kg",
+      "source_order_water_minus_post_ledger_m3",
+      "suspension_plus_deposition_residual_compensated_kg",
+      "suspension_plus_deposition_residual_source_order_python_kg",
+      "suspension_reconciliation_normalized",
+      "water_reconciliation_normalized",
+      "water_storage_minus_post_ledger_m3"
+    ],
+    "ghost_interpolation_and_radius_margin_recomputed": false
+  },
+  "parameter_tokens": {
+    "A": "0.012",
+    "C": "0.00029999999999999997",
+    "E": "0.5",
+    "concentration_scale": "0.001",
+    "fine": "0"
+  },
+  "physical_minima": {
+    "channel_clay": 0.027149856447084182,
+    "channel_sand": 0.005416526782687393,
+    "channel_silt": 0.10181196167656573,
+    "channel_water_depth": 3.160594266473634,
+    "raster_clay": 0.0,
+    "raster_sand": 0.0,
+    "raster_silt": 0.0,
+    "raster_water_depth": 2.912172362969669e-11
+  },
+  "provenance": {
+    "archive_bytes": 2103992,
+    "archive_sha256": "496afe873e715c04633b304c0e69e0d364ea9ee98874871f87067fd604c66534",
+    "capture_sha256": "e41539cb8ef637c4191847442ce92c17c4aef47c17bbe13bf6a314c1748f6ee6",
+    "captured_utc": "2026-10-11T11:21:48.824407+00:00",
+    "member_bytes": {
+      "decoder-source.py": 18424,
+      "guard-source.py": 5709,
+      "inputs/checkpoint.bin": 3115552,
+      "inputs/parameters.txt": 1019,
+      "inputs/process_status.json": 1608,
+      "inputs/remap_budget.csv": 3766,
+      "inputs/summary.csv": 4190,
+      "inventory-helper-source.py": 22573,
+      "observations/comparison.json": 21207,
+      "observations/original-result.json": 6787,
+      "observations/original-review.py": 12088,
+      "observations/scalar.json": 4617,
+      "observations/seed.json": 53647,
+      "ridge": 313200,
+      "src/finite_volume.hpp": 2188,
+      "src/main.cpp": 10938,
+      "src/migration.hpp": 9769,
+      "src/model.hpp": 30924,
+      "src/sediment.hpp": 4323
+    },
+    "member_sha256": {
+      "decoder-source.py": "d6dc1e7833783c09039d7ce41854ac51de3642c6cfd046298dc5c2b35b1f31fd",
+      "guard-source.py": "035304ef672a640e3c3053a16e137dbb19c8844471c1e8da6adbdcec2c579039",
+      "inputs/checkpoint.bin": "bdcca2174098893b69c6483ea09193b26bbede104a7ca967e5a6d8a63e3ff66e",
+      "inputs/parameters.txt": "b2152d0382a5c8c009032db24ffc4aec535e0dfb331f4bbbcab8ba711076b724",
+      "inputs/process_status.json": "650916687250621549e9dff966c79e8c5c47ca3c8289d867db20bd219ee8b0f2",
+      "inputs/remap_budget.csv": "9edc35abfa08cbfa0b656e9b5dbbd751f2ae53887c3caf43c58a8451d082b12e",
+      "inputs/summary.csv": "6029e6d0d4be23e63c40440985eecb20d33993e8a91e41be09773768f65e73d8",
+      "inventory-helper-source.py": "c9bee19b0d821c466809e84081fd46a3215c89b35f9cc98af3f838733a10e987",
+      "observations/comparison.json": "729a2dbc45cc3ae2c5c412773d41591bb3150425c948e4c1b2d90ea16201f2fe",
+      "observations/original-result.json": "1a1762a745f70953a2ee2a0ea166d80b383b82986ec8096234a0d6b64f53a4db",
+      "observations/original-review.py": "28e36e5c11b32dfa6d22201cf11902ef47776e50a10c8a1a22db80afbfc85086",
+      "observations/scalar.json": "928b7093d1387dd93936288f2c6e8bed6527117e627ef1800416a14dfcc76a9a",
+      "observations/seed.json": "bdbe219c973a193cbb597d4bfe95bf44dabe0d9c3bdea6a9b21f8c00edc9a280",
+      "ridge": "b3d984881a2f82757ff9bb6ca7c15f9e3c28e3d34106ae477fe7c06af6f8099c",
+      "src/finite_volume.hpp": "57ac8606cd856046e13563fc0f07417943990fbc4f43340baf6f44aad427775d",
+      "src/main.cpp": "812058d4ff97b618da08830e44a8704e4dc3a1431e0245136a301a0cd4375c90",
+      "src/migration.hpp": "047475c7a53b933ccc83273e0576a820f681382fdf22b244a501006c68bf7196",
+      "src/model.hpp": "e12bb6c79a9e70ca53d555fc2d5cfcefed9b0cf2f8a3f7567defd650cc039a15",
+      "src/sediment.hpp": "3c698eaf05771c09a26a152697fdcdacacf59b08ad18345efcdcaf1e35ccd4d2"
+    },
+    "original_observation_completed_utc": "2026-10-11T11:14:25.841790+00:00",
+    "original_observation_integer_precision": {
+      "difference_ns": 62,
+      "field": "checkpoint_metadata[3] (mtime_ns)",
+      "later_exact_capture_fstat_value": 1791715483644966638,
+      "parsed_observation_value": 1791715483644966700,
+      "scope": "The two records are retained as observed. The exact later capture fstat is not substituted into the original parsed observation. This representation difference is not evidence of a checkpoint modification."
+    },
+    "original_observation_serialization": "New deterministic JSON serialization of the retained parsed observation. Original ISO observation timestamps and scientific floating-point values are preserved. The checkpoint mtime_ns integer passed through JavaScript number parsing and lost nanosecond precision; byte identity with the original stdout is not claimed.",
+    "original_observation_started_utc": "2026-10-11T11:14:24.937265+00:00",
+    "reused_pure_functions": [
+      "decode_arrays",
+      "sequential_sum",
+      "source_order_inventory"
+    ]
+  },
+  "scalar_reference": {
+    "last_scalar_identity_errors": {
+      "sediment": -1.0238920822303044e-11,
+      "solid": -4.343192472333612e-12,
+      "water": -4.1405680967221414e-16
+    },
+    "max_abs_scalar_identity_errors": {
+      "sediment": 4.8711257250040286e-11,
+      "solid": 4.724221014384966e-12,
+      "water": 4.999258334913029e-16
+    },
+    "post_normalized_residuals": {
+      "full_solid": -8.045947389183951e-11,
+      "suspension_plus_deposition": -4.832986693179785e-10,
+      "water": 8.946506135877346e-16
+    },
+    "prescribed_hydrographs": {
+      "count": 19,
+      "sediment": 103995721739.45734,
+      "simpson_intervals": 20000,
+      "water": 287280000000.0
+    },
+    "remap": {
+      "clay_transfer_residual": -3.725290298461914e-09,
+      "flood": 19.0,
+      "post_sediment_residual": -50.2609939314425,
+      "post_solid_sediment_residual": -8.367441058158875,
+      "post_water_residual": 0.0002570152282714844,
+      "post_water_storage": 548945843.0233953,
+      "sand_transfer_residual": 0.0,
+      "silt_transfer_residual": -8.940696716308594e-08,
+      "solid_transfer_residual": -0.00049591064453125,
+      "water_transfer_residual": -2.384185791015625e-07
+    },
+    "summary": {
+      "alpha": 0.909651728286,
+      "bank_mass": 67.3716691903,
+      "bed_forcing_mass": 12344171315.5,
+      "beta": 0.00299138303009,
+      "channel_depth": 7.78797708528,
+      "channel_steps": 8788419.0,
+      "cutoffs": 0.0,
+      "flood": 19.0,
+      "interface_fraction": 1.0,
+      "mean_water": 0.909651728286,
+      "recycled_mass": 794808522.388,
+      "ridge_height": 0.0232968224916,
+      "sediment_residual": -50.2609938383,
+      "sinuosity": 1.00011305157,
+      "solid_sediment_residual": -8.36694514751,
+      "steps": 2668931.0,
+      "wall_seconds": 141684.958765,
+      "water_residual": 0.000257253646851,
+      "water_storage": 548945843.023
+    }
+  },
+  "scope": "Single retained post-remap endpoint. Native double arrays use physical floodplain cells plus 1D channel control areas; signed bed inventory uses every raster cell relative to the initial plane. Initial water/full-solid references are inferred from bound ledgers, not independently regenerated; independent full-solid closure is not established. No earlier arrays, capture/abandonment/avulsion counts or spatial cause are inferred. Historical identity is archive evidence, not a fresh process check. No float32 snapshot bounds apply.",
+  "status": "verified_native_inventory_reconciliation"
+}
