@@ -70,3 +70,6 @@ No GitHub repository has been published yet. SSH access identifies
 `bsantos-debug`, but repository creation still needs GitHub API authentication
 or an existing empty repository URL. The user's request authorizes publication
 once that capability is available.
+The [publication preflight](docs/rebuild.md#publication-file-coverage) verifies
+the terminal package's complete file inventory before staging or upload,
+including checkpoint files normally excluded by Git ignore rules.

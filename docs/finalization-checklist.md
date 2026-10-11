@@ -236,6 +236,7 @@ timing and its component-only scope explicit when reporting validation.
 | Later migration component check | `validation/migration-linear/`, `tests/migration_linear.cpp`, and `docs/migration.md`; separate from frozen launch checks and coupled sensitivity. |
 | Live relocation evidence | `validation/relocation-20261010/`; filesystem and process continuity records, separate from terminal numerical checks. |
 | Early production preview | Versioned `validation/production-preview-20261011/`; audited CSV prefixes, provenance and the historical 41-value partial Figure 3B. Final panels use the full terminal production histories. |
+| Production inventory checks | Versioned `validation/production-recycling-002/`; case-30 paired flood-6/7 inventories and the separate case-29 flood-19 native checkpoint/replay. The single case-29 endpoint does not independently establish full-solid closure. |
 | Figures and derived comparisons | Final workspace `figures/`, manifests, metric/section tables and optional helper records. |
 | Final report and execution records | Final workspace `report/main.tex`, required `report/generated/` inputs, `report/report.pdf`, original 002 manifest/PDF, and separate postprocess manifest. |
 | Rejected-attempt record | Clearly separated 001 reason, manifest, frozen sources and logs; never mixed into canonical data folders. |
@@ -250,7 +251,10 @@ its scope rather than presenting smoke runs as production data.
 
 Before publication, verify the packaged report builds using only packaged
 paths, inspect all figure pages and appendix statuses, and reconcile README,
-ledger, comparison records and PDF. Then publish the authorized repository and
+ledger, comparison records and PDF. Run the [publication inventory and staged-tree
+check](rebuild.md#publication-file-coverage), including checkpoint files that
+ordinary Git staging ignores; retain its file hashes and measured sizes.
+Then publish the authorized repository and
 data, verify its contents and PDF download, and give both links plus the exact
 list of partial/unreproduced panels. No remote exists yet. The authentication
 request is already pending; do not repeat it while local work remains.

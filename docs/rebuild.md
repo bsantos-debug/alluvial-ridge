@@ -267,6 +267,105 @@ and `workspace/report/build/` caches. Historical absolute command paths remain
 in untouched provenance records, but new processors consume package-relative
 files and re-rendering needs no access to the original temporary workspace.
 
+# Publication file coverage
+
+After finalization and the authored panel assessments, inventory the terminal
+package before staging it for publication:
+
+```bash
+python3 -B scripts/publication_inventory.py deliverables/final \
+  --output deliverables/publication-inventory.json
+```
+
+This checks the recorded source, numerical input, current output, original
+execution, command log and assessment-render hashes. The latest assessment
+ledger is bound to its retained render record; its initial source hash remains
+historical provenance. Every required file receives a package-relative path,
+byte count and SHA-256. Checkpoints and frozen executables are included even
+when the copied `.gitignore` would exclude them. The checkpoint-rule summary
+checks the two known literal rules; it is not a general Git ignore evaluator.
+The companion `publication-inventory.json.paths0` is a NUL-delimited list of
+all required files, for literal path selection.
+
+The preflight refuses changed, missing, unrecorded or symbolic-link evidence,
+nonterminal records and detected live package writers. It excludes only the
+package's `.git/` metadata and `workspace/tmp/` and `workspace/report/build/`
+caches. It does not run a model, regenerate a report, stage Git files or upload
+anything. Both new inventory outputs must be outside the package and remain
+inside this `/data/data[n]` project; existing outputs are refused.
+
+Exit 0 verifies file coverage and individual regular-Git file sizes. Exit 2
+means verified files need another transport because at least one exceeds the
+regular-Git limit. Exit 1 is a refusal. A terminal incomplete report fixture
+can pass file coverage: none of these exit codes establishes completed
+simulations, scientific acceptance or remote publication.
+
+For an eligible package, create a fresh repository rooted at the package directory
+and force-add the exact inventory. Ordinary `git add .` can omit required
+checkpoints. These commands are for the later terminal package, not the active
+rebuild workspace:
+
+```bash
+git -C deliverables/final init
+git -C deliverables/final --literal-pathspecs add --force \
+  --pathspec-from-file="$PWD/deliverables/publication-inventory.json.paths0" \
+  --pathspec-file-nul
+```
+
+Verify the actual staged tree before committing. Use new temporary names for
+each attempt; the following exports index contents without running the model:
+
+```bash
+publication_tree=$(git -C deliverables/final write-tree)
+git -C deliverables/final archive --format=tar "$publication_tree" \
+  --output="$PWD/tmp/publication-index.tar"
+mkdir tmp/publication-index
+tar -xf tmp/publication-index.tar -C tmp/publication-index
+python3 -B scripts/publication_inventory.py tmp/publication-index \
+  --output tmp/publication-index-inventory.json
+```
+
+The two inventory JSON files must have identical `files` mappings and
+`postprocess_manifest_sha256` values. This compares the actual staged bytes,
+including files normally ignored by Git:
+
+```bash
+python3 -B - <<'PY'
+import json
+with open('deliverables/publication-inventory.json') as f:
+    source = json.load(f)
+with open('tmp/publication-index-inventory.json') as f:
+    staged = json.load(f)
+assert source['files'] == staged['files']
+assert source['postprocess_manifest_sha256'] == staged['postprocess_manifest_sha256']
+print('Staged package bytes match the publication inventory.')
+PY
+```
+
+After the authorized commit and upload, repeat this check on a fresh clone or
+restored release download;
+verify the downloadable PDF against its inventoried hash as well.
+
+GitHub currently warns for files larger than 50 MiB and blocks regular-Git
+files larger than 100 MiB. Its repository-size guidance recommends keeping
+repositories small, ideally below 1 GB and strongly below 5 GB.
+[GitHub file and repository guidance](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)
+was checked on 2026-10-11. These are publication constraints, not model-data
+selection rules: do not omit a required file to pass them.
+
+If another transport is needed, retain the exact inventory paths in a complete
+package archive and publish it as release assets, with hashes and restoration
+instructions linked from the repository. Split a large archive into 1 GiB
+parts if necessary. Verify each actual part is smaller than 2 GiB and the
+release has at most 1,000 assets, including auxiliary checksum files, as stated
+in [GitHub's release limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
+(checked 2026-10-11). Reassemble and extract into a new directory, then require
+the same inventory comparison before claiming a complete download. Record
+which required paths are supplied by Git and which by the release; the code,
+configuration, plotting scripts, LaTeX and final PDF must remain discoverable
+in the repository. Actual transport selection and upload await the completed
+package's measured sizes and repository access.
+
 # Verification status
 
 The full clean wrapper has not yet been executed to completion. Shell and Python
@@ -296,3 +395,19 @@ while preserving every figure and derived-data byte, recording the new ledger
 hash and archiving the previous manifest/PDF. A relocated package without
 application/TeX caches also re-rendered and remained incomplete. These checks
 ran no model, changed no staged 002 source, and replaced no canonical output.
+
+Publication coverage is checked separately with:
+
+```bash
+python3 -B tests/publication_inventory.py
+```
+
+The 18 checks use synthetic files and temporary Git repositories inside
+`tmp/`. They cover required ignored checkpoints, the archived/current ledger
+distinction, changed/missing/unrecorded files, symlinks, nonterminal records,
+package-root and writable-descriptor writers, exclusive outputs, literal
+forced staging and byte-identical index export. A sparse size fixture verifies
+that 100 MiB is accepted and 100 MiB plus one byte requires another transport.
+The existing terminal report fixture also inventories 296 files while keeping
+its `incomplete` status. These later publication checks were not part of the
+frozen rebuild's launch checks and establish no model result or remote upload.
