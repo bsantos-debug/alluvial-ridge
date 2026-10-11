@@ -32,6 +32,15 @@ rebuild or establish agreement with the publication. The retained manifest
 binds every copied input to its selected audit and the original process identity.
 All 31 production processes continued running; no model or frozen input changed.
 
+A later [partial scientific assessment](early-production-assessment.md) uses
+the unchanged preview to compare common floods 1–13. The highest-C case has
+the greatest alpha spread, but the intermediate-C case has the least and
+the observed maxima decrease with C. The early drift and almost fully wet
+interface limit interpretation; developed-ridge variability remains pending.
+The Figure 3B ledger now records this bounded assessment with its input,
+processor and figure fingerprint. This adds no numerical coverage and makes
+no complete reproduction claim.
+
 Started 2026-10-09 19:22:42 UTC from revision `e8656f4` using:
 
 ```sh

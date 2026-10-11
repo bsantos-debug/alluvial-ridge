@@ -456,7 +456,7 @@
     "recorded_fingerprint": ""
   },
   "3B": {
-    "assessment_fingerprint_matches": false,
+    "assessment_fingerprint_matches": true,
     "current_fingerprint": "ce705eea427369763b5591b0116236cf95fc19f74aea234c6fc0cef5355c30d4",
     "evidence": {
       "comparison_json_sha256": "cc2ac0dcafd2fbbd2a1eefac91e7ae7c31e1b0c7b74e64a9bbb407626bf570d3",
@@ -487,7 +487,7 @@
       "spatial_diagnostics": {}
     },
     "problems": [],
-    "recorded_fingerprint": ""
+    "recorded_fingerprint": "ce705eea427369763b5591b0116236cf95fc19f74aea234c6fc0cef5355c30d4"
   },
   "3C": {
     "assessment_fingerprint_matches": false,

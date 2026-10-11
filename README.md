@@ -12,6 +12,8 @@ supplies 41 of Figure 3B's 1,740 required values, from runs 7, 15 and 20 through
 floods 13, 13 and 15 respectively. Its missing values remain gaps. This panel
 is partial; the other 12 panels lack their requested numerical outputs. No
 manuscript panel is claimed fully reproduced yet.
+The [bounded early assessment](docs/early-production-assessment.md) compares
+the common first 13 floods without inferring the missing long-term behavior.
 All eight first-flood sensitivity cases completed with exit code 0; the
 125 m case finished on 2026-10-10 at 10:50:14 UTC. The
 [retained comparisons](docs/first-flood-validation.md) include the 125 m and
