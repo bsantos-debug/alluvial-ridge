@@ -1,0 +1,71 @@
+{
+  "common13_alpha": {
+    "07": {
+      "max": 0.910551551733,
+      "min": 0.884248516116,
+      "population_sd": 0.00814557096730687
+    },
+    "15": {
+      "max": 0.900550492492,
+      "min": 0.884485916597,
+      "population_sd": 0.004764548063867547
+    },
+    "20": {
+      "max": 0.886492351289,
+      "min": 0.811893270313,
+      "population_sd": 0.024517501716234916
+    }
+  },
+  "first_flood_bindings": 30,
+  "limits": "No solver runs, physical-budget reconstruction, numerical convergence tests, or full provenance audit.",
+  "panels": {
+    "not reproduced": 12,
+    "partially reproduced": 1
+  },
+  "preservation_archives_verified": 2,
+  "preview_bindings": 64,
+  "summary": {
+    "baseline250": {
+      "alpha": "0.884485916597",
+      "bank_mass": "0",
+      "bed_forcing_mass": "0",
+      "beta": "0.00164371586631",
+      "channel_depth": "8.02294344114",
+      "channel_steps": "452282",
+      "cutoffs": "0",
+      "flood": "1",
+      "interface_fraction": "1",
+      "mean_water": "0.884485916597",
+      "recycled_mass": "0",
+      "ridge_height": "0.0131874394287",
+      "sediment_residual": "-0.754352927208",
+      "sinuosity": "1.00039418699",
+      "solid_sediment_residual": "-0.359753012657",
+      "steps": "125765",
+      "wall_seconds": "5437.13830941",
+      "water_residual": "-1.95503234863e-05",
+      "water_storage": "555864786.484"
+    },
+    "coarse500": {
+      "alpha": "0.770580353109",
+      "bank_mass": "0",
+      "bed_forcing_mass": "0",
+      "beta": "0.00417847870655",
+      "channel_depth": "8.03460208127",
+      "channel_steps": "404334",
+      "cutoffs": "0",
+      "flood": "1",
+      "interface_fraction": "1",
+      "mean_water": "0.770580353109",
+      "recycled_mass": "0",
+      "ridge_height": "0.0335724137122",
+      "sediment_residual": "-0.337443113327",
+      "sinuosity": "1.00039418699",
+      "solid_sediment_residual": "-0.260296583176",
+      "steps": "59535",
+      "wall_seconds": "1101.08374862",
+      "water_residual": "-9.32887196541e-05",
+      "water_storage": "207257542.199"
+    }
+  }
+}

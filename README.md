@@ -3,10 +3,18 @@
 Independent reconstruction of Nicholas et al. (2018), *Geology* 46, 639–642,
 [doi:10.1130/G40104.1](https://doi.org/10.1130/G40104.1).
 
+**Scientific assessment, 12 October 2026:** [PDF](progress_assessment.pdf),
+[LaTeX source](progress_assessment.tex), and
+[evidence audit](validation/assessment-evidence-20261012/README.md).
+Further model development is paused. The assessment recommends stopping
+open-ended spending; at most, consider one bounded scientist-led review of
+existing evidence. No panel has established quantitative agreement. Existing
+background calculations were not stopped by the assessment.
+
 **Work in progress.** The coupled C++ model, verification tests, 31 published
 configuration combinations, plotting scripts for all 13 manuscript panels,
 and a provisional LaTeX report are implemented. Full-duration verification and
-production simulations are ongoing. An
+production results remain incomplete. An
 [early-production preview](validation/production-preview-20261011/README.md)
 supplies 41 of Figure 3B's 1,740 required values, from runs 7, 15 and 20 through
 floods 13, 13 and 15 respectively. Its missing values remain gaps. This panel
